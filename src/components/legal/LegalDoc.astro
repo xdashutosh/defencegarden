@@ -1,0 +1,166 @@
+---
+// One policy document (src/data/legal/*.md via src/lib/legal.js) in an editorial reading layout:
+// ivory title band (serif title, effective date), sticky numbered contents on desktop / collapsible on mobile,
+// numbered sections, a night-navy contact card and links to the other policies. Copy is verbatim.
+import Icon from '../ui/Icon.astro';
+import Ornament from '../ui/Ornament.astro';
+import { getLegalDoc, inlineHtml } from '../../lib/legal.js';
+
+interface Props { slug: string }
+const { slug } = Astro.props;
+const doc = getLegalDoc(slug);
+if (!doc) throw new Error(`LegalDoc: no legal document '${slug}' in src/data/legal`);
+
+const pad = (n) => String(n ?? '').padStart(2, '0');
+const sections = doc.sections.map((s, i) => ({ ...s, n: pad(s.number ?? i + 1) }));
+let isoDate = null;
+if (doc.effectiveDate) {
+  const d = new Date(doc.effectiveDate);
+  if (!Number.isNaN(d.getTime())) isoDate = `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+}
+const words = [...doc.intro, ...doc.sections.flatMap((s) => s.paragraphs)].join(' ').split(/\s+/).length;
+const minutes = Math.max(1, Math.round(words / 220));
+const iconFor = (href) => (href.startsWith('mailto:') ? 'mail' : href.startsWith('tel:') ? 'phone' : 'arrow-up-right');
+const related = [...doc.related, { label: 'Image credits & licences', href: '/credits' }];
+---
+<style is:inline>
+  .lgl-hero { position: relative; overflow: hidden; padding: calc(var(--header-h) + clamp(50px, 8vw, 130px)) 0 clamp(50px, 6vw, 96px); }
+  .lgl-hero__orn { position: absolute; right: var(--gutter); bottom: 0; width: clamp(120px, 16vw, 260px); color: var(--accent); opacity: .5; pointer-events: none; }
+  .lgl-hero__in { position: relative; display: grid; gap: clamp(20px, 2.4vw, 34px); max-width: 1100px; }
+  .lgl-hero__crumb { display: flex; align-items: center; gap: 12px; }
+  .lgl-hero__crumb a { color: var(--accent); }
+  .lgl-hero__title { font-size: clamp(48px, 7.2vw, 132px); line-height: .98; letter-spacing: -.03em; }
+  .lgl-hero__desc { max-width: 52ch; }
+  .lgl-hero__meta { display: flex; flex-wrap: wrap; gap: 10px 28px; padding-top: 22px; border-top: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); }
+  .lgl-hero__meta span { display: inline-flex; align-items: center; gap: 8px; }
+  .lgl-hero__meta .ico { width: 15px; height: 15px; color: var(--accent); }
+
+  .lgl { padding-block: clamp(50px, 7vw, 120px) clamp(80px, 10vw, 170px); }
+  .lgl__grid { display: grid; grid-template-columns: minmax(220px, 290px) minmax(0, 760px); justify-content: space-between; gap: clamp(36px, 6vw, 120px); align-items: start; }
+  .lgl__toc { position: sticky; top: calc(var(--header-h) + 26px); display: grid; gap: 16px; transition: top .7s var(--ease-out); }
+  html:has(.hdr.is-hidden) .lgl__toc { top: 32px; }
+  .lgl__toc-list { border-top: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); }
+  .lgl__toc-list a { display: grid; grid-template-columns: 34px 1fr; gap: 8px; padding: 11px 0; border-bottom: 1px solid color-mix(in srgb, var(--fg) 10%, transparent); font-size: 14px; line-height: 1.35; color: color-mix(in srgb, var(--fg) 70%, transparent); transition: color .3s, padding .5s var(--ease-out); }
+  .lgl__toc-list a:hover { color: var(--fg); padding-left: 6px; }
+  .lgl__toc-n { font-family: var(--f-wide); font-stretch: 125%; font-size: 10px; letter-spacing: .12em; color: var(--accent); padding-top: 3px; }
+  .lgl__toc-m { display: none; border: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); border-radius: 4px; }
+  .lgl__toc-m summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; }
+  .lgl__toc-m summary::-webkit-details-marker { display: none; }
+  .lgl__toc-m summary .ico { width: 16px; height: 16px; transition: transform .4s var(--ease-out); }
+  .lgl__toc-m[open] summary .ico { transform: rotate(45deg); }
+  .lgl__toc-m .lgl__toc-list { margin: 0 16px 8px; }
+
+  .lgl__doc { display: grid; gap: clamp(40px, 5vw, 72px); min-width: 0; }
+  .lgl__intro { display: grid; gap: 18px; }
+  .lgl__intro p:first-child { font-family: var(--f-serif); font-weight: 300; font-variation-settings: 'opsz' 72; font-size: clamp(22px, 1.9vw, 30px); line-height: 1.35; letter-spacing: -.01em; }
+  .lgl__sec { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 0 clamp(14px, 2vw, 28px); padding-top: clamp(26px, 3vw, 40px); border-top: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); scroll-margin-top: calc(var(--header-h) + 24px); }
+  .lgl__sec-n { font-family: var(--f-deco); font-weight: 300; font-size: clamp(34px, 3vw, 50px); line-height: .9; color: var(--accent); }
+  .lgl__sec h2 { font-family: var(--f-sans); font-weight: 500; font-size: clamp(24px, 2.2vw, 36px); letter-spacing: -.03em; line-height: 1.1; margin-bottom: 18px; }
+  .lgl__sec p + p { margin-top: 14px; }
+  .lgl__text { font-size: clamp(15px, 1.1vw, 17.5px); line-height: 1.7; color: color-mix(in srgb, var(--fg) 86%, transparent); }
+  .lgl__text strong { font-weight: 600; color: var(--fg); }
+  .lgl .text-link, .lgl-hero .text-link { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; overflow-wrap: anywhere; }
+  .lgl .text-link:hover { color: var(--fg); }
+
+  .lgl__contact { position: relative; overflow: hidden; border-radius: 4px; padding: clamp(26px, 3.4vw, 50px); display: grid; gap: 18px; }
+  .lgl__contact-orn { position: absolute; right: -60px; top: -40px; width: 280px; height: 280px; color: var(--copper); opacity: .12; pointer-events: none; }
+  .lgl__contact h2 { font-family: var(--f-deco); font-weight: 300; text-transform: uppercase; font-size: clamp(28px, 2.6vw, 44px); line-height: 1; color: #f4ede6; }
+  .lgl__contact-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+  .lgl__contact .btn { text-transform: none; }
+
+  .lgl__related { display: grid; gap: 16px; }
+  .lgl__rel { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .lgl__rel a { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 18px 20px; border: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); border-radius: 4px; font-weight: 500; letter-spacing: -.01em; transition: background .4s, color .4s, border-color .4s; }
+  .lgl__rel a .ico { width: 18px; height: 18px; flex: none; transition: transform .5s var(--ease-out); }
+  .lgl__rel a:hover { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+  .lgl__rel a:hover .ico { transform: translate(3px, -3px); }
+
+  @media (max-width: 960px) {
+    .lgl__grid { grid-template-columns: 1fr; gap: 34px; }
+    .lgl__toc { display: none; }
+    .lgl__toc-m { display: block; }
+  }
+  @media (max-width: 560px) {
+    .lgl__sec { grid-template-columns: 1fr; }
+    .lgl__sec-n { margin-bottom: 12px; font-size: 30px; }
+    .lgl__rel { grid-template-columns: 1fr; }
+    .lgl-hero__orn { width: 90px; opacity: .3; }
+  }
+</style>
+
+<section class="lgl-hero t-ivory" data-header-tone="light">
+  <Ornament variant="spire" class="lgl-hero__orn" />
+  <div class="wrap">
+    <div class="lgl-hero__in">
+      <p class="eyebrow lgl-hero__crumb" data-reveal="fade" data-reveal-intro><a class="link-line" href="/">Defence Garden</a><span aria-hidden="true">/</span><span>Legal</span></p>
+      <h1 class="serif lgl-hero__title balance" data-reveal="lines" data-reveal-intro data-reveal-delay="0.1">{doc.title}</h1>
+      {doc.description && <p class="lead muted lgl-hero__desc" data-reveal="fade" data-reveal-intro data-reveal-delay="0.3">{doc.description}</p>}
+      <p class="eyebrow lgl-hero__meta" data-reveal="fade" data-reveal-intro data-reveal-delay="0.4">
+        {doc.effectiveDate && <span><Icon name="clock" />Effective date · <time datetime={isoDate ?? undefined}>{doc.effectiveDate}</time></span>}
+        <span class="muted">{pad(sections.length)} sections</span>
+        <span class="muted">{minutes} min read</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="lgl t-light" data-header-tone="light">
+  <div class="wrap lgl__grid">
+    <aside class="lgl__toc" aria-label="Contents">
+      <p class="eyebrow">On this page</p>
+      <nav class="lgl__toc-list">
+        {sections.map((s) => <a href={`#${s.id}`} data-no-barba><span class="lgl__toc-n">{s.n}</span><span>{s.title}</span></a>)}
+        {doc.contact && <a href="#contact" data-no-barba><span class="lgl__toc-n">—</span><span>{doc.contact.heading}</span></a>}
+      </nav>
+    </aside>
+
+    <article class="lgl__doc">
+      <details class="lgl__toc-m">
+        <summary><span class="eyebrow">On this page · {pad(sections.length)}</span><Icon name="plus" /></summary>
+        <nav class="lgl__toc-list" aria-label="Contents">
+          {sections.map((s) => <a href={`#${s.id}`} data-no-barba><span class="lgl__toc-n">{s.n}</span><span>{s.title}</span></a>)}
+          {doc.contact && <a href="#contact" data-no-barba><span class="lgl__toc-n">—</span><span>{doc.contact.heading}</span></a>}
+        </nav>
+      </details>
+
+      {doc.intro.length > 0 && (
+        <div class="lgl__intro lgl__text" data-reveal="fade">
+          {doc.intro.map((p) => <p set:html={inlineHtml(p)} />)}
+        </div>
+      )}
+
+      {sections.map((s) => (
+        <section class="lgl__sec" id={s.id} aria-labelledby={`${s.id}-h`}>
+          <span class="lgl__sec-n" aria-hidden="true">{s.n}</span>
+          <div class="lgl__text">
+            <h2 id={`${s.id}-h`}>{s.title}</h2>
+            {s.paragraphs.map((p) => <p set:html={inlineHtml(p)} />)}
+          </div>
+        </section>
+      ))}
+
+      {doc.contact && (
+        <aside class="lgl__contact t-night" id="contact" style="scroll-margin-top:calc(var(--header-h) + 24px)" aria-labelledby="lgl-contact-h" data-reveal="fade">
+          <Ornament variant="spire" class="lgl__contact-orn" />
+          <p class="eyebrow eyebrow--accent">Questions about this policy</p>
+          <h2 id="lgl-contact-h">{doc.contact.heading}</h2>
+          {doc.contact.lines.map((l) => <p class="body" set:html={inlineHtml(l)} />)}
+          <div class="lgl__contact-links">
+            {doc.contact.links.map((l, i) => (
+              <a class={`btn ${i === 0 ? 'btn--copper' : ''}`} href={l.href}><Icon name={iconFor(l.href)} /><span>{l.label}</span></a>
+            ))}
+          </div>
+        </aside>
+      )}
+
+      {related.length > 0 && (
+        <nav class="lgl__related" aria-label="Other policies">
+          <p class="eyebrow">Other policies</p>
+          <div class="lgl__rel">
+            {related.map((r) => <a href={r.href}><span>{r.label}</span><Icon name="arrow-up-right" /></a>)}
+          </div>
+        </nav>
+      )}
+    </article>
+  </div>
+</section>

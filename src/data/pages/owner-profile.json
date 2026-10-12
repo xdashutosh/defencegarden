@@ -1,0 +1,63 @@
+{
+  "_meta": {
+    "source": "assets/OwnerProfile-CTmJdX6W.js (+ company constant in index-BpgzKryG.js), rendered https://defencegarden.com/about/kuldeep-tomar on 2026-10-12.",
+    "path": "/about/kuldeep-tomar",
+    "seoRef": "site.json → seo.pages['/about/kuldeep-tomar'] (og:type profile, ProfilePage JSON-LD)",
+    "sectionOrder": ["hero", "role", "company"]
+  },
+
+  "hero": {
+    "watermark": "KT",
+    "breadcrumb": [
+      { "label": "Home", "href": "/" },
+      { "label": "About", "href": "/about" },
+      { "label": "Mr. Kuldeep Tomar", "current": true }
+    ],
+    "eyebrow": "Official owner profile",
+    "heading": { "lines": ["Mr. Kuldeep Tomar", "Owner of Defence Garden."], "text": "Mr. Kuldeep Tomar Owner of Defence Garden.", "accent": "Owner of Defence Garden." },
+    "text": "The current owner of Defence Garden is Mr. Kuldeep Tomar. He leads the organisation and its real-estate development operations.",
+    "profileCard": {
+      "ariaLabel": "Profile details",
+      "monogram": "KT",
+      "facts": [
+        { "label": "Name", "value": "Mr. Kuldeep Tomar" },
+        { "label": "Role", "value": "Owner" },
+        { "label": "Organisation", "value": "Defence Garden" }
+      ]
+    }
+  },
+
+  "role": {
+    "eyebrow": "Ownership & leadership",
+    "heading": "A clear official connection.",
+    "paragraphs": [
+      "Mr. Kuldeep Tomar is the current owner of Defence Garden. In that capacity, he leads the organisation and its real-estate development operations.",
+      "This official profile is intentionally limited to current company information supplied by Defence Garden. It does not add unverified biographical claims, qualifications, awards or personal history."
+    ],
+    "link": { "label": "View Defence Garden leadership", "href": "/about/leadership" }
+  },
+
+  "company": {
+    "eyebrow": "The official organisation",
+    "heading": "Defence Garden",
+    "text": "Defence Garden develops premium plotted residential townships across Shamli, Meerut and Budhana in Western Uttar Pradesh. Its public project information covers developments in Shamli, Meerut and Budhana.",
+    "links": [
+      { "label": "Defence Garden home", "href": "/", "icon": "landmark" },
+      { "label": "About Defence Garden", "href": "/about", "icon": "building-2" },
+      { "label": "Explore projects", "href": "/ourproject", "icon": "map-pin" }
+    ],
+    "closing": {
+      "text": "For project enquiries, plot availability or site visits, contact the Defence Garden team directly.",
+      "cta": { "label": "Contact Defence Garden", "href": "/contact" }
+    }
+  },
+
+  "imagesInOrder": [],
+  "imagesNote": "No photos/videos on this page on the old site; no owner portrait or biography exists (the page explicitly declines to add any).",
+
+  "noJsFallback": {
+    "eyebrow": "Official Defence Garden website",
+    "heading": "Mr. Kuldeep Tomar — Owner of Defence Garden",
+    "text": "The current owner of Defence Garden is Mr. Kuldeep Tomar. He leads the organisation and its real-estate development operations."
+  }
+}

@@ -1,0 +1,37 @@
+---
+// Responsive image for Defence Garden media (manifest key / data object / src path) OR licensed concept media
+// (`vision` key from src/data/vision-media.json). Falls back to `src` when the vision item does not exist yet.
+import { Image } from 'astro:assets';
+import { media, preferred, imageProps, pictureWidths } from '../../lib/media.js';
+import { vision as getVision } from '../../lib/vision.js';
+
+interface Props {
+  src?: unknown;           // DG manifest key, data object ({ key, preferKey }) or src path
+  vision?: string;         // concept media key, e.g. 'skyline-dusk'
+  alt?: string;
+  sizes?: string;
+  widths?: number[];
+  eager?: boolean;
+  focus?: string;
+  class?: string;
+  prefer?: boolean;        // use the sharper twin (preferKey) of a data object
+  [key: string]: unknown;  // data-* attributes (data-parallax, data-scale-in …) are forwarded to <img>
+}
+const { src, vision, alt, sizes = '100vw', widths, eager = false, focus, class: cls = '', prefer = true, ...rest } = Astro.props;
+const W = widths ?? [480, 800, 1200, 1600, 2000, 2560];
+
+let props = null;
+const v = vision ? getVision(vision) : null;
+if (v) {
+  // concept media is not in the DG manifest: build the <Image> props from its own record (width from vision-media.json)
+  props = {
+    src: v.image, alt: alt ?? v.alt, sizes, widths: pictureWidths({ width: v.width }, W),
+    loading: eager ? 'eager' : 'lazy', decoding: 'async', style: `object-position:${focus ?? v.focus}`,
+  };
+} else if (src) {
+  const rec = prefer && src && typeof src === 'object' ? preferred(src) : media(src);
+  props = imageProps(rec, { alt, focus, sizes, widths: W, loading: eager ? 'eager' : 'lazy' });
+}
+if (props && eager) props.fetchpriority = 'high';
+---
+{props && <Image {...props} {...rest} class={cls} data-concept={v ? '' : undefined} />}

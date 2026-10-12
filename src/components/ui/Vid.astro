@@ -1,0 +1,39 @@
+---
+// Muted background video: licensed concept film (`vision` key) or a Defence Garden film (manifest key / data object).
+// The runtime starts it only while visible (data-video) and loops between data-start / data-end when given.
+import { getImage } from 'astro:assets';
+import { video } from '../../lib/media.js';
+import { visionVideo } from '../../lib/vision.js';
+
+interface Props { vision?: string; src?: unknown; class?: string; eager?: boolean; label?: string }
+const { vision, src, class: cls = '', eager = false, label } = Astro.props;
+
+const v = vision ? visionVideo(vision) : null;
+const d = !v && src ? video(src) : null;
+const rec = v || d;
+let poster = null;
+if (rec?.poster) {
+  const w = Math.min(1920, Number(rec.width) || 1920);
+  poster = (await getImage({ src: rec.poster, width: w, format: 'webp', quality: 72 })).src;
+}
+const start = d?.startAt || 0;
+const end = d?.endAt || 0;
+---
+{rec && (
+  <video
+    class={cls}
+    data-video
+    data-src={rec.url}
+    src={eager ? rec.url : undefined}
+    poster={poster ?? undefined}
+    muted
+    playsinline
+    loop={start > 0 || end > 0 ? undefined : true}
+    preload={eager ? 'auto' : 'none'}
+    data-start={start || undefined}
+    data-end={end || undefined}
+    aria-label={label}
+    aria-hidden={label ? undefined : 'true'}
+    data-concept={v ? '' : undefined}
+  ></video>
+)}

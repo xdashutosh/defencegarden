@@ -1,0 +1,74 @@
+{
+  "_meta": {
+    "source": "assets/Courses-Dj2NGItE.js, rendered https://defencegarden.com/courses on 2026-10-12.",
+    "path": "/courses",
+    "status": "TEMPLATE LEFTOVER — NOT DEFENCE GARDEN CONTENT",
+    "recommendation": "Do not migrate. The route is orphaned (not in nav, footer or sitemap) and contains a stock React/Tailwind 'online courses' demo (blue gradient, placeholder 'Course Image' boxes, non-functional 'Enroll Now' buttons). Recorded verbatim only for completeness; the new site should 404 or redirect /courses.",
+    "seoRef": "No SEO entry; falls back to site.json → seo.pages.fallback404 (noindex)."
+  },
+  "hero": {
+    "heading": "Our Courses",
+    "text": "Explore our comprehensive selection of courses designed to boost your skills and advance your career."
+  },
+  "courses": [
+    {
+      "id": 1,
+      "title": "React Fundamentals",
+      "description": "Learn the basics of React, including components, hooks, and state management.",
+      "level": "Beginner",
+      "duration": "4 weeks",
+      "students": 1250,
+      "rating": 4.8
+    },
+    {
+      "id": 2,
+      "title": "Advanced React Patterns",
+      "description": "Master advanced React patterns, performance optimization, and best practices.",
+      "level": "Advanced",
+      "duration": "6 weeks",
+      "students": 580,
+      "rating": 4.9
+    },
+    {
+      "id": 3,
+      "title": "Tailwind CSS Mastery",
+      "description": "Build beautiful, responsive UIs with Tailwind CSS. From basics to advanced techniques.",
+      "level": "Intermediate",
+      "duration": "3 weeks",
+      "students": 890,
+      "rating": 4.7
+    },
+    {
+      "id": 4,
+      "title": "Full-Stack Development",
+      "description": "Complete guide to building full-stack applications with modern tools and practices.",
+      "level": "Advanced",
+      "duration": "10 weeks",
+      "students": 420,
+      "rating": 4.9
+    },
+    {
+      "id": 5,
+      "title": "Web Design Principles",
+      "description": "Learn design fundamentals, UX/UI best practices, and create compelling web experiences.",
+      "level": "Beginner",
+      "duration": "5 weeks",
+      "students": 750,
+      "rating": 4.6
+    },
+    {
+      "id": 6,
+      "title": "JavaScript ES6+",
+      "description": "Deep dive into modern JavaScript features and become a proficient JS developer.",
+      "level": "Intermediate",
+      "duration": "4 weeks",
+      "students": 1100,
+      "rating": 4.8
+    }
+  ],
+  "cardStrings": {
+    "imagePlaceholder": "Course Image",
+    "studentsSuffix": " students",
+    "button": "Enroll Now"
+  }
+}

@@ -1,0 +1,34 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /auth/
+Disallow: /verify-receipt
+Disallow: /booking/
+
+# Public search and answer-engine crawlers may access public pages.
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /auth/
+Disallow: /verify-receipt
+Disallow: /booking/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /auth/
+Disallow: /verify-receipt
+Disallow: /booking/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /auth/
+Disallow: /verify-receipt
+Disallow: /booking/
+
+Sitemap: https://defencegarden.com/sitemap-index.xml

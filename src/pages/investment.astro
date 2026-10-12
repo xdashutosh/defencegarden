@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import InvestHero from '../components/investment/InvestHero.astro';
+import InvestThesis from '../components/investment/InvestThesis.astro';
+import InvestOpportunities from '../components/investment/InvestOpportunities.astro';
+import InvestCalculator from '../components/investment/InvestCalculator.astro';
+import InvestPillars from '../components/investment/InvestPillars.astro';
+import InvestJourney from '../components/investment/InvestJourney.astro';
+import InvestTracks from '../components/investment/InvestTracks.astro';
+import InvestEpilogue from '../components/investment/InvestEpilogue.astro';
+import { flags } from '../lib/flags.js';
+
+// flags.investmentClaims (D18) gates every return / CAGR / price / scarcity claim and the calculator.
+const claims = flags.investmentClaims;
+---
+<Base path="/investment" namespace="investment" tone="dark">
+  <InvestHero />
+  <InvestThesis />
+  <InvestOpportunities />
+  {claims && <InvestCalculator />}
+  <InvestPillars />
+  <InvestJourney />
+  <InvestTracks />
+  <InvestEpilogue />
+</Base>

@@ -1,0 +1,33 @@
+---
+// Original Art Deco line ornaments (thin strokes, copper by default via currentColor).
+// variant 'fan' — radiating arcs (preloader / section backgrounds); 'spire' — stepped tower motif used as a divider;
+// 'diamond' — small centre mark for rules.
+interface Props { variant?: 'fan' | 'spire' | 'diamond'; class?: string }
+const { variant = 'diamond', class: cls = '' } = Astro.props;
+const arcs = Array.from({ length: 9 }, (_, i) => i);
+---
+{variant === 'fan' && (
+  <svg class={`orn orn--fan ${cls}`} viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+    <g data-orn-draw>
+      {arcs.map((i) => (
+        <path d={`M600 820 C ${600 - 60 - i * 70} ${560 - i * 40}, ${600 - 30 - i * 30} ${260 - i * 30}, 600 ${-20 + i * 6}`} />
+      ))}
+      {arcs.map((i) => (
+        <path d={`M600 820 C ${600 + 60 + i * 70} ${560 - i * 40}, ${600 + 30 + i * 30} ${260 - i * 30}, 600 ${-20 + i * 6}`} />
+      ))}
+      <path d="M600 -20 V 820" />
+      <path d="M560 400 L600 340 L640 400 L600 460 Z" />
+      <path d="M580 400 L600 370 L620 400 L600 430 Z" />
+    </g>
+  </svg>
+)}
+{variant === 'spire' && (
+  <svg class={`orn orn--spire ${cls}`} viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+    <path d="M60 4 V116 M52 116 V40 L60 22 L68 40 V116 M42 116 V64 L52 52 M78 116 V64 L68 52 M32 116 V86 L42 78 M88 116 V86 L78 78 M20 116 H100" />
+  </svg>
+)}
+{variant === 'diamond' && (
+  <svg class={`orn orn--diamond ${cls}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+    <path d="M12 2 L22 12 L12 22 L2 12 Z" /><path d="M12 7 L17 12 L12 17 L7 12 Z" />
+  </svg>
+)}

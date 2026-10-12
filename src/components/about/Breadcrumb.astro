@@ -1,0 +1,25 @@
+---
+// Visual breadcrumb (leadership.json / owner-profile.json hero.breadcrumb). BreadcrumbList JSON-LD comes from Base.
+interface Crumb { label: string; href?: string; current?: boolean }
+interface Props { items: Crumb[]; class?: string }
+const { items, class: cls = '' } = Astro.props;
+---
+<nav class={`bc ${cls}`} aria-label="Breadcrumb">
+  <ol class="bc__list">
+    {items.map((c) => (
+      <li class="bc__item">
+        {c.current || !c.href
+          ? <span class="eyebrow bc__current" aria-current="page">{c.label}</span>
+          : <a class="eyebrow link-line bc__link" href={c.href}>{c.label}</a>}
+      </li>
+    ))}
+  </ol>
+</nav>
+<style>
+  .bc__list { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 0; }
+  .bc__item { display: inline-flex; align-items: center; }
+  .bc__item + .bc__item::before { content: ''; width: 18px; height: 1px; margin: 0 12px; background: currentColor; opacity: .35; }
+  .bc__link { color: color-mix(in srgb, var(--fg) 62%, transparent); transition: color .3s; }
+  .bc__link:hover { color: var(--fg); }
+  .bc__current { color: var(--accent); }
+</style>

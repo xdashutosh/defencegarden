@@ -1,0 +1,358 @@
+{
+  "_meta": {
+    "source": "assets/About--zM7-8BD.js (+ r4-Cc-xdSSc.js), rendered https://defencegarden.com/about on 2026-10-12. Text verbatim (eyebrows were uppercased by CSS on the old site).",
+    "path": "/about",
+    "seoRef": "site.json → seo.pages['/about']",
+    "sectionOrder": [
+      "hero",
+      "story",
+      "leadership",
+      "journey",
+      "values",
+      "cta"
+    ]
+  },
+  "hero": {
+    "type": "fullscreen-video",
+    "video": {
+      "oldUrl": "https://defencegarden.com/assets/newhome-web-OqR-SDrQ.mp4",
+      "key": "video.newhome-web",
+      "src": "public/media/video/newhome-web.mp4",
+      "url": "/media/video/newhome-web.mp4",
+      "poster": "src/assets/media/posters/newhome-web-poster.webp",
+      "posterKey": "posters.newhome-web-poster",
+      "still": "src/assets/media/posters/newhome-web-still.webp",
+      "stillKey": "posters.newhome-web-still",
+      "startAt": 0.0,
+      "endAt": 8.0,
+      "hasAudio": false,
+      "alt": "Animated 3D render of a home rising on a landscaped plot",
+      "autoplay": true,
+      "loop": true,
+      "muted": true,
+      "playsInline": true
+    },
+    "badge": {
+      "text": "A Story of Land & Legacy",
+      "icon": "sparkles"
+    },
+    "heading": {
+      "lines": [
+        "Designed for",
+        "legacy living."
+      ],
+      "text": "Designed for legacy living.",
+      "accent": "legacy living."
+    },
+    "text": "Since 2006, we have shaped land into communities families call their own — starting in Meerut, now eleven colonies across Meerut, Budhana, and Shamli.",
+    "ctas": [
+      {
+        "label": "Explore Projects",
+        "href": "/ourproject",
+        "style": "primary with arrow"
+      },
+      {
+        "label": "Talk to Team",
+        "href": "/contact",
+        "style": "outline"
+      }
+    ],
+    "scrollCue": "Scroll"
+  },
+  "story": {
+    "watermark": "Story",
+    "image": {
+      "oldUrl": "https://defencegarden.com/assets/r2-DE7o04th.webp",
+      "key": "about.r2",
+      "src": "src/assets/media/about/r2.webp",
+      "alt": "Paved walkway lined with ornate street lamps, young palms and clipped hedges under a clear blue sky",
+      "oldAlt": "River Green beginnings"
+    },
+    "imageCaption": "\"A quiet mission in Meerut, 2006.\"",
+    "badge": {
+      "value": "2006",
+      "label": "Meerut Roots"
+    },
+    "eyebrow": "Our Story",
+    "heading": {
+      "text": "Our story began in Meerut with a quiet conviction — that land, carefully shaped, becomes a legacy.",
+      "note": "Word-by-word scroll reveal (opacity 0.18 → 1)."
+    },
+    "text": "What started as a single layout in Meerut became a philosophy — plan with patience, build infrastructure first, leave the ground better than we found it. Today that philosophy shapes townships across Meerut, Budhana, and Shamli.",
+    "stats": [
+      {
+        "value": "5000+",
+        "label": "Residential Plots"
+      },
+      {
+        "value": "11",
+        "label": "Township Developments"
+      },
+      {
+        "value": "3000+",
+        "label": "Happy Families"
+      },
+      {
+        "value": "20+",
+        "label": "Years of Trust"
+      }
+    ],
+    "statsNote": "Numbers count up from 0 (1.7 s, ease-out cubic) when 45% visible.",
+    "footerLine": {
+      "text": "Meerut · Budhana · Shamli · Since 2006",
+      "icon": "map-pin"
+    }
+  },
+  "leadership": {
+    "watermark": "Leadership",
+    "image": {
+      "oldUrl": "https://defencegarden.com/assets/r3-CMSWksVP.webp",
+      "key": "about.r3",
+      "src": "src/assets/media/about/r3.webp",
+      "alt": "Aerial view of the Defence Garden Phase 2 entrance on the main road, with its green welcome wall, gatehouse and Defence Plaza billboards",
+      "oldAlt": "Defence Garden Phase 2 plotted township"
+    },
+    "imageCaption": {
+      "eyebrow": "Defence Garden",
+      "title": "Planned communities",
+      "subtitle": "Shamli · Meerut · Budhana"
+    },
+    "eyebrow": "Ownership & Leadership",
+    "heading": {
+      "text": "Defence Garden is currently owned and led by Mr. Kuldeep Tomar.",
+      "accent": "Mr. Kuldeep Tomar."
+    },
+    "text": "The current owner of Defence Garden is Mr. Kuldeep Tomar. He leads the organisation and its real-estate development operations.",
+    "ctas": [
+      {
+        "label": "View owner profile",
+        "href": "/about/kuldeep-tomar",
+        "style": "primary with arrow"
+      },
+      {
+        "label": "Defence Garden leadership",
+        "href": "/about/leadership",
+        "style": "outline"
+      }
+    ]
+  },
+  "journey": {
+    "watermark": "Journey",
+    "eyebrow": "The Journey",
+    "heading": {
+      "text": "Two decades, one long view.",
+      "accent": "one long view"
+    },
+    "timeline": [
+      {
+        "year": "2006",
+        "title": "The Beginning",
+        "desc": "Meerut — where our journey in land development began.",
+        "projectIds": []
+      },
+      {
+        "year": "2011",
+        "title": "Saipuram",
+        "desc": "Meerut — our first plotted colony.",
+        "projectIds": [
+          10
+        ]
+      },
+      {
+        "year": "2012",
+        "title": "Defence Park",
+        "desc": "Meerut",
+        "projectIds": [],
+        "note": "Defence Park has no project page, photos or other data on the old site."
+      },
+      {
+        "year": "2014",
+        "title": "Defence Garden",
+        "desc": "Meerut",
+        "projectIds": [
+          3
+        ]
+      },
+      {
+        "year": "2016",
+        "title": "Defence Kunj · Ganpati Enclave",
+        "desc": "Meerut",
+        "projectIds": [
+          6,
+          7
+        ]
+      },
+      {
+        "year": "2018",
+        "title": "Basant Kunj",
+        "desc": "Meerut",
+        "projectIds": [
+          9
+        ]
+      },
+      {
+        "year": "2019",
+        "title": "Gayatri Enclave",
+        "desc": "Meerut",
+        "projectIds": [
+          8
+        ]
+      },
+      {
+        "year": "2021",
+        "title": "Defence Garden Phase 1",
+        "desc": "Shamli",
+        "projectIds": [
+          4
+        ]
+      },
+      {
+        "year": "2022",
+        "title": "Defence Garden Phase 2 · Defence Garden Budhana",
+        "desc": "Shamli & Budhana",
+        "projectIds": [
+          5,
+          2
+        ]
+      },
+      {
+        "year": "2024",
+        "title": "River Green",
+        "desc": "Shamli — our flagship township.",
+        "projectIds": [
+          1
+        ]
+      }
+    ],
+    "note": "Vertical centre line fills with a gold gradient as you scroll; entries alternate left/right on desktop."
+  },
+  "values": {
+    "watermark": "Values",
+    "eyebrow": "What Guides Us",
+    "heading": {
+      "text": "Three guiding principles.",
+      "accent": "principles"
+    },
+    "items": [
+      {
+        "number": "01",
+        "icon": "leaf",
+        "title": "Sustainable Living",
+        "desc": "Neighborhoods designed around trees, airflow, and open greens — so each community breathes naturally."
+      },
+      {
+        "number": "02",
+        "icon": "compass",
+        "title": "Future-Ready Planning",
+        "desc": "Wide roads, clear zoning, and practical amenities that create value today and confidence tomorrow."
+      },
+      {
+        "number": "03",
+        "icon": "shield-check",
+        "title": "Trust & Transparency",
+        "desc": "Legal clarity, ethical delivery, and open communication behind every plot we hand over."
+      }
+    ]
+  },
+  "cta": {
+    "backgroundImage": {
+      "oldUrl": "https://defencegarden.com/assets/r4-DfBvb1ou.webp",
+      "key": "about.r4",
+      "src": "src/assets/media/about/r4.webp",
+      "alt": "Aerial view of a plotted township grid with paved internal roads, young trees and the first houses, farmland stretching to a hazy horizon"
+    },
+    "eyebrow": "Your Next Chapter",
+    "heading": {
+      "lines": [
+        "Plan your next",
+        "address with us."
+      ],
+      "text": "Plan your next address with us.",
+      "accent": "address with us."
+    },
+    "text": "Connect with our team to compare project options, schedule site visits, and choose a plot aligned with your long-term goals.",
+    "ctas": [
+      {
+        "label": "Book Site Visit",
+        "href": "/contact",
+        "style": "primary with arrow"
+      },
+      {
+        "label": "Compare Projects",
+        "href": "/ourproject",
+        "style": "outline"
+      }
+    ],
+    "contactRow": [
+      {
+        "text": "+91 9389925497",
+        "href": "tel:+919389925497",
+        "icon": "phone"
+      },
+      {
+        "text": "defencegarden009@gmail.com",
+        "href": "mailto:defencegarden009@gmail.com",
+        "icon": "mail"
+      },
+      {
+        "text": "VADHEH, Shamli",
+        "href": "https://www.google.com/maps?q=VADHEH,+Shamli+Rd,+Shamli,+Mundetkalan,+Uttar+Pradesh+247776",
+        "target": "_blank",
+        "icon": "map-pin"
+      }
+    ]
+  },
+  "imagesInOrder": [
+    {
+      "oldUrl": "https://defencegarden.com/assets/newhome-web-OqR-SDrQ.mp4",
+      "key": "video.newhome-web",
+      "src": "public/media/video/newhome-web.mp4",
+      "url": "/media/video/newhome-web.mp4",
+      "poster": "src/assets/media/posters/newhome-web-poster.webp",
+      "posterKey": "posters.newhome-web-poster",
+      "still": "src/assets/media/posters/newhome-web-still.webp",
+      "stillKey": "posters.newhome-web-still",
+      "startAt": 0.0,
+      "endAt": 8.0,
+      "hasAudio": false,
+      "alt": "Animated 3D render of a home rising on a landscaped plot",
+      "kind": "video",
+      "section": "hero"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/r2-DE7o04th.webp",
+      "key": "about.r2",
+      "src": "src/assets/media/about/r2.webp",
+      "alt": "Paved walkway lined with ornate street lamps, young palms and clipped hedges under a clear blue sky",
+      "oldAlt": "River Green beginnings",
+      "kind": "image",
+      "section": "story"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/r3-CMSWksVP.webp",
+      "key": "about.r3",
+      "src": "src/assets/media/about/r3.webp",
+      "alt": "Aerial view of the Defence Garden Phase 2 entrance on the main road, with its green welcome wall, gatehouse and Defence Plaza billboards",
+      "oldAlt": "Defence Garden Phase 2 plotted township",
+      "kind": "image",
+      "section": "leadership"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/r4-DfBvb1ou.webp",
+      "key": "about.r4",
+      "src": "src/assets/media/about/r4.webp",
+      "alt": "Aerial view of a plotted township grid with paved internal roads, young trees and the first houses, farmland stretching to a hazy horizon",
+      "kind": "image",
+      "section": "cta (background)"
+    }
+  ],
+  "noJsFallback": {
+    "eyebrow": "Official Defence Garden website",
+    "heading": "About Defence Garden",
+    "text": "Defence Garden develops plotted residential townships across Western Uttar Pradesh. The current owner of Defence Garden is Mr. Kuldeep Tomar.",
+    "link": {
+      "label": "Official profile of Mr. Kuldeep Tomar",
+      "href": "/about/kuldeep-tomar"
+    }
+  }
+}

@@ -1,0 +1,72 @@
+---
+// era.estate "company principles": three framed cards with an Art Deco arch around a real Defence Garden photograph.
+import Img from '../ui/Img.astro';
+import about from '../../data/pages/about.json';
+
+const v = about.values;
+// One real photo per principle (Defence Garden media only).
+const photos = {
+  'Sustainable Living': 'projects.river-green-society.gallery-08',
+  'Future-Ready Planning': 'projects.defence-garden-phase-1.gallery-06',
+  'Trust & Transparency': 'projects.defence-garden-phase-1.gallery-10',
+};
+const [t1, t2] = v.heading.text.split(' guiding ');
+---
+<section class="avl t-ivory section" data-header-tone="light" aria-labelledby="avl-title">
+  <div class="wrap">
+    <div class="sec-head sec-head--row avl__head">
+      <div class="sec-head">
+        <p class="eyebrow eyebrow--accent" data-reveal="fade">{v.eyebrow}</p>
+        <h2 class="deco avl__title" id="avl-title" data-reveal="lines">{t1} guiding<br />{t2}</h2>
+      </div>
+      <p class="eyebrow muted avl__count" data-reveal="fade">01 — 03</p>
+    </div>
+    <ol class="avl__grid">
+      {v.items.map((it, i) => (
+        <li class="avl__card" data-reveal="fade" data-reveal-delay={(i * 0.1).toFixed(1)}>
+          <div class="avl__top">
+            <h3 class="eyebrow avl__name">{it.title}</h3>
+            <span class="deco deco--sm avl__n">{it.number}</span>
+          </div>
+          <div class="avl__arch">
+            <div class="avl__photo media">
+              <Img src={photos[it.title]} sizes="(min-width: 861px) 22vw, 70vw" widths={[480, 800, 1200]} />
+            </div>
+          </div>
+          <p class="body avl__desc">{it.desc}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .avl__head { margin-bottom: clamp(40px, 5vw, 90px); }
+  .avl__title { font-size: clamp(38px, 5vw, 92px); }
+  .avl__count { padding-bottom: .6em; }
+  .avl__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 1.6vw, 26px); }
+  .avl__card {
+    --line: color-mix(in srgb, var(--copper-deep) 42%, transparent);
+    position: relative; display: grid; grid-template-rows: auto auto 1fr; align-content: start; gap: clamp(24px, 2.6vw, 40px);
+    padding: clamp(18px, 1.8vw, 28px); border: 1px solid var(--line); border-radius: 2px; background: color-mix(in srgb, #fff 35%, transparent);
+    transition: background .6s var(--ease-out), border-color .6s var(--ease-out);
+  }
+  .avl__card:hover { background: #fff; border-color: var(--copper-deep); }
+  .avl__top { display: flex; justify-content: space-between; align-items: start; gap: 16px; }
+  .avl__name { color: var(--navy); }
+  .avl__n { color: var(--accent); line-height: .8; }
+  .avl__arch { position: relative; justify-self: center; width: min(78%, 300px); aspect-ratio: 3 / 4; margin-top: 22px; }
+  .avl__arch::before, .avl__arch::after { content: ''; position: absolute; border: 1px solid var(--line); border-bottom: 0; border-radius: 999px 999px 0 0; pointer-events: none; }
+  .avl__arch::before { inset: -12px -12px 0; }
+  .avl__arch::after { inset: -24px -24px 0; opacity: .55; }
+  .avl__photo { position: absolute; inset: 0; border-radius: 999px 999px 0 0; }
+  .avl__photo :global(img) { width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s var(--ease-out); }
+  .avl__card:hover .avl__photo :global(img) { transform: scale(1.06); }
+  .avl__desc { max-width: 34ch; color: color-mix(in srgb, var(--fg) 78%, transparent); }
+  @media (max-width: 1000px) { .avl__grid { grid-template-columns: 1fr 1fr; } .avl__card:last-child { grid-column: 1 / -1; } .avl__card:last-child .avl__arch { width: min(60%, 300px); } }
+  @media (max-width: 640px) {
+    .avl__grid { grid-template-columns: 1fr; }
+    .avl__card:last-child .avl__arch { width: min(78%, 300px); }
+    .avl__count { display: none; }
+  }
+</style>

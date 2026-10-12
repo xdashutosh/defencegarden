@@ -1,0 +1,69 @@
+---
+// Horizontal timeline (pinned on desktop): 2006 → every real colony by year → the next chapter (concept).
+import Img from '../ui/Img.astro';
+import Icon from '../ui/Icon.astro';
+import { projects, displayTitle, projectUrl } from '../../lib/site.js';
+
+const colonies = [...projects].sort((a, b) => a.year - b.year || a.id - b.id);
+---
+<section class="jrn t-light" data-hscroll data-header-tone="light" aria-labelledby="jrn-title">
+  <div data-hscroll-sticky>
+    <div class="wrap jrn__head">
+      <div>
+        <p class="eyebrow eyebrow--accent">2006 — today — tomorrow</p>
+        <h2 class="display jrn__title" id="jrn-title">From the first colony<br />to the first tower</h2>
+      </div>
+      <p class="body muted jrn__hint hide-mob">Ten townships across Meerut, Shamli and Budhana — scroll the journey.</p>
+    </div>
+    <div class="jrn__rail"><span data-hscroll-bar></span></div>
+    <ol class="jrn__track" data-hscroll-track>
+      <li class="jrn__card jrn__card--start">
+        <p class="deco jrn__year">2006</p>
+        <p class="serif serif--sm">The beginning</p>
+        <p class="body muted">Meerut — where our journey in land development began.</p>
+      </li>
+      {colonies.map((p) => (
+        <li class="jrn__card">
+          <a class="jrn__link" href={projectUrl(p)}>
+            <div class="jrn__img media"><Img src={p.cover} sizes="(min-width: 861px) 26vw, 74vw" widths={[480, 800, 1200]} /></div>
+            <div class="jrn__meta">
+              <p class="deco deco--sm jrn__y">{p.year}</p>
+              <p class="eyebrow muted">{p.city} · {p.status}</p>
+            </div>
+            <p class="jrn__name">{displayTitle(p)} <Icon name="arrow-up-right" class="ico jrn__go" /></p>
+          </a>
+        </li>
+      ))}
+      <li class="jrn__card jrn__card--next t-night">
+        <a class="jrn__link" href="/vision">
+          <div class="jrn__img media"><Img vision="towers-portrait" src="projects.river-green-society.gallery-09" sizes="(min-width: 861px) 26vw, 74vw" widths={[480, 800, 1200]} /><span class="concept-tag">Concept</span></div>
+          <div class="jrn__meta"><p class="deco deco--sm jrn__y accent">Next</p><p class="eyebrow muted">Urban India · High-rise</p></div>
+          <p class="jrn__name">The vertical chapter <Icon name="arrow-up-right" class="ico jrn__go" /></p>
+        </a>
+      </li>
+    </ol>
+  </div>
+</section>
+<style>
+  .jrn { padding-block: clamp(70px, 8vw, 120px) 0; }
+  .jrn :global([data-hscroll-sticky]) { padding-block: 0 clamp(40px, 6vw, 90px); }
+  .jrn__head { display: flex; justify-content: space-between; align-items: end; gap: var(--gutter); margin-bottom: clamp(24px, 3vw, 48px); padding-top: var(--header-h); }
+  .jrn__title { font-size: clamp(40px, 5.4vw, 96px); }
+  .jrn__hint { max-width: 30ch; text-align: right; }
+  .jrn__rail { height: 1px; margin: 0 var(--gutter) clamp(20px, 2.5vw, 36px); background: color-mix(in srgb, var(--fg) 15%, transparent); }
+  .jrn__rail span { display: block; height: 100%; background: var(--copper-deep); transform-origin: left; transform: scaleX(0); }
+  .jrn__track { align-items: stretch; }
+  .jrn__card { width: clamp(250px, 24vw, 420px); display: grid; align-content: start; gap: 14px; }
+  .jrn__card--start { align-content: center; padding-right: 3vw; gap: 18px; }
+  .jrn__card--next { padding: 16px; border-radius: 4px; }
+  .jrn__link { display: grid; gap: 14px; }
+  .jrn__img { aspect-ratio: 4 / 5; }
+  .jrn__img :global(img) { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease-out); }
+  .jrn__link:hover .jrn__img :global(img) { transform: scale(1.05); }
+  .jrn__meta { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .jrn__year { font-size: clamp(64px, 8vw, 150px); color: var(--accent); }
+  .jrn__name { font-size: clamp(18px, 1.5vw, 24px); font-weight: 500; letter-spacing: -.01em; display: flex; gap: 8px; align-items: center; }
+  .jrn__go { width: 18px; height: 18px; opacity: .5; transition: transform .5s var(--ease-out), opacity .3s; }
+  .jrn__link:hover .jrn__go { transform: translate(3px, -3px); opacity: 1; }
+  @media (max-width: 860px) { .jrn__card { width: 74vw; } .jrn__head { flex-direction: column; align-items: start; } }
+</style>

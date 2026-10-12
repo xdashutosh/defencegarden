@@ -1,0 +1,62 @@
+---
+// Leadership band: realevate marquee line, then the KT monogram in its deco frame beside the ownership statement.
+import Icon from '../ui/Icon.astro';
+import Monogram from './Monogram.astro';
+import about from '../../data/pages/about.json';
+import leadership from '../../data/pages/leadership.json';
+
+const l = about.leadership;
+const name = l.heading.accent; // 'Mr. Kuldeep Tomar.'
+const before = l.heading.text.slice(0, l.heading.text.indexOf(name));
+---
+<section class="ald t-light section" data-header-tone="light" aria-labelledby="ald-title">
+  <div class="ald__marquee" data-marquee data-marquee-speed="45" aria-hidden="true">
+    <div class="ald__row" data-marquee-track>
+      {[0, 1, 2, 3].map(() => <span class="marquee-type ald__word">{about.hero.badge.text}&nbsp;—&nbsp;</span>)}
+    </div>
+  </div>
+
+  <div class="wrap ald__grid">
+    <div class="ald__mono t-night" data-reveal="clip">
+      <Monogram class="ald__kt" caption="Owner · Defence Garden" draw={false} />
+    </div>
+    <div class="ald__copy">
+      <p class="eyebrow eyebrow--accent" data-reveal="fade">{l.eyebrow}</p>
+      <h2 class="serif ald__title balance" id="ald-title" data-reveal="lines">{before}<em>{name}</em></h2>
+      <p class="lead muted ald__text" data-reveal="fade">{l.text}</p>
+      <div class="ald__ctas" data-reveal="fade">
+        {l.ctas.map((c, i) => (
+          <a class={`btn ${i === 0 ? 'btn--solid' : ''}`} href={c.href}><span>{c.label}</span><Icon name="arrow-right" class="ico" /></a>
+        ))}
+      </div>
+      <dl class="ald__facts" data-reveal="fade">
+        {leadership.owner.detailCard.facts.map((f) => <div><dt class="eyebrow muted">{f.label}</dt><dd>{f.value}</dd></div>)}
+      </dl>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ald { overflow: hidden; padding-top: clamp(50px, 6vw, 110px); }
+  .ald__marquee { overflow: hidden; margin-bottom: clamp(50px, 7vw, 130px); color: var(--navy); }
+  .ald__row { display: flex; width: max-content; }
+  .ald__word { display: inline-block; }
+  .ald__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(36px, 7vw, 140px); align-items: center; }
+  .ald__mono { display: grid; place-items: center; padding: clamp(36px, 5vw, 80px) clamp(28px, 4vw, 70px); aspect-ratio: 4 / 5; border-radius: 2px; position: relative; overflow: hidden; }
+  .ald__mono::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 38%, rgba(207,143,125,.18), transparent 62%); pointer-events: none; }
+  .ald__mono :global(.ald__kt) { width: min(100%, 340px); --kt-ink: #f4ede6; }
+  .ald__copy { display: grid; gap: clamp(20px, 2.2vw, 30px); justify-items: start; }
+  .ald__title { font-size: clamp(34px, 4vw, 72px); max-width: 17ch; }
+  .ald__title em { font-style: italic; color: var(--accent); }
+  .ald__text { max-width: 46ch; }
+  .ald__ctas { display: flex; flex-wrap: wrap; gap: 10px; }
+  .ald__facts { display: grid; grid-template-columns: repeat(2, minmax(0, 220px)); width: 100%; border-top: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); margin: 6px 0 0; }
+  .ald__facts div { padding: 16px 16px 0 0; display: grid; gap: 6px; }
+  .ald__facts div + div { padding-left: 16px; border-left: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); }
+  .ald__facts dd { margin: 0; font-size: 18px; font-weight: 500; letter-spacing: -.01em; }
+  @media (max-width: 860px) {
+    .ald__grid { grid-template-columns: 1fr; }
+    .ald__mono { aspect-ratio: auto; padding: 44px 24px; }
+    .ald__mono :global(.ald__kt) { width: min(72%, 280px); }
+  }
+</style>

@@ -1,0 +1,84 @@
+---
+// realevate editorial: "(Our Story)" label + big centred statement, then a framed photo with the 2006 badge,
+// the story paragraph and three real figures (20+ years · 10 townships · 3 cities).
+import Img from '../ui/Img.astro';
+import Icon from '../ui/Icon.astro';
+import about from '../../data/pages/about.json';
+import { projects } from '../../lib/site.js';
+
+const s = about.story;
+const cities = new Set(projects.map((p) => p.city)).size;
+const stats = [
+  { n: 20, suf: '+', label: 'Years of trust' },
+  { n: projects.length, pad: 2, label: 'Townships' },
+  { n: cities, pad: 2, label: 'Cities · Meerut · Budhana · Shamli' },
+];
+---
+<section class="ast t-light section" id="about-story" data-header-tone="light">
+  <div class="wrap">
+    <div class="ast__lead">
+      <p class="eyebrow ast__label" data-reveal="fade">({s.eyebrow})</p>
+      <h2 class="ast__statement balance" data-reveal="lines">{s.heading.text}</h2>
+    </div>
+
+    <div class="ast__grid">
+      <figure class="ast__fig">
+        <div class="ast__img media" data-reveal="clip">
+          <Img src={s.image.key} alt={s.image.alt} sizes="(min-width: 861px) 46vw, 92vw" widths={[480, 800, 1200, 1600]} data-parallax="0.08" />
+        </div>
+        <div class="ast__badge t-night" data-reveal="fade" data-reveal-delay="0.2">
+          <span class="deco ast__year"><span data-counter={s.badge.value} data-counter-from="1990">{s.badge.value}</span></span>
+          <span class="eyebrow eyebrow--accent">{s.badge.label}</span>
+        </div>
+        <figcaption class="serif serif--sm ast__cap">{s.imageCaption}</figcaption>
+      </figure>
+
+      <div class="ast__copy">
+        <p class="lead ast__text" data-reveal="fade">{s.text}</p>
+        <ul class="ast__stats">
+          {stats.map((st, i) => (
+            <li class="ast__stat" data-reveal="fade" data-reveal-delay={(i * 0.08).toFixed(2)}>
+              <p class="display ast__num"><span data-counter={st.n} data-counter-pad={st.pad}>{st.pad ? String(st.n).padStart(st.pad, '0') : st.n}</span>{st.suf}</p>
+              <p class="eyebrow muted">{st.label}</p>
+            </li>
+          ))}
+        </ul>
+        <p class="eyebrow ast__line" data-reveal="fade"><Icon name="pin" class="ico" /> {s.footerLine.text}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ast__lead { display: grid; grid-template-columns: minmax(120px, 1fr) minmax(0, 4fr) minmax(0, 1fr); gap: var(--gutter); align-items: start; margin-bottom: clamp(64px, 9vw, 160px); }
+  .ast__label { padding-top: .9em; letter-spacing: .08em; text-transform: none; font-size: 12px; }
+  .ast__statement { font-family: var(--f-sans); font-weight: 500; font-size: clamp(28px, 3.3vw, 58px); line-height: 1.12; letter-spacing: -.03em; text-align: center; }
+
+  .ast__grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(36px, 7vw, 140px); align-items: start; }
+  .ast__fig { position: relative; margin: 0; padding-right: clamp(20px, 3vw, 48px); }
+  .ast__img { aspect-ratio: 5 / 4; }
+  .ast__img :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .ast__badge { position: absolute; right: 0; bottom: clamp(70px, 9vw, 120px); display: grid; gap: 8px; padding: clamp(18px, 2vw, 28px) clamp(20px, 2.4vw, 34px); border: 1px solid color-mix(in srgb, var(--copper) 45%, transparent); outline: 1px solid color-mix(in srgb, var(--copper) 30%, transparent); outline-offset: -8px; }
+  .ast__year { font-size: clamp(44px, 4.6vw, 80px); color: var(--copper); line-height: 1; }
+  .ast__cap { margin-top: 18px; font-style: italic; font-size: clamp(20px, 1.7vw, 28px); color: color-mix(in srgb, var(--fg) 75%, transparent); }
+
+  .ast__copy { display: grid; gap: clamp(36px, 4vw, 64px); padding-top: clamp(0px, 2vw, 40px); }
+  .ast__text { max-width: 44ch; }
+  .ast__stats { display: grid; border-top: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); }
+  .ast__stat { display: grid; grid-template-columns: minmax(150px, auto) 1fr; align-items: baseline; gap: 20px; padding-block: clamp(16px, 1.8vw, 26px); border-bottom: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); }
+  .ast__num { font-size: clamp(54px, 5.6vw, 100px); }
+  .ast__line { display: inline-flex; align-items: center; gap: 10px; color: var(--accent); }
+  .ast__line :global(.ico) { width: 16px; height: 16px; }
+
+  @media (max-width: 860px) {
+    .ast__lead { grid-template-columns: 1fr; gap: 18px; }
+    .ast__label { padding: 0; }
+    .ast__statement { text-align: left; font-size: clamp(26px, 7vw, 40px); }
+    .ast__grid { grid-template-columns: 1fr; }
+    .ast__fig { padding-right: 0; }
+    .ast__img { aspect-ratio: 4 / 3; margin-right: 12%; }
+    .ast__badge { bottom: 80px; }
+    .ast__copy { padding-top: 0; }
+    .ast__stat { grid-template-columns: 112px 1fr; }
+  }
+</style>

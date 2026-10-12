@@ -1,0 +1,10 @@
+---
+// Chapter heading used across /investment: eyebrow + '{title} {accent}.' with the accent word in italic copper
+// (investment.json _meta.headingPattern).
+interface Props { eyebrow: string; title: string; accent?: string; kind?: 'serif' | 'deco' | 'display'; class?: string; id?: string }
+const { eyebrow, title, accent, kind = 'serif', class: cls = '', id } = Astro.props;
+---
+<div class={`ivc ${cls}`}>
+  <p class="eyebrow eyebrow--accent ivc__eyebrow" data-reveal="fade">{eyebrow}</p>
+  <h2 class={`${kind} ivc__title balance`} id={id} data-reveal="lines">{title}{accent && <> <em class="ivc__accent">{accent}</em></>}.</h2>
+</div>

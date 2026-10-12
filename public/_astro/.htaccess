@@ -1,0 +1,7 @@
+# Copy to: public/_astro/.htaccess → dist/_astro/.htaccess (next to Astro's hashed bundles).
+# <FilesMatch> is required: it is merged after the root .htaccess <FilesMatch> rules, so it wins.
+<IfModule mod_headers.c>
+  <FilesMatch ".+">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>

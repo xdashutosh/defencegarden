@@ -1,0 +1,75 @@
+---
+// era.estate "developer" hero: a real aerial photograph full-bleed under giant thin capitals.
+import Img from '../ui/Img.astro';
+import Icon from '../ui/Icon.astro';
+import Ornament from '../ui/Ornament.astro';
+import about from '../../data/pages/about.json';
+
+const h = about.hero;
+// The first sentence of the old hero copy, verbatim. Its second half ("now eleven colonies …") counted Defence Park,
+// which has no project record, and would contradict the "10 townships" figure used on this page.
+const intro = h.text.split(' — ')[0].replace(/,?\s*$/, '') + '.';
+const [line1, line2] = h.heading.lines;
+---
+<section class="ahr t-night" data-header-tone="dark" aria-labelledby="ahr-title">
+  <div class="ahr__media media">
+    <Img src={about.leadership.image.key} eager sizes="100vw" widths={[800, 1200, 1600]} alt={about.leadership.image.alt} data-parallax="0.08" />
+  </div>
+  <div class="ahr__shade" aria-hidden="true"></div>
+
+  <div class="wrap ahr__in">
+    <div class="ahr__top">
+      <p class="eyebrow eyebrow--accent ahr__badge" data-reveal="fade" data-reveal-intro><Ornament variant="diamond" class="ahr__dia" />{h.badge.text}</p>
+      <h1 class="deco ahr__title" id="ahr-title" data-reveal="lines" data-reveal-intro>
+        <span class="ahr__l1">{line1}</span>
+        <span class="ahr__l2">{line2}</span>
+      </h1>
+    </div>
+
+    <div class="ahr__foot">
+      <p class="eyebrow ahr__place" data-reveal="fade" data-reveal-intro data-reveal-delay="0.3">{about.story.footerLine.text}</p>
+      <p class="lead ahr__text balance" data-reveal="fade" data-reveal-intro data-reveal-delay="0.2">{intro}</p>
+      <div class="ahr__ctas" data-reveal="fade" data-reveal-intro data-reveal-delay="0.35">
+        {h.ctas.map((c, i) => (
+          <a class={`btn ${i === 0 ? 'btn--copper' : ''}`} href={c.href}><span>{c.label}</span><Icon name="arrow-right" class="ico" /></a>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <a class="ahr__cue eyebrow" href="#about-story" aria-label="Scroll to our story"><span>{h.scrollCue}</span><i aria-hidden="true"></i></a>
+</section>
+
+<style>
+  .ahr { position: relative; min-height: 100vh; min-height: 100svh; display: grid; overflow: hidden; color: #f4ede6; }
+  .ahr__media { position: absolute; inset: 0; background: var(--navy-deep); }
+  .ahr__media :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; }
+  .ahr__shade {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(6,26,58,.82) 0%, rgba(6,26,58,.42) 34%, rgba(6,26,58,.12) 56%, rgba(6,26,58,.78) 100%),
+      linear-gradient(90deg, rgba(6,26,58,.35), transparent 60%);
+  }
+  .ahr__in { position: relative; z-index: 2; display: grid; grid-template-rows: 1fr auto; gap: 40px; padding-top: calc(var(--header-h) + clamp(28px, 5vh, 70px)); padding-bottom: clamp(88px, 11vh, 120px); }
+  .ahr__top { display: grid; justify-items: center; text-align: center; gap: clamp(16px, 2.4vw, 30px); align-content: start; }
+  .ahr__badge { display: inline-flex; align-items: center; gap: 12px; }
+  .ahr__dia { width: 16px; height: 16px; }
+  .ahr__title { font-size: clamp(50px, 10.4vw, 196px); line-height: .9; letter-spacing: -.015em; color: #f7f1ea; text-shadow: 0 2px 40px rgba(6,26,58,.35); }
+  .ahr__title span { display: block; }
+  .ahr__l2 { color: var(--copper-soft); }
+  .ahr__foot { display: grid; grid-template-columns: 1fr minmax(0, 520px) 1fr; align-items: end; gap: var(--gutter); }
+  .ahr__place { color: rgba(244,237,230,.78); }
+  .ahr__text { text-align: center; max-width: 34ch; justify-self: center; }
+  .ahr__ctas { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
+  .ahr__cue { position: absolute; z-index: 2; left: 50%; bottom: 22px; transform: translateX(-50%); display: grid; justify-items: center; gap: 10px; color: rgba(244,237,230,.75); }
+  .ahr__cue i { width: 1px; height: 38px; background: linear-gradient(rgba(244,237,230,.8), transparent); transform-origin: top; animation: ahrCue 2.4s var(--ease-in-out) infinite; }
+  @keyframes ahrCue { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+  @media (max-width: 860px) {
+    .ahr__in { padding-bottom: 92px; }
+    .ahr__title { font-size: clamp(46px, 13.6vw, 110px); }
+    .ahr__foot { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 18px; }
+    .ahr__ctas { justify-content: center; }
+    .ahr__place { order: 3; }
+    .ahr__cue { display: none; }
+  }
+</style>

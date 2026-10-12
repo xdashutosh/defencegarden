@@ -1,0 +1,106 @@
+---
+import Base from '../layouts/Base.astro';
+import FrameHero from '../components/sections/FrameHero.astro';
+import Typologies from '../components/vision/Typologies.astro';
+import ThenNext from '../components/vision/ThenNext.astro';
+import Img from '../components/ui/Img.astro';
+import Icon from '../components/ui/Icon.astro';
+import Ornament from '../components/ui/Ornament.astro';
+import { visionVideo } from '../lib/vision.js';
+
+const rising = visionVideo('rising-film') ? 'rising-film' : undefined;
+const craft = [
+  { vision: 'facade-glass', fb: 'projects.river-green-society.gallery-11', cap: 'Facades & glazing' },
+  { vision: 'architect-model', fb: 'about.r4', cap: 'Planning & design' },
+  { vision: 'construction', fb: 'projects.defence-garden-phase-1.gallery-06', cap: 'Structure & engineering' },
+  { vision: 'interior-glass', fb: 'projects.defence-garden-meerut.gallery-06', cap: 'Light & space' },
+  { vision: 'balcony-view', fb: 'projects.river-green-society.gallery-02', cap: 'Views & terraces' },
+];
+---
+<Base
+  path="/vision"
+  namespace="vision"
+  tone="dark"
+  title="The Vertical Chapter — Defence Garden's Vision for Urban High-Rise Living"
+  description="After two decades of planned, gated plotted townships in Western Uttar Pradesh, Defence Garden is preparing residential high-rise communities in urban India. Our vision, principles and approach."
+>
+  <FrameHero
+    words="The Vertical Chapter —"
+    theme="t-night"
+    tone="dark"
+    eyebrow="Defence Garden · Vision"
+    sub="From plotted colonies to residential towers in India’s growing cities."
+    note="Concept visualisations"
+    ctas={[{ label: 'Register interest', enquire: true, interest: 'Upcoming high-rise residences', solid: true }]}
+    visionVideo={rising}
+    vision="crane-golden"
+    image="about.r3"
+    overlayEyebrow="Next · Urban India"
+    overlayTitle="Built on land.<br/>Rising higher."
+    overlayText="We are preparing our first residential high-rise projects. Here is what we will carry with us."
+    alt="Tower crane above a residential tower under construction at golden hour"
+  />
+
+  <section class="vin t-ivory section" data-header-tone="light">
+    <div class="wrap vin__in">
+      <Ornament variant="spire" class="vin__orn" />
+      <p class="eyebrow eyebrow--accent" data-reveal="fade">Our next chapter</p>
+      <h2 class="serif vin__title balance" data-reveal="lines">Twenty years of land taught us what makes a neighbourhood work. Now we are designing it in layers.</h2>
+      <p class="lead muted vin__text balance" data-reveal="fade">Since 2006 we have planned ten gated, plotted townships across Shamli, Meerut and Budhana — roads and utilities first, clear titles always. Our next projects take those same principles into residential high-rise communities in urban India.</p>
+    </div>
+  </section>
+
+  <Typologies />
+  <ThenNext />
+
+  <section class="vcr t-mist section" data-header-tone="light" data-strip>
+    <div class="wrap vcr__head">
+      <div class="sec-head">
+        <p class="eyebrow eyebrow--accent" data-reveal="fade">Craft</p>
+        <h2 class="display" data-reveal="lines">Planned to the<br />last detail</h2>
+      </div>
+      <div class="strip__nav">
+        <span class="eyebrow muted" data-strip-count>01 / 05</span>
+        <button class="round-btn" type="button" data-strip-prev aria-label="Previous"><Icon name="arrow-left" /></button>
+        <button class="round-btn" type="button" data-strip-next aria-label="Next"><Icon name="arrow-right" /></button>
+      </div>
+    </div>
+    <ul class="strip__track vcr__track" data-strip-track>
+      {craft.map((c, i) => (
+        <li class="vcr__slide">
+          <figure class="media vcr__img"><Img vision={c.vision} src={c.fb} sizes="(min-width: 861px) 40vw, 80vw" /><span class="concept-tag">Concept</span></figure>
+          <figcaption class="eyebrow"><span class="accent">0{i + 1}</span> {c.cap}</figcaption>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="vds t-night section" data-header-tone="dark">
+    <div class="wrap vds__in">
+      <Ornament variant="diamond" class="vds__orn" />
+      <p class="deco--text vds__text balance" data-reveal="lines">Images on this page are representative concept visualisations from licensed photo libraries. They do not depict Defence Garden projects. Each future project will be announced with its approvals, including RERA registration where applicable.</p>
+      <div class="vds__actions" data-reveal="fade">
+        <button class="btn btn--copper" type="button" data-enquire data-interest="Upcoming high-rise residences"><Icon name="whatsapp" /><span>Register your interest</span></button>
+        <button class="btn" type="button" data-enquire data-interest="Land partnership / joint development"><span>Landowners &amp; partners</span><Icon name="arrow-right" /></button>
+        <a class="btn" href="/ourproject"><span>See our colonies</span><Icon name="arrow-right" /></a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .vin__in { display: grid; justify-items: center; text-align: center; gap: 26px; }
+  .vin__orn { width: 64px; color: var(--accent); }
+  .vin__title { max-width: 22ch; }
+  .vin__text { max-width: 58ch; }
+  .vcr__head { display: flex; justify-content: space-between; align-items: end; gap: var(--gutter); margin-bottom: clamp(36px, 5vw, 70px); flex-wrap: wrap; }
+  .vcr__track { padding-inline: var(--gutter); }
+  .vcr__slide { width: clamp(270px, 38vw, 640px); display: grid; gap: 12px; }
+  .vcr__img { aspect-ratio: 16 / 11; }
+  .vcr__img :global(img) { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+  .vds__in { display: grid; justify-items: center; text-align: center; gap: 30px; }
+  .vds__orn { width: 26px; color: var(--copper); }
+  .vds__text { max-width: 54ch; }
+  .vds__actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+  @media (max-width: 860px) { .vcr__slide { width: 82vw; } }
+</style>

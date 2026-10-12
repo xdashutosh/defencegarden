@@ -1,0 +1,56 @@
+---
+import Icon from '../ui/Icon.astro';
+import { projects, displayTitle, whatsappNumber, phone, telHref } from '../../lib/site.js';
+const sales = phone('sales');
+const interests = [
+  'Upcoming high-rise residences',
+  'A plot in an existing colony',
+  'Land partnership / joint development',
+  'Investment enquiry',
+  'Site visit',
+];
+---
+<div class="enq" data-enquiry hidden>
+  <div class="enq__scrim" data-enquiry-close></div>
+  <div class="enq__panel t-ivory" role="dialog" aria-modal="true" aria-labelledby="enq-title" data-lenis-prevent>
+    <button class="enq__close" type="button" data-enquiry-close aria-label="Close"><Icon name="close" /></button>
+    <p class="eyebrow eyebrow--accent">Enquire</p>
+    <h2 class="serif serif--sm enq__title" id="enq-title">Tell us what you are looking for</h2>
+    <p class="small muted">Your message opens in WhatsApp with our sales team ({sales.display}). Nothing is stored on this website.</p>
+    <form class="enq__form" data-enquiry-form data-wa={whatsappNumber} novalidate>
+      <label class="fld"><span class="eyebrow">Name</span><input name="name" autocomplete="name" required maxlength="80" /></label>
+      <label class="fld"><span class="eyebrow">Phone</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" required maxlength="18" /></label>
+      <label class="fld"><span class="eyebrow">Interested in</span>
+        <select name="interest">{interests.map((i) => <option>{i}</option>)}</select>
+      </label>
+      <label class="fld"><span class="eyebrow">Colony (optional)</span>
+        <select name="colony"><option value="">—</option>{projects.map((p) => <option>{displayTitle(p)}</option>)}</select>
+      </label>
+      <label class="fld fld--wide"><span class="eyebrow">Message</span><textarea name="message" rows="3" maxlength="600"></textarea></label>
+      <p class="enq__err small" data-enquiry-error role="alert" hidden>Please add your name and a valid phone number.</p>
+      <div class="enq__actions">
+        <button class="btn btn--solid" type="submit"><Icon name="whatsapp" /><span>Continue on WhatsApp</span></button>
+        <a class="btn" href={telHref('sales')}><Icon name="phone" /><span>Call instead</span></a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<style>
+  .enq { position: fixed; inset: 0; z-index: 90; display: grid; place-items: center; padding: 16px; }
+  .enq[hidden] { display: none; }
+  .enq__scrim { position: absolute; inset: 0; background: rgba(6,26,58,.62); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); opacity: 0; transition: opacity .5s; }
+  .enq.is-open .enq__scrim { opacity: 1; }
+  .enq__panel { position: relative; width: min(640px, 100%); max-height: calc(100dvh - 32px); overflow: auto; padding: clamp(24px, 4vw, 48px); border-radius: 6px; display: grid; gap: 14px; transform: translateY(40px); opacity: 0; transition: transform .8s var(--ease-out), opacity .6s; }
+  .enq.is-open .enq__panel { transform: none; opacity: 1; }
+  .enq__close { position: absolute; top: 14px; right: 14px; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line); }
+  .enq__close :global(svg) { width: 18px; }
+  .enq__form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; margin-top: 8px; }
+  .fld { display: grid; gap: 6px; }
+  .fld--wide { grid-column: 1 / -1; }
+  .fld input, .fld select, .fld textarea { width: 100%; border: 0; border-bottom: 1px solid color-mix(in srgb, var(--fg) 30%, transparent); background: transparent; padding: 8px 0; font-size: 16px; border-radius: 0; }
+  .fld input:focus, .fld select:focus, .fld textarea:focus { outline: none; border-bottom-color: var(--copper-deep); }
+  .enq__err { grid-column: 1 / -1; color: #b3261e; }
+  .enq__actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+  @media (max-width: 560px) { .enq__form { grid-template-columns: 1fr; } }
+</style>

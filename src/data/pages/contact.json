@@ -1,0 +1,92 @@
+{
+  "_meta": {
+    "source": "assets/Contact-DWYKq_9A.js (+ company constant in index-BpgzKryG.js, projects-BS1XfbWT.js), rendered https://defencegarden.com/contact on 2026-10-12.",
+    "path": "/contact",
+    "seoRef": "site.json → seo.pages['/contact']",
+    "sectionOrder": ["hero", "form", "infoCards", "siteLocations", "map"]
+  },
+
+  "hero": {
+    "watermark": "Contact",
+    "eyebrow": "Get In Touch",
+    "heading": { "text": "Let's find your forever address.", "accent": "forever address" },
+    "text": "Free site visits with pickup for every colony. Message us and our team responds within working hours — usually much sooner."
+  },
+
+  "form": {
+    "eyebrow": "Send a Message",
+    "heading": "Book your free site visit",
+    "fields": [
+      { "id": "name", "label": "Your Name", "type": "text", "placeholder": "Full name", "required": true },
+      { "id": "phone", "label": "Phone", "type": "tel", "placeholder": "+91 …", "required": true },
+      { "id": "message", "label": "Message", "type": "textarea", "rows": 4, "placeholder": "Which colony are you interested in? Preferred visit day?", "required": false }
+    ],
+    "submit": { "label": "Send via WhatsApp", "busyLabel": "Opening WhatsApp…", "icon": "send" },
+    "submitNote": "Opens WhatsApp with your message pre-filled — no forms lost in inboxes.",
+    "behaviour": "No backend. On submit: window.open('https://wa.me/919927669955?text=' + message template from site.json → contact.whatsapp.enquiryMessage), button shows the busy label for 4 s."
+  },
+
+  "infoCards": [
+    {
+      "id": "office",
+      "eyebrow": "Main Office",
+      "text": "VADHEH, Shamli Rd, Shamli, Mundetkalan, Uttar Pradesh 247776",
+      "linkLabel": "Open in Google Maps",
+      "href": "https://www.google.com/maps?q=VADHEH,+Shamli+Rd,+Shamli,+Mundetkalan,+Uttar+Pradesh+247776",
+      "target": "_blank",
+      "icon": "map-pin"
+    },
+    { "id": "call", "eyebrow": "Call Us", "text": "+91 99276 69955", "href": "tel:+919927669955", "icon": "phone" },
+    { "id": "email", "eyebrow": "Email Us", "text": "defencegarden009@gmail.com", "href": "mailto:defencegarden009@gmail.com", "icon": "mail" },
+    {
+      "id": "hours",
+      "eyebrow": "Working Hours",
+      "text": "Mon – Sat · 9 AM – 8 PM",
+      "icon": "clock",
+      "whatsappButton": { "href": "https://wa.me/919927669955", "target": "_blank", "ariaLabel": "Chat on WhatsApp", "icon": "message-circle", "color": "#25D366" }
+    }
+  ],
+
+  "siteLocations": {
+    "eyebrow": "Site Locations",
+    "heading": "Visit any colony",
+    "text": "Tap a colony to open its location — pickup available for every site visit.",
+    "chips": [
+      { "projectId": 1, "label": "River Green Society · Shamli", "href": "https://www.google.com/maps/search/?api=1&query=River%20Green%20Colony%2C%20Shamli%20Rd%2C%20Mundet%2C%20Shamli%2C%20Uttar%20Pradesh%20247776" },
+      { "projectId": 5, "label": "Defence Garden Phase 2 · Shamli", "href": "https://www.google.com/maps/search/?api=1&query=Defence%20Garden%20Phase%202%2C%20Shamli%2C%20Uttar%20Pradesh" },
+      { "projectId": 2, "label": "Defence Garden · Budhana", "href": "https://www.google.com/maps/search/?api=1&query=Defence%20Garden%2C%20Budhana%2C%20Uttar%20Pradesh" },
+      { "projectId": 3, "label": "Defence Garden · Meerut", "href": "https://www.google.com/maps/search/?api=1&query=Defence%20Garden%2C%20Meerut%2C%20Uttar%20Pradesh" },
+      { "projectId": 4, "label": "Defence Garden Phase 1 · Shamli", "href": "https://www.google.com/maps/search/?api=1&query=Defence%20Garden%20Phase%201%2C%20Shamli%2C%20Uttar%20Pradesh" },
+      { "projectId": 6, "label": "Defence Kunj · Meerut", "href": "https://www.google.com/maps/search/?api=1&query=Defence%20Kunj%2C%20Meerut%2C%20Uttar%20Pradesh" },
+      { "projectId": 7, "label": "Ganpati Enclave · Meerut", "href": "https://www.google.com/maps/search/?api=1&query=Ganpati%20Enclave%2C%20Meerut%2C%20Uttar%20Pradesh" },
+      { "projectId": 8, "label": "Gayatri Enclave · Meerut", "href": "https://www.google.com/maps/search/?api=1&query=Gayatri%20Enclave%2C%20Meerut%2C%20Uttar%20Pradesh" },
+      { "projectId": 9, "label": "Basant Kunj · Meerut", "href": "https://www.google.com/maps/search/?api=1&query=Basant%20Kunj%2C%20Meerut%2C%20Uttar%20Pradesh" },
+      { "projectId": 10, "label": "Saipuram · Meerut", "href": "https://www.google.com/maps/search/?api=1&query=Saipuram%2C%20Meerut%2C%20Uttar%20Pradesh" }
+    ],
+    "chipsNote": "All open in a new tab. Labels/URLs are the same values as projects.json chipLabel/mapsUrl."
+  },
+
+  "map": {
+    "iframe": {
+      "src": "https://www.google.com/maps?q=VADHEH,+Shamli+Rd,+Shamli,+Mundetkalan,+Uttar+Pradesh+247776&output=embed",
+      "title": "Defence Garden Main Office — VADHEH, Shamli Rd, Shamli",
+      "loading": "lazy",
+      "referrerPolicy": "no-referrer-when-downgrade"
+    },
+    "overlay": {
+      "eyebrow": "Main Office",
+      "text": "VADHEH, Shamli Rd, Shamli, Mundetkalan, Uttar Pradesh 247776",
+      "href": "https://www.google.com/maps?q=VADHEH,+Shamli+Rd,+Shamli,+Mundetkalan,+Uttar+Pradesh+247776",
+      "target": "_blank"
+    }
+  },
+
+  "imagesInOrder": [],
+  "imagesNote": "No photos/videos on the old Contact page (cards + Google Maps embed only).",
+
+  "noJsFallback": {
+    "eyebrow": "Official Defence Garden website",
+    "heading": "Contact Defence Garden",
+    "text": "Speak with the Defence Garden team about projects, plots and site visits."
+  }
+}

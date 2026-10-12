@@ -1,0 +1,55 @@
+---
+// Google Maps embed of the main office, navy-tinted with CSS filters, with an era-style framed overlay card.
+import Icon from '../ui/Icon.astro';
+import Ornament from '../ui/Ornament.astro';
+import contact from '../../data/pages/contact.json';
+import { office } from '../../lib/site.js';
+
+const m = contact.map;
+---
+<section class="cmp t-night section section--tight" data-header-tone="dark" aria-labelledby="cmp-title">
+  <div class="wrap">
+    <div class="cmp__head">
+      <div class="sec-head">
+        <p class="eyebrow eyebrow--accent" data-reveal="fade">{m.overlay.eyebrow}</p>
+        <h2 class="deco cmp__title" id="cmp-title" data-reveal="lines">{office.short}</h2>
+      </div>
+      <a class="btn" href={office.mapsUrl} target="_blank" rel="noopener" data-reveal="fade"><Icon name="pin" class="ico" /><span>{office.mapsLinkLabel}</span></a>
+    </div>
+    <div class="cmp__frame" data-reveal="clip">
+      <iframe
+        class="cmp__map"
+        src={office.mapsEmbedUrl}
+        title={office.mapsEmbedTitle}
+        loading="lazy"
+        referrerpolicy={m.iframe.referrerPolicy}
+        allowfullscreen
+      ></iframe>
+      <div class="cmp__tint" aria-hidden="true"></div>
+      <div class="cmp__card">
+        <Ornament variant="diamond" class="cmp__dia" />
+        <p class="eyebrow eyebrow--accent">{m.overlay.eyebrow}</p>
+        <p class="cmp__addr">{m.overlay.text}</p>
+        <a class="eyebrow link-line cmp__link" href={m.overlay.href} target="_blank" rel="noopener"><span>{office.mapsLinkLabel}</span><Icon name="arrow-up-right" class="ico" /></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cmp__head { display: flex; justify-content: space-between; align-items: end; gap: var(--gutter); flex-wrap: wrap; margin-bottom: clamp(28px, 3.6vw, 56px); }
+  .cmp__title { color: #f4ede6; font-size: clamp(40px, 6vw, 112px); }
+  .cmp__frame { position: relative; height: clamp(420px, 68vh, 720px); overflow: hidden; border: 1px solid rgba(207,143,125,.35); outline: 1px solid rgba(207,143,125,.16); outline-offset: 10px; margin: 10px; background: #0b2147; }
+  .cmp__map { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: grayscale(1) contrast(1.08) brightness(.92); transition: filter .8s var(--ease-out); }
+  .cmp__tint { position: absolute; inset: 0; pointer-events: none; background: #0d2a5c; mix-blend-mode: multiply; opacity: .55; transition: opacity .8s var(--ease-out); }
+  .cmp__frame:hover .cmp__tint, .cmp__frame:focus-within .cmp__tint { opacity: .28; }
+  .cmp__card { position: absolute; left: clamp(14px, 2vw, 32px); bottom: clamp(14px, 2vw, 32px); display: grid; gap: 10px; max-width: 340px; padding: 26px 26px 24px; background: rgba(6,26,58,.92); color: #f4ede6; border: 1px solid rgba(207,143,125,.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+  .cmp__dia { width: 18px; color: var(--copper); }
+  .cmp__addr { font-size: 17px; line-height: 1.45; }
+  .cmp__link { display: inline-flex; align-items: center; gap: 6px; justify-self: start; color: var(--copper); }
+  .cmp__link :global(.ico) { width: 12px; height: 12px; }
+  @media (max-width: 860px) {
+    .cmp__frame { height: 460px; margin: 6px; outline-offset: 6px; }
+    .cmp__card { left: 10px; right: 10px; bottom: 10px; max-width: none; padding: 18px; }
+  }
+</style>

@@ -1,0 +1,267 @@
+---
+// /gallery — realevate marquee hero around a framed photo, a sticky colony index (desktop sidebar / mobile chip row)
+// and a mosaic of every real colony photograph (gallery.json grid.allColoniesOrder, minus notPhoto / rightsUnclear).
+// Behaviours (global runtime): [data-filter] (chips + ?f= sync + live count), [data-lightbox] (full-screen viewer).
+// Styles are inline (travel with the Barba container — head styles of the next page are not loaded on navigation).
+import { getImage } from 'astro:assets';
+import Img from '../ui/Img.astro';
+import Icon from '../ui/Icon.astro';
+import gallery from '../../data/pages/gallery.json';
+import { projects, displayTitle, projectUrl } from '../../lib/site.js';
+import { preferred } from '../../lib/media.js';
+
+const { hero, filterBar, grid } = gallery;
+
+// project gallery entries by key (they carry the hygiene flags and the sharper preferKey twin)
+const byKey = new Map(projects.flatMap((p) => p.gallery.map((g) => [g.key, { g, p }])));
+const usable = grid.allColoniesOrder.filter((it) => {
+  const hit = byKey.get(it.key);
+  return hit && !hit.g.notPhoto && !hit.g.rightsUnclear;
+});
+
+const tiles = await Promise.all(
+  usable.map(async (it, i) => {
+    const { g, p } = byKey.get(it.key);
+    const rec = preferred(g);
+    const full = await getImage({ src: rec.image, width: Math.min(2000, rec.width), format: 'webp' });
+    const portrait = rec.height > rec.width * 1.05;
+    const sharp = rec.width >= 1280 && rec.quality !== 'low';
+    let shape = 'n';
+    if (portrait) shape = 'tall';
+    else if (i % 7 === 0 && sharp) shape = (i / 7) % 2 ? 'large is-right' : 'large';
+    else if (i % 14 === 10 && sharp) shape = 'wide';
+    const alt = g.alt || rec.alt;
+    const colony = displayTitle(p);
+    return { key: g.key, g, p, href: full.src, alt, colony, caption: `${alt} — ${colony}, ${p.location}`, shape };
+  }),
+);
+
+const total = tiles.length;
+const countFor = (slug) => tiles.filter((t) => t.p.slug === slug).length;
+// colony index in the old chip order (= projects display order)
+const colonies = filterBar.chips
+  .map((c) => projects.find((p) => p.id === c.projectId))
+  .filter(Boolean)
+  .map((p, i) => ({ p, n: String(i + 1).padStart(2, '0'), count: countFor(p.slug) }))
+  .filter((c) => c.count > 0);
+
+const pad = (n) => String(n).padStart(2, '0');
+const photos = (n) => grid.countTemplate.replace('{n}', String(n));
+const big = (s) => s.startsWith('large') || s === 'wide';
+const sizes = (s) => (big(s) ? '(min-width: 1101px) 50vw, (min-width: 700px) 62vw, 94vw' : '(min-width: 1101px) 25vw, (min-width: 700px) 31vw, 47vw');
+
+// heading above the grid follows the pressed chip (CSS :has — no page script needed)
+const headCss = colonies
+  .map(({ p }) => `.gal:has([data-filter-btn="${p.slug}"][aria-pressed="true"]) .gal__head[data-head="${p.slug}"]{display:flex}`)
+  .join('\n');
+---
+<style is:inline set:html={headCss}></style>
+<style is:inline>
+  .gal-hero { position: relative; min-height: 100vh; min-height: 100svh; display: grid; grid-template-rows: 1fr auto; overflow: hidden; padding-top: var(--header-h); }
+  .gal-hero__stage { position: relative; display: grid; align-items: center; }
+  .gal-hero__marquee { overflow: hidden; padding-block: .06em; }
+  .gal-hero__row { display: flex; width: max-content; }
+  .gal-hero__word { display: inline-block; padding-right: .18em; }
+  .gal-hero__frame { position: absolute; left: 50%; top: 50%; z-index: 2; width: clamp(190px, 20vw, 380px); aspect-ratio: 4 / 5; transform: translate(-50%, -50%); box-shadow: 0 40px 70px -46px rgba(6, 26, 58, .5); }
+  .gal-hero__frame img { width: 100%; height: 100%; object-fit: cover; }
+  .gal-hero__bottom { display: grid; grid-template-columns: 1fr minmax(0, 420px) 1fr; align-items: end; gap: var(--gutter); padding: 0 var(--gutter) calc(var(--gutter) + 72px); }
+  .gal-hero__intro { display: grid; gap: 14px; max-width: 34ch; }
+  .gal-hero__eyebrow { display: inline-flex; align-items: center; gap: 10px; }
+  .gal-hero__eyebrow::before { content: ''; width: 28px; height: 1px; background: currentColor; }
+  .gal-hero__mid { justify-self: center; text-align: center; display: grid; justify-items: center; gap: 10px; }
+  .gal-hero__mid .ico { width: 18px; height: 18px; color: var(--accent); }
+  .gal-hero__count { justify-self: end; text-align: right; display: grid; justify-items: end; gap: 6px; }
+  .gal-hero__num { font-family: var(--f-sans); font-weight: 500; font-size: clamp(64px, 7.4vw, 136px); line-height: .86; letter-spacing: -.05em; font-variant-numeric: tabular-nums; }
+
+  .gal { --gap: clamp(8px, .9vw, 14px); }
+  .gal__body { display: grid; grid-template-columns: minmax(250px, 300px) minmax(0, 1fr); gap: clamp(28px, 3.4vw, 64px); align-items: start; padding-top: clamp(30px, 4vw, 70px); }
+  .gal__side { position: sticky; top: calc(var(--header-h) + 18px); display: grid; gap: 18px; transition: top .7s var(--ease-out); z-index: 4; }
+  html:has(.hdr.is-hidden) .gal__side { top: 28px; }
+  .gal__side-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 14px; border-bottom: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); }
+  .gal__opts { display: grid; }
+  .gal__opt { display: grid; grid-template-columns: 30px 1fr auto; align-items: baseline; gap: 10px; width: 100%; padding: 11px 0; text-align: left; border-bottom: 1px solid color-mix(in srgb, var(--fg) 10%, transparent); color: color-mix(in srgb, var(--fg) 62%, transparent); transition: color .35s, padding .5s var(--ease-out); }
+  .gal__opt:hover { color: var(--fg); padding-left: 6px; }
+  .gal__opt[aria-pressed='true'] { color: var(--fg); padding-left: 6px; }
+  .gal__opt-n { font-family: var(--f-wide); font-stretch: 125%; font-size: 10px; letter-spacing: .12em; color: var(--accent); }
+  .gal__opt-t { font-size: 16px; font-weight: 500; letter-spacing: -.01em; line-height: 1.2; }
+  .gal__opt-c { display: block; font-size: 12px; font-weight: 400; color: color-mix(in srgb, var(--fg) 50%, transparent); margin-top: 2px; }
+  .gal__opt-k { font-family: var(--f-wide); font-stretch: 125%; font-size: 10px; letter-spacing: .1em; font-variant-numeric: tabular-nums; }
+  .gal__opt[aria-pressed='true'] .gal__opt-t { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 5px; text-decoration-thickness: 1px; }
+  .gal__side-note { font-size: 13px; line-height: 1.5; }
+
+  .gal__main { scroll-margin-top: calc(var(--header-h) + 10px); min-width: 0; }
+  .gal__head { display: none; justify-content: space-between; align-items: end; gap: 18px 24px; flex-wrap: wrap; padding-bottom: clamp(18px, 2vw, 28px); margin-bottom: clamp(18px, 2vw, 28px); border-bottom: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); }
+  .gal__head[data-head='all'] { display: flex; }
+  .gal:has(.gal__opt[aria-pressed='true']:not([data-filter-btn='all'])) .gal__head[data-head='all'] { display: none; }
+  .gal__htitle { font-family: var(--f-serif); font-weight: 300; font-variation-settings: 'opsz' 144; font-size: clamp(32px, 3.4vw, 60px); line-height: 1; letter-spacing: -.02em; }
+  .gal__hsub { margin-top: 10px; }
+
+  .gal__grid { display: grid; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); grid-auto-flow: dense; gap: var(--gap);
+    --colw: calc((min(100vw, var(--max)) - 2 * var(--gutter) - 300px - clamp(28px, 3.4vw, 64px) - (var(--cols, 3) - 1) * var(--gap)) / var(--cols, 3));
+    grid-auto-rows: calc(var(--colw) / 1.38); }
+  .gal__tile { position: relative; display: block; min-width: 0; color: #fff; outline-offset: 3px; }
+  .gal__tile[hidden] { display: none; }
+  .gal__tile--large { grid-column: span 2; grid-row: span 2; }
+  .gal__tile--large.is-right { grid-column: 2 / span 2; }
+  .gal__tile--tall { grid-row: span 2; }
+  .gal__tile--wide { grid-column: span 2; }
+  .gal__frame { position: absolute; inset: 0; display: block; }
+  .gal__frame img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.3s var(--ease-out), filter .6s; }
+  .gal__frame::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 52%, rgba(6, 26, 58, .72)); opacity: 0; transition: opacity .6s var(--ease-out); pointer-events: none; }
+  .gal__cap { position: absolute; left: 14px; right: 14px; bottom: 12px; z-index: 2; display: flex; justify-content: space-between; align-items: end; gap: 10px; opacity: 0; transform: translateY(8px); transition: opacity .5s var(--ease-out), transform .6s var(--ease-out); pointer-events: none; }
+  .gal__cap .eyebrow { text-shadow: 0 1px 8px rgba(0, 0, 0, .4); }
+  .gal__cap .ico { width: 18px; height: 18px; flex: none; }
+  .gal__tile:hover .gal__frame img, .gal__tile:focus-visible .gal__frame img { transform: scale(1.05); }
+  .gal__tile:hover .gal__frame::after, .gal__tile:focus-visible .gal__frame::after,
+  .gal__tile:hover .gal__cap, .gal__tile:focus-visible .gal__cap { opacity: 1; transform: none; }
+  .gal__n { position: absolute; left: 12px; top: 10px; z-index: 2; font-family: var(--f-wide); font-stretch: 125%; font-size: 9px; letter-spacing: .14em; color: rgba(255, 255, 255, .86); text-shadow: 0 1px 6px rgba(0, 0, 0, .45); pointer-events: none; }
+  .gal__end { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: clamp(30px, 4vw, 60px); padding-top: 22px; border-top: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); }
+
+  /* keep the full-size photo inside the viewer frame (caption below it) */
+  .lbx__stage { position: absolute; inset: 0; width: auto; height: auto; grid-template: minmax(0, 1fr) / minmax(0, 1fr); }
+  .lbx__img { width: auto; height: auto; max-width: 100%; max-height: 100%; }
+
+  @media (max-width: 1100px) {
+    .gal__body { grid-template-columns: 1fr; gap: 22px; }
+    .gal__grid { --colw: calc((min(100vw, var(--max)) - 2 * var(--gutter) - (var(--cols, 3) - 1) * var(--gap)) / var(--cols, 3)); }
+    /* full-width app bar: also backs the transparent header while it is shown */
+    .gal__side { top: var(--header-h); margin-inline: calc(var(--gutter) * -1); padding: 10px var(--gutter); background: color-mix(in srgb, var(--bg) 95%, transparent); border-bottom: 1px solid color-mix(in srgb, var(--fg) 10%, transparent); }
+    .gal__side::before { content: ''; position: absolute; left: 0; right: 0; bottom: 100%; height: calc(var(--header-h) + 1px); background: color-mix(in srgb, var(--bg) 95%, transparent); pointer-events: none; }
+    html:has(.hdr.is-hidden) .gal__side { top: 0; }
+    .gal__side-head, .gal__side-note { display: none; }
+    .gal__opts { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; overscroll-behavior-x: contain; scroll-snap-type: x proximity; mask-image: linear-gradient(90deg, #000 88%, transparent); -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent); padding-right: 40px; }
+    .gal__opts::-webkit-scrollbar { display: none; }
+    .gal__opt { flex: none; width: auto; display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 14px; border: 1px solid color-mix(in srgb, var(--fg) 22%, transparent); border-radius: 999px; scroll-snap-align: start; white-space: nowrap; color: var(--fg); }
+    .gal__opt:hover { padding-left: 14px; }
+    .gal__opt[aria-pressed='true'] { background: var(--fg); color: var(--bg); border-color: var(--fg); padding-left: 14px; }
+    .gal__opt[aria-pressed='true'] .gal__opt-t { text-decoration: none; }
+    .gal__opt[aria-pressed='true'] .gal__opt-n { color: var(--copper-soft); }
+    .gal__opt-n { display: none; }
+    .gal__opt-t { font-size: 13px; }
+    .gal__opt-c { display: inline; margin: 0 0 0 4px; font-size: 13px; color: inherit; opacity: .6; }
+    .gal__opt-c::before { content: '· '; }
+    .gal__opt-k { opacity: .55; }
+  }
+  @media (max-width: 860px) {
+    .gal-hero__bottom { grid-template-columns: 1fr auto; padding-bottom: calc(var(--gutter) + 70px); }
+    .gal-hero__mid { display: none; }
+    .gal-hero__frame { width: 50vw; }
+  }
+  @media (max-width: 699px) {
+    .gal { --cols: 2; --gap: 6px; }
+    .gal__tile--large.is-right { grid-column: span 2; }
+    .gal__cap { opacity: 1; transform: none; left: 10px; right: 10px; bottom: 8px; }
+    .gal__cap .ico { display: none; }
+    .gal__cap .eyebrow { font-size: 9px; }
+    .gal__frame::after { opacity: .7; }
+    .gal__n { display: none; }
+    .gal-hero__bottom { grid-template-columns: 1fr; gap: 26px; }
+    .gal-hero__count { justify-self: start; text-align: left; justify-items: start; grid-row: 1; display: flex; align-items: baseline; gap: 12px; }
+    .gal-hero__marquee .marquee-type { font-size: 76px; }
+    .gal-hero__frame { width: 54vw; top: 46%; }
+  }
+  @media (prefers-reduced-motion: reduce) { .gal-hero__row { flex-wrap: wrap; width: auto; } }
+</style>
+
+<div class="gal t-light" data-filter>
+  <section class="gal-hero" data-header-tone="light" aria-labelledby="gal-title">
+    <h1 class="sr-only" id="gal-title">Life in our colonies</h1>
+    <div class="gal-hero__stage">
+      <div class="gal-hero__marquee" aria-hidden="true">
+        <div data-marquee data-marquee-speed="48">
+          <div class="gal-hero__row" data-marquee-track>
+            {[0, 1, 2, 3].map(() => <span class="marquee-type gal-hero__word">Life in our colonies&nbsp;—&nbsp;</span>)}
+          </div>
+        </div>
+      </div>
+      <figure class="gal-hero__frame media" data-reveal="clip" data-reveal-intro>
+        <Img src="projects.river-green-society.gallery-09" eager sizes="(min-width: 861px) 20vw, 54vw" widths={[400, 640, 800, 1000]} data-scale-in />
+      </figure>
+    </div>
+    <div class="gal-hero__bottom">
+      <div class="gal-hero__intro">
+        <p class="eyebrow eyebrow--accent gal-hero__eyebrow" data-reveal="fade" data-reveal-intro>{hero.eyebrow.text}</p>
+        <p class="lead balance" data-reveal="lines" data-reveal-intro data-reveal-delay="0.1">{hero.text}</p>
+      </div>
+      <div class="gal-hero__mid" data-reveal="fade" data-reveal-intro data-reveal-delay="0.3">
+        <p class="eyebrow muted">{grid.allSubline}</p>
+        <Icon name="arrow-down" />
+      </div>
+      <div class="gal-hero__count" data-reveal="fade" data-reveal-intro data-reveal-delay="0.2" aria-live="polite">
+        <p class="gal-hero__num"><span data-filter-count>{pad(total)}</span></p>
+        <p class="eyebrow">Photos · {colonies.length} colonies</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="gal__wrap section--tight" data-header-tone="light" style="padding-top:0" aria-label="Photographs">
+    <div class="wrap gal__body">
+      <aside class="gal__side" aria-label="Filter by colony">
+        <div class="gal__side-head">
+          <p class="eyebrow">Filter by colony</p>
+          <p class="eyebrow muted">{pad(colonies.length)}</p>
+        </div>
+        <div class="gal__opts" role="group" aria-label="Colonies">
+          <button class="gal__opt" type="button" data-filter-btn="all" aria-pressed="true">
+            <span class="gal__opt-n">00</span>
+            <span class="gal__opt-t">{filterBar.allLabel}</span>
+            <span class="gal__opt-k">{pad(total)}</span>
+          </button>
+          {colonies.map(({ p, n, count }) => (
+            <button class="gal__opt" type="button" data-filter-btn={p.slug} aria-pressed="false">
+              <span class="gal__opt-n">{n}</span>
+              <span class="gal__opt-t">{p.title}<span class="gal__opt-c">{p.city}</span></span>
+              <span class="gal__opt-k">{pad(count)}</span>
+            </button>
+          ))}
+        </div>
+        <p class="gal__side-note muted">Every photograph is from a Defence Garden colony. Tap any frame to view it full screen.</p>
+      </aside>
+
+      <div class="gal__main" id="gal-photos">
+        <div class="gal__head" data-head="all">
+          <div>
+            <h2 class="gal__htitle">{grid.allHeading}</h2>
+            <p class="eyebrow muted gal__hsub">{grid.sublineFormat.replace('{subline}', grid.allSubline).replace('{count}', photos(total))}</p>
+          </div>
+        </div>
+        {colonies.map(({ p, count }) => (
+          <div class="gal__head" data-head={p.slug}>
+            <div>
+              <h2 class="gal__htitle">{displayTitle(p)}</h2>
+              <p class="eyebrow muted gal__hsub">{grid.sublineFormat.replace('{subline}', p.location).replace('{count}', photos(count))} · {p.status}</p>
+            </div>
+            <a class="btn" href={projectUrl(p)}><span>{grid.exploreButton.label}</span><Icon name="arrow-up-right" /></a>
+          </div>
+        ))}
+
+        <div class="gal__grid" data-lightbox>
+          {tiles.map((t, i) => (
+            <a
+              class={`gal__tile gal__tile--${t.shape}`}
+              href={t.href}
+              data-lightbox-item
+              data-no-barba
+              data-filter-item
+              data-tags={t.p.slug}
+              data-caption={t.caption}
+              data-alt={t.alt}
+              aria-label={`Open photo: ${t.alt} (${t.colony})`}
+            >
+              <span class="gal__frame media" data-reveal="clip">
+                <Img src={t.g} alt={t.alt} sizes={sizes(t.shape)} widths={[400, 640, 960, 1280, 1600]} />
+              </span>
+              <span class="gal__n" aria-hidden="true">{pad(i + 1)}</span>
+              <span class="gal__cap" aria-hidden="true"><span class="eyebrow">{t.colony}</span><Icon name="expand" /></span>
+            </a>
+          ))}
+        </div>
+
+        <div class="gal__end">
+          <p class="eyebrow muted">Defence Garden · On-site photography</p>
+          <a class="btn" href="/ourproject"><span>All colonies</span><Icon name="grid" /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

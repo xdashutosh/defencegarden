@@ -1,0 +1,121 @@
+---
+import Base from '../../layouts/Base.astro';
+import Img from '../../components/ui/Img.astro';
+import Icon from '../../components/ui/Icon.astro';
+import Ornament from '../../components/ui/Ornament.astro';
+import Breadcrumb from '../../components/about/Breadcrumb.astro';
+import Monogram from '../../components/about/Monogram.astro';
+import ExploreLinks from '../../components/about/ExploreLinks.astro';
+import data from '../../data/pages/owner-profile.json';
+
+const { hero, role, company } = data;
+const [l1, l2] = hero.heading.lines;
+const [p1, disclaimer] = role.paragraphs;
+const linkImg = { '/': 'about.r4', '/about': 'about.r2', '/ourproject': 'projects.river-green-society.cover' };
+const links = company.links.map((l) => ({ label: l.label, href: l.href, img: linkImg[l.href] }));
+---
+<Base path="/about/kuldeep-tomar" namespace="owner" tone="dark">
+  <section class="oph t-night" data-header-tone="dark" aria-labelledby="oph-title">
+    <span class="oph__wm" aria-hidden="true">{hero.watermark}</span>
+    <Ornament variant="fan" class="oph__orn" />
+    <div class="wrap oph__in">
+      <Breadcrumb items={hero.breadcrumb} class="oph__bc" />
+      <div class="oph__grid">
+        <div class="oph__copy">
+          <p class="eyebrow eyebrow--accent" data-reveal="fade" data-reveal-intro>{hero.eyebrow}</p>
+          <h1 class="deco oph__title" id="oph-title" data-reveal="lines" data-reveal-intro>{l1}<br /><span class="oph__accent">{l2}</span></h1>
+          <p class="lead oph__text" data-reveal="fade" data-reveal-intro data-reveal-delay="0.25">{hero.text}</p>
+        </div>
+        <aside class="oph__card" aria-label={hero.profileCard.ariaLabel} data-reveal="fade" data-reveal-intro data-reveal-delay="0.15">
+          <Monogram class="oph__kt" draw={false} />
+          <dl class="oph__facts">
+            {hero.profileCard.facts.map((f) => <div class="oph__fact"><dt class="eyebrow muted">{f.label}</dt><dd>{f.value}</dd></div>)}
+          </dl>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="opr t-light section" data-header-tone="light" aria-labelledby="opr-title">
+    <div class="wrap opr__grid">
+      <div class="opr__head">
+        <p class="eyebrow eyebrow--accent" data-reveal="fade">{role.eyebrow}</p>
+        <h2 class="serif opr__title" id="opr-title" data-reveal="lines">{role.heading}</h2>
+      </div>
+      <div class="opr__body">
+        <p class="lead opr__p" data-reveal="fade">{p1}</p>
+        <aside class="opr__note" data-reveal="fade" aria-label="About this profile">
+          <Ornament variant="diamond" class="opr__dia" />
+          <p class="eyebrow eyebrow--accent">About this profile</p>
+          <p class="body opr__disc">{disclaimer}</p>
+        </aside>
+        <a class="btn" href={role.link.href} data-reveal="fade"><span>{role.link.label}</span><Icon name="arrow-right" class="ico" /></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="opc t-ivory section" data-header-tone="light" aria-labelledby="opc-title">
+    <div class="wrap opc__grid">
+      <figure class="opc__img media" data-reveal="clip">
+        <Img src="projects.defence-garden-phase-1.gallery-07" sizes="(min-width: 861px) 44vw, 92vw" widths={[480, 800, 1200, 1600]} data-parallax="0.08" />
+      </figure>
+      <div class="opc__copy">
+        <p class="eyebrow eyebrow--accent" data-reveal="fade">{company.eyebrow}</p>
+        <h2 class="deco opc__title" id="opc-title" data-reveal="lines">{company.heading}</h2>
+        <p class="lead opc__text" data-reveal="fade">{company.text}</p>
+        <div class="opc__close" data-reveal="fade">
+          <p class="body muted">{company.closing.text}</p>
+          <button class="btn btn--solid" type="button" data-enquire data-interest="Site visit"><Icon name="whatsapp" class="ico" /><span>Enquire on WhatsApp</span></button>
+          <a class="btn" href={company.closing.cta.href}><span>{company.closing.cta.label}</span><Icon name="arrow-right" class="ico" /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ExploreLinks links={links} ariaLabel="Defence Garden links" theme="t-light" />
+</Base>
+
+<style>
+  .oph { position: relative; min-height: 100vh; min-height: 100svh; display: grid; overflow: hidden; }
+  .oph__wm { position: absolute; right: -2vw; bottom: -6vw; font-family: var(--f-deco); font-weight: 200; font-size: clamp(260px, 44vw, 820px); line-height: .8; color: transparent; -webkit-text-stroke: 1px rgba(207,143,125,.22); pointer-events: none; user-select: none; }
+  .oph__orn { position: absolute; left: 0; top: 0; width: 70%; height: 100%; color: var(--copper); opacity: .05; pointer-events: none; }
+  .oph__in { position: relative; display: grid; grid-template-rows: auto 1fr; gap: 30px; padding-top: calc(var(--header-h) + 28px); padding-bottom: clamp(60px, 8vw, 110px); }
+  .oph__grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: clamp(36px, 6vw, 120px); align-items: center; }
+  .oph__copy { display: grid; gap: clamp(20px, 2.2vw, 32px); }
+  .oph__title { font-size: clamp(42px, 6.4vw, 124px); color: #f7f1ea; }
+  .oph__accent { color: var(--copper); }
+  .oph__text { max-width: 44ch; color: rgba(244,237,230,.86); }
+  .oph__card { display: grid; gap: 28px; padding: clamp(28px, 3vw, 44px); border: 1px solid rgba(207,143,125,.4); outline: 1px solid rgba(207,143,125,.18); outline-offset: -10px; background: rgba(6,26,58,.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .oph__card :global(.oph__kt) { width: min(100%, 260px); justify-self: center; --kt-ink: #f4ede6; }
+  .oph__facts { display: grid; border-top: 1px solid rgba(244,237,230,.16); margin: 0; }
+  .oph__fact { display: grid; grid-template-columns: 120px 1fr; gap: 12px; align-items: baseline; padding-block: 14px; border-bottom: 1px solid rgba(244,237,230,.16); }
+  .oph__fact dd { margin: 0; font-size: 17px; font-weight: 500; }
+
+  .opr__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(36px, 7vw, 140px); align-items: start; }
+  .opr__head { display: grid; gap: 20px; }
+  .opr__title { max-width: 12ch; }
+  .opr__body { display: grid; gap: clamp(26px, 3vw, 42px); justify-items: start; }
+  .opr__p { max-width: 46ch; font-size: clamp(19px, 1.6vw, 26px); }
+  .opr__note { position: relative; display: grid; gap: 12px; padding: 28px 28px 28px 30px; border: 1px solid color-mix(in srgb, var(--copper-deep) 40%, transparent); background: var(--ivory); max-width: 560px; }
+  .opr__dia { position: absolute; top: -9px; left: 26px; width: 18px; height: 18px; color: var(--accent); background: var(--paper); padding: 1px; }
+  .opr__disc { color: color-mix(in srgb, var(--fg) 78%, transparent); }
+
+  .opc__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(36px, 7vw, 140px); align-items: center; }
+  .opc__img { aspect-ratio: 4 / 5; }
+  .opc__img :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .opc__copy { display: grid; gap: clamp(20px, 2.2vw, 30px); justify-items: start; }
+  .opc__title { font-size: clamp(40px, 5.2vw, 96px); }
+  .opc__text { max-width: 44ch; }
+  .opc__close { display: flex; flex-wrap: wrap; gap: 10px; padding-top: 24px; border-top: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); width: 100%; }
+  .opc__close p { flex: 1 1 100%; max-width: 46ch; margin-bottom: 8px; }
+
+  @media (max-width: 860px) {
+    .oph__grid { grid-template-columns: 1fr; }
+    .oph__title { font-size: clamp(38px, 11vw, 72px); }
+    .oph__wm { font-size: 70vw; bottom: -4vw; }
+    .oph__card :global(.oph__kt) { width: min(56%, 200px); }
+    .opr__grid { grid-template-columns: 1fr; }
+    .opc__grid { grid-template-columns: 1fr; }
+    .opc__img { aspect-ratio: 4 / 3; }
+  }
+</style>

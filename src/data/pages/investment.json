@@ -1,0 +1,484 @@
+{
+  "_meta": {
+    "source": "assets/Investment-ClpkaZsq.js (+ r4-Cc-xdSSc.js), rendered https://defencegarden.com/investment on 2026-10-12.",
+    "path": "/investment",
+    "seoRef": "site.json → seo.pages['/investment']",
+    "sectionOrder": [
+      "hero",
+      "thesis",
+      "opportunities",
+      "calculator",
+      "pillars",
+      "journey",
+      "tracks",
+      "epilogue"
+    ],
+    "headingPattern": "Chapter headings render as '{title} {accent}.' with the accent word italic gold, e.g. 'Four ways to enter.'",
+    "caution": "This page contains investment-return claims (CAGR 18–22%, calculator 'at our historical CAGR', '₹2,400 sqft', '<20 Left', 'Three flagship townships … opening between 2026 & 2027', 'Premium Villas'). They are copied verbatim; confirm with the owner before republishing."
+  },
+  "hero": {
+    "backgroundImage": {
+      "oldUrl": "https://defencegarden.com/assets/investimg-DlBA4YH0.webp",
+      "key": "investment.investimg",
+      "src": "src/assets/media/investment/investimg.webp",
+      "alt": "Paved plaza with a red-striped walkway leading to a circular fountain, framed by palms, hedges and steel railings",
+      "note": "Shown at 16% opacity under a dark gradient + faint 60px grid."
+    },
+    "badge": {
+      "text": "Pre-Booking Open",
+      "style": "gold pill with pulsing dot"
+    },
+    "eyebrow": "Introducing",
+    "heading": "Defence Garden",
+    "ornament": "◆",
+    "text": {
+      "text": "Three flagship townships across Western UP — opening between 2026 & 2027.",
+      "accent": "2026 & 2027"
+    },
+    "ctas": [
+      {
+        "label": "Register Interest",
+        "href": "/ourproject",
+        "style": "primary with arrow-up-right"
+      },
+      {
+        "label": "Brochure",
+        "href": "#opportunities",
+        "style": "outline with sparkles icon",
+        "note": "No brochure file exists — the button only jumps to the Opportunities section."
+      }
+    ],
+    "scrollCue": "Scroll"
+  },
+  "thesis": {
+    "image": {
+      "oldUrl": "https://defencegarden.com/assets/r1-R8gVP8U2.webp",
+      "key": "investment.r1",
+      "src": "src/assets/media/investment/r1.webp",
+      "alt": "Defence Garden Phase 2 entrance gate with its green \"Welcomes You\" wall and paved forecourt, a visitor walking in"
+    },
+    "imageLabel": "Chapter 01",
+    "imageQuote": "\"Patience compounds. So does land.\"",
+    "badge": {
+      "value": "20+",
+      "label": "Years Trust"
+    },
+    "eyebrow": "The Thesis",
+    "heading": {
+      "text": "Land, chosen carefully and planned patiently, becomes more than an asset.",
+      "note": "Word-by-word scroll reveal."
+    },
+    "counters": [
+      {
+        "value": "5,000+",
+        "countTo": 5000,
+        "suffix": "+",
+        "label": "Plots"
+      },
+      {
+        "value": "12+",
+        "countTo": 12,
+        "suffix": "+",
+        "label": "Townships"
+      },
+      {
+        "value": "20+",
+        "countTo": 20,
+        "suffix": "+",
+        "label": "Years"
+      }
+    ]
+  },
+  "opportunities": {
+    "id": "opportunities",
+    "eyebrow": "Chapter 02 · Opportunities",
+    "heading": {
+      "title": "Four ways to",
+      "accent": "enter",
+      "text": "Four ways to enter."
+    },
+    "text": "Each path is shaped for a different investor — entry plots, frontages, hold-and-appreciate parcels, or scarcity villas.",
+    "cards": [
+      {
+        "tag": "01",
+        "title": "Residential Plots",
+        "stat": "₹2,400",
+        "statLabel": "sqft",
+        "image": {
+          "oldUrl": "https://defencegarden.com/assets/r4-DfBvb1ou.webp",
+          "key": "about.r4",
+          "src": "src/assets/media/about/r4.webp",
+          "alt": "Aerial view of a plotted township grid with paved internal roads, young trees and the first houses, farmland stretching to a hazy horizon",
+          "oldAlt": "Residential Plots"
+        },
+        "cta": {
+          "label": "Explore",
+          "href": "/ourproject"
+        }
+      },
+      {
+        "tag": "02",
+        "title": "Commercial Frontage",
+        "stat": "18–22%",
+        "statLabel": "CAGR",
+        "image": {
+          "oldUrl": "https://defencegarden.com/assets/r22-BaQIoe9s.webp",
+          "key": "investment.r22",
+          "src": "src/assets/media/investment/r22.webp",
+          "alt": "Paved internal street in a villa colony with red-and-white lamp posts, palms, parked cars and a water tower in the distance",
+          "oldAlt": "Commercial Frontage"
+        },
+        "cta": {
+          "label": "Explore",
+          "href": "/ourproject"
+        }
+      },
+      {
+        "tag": "03",
+        "title": "Strategic Land",
+        "stat": "3–5y",
+        "statLabel": "Hold",
+        "image": {
+          "oldUrl": "https://defencegarden.com/assets/r25-CO4lMcWu.webp",
+          "key": "investment.r25",
+          "src": "src/assets/media/investment/r25.webp",
+          "preferKey": "home.banner-poster",
+          "preferSrc": "src/assets/media/home/banner-poster.webp",
+          "alt": "Aerial view of a tree-lined colony road running between sugarcane fields, with houses and the entrance beyond",
+          "oldAlt": "Strategic Land"
+        },
+        "cta": {
+          "label": "Explore",
+          "href": "/ourproject"
+        }
+      },
+      {
+        "tag": "04",
+        "title": "Premium Villas",
+        "stat": "<20",
+        "statLabel": "Left",
+        "image": {
+          "oldUrl": "https://defencegarden.com/assets/r21-Bwn_qnTh.webp",
+          "key": "investment.r21",
+          "src": "src/assets/media/investment/r21.webp",
+          "alt": "Aerial view of a row of cream two-storey villas with red-tiled roofs facing a landscaped green, farmland behind",
+          "oldAlt": "Premium Villas"
+        },
+        "cta": {
+          "label": "Explore",
+          "href": "/ourproject"
+        }
+      }
+    ]
+  },
+  "calculator": {
+    "eyebrow": "Chapter 03 · Calculator",
+    "heading": {
+      "title": "What could land",
+      "accent": "build",
+      "text": "What could land build."
+    },
+    "sub": "Slide the dials. Numbers update with compound growth at our historical CAGR.",
+    "inputs": [
+      {
+        "label": "Amount",
+        "min": 100000,
+        "max": 20000000,
+        "step": 50000,
+        "default": 500000,
+        "format": "₹ with en-IN grouping; ≥1,00,000 shown as '₹{x.xx} L', ≥1,00,00,000 as '₹{x.xx} Cr'"
+      },
+      {
+        "label": "Hold",
+        "min": 1,
+        "max": 15,
+        "step": 1,
+        "default": 5,
+        "format": "'{n} Yr' when 1, else '{n} Yrs'"
+      },
+      {
+        "label": "CAGR",
+        "min": 10,
+        "max": 28,
+        "step": 1,
+        "default": 20,
+        "format": "'{n}%'"
+      }
+    ],
+    "presets": [
+      {
+        "label": "₹5L · 5y",
+        "amount": 500000,
+        "years": 5,
+        "cagr": 18
+      },
+      {
+        "label": "₹15L · 7y",
+        "amount": 1500000,
+        "years": 7,
+        "cagr": 20
+      },
+      {
+        "label": "₹50L · 10y",
+        "amount": 5000000,
+        "years": 10,
+        "cagr": 22
+      }
+    ],
+    "output": {
+      "eyebrow": "Projected",
+      "value": "{format(amount × (1 + cagr/100)^years)}",
+      "subline": "{years}y · {multiple to 2 dp}× growth",
+      "tiles": [
+        {
+          "label": "In",
+          "value": "{format(amount)}"
+        },
+        {
+          "label": "Profit",
+          "value": "{format(projected − amount)}"
+        },
+        {
+          "label": "×",
+          "value": "{multiple to 1 dp}x"
+        }
+      ],
+      "bars": "One bar per year Y0…Y{years}, height ∝ value; last bar highlighted gold; labels 'Y0', 'Y1', …"
+    }
+  },
+  "pillars": {
+    "eyebrow": "Chapter 04 · Why It Works",
+    "heading": {
+      "title": "Four pillars of",
+      "accent": "conviction",
+      "text": "Four pillars of conviction."
+    },
+    "items": [
+      {
+        "number": "01",
+        "label": "Pillar 01",
+        "icon": "trending-up",
+        "title": "Measurable Growth",
+        "desc": "Plots in the path of new highways and corridors."
+      },
+      {
+        "number": "02",
+        "label": "Pillar 02",
+        "icon": "shield-check",
+        "title": "Verified Titles",
+        "desc": "Clean chain-of-title and legal documentation."
+      },
+      {
+        "number": "03",
+        "label": "Pillar 03",
+        "icon": "map-pin",
+        "title": "Prime Geography",
+        "desc": "Shamli–Meerut belt, fast-tracked to Delhi NCR."
+      },
+      {
+        "number": "04",
+        "label": "Pillar 04",
+        "icon": "file-check",
+        "title": "Legal Clarity",
+        "desc": "Single-window registry, mutation, and handover."
+      }
+    ]
+  },
+  "journey": {
+    "eyebrow": "Chapter 05 · Your Journey",
+    "heading": {
+      "title": "Discovery to",
+      "accent": "handover",
+      "text": "Discovery to handover."
+    },
+    "steps": [
+      {
+        "number": "01",
+        "label": "Step 01",
+        "icon": "search",
+        "title": "Discovery",
+        "desc": "Site walk-through and corridor brief."
+      },
+      {
+        "number": "02",
+        "label": "Step 02",
+        "icon": "clipboard-check",
+        "title": "Due Diligence",
+        "desc": "Title chain and legal opinion."
+      },
+      {
+        "number": "03",
+        "label": "Step 03",
+        "icon": "handshake",
+        "title": "Booking",
+        "desc": "Token, agreement, registration."
+      },
+      {
+        "number": "04",
+        "label": "Step 04",
+        "icon": "key-round",
+        "title": "Handover",
+        "desc": "Possession with lifelong support."
+      }
+    ],
+    "note": "A horizontal gold progress line fills with scroll behind the 4 step circles (desktop)."
+  },
+  "tracks": {
+    "eyebrow": "Chapter 06 · Choose Your Path",
+    "heading": {
+      "title": "Three",
+      "accent": "tracks",
+      "text": "Three tracks."
+    },
+    "items": [
+      {
+        "name": "Residential",
+        "tagline": "Dream Home Canvas",
+        "features": [
+          "Vastu layouts",
+          "Grid roads",
+          "Gated entry",
+          "Green parks"
+        ],
+        "cta": {
+          "label": "Request Details",
+          "href": "/contact"
+        }
+      },
+      {
+        "name": "Investment",
+        "tagline": "High Appreciation",
+        "features": [
+          "Strategic location",
+          "New infrastructure",
+          "Clear titles",
+          "Boundary wall"
+        ],
+        "popular": true,
+        "popularBadge": "★ Top Pick",
+        "cta": {
+          "label": "Request Details",
+          "href": "/contact"
+        }
+      },
+      {
+        "name": "Premium Corner",
+        "tagline": "Prime Visibility",
+        "features": [
+          "Wider road access",
+          "Multi-facing",
+          "Better airflow",
+          "Exclusive entry"
+        ],
+        "cta": {
+          "label": "Request Details",
+          "href": "/contact"
+        }
+      }
+    ]
+  },
+  "epilogue": {
+    "backgroundImage": {
+      "oldUrl": "https://defencegarden.com/assets/investimg2-Dafnoyeh.webp",
+      "key": "investment.investimg2",
+      "src": "src/assets/media/investment/investimg2.webp",
+      "alt": "Aerial view of a colony carved out of sugarcane fields, with a tree-lined road, open plots and a few white houses"
+    },
+    "eyebrow": "Epilogue · Your Move",
+    "heading": {
+      "lines": [
+        "Long-term value.",
+        "Smart investment."
+      ],
+      "text": "Long-term value. Smart investment.",
+      "accent": "Smart investment."
+    },
+    "text": "Schedule a private walkthrough or request the investor deck.",
+    "ctas": [
+      {
+        "label": "Schedule Visit",
+        "href": "/contact",
+        "style": "primary with arrow-up-right"
+      },
+      {
+        "label": "Compare",
+        "href": "/ourproject",
+        "style": "outline"
+      }
+    ],
+    "contactRow": [
+      {
+        "text": "+91 99276 69955",
+        "href": "tel:+919927669955",
+        "icon": "phone"
+      },
+      {
+        "text": "defencegarden009@gmail.com",
+        "href": "mailto:defencegarden009@gmail.com",
+        "icon": "mail"
+      }
+    ]
+  },
+  "imagesInOrder": [
+    {
+      "oldUrl": "https://defencegarden.com/assets/investimg-DlBA4YH0.webp",
+      "key": "investment.investimg",
+      "src": "src/assets/media/investment/investimg.webp",
+      "alt": "Paved plaza with a red-striped walkway leading to a circular fountain, framed by palms, hedges and steel railings",
+      "kind": "image",
+      "section": "hero background"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/r1-R8gVP8U2.webp",
+      "key": "investment.r1",
+      "src": "src/assets/media/investment/r1.webp",
+      "alt": "Defence Garden Phase 2 entrance gate with its green \"Welcomes You\" wall and paved forecourt, a visitor walking in",
+      "kind": "image",
+      "section": "thesis"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/r4-DfBvb1ou.webp",
+      "key": "about.r4",
+      "src": "src/assets/media/about/r4.webp",
+      "alt": "Aerial view of a plotted township grid with paved internal roads, young trees and the first houses, farmland stretching to a hazy horizon",
+      "kind": "image",
+      "section": "opportunities 01 (also About CTA background)"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/r22-BaQIoe9s.webp",
+      "key": "investment.r22",
+      "src": "src/assets/media/investment/r22.webp",
+      "alt": "Paved internal street in a villa colony with red-and-white lamp posts, palms, parked cars and a water tower in the distance",
+      "kind": "image",
+      "section": "opportunities 02"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/r25-CO4lMcWu.webp",
+      "key": "investment.r25",
+      "src": "src/assets/media/investment/r25.webp",
+      "preferKey": "home.banner-poster",
+      "preferSrc": "src/assets/media/home/banner-poster.webp",
+      "alt": "Aerial view of a tree-lined colony road running between sugarcane fields, with houses and the entrance beyond",
+      "kind": "image",
+      "section": "opportunities 03"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/r21-Bwn_qnTh.webp",
+      "key": "investment.r21",
+      "src": "src/assets/media/investment/r21.webp",
+      "alt": "Aerial view of a row of cream two-storey villas with red-tiled roofs facing a landscaped green, farmland behind",
+      "kind": "image",
+      "section": "opportunities 04"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/investimg2-Dafnoyeh.webp",
+      "key": "investment.investimg2",
+      "src": "src/assets/media/investment/investimg2.webp",
+      "alt": "Aerial view of a colony carved out of sugarcane fields, with a tree-lined road, open plots and a few white houses",
+      "kind": "image",
+      "section": "epilogue background"
+    }
+  ],
+  "noJsFallback": null,
+  "noJsFallbackNote": "No prerendered fallback HTML for /investment."
+}

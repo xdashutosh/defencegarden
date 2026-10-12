@@ -1,0 +1,703 @@
+{
+  "_meta": {
+    "source": "assets/Ourprojects-CXd9Edcp.js (+ projects-BS1XfbWT.js, main-web-rHh87_Fk.js), rendered https://defencegarden.com/ourproject on 2026-10-12.",
+    "path": "/ourproject",
+    "seoRef": "site.json → seo.pages['/ourproject']",
+    "sectionOrder": [
+      "collection",
+      "banner",
+      "closing"
+    ],
+    "note": "The old page has no separate hero: it opens directly with the 'Curated Township Collection' header + the 10 alternating project cards. '/projects' redirects here."
+  },
+  "collection": {
+    "eyebrow": {
+      "text": "Signature Colonies",
+      "icon": "sparkles"
+    },
+    "heading": {
+      "text": "Curated Township Collection",
+      "accent": "Collection"
+    },
+    "text": "Explore premium plotted communities designed for modern living, open green spaces, and long-term value.",
+    "pill": [
+      {
+        "value": "10",
+        "label": "Townships",
+        "icon": "building-2",
+        "computedFrom": "projects.length"
+      },
+      {
+        "value": "2",
+        "label": "Live Maps",
+        "icon": "map",
+        "computedFrom": "projects with hasMap"
+      }
+    ],
+    "cardsNote": "Cards alternate image-left / image-right (odd index flips). Each card links to /project/{id}; the 'Location' button opens the project's Google Maps search URL in a new tab. Image gets a slow zoom on hover.",
+    "cards": [
+      {
+        "projectId": 1,
+        "href": "/project/1",
+        "image": {
+          "oldUrl": "https://defencegarden.com/assets/rivergreen-Cq_P65KN.webp",
+          "key": "projects.river-green-society.cover",
+          "src": "src/assets/media/projects/river-green-society/cover.webp",
+          "preferKey": "projects.river-green-society.gallery-11",
+          "preferSrc": "src/assets/media/projects/river-green-society/gallery-11.webp",
+          "alt": "River Green Society: stone fountain with water jets in the paved central plaza",
+          "oldAlt": "River Green Society"
+        },
+        "badges": [
+          "Featured",
+          "Ongoing",
+          "Booking Map Live"
+        ],
+        "location": "Shamli, UP",
+        "counter": "01 / 10",
+        "eyebrow": "Flagship Township",
+        "title": "River Green Society",
+        "desc": "Our flagship 2024 township in Shamli — landscaped fountain plaza, wide internal roads, and a live plot-booking map.",
+        "stats": [
+          {
+            "value": "60–200",
+            "label": "Sq. Yd"
+          },
+          {
+            "value": "10+",
+            "label": "Acres"
+          },
+          {
+            "value": "30–40ft",
+            "label": "Roads"
+          }
+        ],
+        "buttons": [
+          {
+            "label": "Explore Township",
+            "href": "/project/1"
+          },
+          {
+            "label": "Location",
+            "href": "https://www.google.com/maps/search/?api=1&query=River%20Green%20Colony%2C%20Shamli%20Rd%2C%20Mundet%2C%20Shamli%2C%20Uttar%20Pradesh%20247776",
+            "target": "_blank",
+            "ariaLabel": "Open River Green Society location in Google Maps"
+          }
+        ]
+      },
+      {
+        "projectId": 5,
+        "href": "/project/5",
+        "image": {
+          "oldUrl": "https://defencegarden.com/assets/dgphase2-CbdbB_LR.webp",
+          "key": "projects.defence-garden-phase-2.cover",
+          "src": "src/assets/media/projects/defence-garden-phase-2/cover.webp",
+          "preferKey": "projects.defence-garden-phase-2.gallery-16",
+          "preferSrc": "src/assets/media/projects/defence-garden-phase-2/gallery-16.webp",
+          "alt": "Defence Garden Phase 2 entrance gate beside the green \"Welcomes You\" wall",
+          "oldAlt": "Defence Garden Phase 2"
+        },
+        "badges": [
+          "Ongoing",
+          "Booking Map Live"
+        ],
+        "location": "Shamli, UP",
+        "counter": "02 / 10",
+        "eyebrow": "Premium Township",
+        "title": "Defence Garden Phase 2",
+        "desc": "The newest Defence Garden phase in Shamli (2022) with commercial frontage on the main road and a live booking map.",
+        "stats": [
+          {
+            "value": "60–200",
+            "label": "Sq. Yd"
+          },
+          {
+            "value": "10+",
+            "label": "Acres"
+          },
+          {
+            "value": "30–40ft",
+            "label": "Roads"
+          }
+        ],
+        "buttons": [
+          {
+            "label": "Explore Township",
+            "href": "/project/5"
+          },
+          {
+            "label": "Location",
+            "href": "https://www.google.com/maps/search/?api=1&query=Defence%20Garden%20Phase%202%2C%20Shamli%2C%20Uttar%20Pradesh",
+            "target": "_blank",
+            "ariaLabel": "Open Defence Garden Phase 2 location in Google Maps"
+          }
+        ]
+      },
+      {
+        "projectId": 2,
+        "href": "/project/2",
+        "image": {
+          "oldUrl": "https://defencegarden.com/assets/dgbudhana-CRvscpZX.webp",
+          "key": "projects.defence-garden-budhana.cover",
+          "src": "src/assets/media/projects/defence-garden-budhana/cover.webp",
+          "preferKey": "projects.defence-garden-budhana.gallery-08",
+          "preferSrc": "src/assets/media/projects/defence-garden-budhana/gallery-08.webp",
+          "alt": "Defence Garden Budhana: two-storey white house with balconies and young trees in warm evening light",
+          "oldAlt": "Defence Garden"
+        },
+        "badges": [
+          "Ongoing"
+        ],
+        "location": "Budhana, UP",
+        "counter": "03 / 10",
+        "eyebrow": "Premium Township",
+        "title": "Defence Garden",
+        "desc": "A gated plotted township on the Baraut Road belt in Budhana (2022), planned around parks and tree-lined roads.",
+        "stats": [
+          {
+            "value": "60–200",
+            "label": "Sq. Yd"
+          },
+          {
+            "value": "10+",
+            "label": "Acres"
+          },
+          {
+            "value": "30–40ft",
+            "label": "Roads"
+          }
+        ],
+        "buttons": [
+          {
+            "label": "Explore Township",
+            "href": "/project/2"
+          },
+          {
+            "label": "Location",
+            "href": "https://www.google.com/maps/search/?api=1&query=Defence%20Garden%2C%20Budhana%2C%20Uttar%20Pradesh",
+            "target": "_blank",
+            "ariaLabel": "Open Defence Garden location in Google Maps"
+          }
+        ]
+      },
+      {
+        "projectId": 3,
+        "href": "/project/3",
+        "image": {
+          "oldUrl": "https://defencegarden.com/assets/dgmeerut-D2pTsFbE.webp",
+          "key": "projects.defence-garden-meerut.cover",
+          "src": "src/assets/media/projects/defence-garden-meerut/cover.webp",
+          "preferKey": "projects.defence-garden-meerut.gallery-07",
+          "preferSrc": "src/assets/media/projects/defence-garden-meerut/gallery-07.webp",
+          "alt": "Defence Garden Meerut: three-storey white house with red trim, an arched window and balconies",
+          "oldAlt": "Defence Garden"
+        },
+        "badges": [
+          "Delivered"
+        ],
+        "location": "Meerut, UP",
+        "counter": "04 / 10",
+        "eyebrow": "Premium Township",
+        "title": "Defence Garden",
+        "desc": "Our established Meerut township (2014) — a fully developed, family-occupied community with mature greens.",
+        "stats": [
+          {
+            "value": "60–200",
+            "label": "Sq. Yd"
+          },
+          {
+            "value": "10+",
+            "label": "Acres"
+          },
+          {
+            "value": "30–40ft",
+            "label": "Roads"
+          }
+        ],
+        "buttons": [
+          {
+            "label": "Explore Township",
+            "href": "/project/3"
+          },
+          {
+            "label": "Location",
+            "href": "https://www.google.com/maps/search/?api=1&query=Defence%20Garden%2C%20Meerut%2C%20Uttar%20Pradesh",
+            "target": "_blank",
+            "ariaLabel": "Open Defence Garden location in Google Maps"
+          }
+        ]
+      },
+      {
+        "projectId": 4,
+        "href": "/project/4",
+        "image": {
+          "oldUrl": "https://defencegarden.com/assets/dgphase1-CvTPTaKA.webp",
+          "key": "projects.defence-garden-phase-1.cover",
+          "src": "src/assets/media/projects/defence-garden-phase-1/cover.webp",
+          "preferKey": "projects.defence-garden-phase-1.gallery-13",
+          "preferSrc": "src/assets/media/projects/defence-garden-phase-1/gallery-13.webp",
+          "alt": "Defence Garden Phase 1: blue-and-white three-storey villa with wide balconies behind lush planting",
+          "oldAlt": "Defence Garden Phase 1"
+        },
+        "badges": [
+          "Ongoing"
+        ],
+        "location": "Shamli, UP",
+        "counter": "05 / 10",
+        "eyebrow": "Premium Township",
+        "title": "Defence Garden Phase 1",
+        "desc": "The phase that brought Defence Garden to Shamli (2021) — structured plotting with gated entry and green pockets.",
+        "stats": [
+          {
+            "value": "60–200",
+            "label": "Sq. Yd"
+          },
+          {
+            "value": "10+",
+            "label": "Acres"
+          },
+          {
+            "value": "30–40ft",
+            "label": "Roads"
+          }
+        ],
+        "buttons": [
+          {
+            "label": "Explore Township",
+            "href": "/project/4"
+          },
+          {
+            "label": "Location",
+            "href": "https://www.google.com/maps/search/?api=1&query=Defence%20Garden%20Phase%201%2C%20Shamli%2C%20Uttar%20Pradesh",
+            "target": "_blank",
+            "ariaLabel": "Open Defence Garden Phase 1 location in Google Maps"
+          }
+        ]
+      },
+      {
+        "projectId": 6,
+        "href": "/project/6",
+        "image": {
+          "oldUrl": "https://defencegarden.com/assets/defencekunj-oEND1hrC.webp",
+          "key": "projects.defence-kunj.cover",
+          "src": "src/assets/media/projects/defence-kunj/cover.webp",
+          "preferKey": "projects.defence-kunj.gallery-10",
+          "preferSrc": "src/assets/media/projects/defence-kunj/gallery-10.webp",
+          "alt": "Defence Kunj: two adjoining two-storey homes, one pink and one white with blue trim, with arched windows",
+          "oldAlt": "Defence Kunj"
+        },
+        "badges": [
+          "Delivered"
+        ],
+        "location": "Meerut, UP",
+        "counter": "06 / 10",
+        "eyebrow": "Premium Township",
+        "title": "Defence Kunj",
+        "desc": "A quiet plotted colony in Meerut (2016), planned for compact family homes with clear titles.",
+        "stats": [
+          {
+            "value": "60–200",
+            "label": "Sq. Yd"
+          },
+          {
+            "value": "10+",
+            "label": "Acres"
+          },
+          {
+            "value": "30–40ft",
+            "label": "Roads"
+          }
+        ],
+        "buttons": [
+          {
+            "label": "Explore Township",
+            "href": "/project/6"
+          },
+          {
+            "label": "Location",
+            "href": "https://www.google.com/maps/search/?api=1&query=Defence%20Kunj%2C%20Meerut%2C%20Uttar%20Pradesh",
+            "target": "_blank",
+            "ariaLabel": "Open Defence Kunj location in Google Maps"
+          }
+        ]
+      },
+      {
+        "projectId": 7,
+        "href": "/project/7",
+        "image": {
+          "oldUrl": "https://defencegarden.com/assets/wow-B_-yKAvJ.webp",
+          "key": "projects.ganpati-enclave.cover",
+          "src": "src/assets/media/projects/ganpati-enclave/cover.webp",
+          "alt": "Ganpati Enclave: row of cream villas with red-tiled roofs behind a landscaped hedge strip",
+          "oldAlt": "Ganpati Enclave"
+        },
+        "badges": [
+          "Delivered"
+        ],
+        "location": "Meerut, UP",
+        "counter": "07 / 10",
+        "eyebrow": "Premium Township",
+        "title": "Ganpati Enclave",
+        "desc": "A well-connected Meerut enclave (2016) with practical plot sizes and everyday conveniences nearby.",
+        "stats": [
+          {
+            "value": "60–200",
+            "label": "Sq. Yd"
+          },
+          {
+            "value": "10+",
+            "label": "Acres"
+          },
+          {
+            "value": "30–40ft",
+            "label": "Roads"
+          }
+        ],
+        "buttons": [
+          {
+            "label": "Explore Township",
+            "href": "/project/7"
+          },
+          {
+            "label": "Location",
+            "href": "https://www.google.com/maps/search/?api=1&query=Ganpati%20Enclave%2C%20Meerut%2C%20Uttar%20Pradesh",
+            "target": "_blank",
+            "ariaLabel": "Open Ganpati Enclave location in Google Maps"
+          }
+        ]
+      },
+      {
+        "projectId": 8,
+        "href": "/project/8",
+        "image": {
+          "oldUrl": "https://defencegarden.com/assets/gayatri-CvKQFWFG.webp",
+          "key": "projects.gayatri-enclave.cover",
+          "src": "src/assets/media/projects/gayatri-enclave/cover.webp",
+          "preferKey": "projects.gayatri-enclave.gallery-06",
+          "preferSrc": "src/assets/media/projects/gayatri-enclave/gallery-06.webp",
+          "alt": "Gayatri Enclave: narrow three-storey white home with a blue glass strip beside a large tree",
+          "oldAlt": "Gayatri Enclave"
+        },
+        "badges": [
+          "Delivered"
+        ],
+        "location": "Meerut, UP",
+        "counter": "08 / 10",
+        "eyebrow": "Premium Township",
+        "title": "Gayatri Enclave",
+        "desc": "A serene Meerut enclave (2019) with landscaped greens and an easy connect to the city.",
+        "stats": [
+          {
+            "value": "60–200",
+            "label": "Sq. Yd"
+          },
+          {
+            "value": "10+",
+            "label": "Acres"
+          },
+          {
+            "value": "30–40ft",
+            "label": "Roads"
+          }
+        ],
+        "buttons": [
+          {
+            "label": "Explore Township",
+            "href": "/project/8"
+          },
+          {
+            "label": "Location",
+            "href": "https://www.google.com/maps/search/?api=1&query=Gayatri%20Enclave%2C%20Meerut%2C%20Uttar%20Pradesh",
+            "target": "_blank",
+            "ariaLabel": "Open Gayatri Enclave location in Google Maps"
+          }
+        ]
+      },
+      {
+        "projectId": 9,
+        "href": "/project/9",
+        "image": {
+          "oldUrl": "https://defencegarden.com/assets/basnatkunj-CjfdjAS0.webp",
+          "key": "projects.basant-kunj.cover",
+          "src": "src/assets/media/projects/basant-kunj/cover.webp",
+          "preferKey": "projects.basant-kunj.gallery-07",
+          "preferSrc": "src/assets/media/projects/basant-kunj/gallery-07.webp",
+          "alt": "Basant Kunj: two-storey homes with orange trim and blue glass details under a clear sky",
+          "oldAlt": "Basant Kunj"
+        },
+        "badges": [
+          "Delivered"
+        ],
+        "location": "Meerut, UP",
+        "counter": "09 / 10",
+        "eyebrow": "Premium Township",
+        "title": "Basant Kunj",
+        "desc": "A Meerut community (2018) built around open space, wide lanes, and long-term livability.",
+        "stats": [
+          {
+            "value": "60–200",
+            "label": "Sq. Yd"
+          },
+          {
+            "value": "10+",
+            "label": "Acres"
+          },
+          {
+            "value": "30–40ft",
+            "label": "Roads"
+          }
+        ],
+        "buttons": [
+          {
+            "label": "Explore Township",
+            "href": "/project/9"
+          },
+          {
+            "label": "Location",
+            "href": "https://www.google.com/maps/search/?api=1&query=Basant%20Kunj%2C%20Meerut%2C%20Uttar%20Pradesh",
+            "target": "_blank",
+            "ariaLabel": "Open Basant Kunj location in Google Maps"
+          }
+        ]
+      },
+      {
+        "projectId": 10,
+        "href": "/project/10",
+        "image": {
+          "oldUrl": "https://defencegarden.com/assets/saipuram-Bp615KGg.webp",
+          "key": "projects.saipuram.cover",
+          "src": "src/assets/media/projects/saipuram/cover.webp",
+          "preferKey": "projects.saipuram.gallery-06",
+          "preferSrc": "src/assets/media/projects/saipuram/gallery-06.webp",
+          "alt": "Saipuram: row of colourful homes with wood-panel and yellow facades across an open plot",
+          "oldAlt": "Saipuram"
+        },
+        "badges": [
+          "Delivered"
+        ],
+        "location": "Meerut, UP",
+        "counter": "10 / 10",
+        "eyebrow": "Premium Township",
+        "title": "Saipuram",
+        "desc": "Where it all began — our first plotted colony in Meerut (2011), delivered and thriving.",
+        "stats": [
+          {
+            "value": "60–200",
+            "label": "Sq. Yd"
+          },
+          {
+            "value": "10+",
+            "label": "Acres"
+          },
+          {
+            "value": "30–40ft",
+            "label": "Roads"
+          }
+        ],
+        "buttons": [
+          {
+            "label": "Explore Township",
+            "href": "/project/10"
+          },
+          {
+            "label": "Location",
+            "href": "https://www.google.com/maps/search/?api=1&query=Saipuram%2C%20Meerut%2C%20Uttar%20Pradesh",
+            "target": "_blank",
+            "ariaLabel": "Open Saipuram location in Google Maps"
+          }
+        ]
+      }
+    ]
+  },
+  "banner": {
+    "video": {
+      "oldUrl": "https://defencegarden.com/assets/main-web-Dh74r-VA.mp4",
+      "key": "video.main-web",
+      "src": "public/media/video/main-web.mp4",
+      "url": "/media/video/main-web.mp4",
+      "poster": "src/assets/media/posters/main-web-poster.webp",
+      "posterKey": "posters.main-web-poster",
+      "still": "src/assets/media/posters/main-web-still.webp",
+      "stillKey": "posters.main-web-still",
+      "startAt": 0.0,
+      "endAt": 24.07,
+      "hasAudio": false,
+      "alt": "Drone film of Defence Garden colonies: an entrance gate, villa rows, the highway and the Phase 2 entrance",
+      "autoplay": true,
+      "loop": true,
+      "muted": true,
+      "playsInline": true,
+      "note": "Desktop only; lazy-played when in view."
+    },
+    "poster": {
+      "oldUrl": "https://defencegarden.com/assets/banner-poster-BLuzevhM.webp",
+      "key": "home.banner-poster",
+      "src": "src/assets/media/home/banner-poster.webp",
+      "alt": "Aerial view of a tree-lined colony road running between sugarcane fields, with houses and the entrance beyond",
+      "oldAlt": "Township",
+      "note": "Used as the video poster on desktop and as the only image on mobile (alt 'Township'); desktop poster alt is empty."
+    },
+    "eyebrow": "Curated Portfolio",
+    "heading": {
+      "lines": [
+        "MASTERPIECES",
+        "OF ARCHITECTURE"
+      ],
+      "text": "MASTERPIECES OF ARCHITECTURE",
+      "accent": "OF ARCHITECTURE",
+      "note": "Uppercase is in the source text itself."
+    },
+    "text": "Every site is planned for walkability, structured circulation, and lasting aesthetics that uplift both investment and lifestyle.",
+    "cta": {
+      "label": "Open Featured Colony",
+      "href": "/project/1"
+    }
+  },
+  "closing": {
+    "heading": "Start Your Journey",
+    "cta": {
+      "label": "Contact Us",
+      "href": "/contact"
+    }
+  },
+  "imagesInOrder": [
+    {
+      "oldUrl": "https://defencegarden.com/assets/rivergreen-Cq_P65KN.webp",
+      "key": "projects.river-green-society.cover",
+      "src": "src/assets/media/projects/river-green-society/cover.webp",
+      "preferKey": "projects.river-green-society.gallery-11",
+      "preferSrc": "src/assets/media/projects/river-green-society/gallery-11.webp",
+      "alt": "River Green Society: stone fountain with water jets in the paved central plaza",
+      "oldAlt": "River Green Society",
+      "kind": "image",
+      "section": "collection card 01 / 10"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/dgphase2-CbdbB_LR.webp",
+      "key": "projects.defence-garden-phase-2.cover",
+      "src": "src/assets/media/projects/defence-garden-phase-2/cover.webp",
+      "preferKey": "projects.defence-garden-phase-2.gallery-16",
+      "preferSrc": "src/assets/media/projects/defence-garden-phase-2/gallery-16.webp",
+      "alt": "Defence Garden Phase 2 entrance gate beside the green \"Welcomes You\" wall",
+      "oldAlt": "Defence Garden Phase 2",
+      "kind": "image",
+      "section": "collection card 02 / 10"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/dgbudhana-CRvscpZX.webp",
+      "key": "projects.defence-garden-budhana.cover",
+      "src": "src/assets/media/projects/defence-garden-budhana/cover.webp",
+      "preferKey": "projects.defence-garden-budhana.gallery-08",
+      "preferSrc": "src/assets/media/projects/defence-garden-budhana/gallery-08.webp",
+      "alt": "Defence Garden Budhana: two-storey white house with balconies and young trees in warm evening light",
+      "oldAlt": "Defence Garden",
+      "kind": "image",
+      "section": "collection card 03 / 10"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/dgmeerut-D2pTsFbE.webp",
+      "key": "projects.defence-garden-meerut.cover",
+      "src": "src/assets/media/projects/defence-garden-meerut/cover.webp",
+      "preferKey": "projects.defence-garden-meerut.gallery-07",
+      "preferSrc": "src/assets/media/projects/defence-garden-meerut/gallery-07.webp",
+      "alt": "Defence Garden Meerut: three-storey white house with red trim, an arched window and balconies",
+      "oldAlt": "Defence Garden",
+      "kind": "image",
+      "section": "collection card 04 / 10"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/dgphase1-CvTPTaKA.webp",
+      "key": "projects.defence-garden-phase-1.cover",
+      "src": "src/assets/media/projects/defence-garden-phase-1/cover.webp",
+      "preferKey": "projects.defence-garden-phase-1.gallery-13",
+      "preferSrc": "src/assets/media/projects/defence-garden-phase-1/gallery-13.webp",
+      "alt": "Defence Garden Phase 1: blue-and-white three-storey villa with wide balconies behind lush planting",
+      "oldAlt": "Defence Garden Phase 1",
+      "kind": "image",
+      "section": "collection card 05 / 10"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/defencekunj-oEND1hrC.webp",
+      "key": "projects.defence-kunj.cover",
+      "src": "src/assets/media/projects/defence-kunj/cover.webp",
+      "preferKey": "projects.defence-kunj.gallery-10",
+      "preferSrc": "src/assets/media/projects/defence-kunj/gallery-10.webp",
+      "alt": "Defence Kunj: two adjoining two-storey homes, one pink and one white with blue trim, with arched windows",
+      "oldAlt": "Defence Kunj",
+      "kind": "image",
+      "section": "collection card 06 / 10"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/wow-B_-yKAvJ.webp",
+      "key": "projects.ganpati-enclave.cover",
+      "src": "src/assets/media/projects/ganpati-enclave/cover.webp",
+      "alt": "Ganpati Enclave: row of cream villas with red-tiled roofs behind a landscaped hedge strip",
+      "oldAlt": "Ganpati Enclave",
+      "kind": "image",
+      "section": "collection card 07 / 10"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/gayatri-CvKQFWFG.webp",
+      "key": "projects.gayatri-enclave.cover",
+      "src": "src/assets/media/projects/gayatri-enclave/cover.webp",
+      "preferKey": "projects.gayatri-enclave.gallery-06",
+      "preferSrc": "src/assets/media/projects/gayatri-enclave/gallery-06.webp",
+      "alt": "Gayatri Enclave: narrow three-storey white home with a blue glass strip beside a large tree",
+      "oldAlt": "Gayatri Enclave",
+      "kind": "image",
+      "section": "collection card 08 / 10"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/basnatkunj-CjfdjAS0.webp",
+      "key": "projects.basant-kunj.cover",
+      "src": "src/assets/media/projects/basant-kunj/cover.webp",
+      "preferKey": "projects.basant-kunj.gallery-07",
+      "preferSrc": "src/assets/media/projects/basant-kunj/gallery-07.webp",
+      "alt": "Basant Kunj: two-storey homes with orange trim and blue glass details under a clear sky",
+      "oldAlt": "Basant Kunj",
+      "kind": "image",
+      "section": "collection card 09 / 10"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/saipuram-Bp615KGg.webp",
+      "key": "projects.saipuram.cover",
+      "src": "src/assets/media/projects/saipuram/cover.webp",
+      "preferKey": "projects.saipuram.gallery-06",
+      "preferSrc": "src/assets/media/projects/saipuram/gallery-06.webp",
+      "alt": "Saipuram: row of colourful homes with wood-panel and yellow facades across an open plot",
+      "oldAlt": "Saipuram",
+      "kind": "image",
+      "section": "collection card 10 / 10"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/main-web-Dh74r-VA.mp4",
+      "key": "video.main-web",
+      "src": "public/media/video/main-web.mp4",
+      "url": "/media/video/main-web.mp4",
+      "poster": "src/assets/media/posters/main-web-poster.webp",
+      "posterKey": "posters.main-web-poster",
+      "still": "src/assets/media/posters/main-web-still.webp",
+      "stillKey": "posters.main-web-still",
+      "startAt": 0.0,
+      "endAt": 24.07,
+      "hasAudio": false,
+      "alt": "Drone film of Defence Garden colonies: an entrance gate, villa rows, the highway and the Phase 2 entrance",
+      "kind": "video",
+      "section": "banner (desktop)"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/banner-poster-BLuzevhM.webp",
+      "key": "home.banner-poster",
+      "src": "src/assets/media/home/banner-poster.webp",
+      "alt": "Aerial view of a tree-lined colony road running between sugarcane fields, with houses and the entrance beyond",
+      "oldAlt": "Township",
+      "kind": "image",
+      "section": "banner poster / mobile image"
+    }
+  ],
+  "noJsFallback": {
+    "eyebrow": "Official Defence Garden website",
+    "heading": "Defence Garden townships and colonies",
+    "text": "Explore plotted residential communities developed by Defence Garden across Western Uttar Pradesh."
+  }
+}

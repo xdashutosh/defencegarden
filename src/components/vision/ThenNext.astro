@@ -1,0 +1,47 @@
+---
+// "Then / Next": what Defence Garden did on land (real photo) → what it will carry into towers (concept photo).
+import Img from '../ui/Img.astro';
+const rows = [
+  { k: 'Clear titles', then: 'Every plot handed over with legal clarity and transparent paperwork.', next: 'Approvals, registrations and documentation shared openly before a single booking.', src: 'projects.defence-garden-phase-2.gallery-03', thenCap: 'Defence Garden Phase 2 · Shamli', vision: 'architect-model' },
+  { k: 'Planned infrastructure', then: '30–40 ft planned roads, underground cabling and water supply laid before homes.', next: 'Engineered structures, parking, power back-up and utilities planned from day one.', src: 'projects.river-green-society.gallery-02', thenCap: 'River Green Society · Shamli', vision: 'construction' },
+  { k: 'Security & community', then: 'Gated colonies with boundary walls and 24/7 security.', next: 'Controlled access, round-the-clock security and shared spaces that build community.', src: 'projects.defence-garden-phase-2.gallery-06', thenCap: 'Defence Garden Phase 2 · Shamli', vision: 'towers-modern' },
+  { k: 'Green living', then: 'Landscaped parks and gardens at the heart of every colony.', next: 'Landscaped decks, rooftop gardens and light-filled homes above the city.', src: 'projects.defence-garden-phase-1.gallery-08', thenCap: 'Defence Garden Phase 1 · Shamli', vision: 'rooftop-garden' },
+];
+---
+<section class="tn t-light section" data-header-tone="light">
+  <div class="wrap">
+    <div class="sec-head tn__head">
+      <p class="eyebrow eyebrow--accent" data-reveal="fade">Then → Next</p>
+      <h2 class="display" data-reveal="lines">What we carry<br />from land to sky</h2>
+    </div>
+    <ol class="tn__list">
+      {rows.map((r, i) => (
+        <li class="tn__row">
+          <div class="tn__label">
+            <span class="deco deco--sm accent">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="tn__k">{r.k}</h3>
+          </div>
+          <figure class="tn__cell">
+            <div class="media tn__img" data-reveal="clip"><Img src={r.src} sizes="(min-width: 861px) 34vw, 92vw" widths={[480, 800, 1200, 1600]} /></div>
+            <figcaption><p class="eyebrow muted">Then · {r.thenCap}</p><p class="body">{r.then}</p></figcaption>
+          </figure>
+          <figure class="tn__cell tn__cell--next">
+            <div class="media tn__img" data-reveal="clip" data-reveal-delay="0.12"><Img vision={r.vision} src="about.r3" sizes="(min-width: 861px) 34vw, 92vw" /><span class="concept-tag">Concept</span></div>
+            <figcaption><p class="eyebrow eyebrow--accent">Next · Urban high-rise</p><p class="body">{r.next}</p></figcaption>
+          </figure>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+<style>
+  .tn__head { margin-bottom: clamp(36px, 5vw, 80px); }
+  .tn__row { display: grid; grid-template-columns: minmax(160px, 1fr) 1.6fr 1.6fr; gap: var(--gutter); padding-block: clamp(26px, 3vw, 46px); border-top: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); align-items: start; }
+  .tn__label { display: grid; gap: 10px; position: sticky; top: calc(var(--header-h) + 20px); }
+  .tn__k { font-size: clamp(22px, 2vw, 34px); font-weight: 500; letter-spacing: -.03em; line-height: 1.05; }
+  .tn__cell { display: grid; gap: 14px; }
+  .tn__cell figcaption { display: grid; gap: 6px; max-width: 46ch; }
+  .tn__img { aspect-ratio: 3 / 2; }
+  .tn__img :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  @media (max-width: 860px) { .tn__row { grid-template-columns: 1fr; } .tn__label { position: static; } }
+</style>

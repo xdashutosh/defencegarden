@@ -1,0 +1,70 @@
+---
+// Chapter 01 · The Thesis — realevate editorial light section: framed real photo with the chapter quote, serif
+// statement, counters. The old counters (5,000+ plots · 12+ townships) are unverified → only with investmentClaims;
+// otherwise the figures come from the project data (townships, cities) plus the 20+ years used site-wide.
+import Img from '../ui/Img.astro';
+import data from '../../data/pages/investment.json';
+import { flags } from '../../lib/flags.js';
+import { projects } from '../../lib/site.js';
+
+const { thesis } = data;
+const claims = flags.investmentClaims;
+const cities = new Set(projects.map((p) => p.city)).size;
+const stats = claims
+  ? thesis.counters.map((c) => (c.countTo >= 1000
+      ? { n: c.countTo / 1000, suffix: ',000' + (c.suffix || ''), label: c.label }
+      : { n: c.countTo, suffix: c.suffix || '', label: c.label }))
+  : [
+      { n: projects.length, suffix: '', pad: 2, label: 'Townships' },
+      { n: cities, suffix: '', pad: 2, label: 'Cities' },
+      { n: 20, suffix: '+', label: 'Years' },
+    ];
+---
+<style is:inline>
+  .ivt__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(36px, 7vw, 140px); align-items: center; }
+  .ivt__fig { position: relative; }
+  .ivt__img { aspect-ratio: 4 / 5; }
+  .ivt__img img { width: 100%; height: 100%; object-fit: cover; }
+  .ivt__label { position: absolute; left: 18px; top: 16px; z-index: 2; color: #fff; text-shadow: 0 1px 8px rgba(0, 0, 0, .4); }
+  .ivt__quote { position: absolute; left: 18px; right: 18px; bottom: 20px; z-index: 2; color: #fff; font-family: var(--f-serif); font-weight: 300; font-style: italic; font-size: clamp(22px, 2.1vw, 36px); line-height: 1.1; text-shadow: 0 2px 18px rgba(6, 26, 58, .5); }
+  .ivt__img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6, 26, 58, .3), transparent 30%, transparent 55%, rgba(6, 26, 58, .7)); pointer-events: none; }
+  .ivt__badge { position: absolute; right: clamp(-46px, -2.6vw, -20px); top: 14%; z-index: 3; width: clamp(104px, 9vw, 146px); aspect-ratio: 1; border-radius: 50%; display: grid; place-content: center; text-align: center; gap: 4px; background: var(--navy-deep); color: #f4ede6; box-shadow: 0 20px 50px -20px rgba(6, 26, 58, .6); }
+  .ivt__badge::before { content: ''; position: absolute; inset: 6px; border-radius: 50%; border: 1px solid rgba(207, 143, 125, .55); }
+  .ivt__badge b { font-family: var(--f-deco); font-weight: 300; font-size: clamp(30px, 2.8vw, 46px); line-height: 1; color: var(--copper); }
+  .ivt__copy { display: grid; gap: clamp(26px, 3vw, 44px); }
+  .ivt__title { font-size: clamp(34px, 3.9vw, 72px); max-width: 17ch; }
+  .ivt__stats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); }
+  .ivt__stat { display: grid; gap: 8px; padding: 22px 16px 0 0; }
+  .ivt__stat + .ivt__stat { padding-left: 16px; border-left: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); }
+  .ivt__num { font-family: var(--f-sans); font-weight: 500; font-size: clamp(40px, 4.4vw, 80px); line-height: .95; letter-spacing: -.045em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  @media (max-width: 860px) {
+    .ivt__grid { grid-template-columns: 1fr; }
+    .ivt__fig { margin-right: 44px; }
+    .ivt__badge { right: -38px; }
+    .ivt__num { font-size: clamp(32px, 10vw, 48px); }
+  }
+</style>
+<section class="ivt t-ivory section" data-header-tone="light">
+  <div class="wrap ivt__grid">
+    <figure class="ivt__fig">
+      <div class="ivt__img media" data-reveal="clip">
+        <Img src={thesis.image} alt={thesis.image.alt} sizes="(min-width: 861px) 40vw, 86vw" widths={[480, 800, 1200, 1600]} data-parallax="0.08" />
+      </div>
+      <p class="eyebrow ivt__label">{thesis.imageLabel}</p>
+      <blockquote class="ivt__quote balance">{thesis.imageQuote}</blockquote>
+      <p class="ivt__badge" data-reveal="fade" data-reveal-delay="0.3"><b>{thesis.badge.value}</b><span class="eyebrow">{thesis.badge.label}</span></p>
+    </figure>
+    <div class="ivt__copy">
+      <p class="eyebrow eyebrow--accent" data-reveal="fade">{thesis.eyebrow}</p>
+      <h2 class="serif ivt__title" data-reveal="lines">{thesis.heading.text}</h2>
+      <ul class="ivt__stats">
+        {stats.map((s, i) => (
+          <li class="ivt__stat" data-reveal="fade" data-reveal-delay={(i * 0.08).toFixed(2)}>
+            <p class="ivt__num"><span data-counter={s.n} data-counter-pad={s.pad}>{s.pad ? String(s.n).padStart(s.pad, '0') : s.n}</span>{s.suffix}</p>
+            <p class="eyebrow muted">{s.label}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>

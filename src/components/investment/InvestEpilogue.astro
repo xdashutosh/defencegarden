@@ -1,0 +1,45 @@
+---
+// Epilogue · Your Move — full-bleed real aerial under night navy, deco lines, visit / compare CTAs, sales contacts.
+import Img from '../ui/Img.astro';
+import Icon from '../ui/Icon.astro';
+import Ornament from '../ui/Ornament.astro';
+import data from '../../data/pages/investment.json';
+import { phone, telHref, email } from '../../lib/site.js';
+
+const { epilogue: e } = data;
+const sales = phone('sales');
+---
+<style is:inline>
+  .ive { position: relative; min-height: 100vh; min-height: 100svh; display: grid; align-items: end; overflow: hidden; padding-block: calc(var(--header-h) + 80px) clamp(60px, 8vw, 120px); }
+  .ive__bg { position: absolute; inset: 0; }
+  .ive__bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .ive__bg::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 45%, rgba(6, 26, 58, .55), rgba(6, 26, 58, .25) 70%), linear-gradient(180deg, rgba(6, 26, 58, .8), rgba(6, 26, 58, .45) 40%, rgba(6, 26, 58, .96)); }
+  .ive__in { position: relative; display: grid; justify-items: center; text-align: center; gap: 26px; }
+  .ive__orn { width: 26px; color: var(--copper); }
+  .ive__title { color: #f4ede6; }
+  .ive__title .accent { color: var(--copper); }
+  .ive__text { max-width: 40ch; color: rgba(244, 237, 230, .88); }
+  .ive__ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .ive__contact { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; margin-top: 10px; padding-top: 22px; border-top: 1px solid rgba(244, 237, 230, .18); }
+  .ive__contact a { display: inline-flex; align-items: center; gap: 10px; font-size: 15px; }
+  .ive__contact .ico { width: 16px; height: 16px; color: var(--copper); }
+</style>
+<section class="ive t-night" data-header-tone="dark">
+  <div class="ive__bg media">
+    <Img src={e.backgroundImage} alt={e.backgroundImage.alt} sizes="100vw" data-scale-in />
+  </div>
+  <div class="wrap ive__in">
+    <Ornament variant="diamond" class="ive__orn" />
+    <p class="eyebrow eyebrow--accent" data-reveal="fade">{e.eyebrow}</p>
+    <h2 class="deco ive__title" data-reveal="lines">{e.heading.lines[0]}<br /><span class="accent">{e.heading.lines[1]}</span></h2>
+    <p class="lead ive__text balance" data-reveal="fade">{e.text}</p>
+    <div class="ive__ctas" data-reveal="fade">
+      <button class="btn btn--copper" type="button" data-enquire data-interest="Site visit"><span>{e.ctas[0].label}</span><Icon name="arrow-up-right" /></button>
+      <a class="btn" href={e.ctas[1].href}><span>{e.ctas[1].label}</span><Icon name="arrow-right" /></a>
+    </div>
+    <div class="ive__contact" data-reveal="fade">
+      <a class="link-line" href={telHref('sales')}><Icon name="phone" />{sales.display}</a>
+      <a class="link-line" href={email.href}><Icon name="mail" />{email.address}</a>
+    </div>
+  </div>
+</section>

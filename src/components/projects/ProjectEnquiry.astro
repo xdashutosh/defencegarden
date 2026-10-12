@@ -1,0 +1,46 @@
+---
+// Project page enquiry: full-bleed real photograph of the colony, "Interested in {title}?" and three ways to reach sales.
+import Img from '../ui/Img.astro';
+import Icon from '../ui/Icon.astro';
+import Ornament from '../ui/Ornament.astro';
+import { sharedProjectData, displayTitle, phone, telHref, whatsappUrl } from '../../lib/site.js';
+
+interface Props { p: any; photo?: any }
+const { p, photo } = Astro.props;
+const cta = sharedProjectData?.detailPage?.cta || {};
+const title = displayTitle(p);
+const sales = phone('sales');
+const wa = whatsappUrl(`Hello Defence Garden, I am interested in ${title} (${p.location}).`);
+---
+<section class="pen t-night" data-header-tone="dark" aria-labelledby="pen-title">
+  <div class="pen__media" aria-hidden="true">
+    <Img src={photo || p.cover} class="pen__fill" sizes="100vw" widths={[800, 1200, 1600, 2000]} alt="" data-scale-in />
+  </div>
+  <div class="wrap pen__in">
+    <Ornament variant="diamond" class="pen__orn" />
+    <p class="eyebrow eyebrow--accent" data-reveal="fade">{cta.eyebrow || 'Get In Touch'}</p>
+    <h2 class="deco pen__title balance" id="pen-title" data-reveal="lines">Interested in<br />{title}?</h2>
+    {cta.text && <p class="lead pen__text balance" data-reveal="fade">{cta.text}</p>}
+    <div class="pen__actions" data-reveal="fade">
+      <button class="btn btn--copper" type="button" data-enquire data-interest="A plot in an existing colony" data-colony={title}><span>Enquire now</span><Icon name="arrow-right" /></button>
+      <a class="btn" href={telHref('sales')}><Icon name="phone" /><span>Call sales · {sales.display}</span></a>
+      <a class="btn" href={wa} target="_blank" rel="noopener"><Icon name="whatsapp" /><span>WhatsApp</span></a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pen { position: relative; overflow: hidden; min-height: 92vh; min-height: 92svh; display: grid; align-content: center; padding-block: clamp(110px, 12vw, 200px); }
+  .pen__media { position: absolute; inset: 0; overflow: hidden; }
+  .pen__media :global(.pen__fill) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .pen__media::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 55%, rgba(6,26,58,.62), rgba(6,26,58,.86) 70%), linear-gradient(180deg, rgba(6,26,58,.3), rgba(6,26,58,.6)); }
+  .pen__in { position: relative; display: grid; justify-items: center; text-align: center; gap: 24px; }
+  .pen__orn { width: 26px; color: var(--copper); }
+  .pen__title { max-width: 16ch; color: #f4ede6; }
+  .pen__text { max-width: 50ch; color: rgba(244,237,230,.86); }
+  .pen__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 8px; }
+  @media (max-width: 560px) {
+    .pen__actions { flex-direction: column; align-items: stretch; width: 100%; }
+    .pen__actions .btn { justify-content: center; }
+  }
+</style>

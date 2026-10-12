@@ -1,0 +1,76 @@
+---
+// Realevate-style colony card: framed cover photo, hairline, small-caps meta, title and an arrow square that
+// slides in on hover. Used by the /ourproject grid (filterable) and the "Other colonies" row on project pages.
+import Img from '../ui/Img.astro';
+import Icon from '../ui/Icon.astro';
+import { displayTitle, projectUrl, sharedProjectData } from '../../lib/site.js';
+import { photoCount, tagsFor } from './util.js';
+
+interface Props {
+  p: any;                 // project from src/data/projects.json
+  n?: string;             // display number ('01')
+  sizes?: string;
+  filter?: boolean;       // add data-filter-item / data-tags
+  delay?: number;         // reveal delay (s)
+  class?: string;
+  headingLevel?: 'h2' | 'h3';
+}
+const { p, n, sizes = '(min-width: 1100px) 30vw, (min-width: 700px) 46vw, 92vw', filter = false, delay = 0, class: cls = '', headingLevel = 'h3' } = Astro.props;
+const H = headingLevel;
+const count = photoCount(p);
+const mapBadge = sharedProjectData?.listingCard?.mapBadge || 'Booking Map Live';
+const live = Boolean(p.bookingMap);
+const title = displayTitle(p);
+---
+<li class={`cc ${cls}`} data-filter-item={filter ? '' : undefined} data-tags={filter ? tagsFor(p) : undefined}>
+  <a class="cc__link" href={projectUrl(p)} data-reveal="fade" data-reveal-delay={delay ? delay.toFixed(2) : undefined}>
+    <figure class="cc__media media">
+      <Img src={p.cover} class="cc__img" sizes={sizes} widths={[480, 800, 1200]} alt={p.cover?.alt} />
+      {live && <span class="cc__badge eyebrow"><span class="cc__pulse" aria-hidden="true"></span>{mapBadge}</span>}
+      {count > 0 && <span class="cc__photos"><Icon name="grid" /><span>+{count} photos</span></span>}
+    </figure>
+    <div class="cc__body">
+      <p class="cc__meta eyebrow">
+        {n && <span class="cc__n">{n}</span>}
+        <span class="cc__facts"><span class={`cc__dot cc__dot--${String(p.status).toLowerCase()}`} aria-hidden="true"></span>{p.city} · {p.status} · {p.year}</span>
+      </p>
+      <div class="cc__row">
+        <H class="cc__title">{title}</H>
+        <span class="btn-square cc__go" aria-hidden="true"><Icon name="arrow-up-right" /></span>
+      </div>
+      <p class="body muted cc__desc">{p.desc}</p>
+    </div>
+  </a>
+</li>
+
+<style>
+  .cc { --cc-accent: var(--green); display: block; min-width: 0; }
+  .cc[hidden] { display: none; }
+  .cc__link { display: grid; gap: 0; height: 100%; }
+  .cc__media { aspect-ratio: 4 / 5; border-radius: 2px; }
+  .cc__media :global(.cc__img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.001); transition: transform 1.6s var(--ease-out), filter .8s var(--ease-out); }
+  .cc__media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,26,58,.22), transparent 28%, transparent 70%, rgba(6,26,58,.35)); pointer-events: none; }
+  .cc__link:hover .cc__media :global(.cc__img) { transform: scale(1.06); }
+  .cc__badge { position: absolute; z-index: 2; left: 12px; top: 12px; display: inline-flex; align-items: center; gap: 8px; padding: 7px 10px; background: rgba(255,255,255,.92); color: var(--green); font-size: 9.5px; border-radius: 2px; }
+  .cc__pulse { width: 6px; height: 6px; border-radius: 50%; background: #2f9e6a; box-shadow: 0 0 0 0 rgba(47,158,106,.5); animation: cc-pulse 2.2s infinite; }
+  @keyframes cc-pulse { 0% { box-shadow: 0 0 0 0 rgba(47,158,106,.55); } 70% { box-shadow: 0 0 0 8px rgba(47,158,106,0); } 100% { box-shadow: 0 0 0 0 rgba(47,158,106,0); } }
+  .cc__photos { position: absolute; z-index: 2; left: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 12px; background: rgba(255,255,255,.9); color: var(--navy); font-size: 12px; font-weight: 500; border-radius: 2px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .cc__photos :global(svg) { width: 12px; height: 12px; }
+  .cc__body { display: grid; gap: 12px; padding-top: 16px; margin-top: 16px; border-top: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); }
+  .cc__meta { display: flex; justify-content: space-between; align-items: center; gap: 12px; color: color-mix(in srgb, var(--fg) 62%, transparent); }
+  .cc__n { font-family: var(--f-deco); font-weight: 300; font-size: 15px; letter-spacing: .04em; color: var(--fg); }
+  .cc__facts { display: inline-flex; align-items: center; gap: 8px; }
+  .cc__dot { width: 6px; height: 6px; border-radius: 50%; background: var(--copper-deep); }
+  .cc__dot--ongoing { background: #2f9e6a; }
+  .cc__row { display: flex; justify-content: space-between; align-items: center; gap: 14px; }
+  .cc__title { font-size: clamp(22px, 1.9vw, 32px); font-weight: 500; letter-spacing: -.03em; line-height: 1.05; }
+  .cc__go { flex: none; width: 40px; height: 40px; background: var(--cc-accent); color: #fff; opacity: 0; transform: translateX(-10px); transition: opacity .5s var(--ease-out), transform .6s var(--ease-out), background .4s; }
+  .cc__go :global(svg) { width: 16px; height: 16px; }
+  .cc__link:hover .cc__go, .cc__link:focus-visible .cc__go { opacity: 1; transform: none; }
+  .cc__desc { max-width: 46ch; display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  @media (hover: none) { .cc__go { opacity: 1; transform: none; } }
+  @media (max-width: 699px) {
+    .cc__media { aspect-ratio: 5 / 4; }
+    .cc__go { width: 36px; height: 36px; }
+  }
+</style>

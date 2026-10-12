@@ -1,0 +1,40 @@
+---
+// /ourproject closing call to action (copy: src/data/pages/ourproject.json → closing), realevate quote layout:
+// a small framed photograph above a big title, on the legacy green.
+import Img from '../ui/Img.astro';
+import Icon from '../ui/Icon.astro';
+import Ornament from '../ui/Ornament.astro';
+import { phone, telHref } from '../../lib/site.js';
+import page from '../../data/pages/ourproject.json';
+
+const cl = page.closing;
+const sales = phone('sales');
+---
+<section class="ccs t-green section" data-header-tone="dark" aria-labelledby="ccs-title">
+  <Ornament variant="fan" class="ccs__fan" />
+  <div class="wrap ccs__in">
+    <figure class="media ccs__img" data-reveal="clip">
+      <Img src="projects.river-green-society.gallery-01" sizes="220px" widths={[320, 480]} />
+    </figure>
+    <p class="eyebrow eyebrow--accent" data-reveal="fade">Visit · Call · Write</p>
+    <h2 class="deco ccs__title" id="ccs-title" data-reveal="lines">{cl.heading}</h2>
+    <div class="ccs__actions" data-reveal="fade">
+      <a class="btn ccs__solid" href={cl.cta.href}><span>{cl.cta.label}</span><Icon name="arrow-right" /></a>
+      <button class="btn" type="button" data-enquire data-interest="Site visit"><Icon name="whatsapp" /><span>Plan a site visit</span></button>
+      <a class="btn" href={telHref('sales')}><Icon name="phone" /><span>{sales.display}</span></a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ccs { overflow: hidden; }
+  .ccs__fan { position: absolute; left: 50%; top: 0; width: 140%; height: 100%; transform: translateX(-50%); color: #d8c9a6; opacity: .08; pointer-events: none; }
+  .ccs__in { position: relative; display: grid; justify-items: center; text-align: center; gap: 26px; }
+  .ccs__img { width: clamp(120px, 11vw, 190px); aspect-ratio: 4 / 5; margin-bottom: 10px; }
+  .ccs__img :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .ccs__title { max-width: 12ch; color: #f3f1ea; }
+  .ccs__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 8px; }
+  .ccs__solid { --btn-bg: #f3f1ea; --btn-fg: var(--green); --btn-bd: #f3f1ea; }
+  .ccs__solid::before { background: #d8c9a6; }
+  .ccs__solid:hover { color: var(--green); }
+</style>

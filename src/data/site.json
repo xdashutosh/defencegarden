@@ -1,0 +1,1055 @@
+{
+  "_meta": {
+    "source": "Old site https://defencegarden.com (React/Vite SPA). Strings copied verbatim from assets/index-BpgzKryG.js (company constant, SEO route map, Navbar, Footer, JSON-LD builder), index.html, prerendered route HTML, robots.txt, sitemap.xml, Contact/Legal/bookingReceipt chunks; cross-checked against the rendered live pages on 2026-10-12.",
+    "oldSiteBase": "https://defencegarden.com",
+    "conventions": "Every 'oldUrl' is an absolute URL on the old site (media still to be downloaded). Fields that do not exist on the old site are null with a note; nothing is invented. Keys named 'note', 'usedIn', 'where' and 'derived*' are editorial annotations, not site copy."
+  },
+  "brand": {
+    "name": "Defence Garden",
+    "officialDomain": "https://defencegarden.com",
+    "description": "Defence Garden develops premium plotted residential townships across Shamli, Meerut and Budhana in Western Uttar Pradesh.",
+    "established": "2006",
+    "locations": [
+      "Shamli",
+      "Meerut",
+      "Budhana",
+      "Western Uttar Pradesh"
+    ],
+    "logo": {
+      "oldUrl": "https://defencegarden.com/assets/logo-BU3KV-m9.png",
+      "key": "brand.logo",
+      "src": "src/assets/media/brand/logo.png",
+      "alt": "Defence Garden",
+      "note": "Green 'Defence Garden' script wordmark with a leaf over the G (PNG, transparent, 1280x268). Local file: src/assets/media/brand/logo.png (see src). For plum/navy backgrounds make a cream monochrome version with CSS mask-image, do not recolour the file."
+    },
+    "favicons": [
+      {
+        "rel": "icon",
+        "type": "image/png",
+        "sizes": "64x64",
+        "oldUrl": "https://defencegarden.com/favicon-64.png",
+        "key": "public.favicon-64",
+        "src": "public/favicon-64.png",
+        "url": "/favicon-64.png"
+      },
+      {
+        "rel": "icon",
+        "type": "image/png",
+        "sizes": "192x192",
+        "oldUrl": "https://defencegarden.com/favicon-192.png",
+        "key": "public.favicon-192",
+        "src": "public/favicon-192.png",
+        "url": "/favicon-192.png"
+      },
+      {
+        "rel": "apple-touch-icon",
+        "sizes": "180x180",
+        "oldUrl": "https://defencegarden.com/apple-touch-icon.png",
+        "key": "public.apple-touch-icon",
+        "src": "public/apple-touch-icon.png",
+        "url": "/apple-touch-icon.png"
+      }
+    ],
+    "faviconNote": "Favicons — Defence Garden leaf emblem",
+    "themeColor": "#0b0906",
+    "socialImage": {
+      "oldUrl": "https://defencegarden.com/og-image.jpg",
+      "key": "public.og-image",
+      "src": "public/og-image.jpg",
+      "url": "/og-image.jpg",
+      "alt": "River Green Society entrance arch and sales office, with visitors walking in",
+      "width": 1200,
+      "height": 630
+    },
+    "mobileMenuWordmark": {
+      "eyebrow": "The",
+      "name": "Defence Garden"
+    },
+    "mobileMenuFootnote": "Est. 2006 • Investment Group",
+    "taglines": [
+      {
+        "text": "Premium plotted townships in Western Uttar Pradesh",
+        "usedIn": "Home SEO heading / no-JS fallback h1"
+      },
+      {
+        "text": "Luxury Living at Defence Garden",
+        "usedIn": "Home hero h1 (two lines: 'Luxury Living at' / 'Defence Garden')"
+      },
+      {
+        "text": "Premium residential plots surrounded by nature. Build your dream home in a peaceful, well-planned township.",
+        "usedIn": "Home hero sub-text"
+      },
+      {
+        "text": "Creating premium residential communities where modern luxury meets natural serenity. Thoughtfully planned, high-value townships designed for elevated living.",
+        "usedIn": "Footer brand column"
+      },
+      {
+        "text": "Est. 2006 • Investment Group",
+        "usedIn": "Mobile menu drawer footnote"
+      },
+      {
+        "text": "Every plot is a promise.",
+        "usedIn": "Last sentence of the Home 'Our Philosophy' statement"
+      },
+      {
+        "text": "Ready to find your forever address?",
+        "usedIn": "Footer CTA band heading"
+      },
+      {
+        "text": "Designed for legacy living.",
+        "usedIn": "About hero h1 (two lines: 'Designed for' / 'legacy living.')"
+      },
+      {
+        "text": "Long-term value. Smart investment.",
+        "usedIn": "Investment epilogue h2"
+      },
+      {
+        "text": "Official Defence Garden website",
+        "usedIn": "No-JS fallback eyebrow on every prerendered page"
+      }
+    ]
+  },
+  "legal": {
+    "registeredName": null,
+    "registeredNameNote": "No registered/legal entity name (Pvt Ltd, LLP, firm), CIN, GSTIN, PAN or RERA registration number appears anywhere on the old site. Legal pages refer to the business only as 'Defence Garden'.",
+    "rera": {
+      "registrationNumber": null,
+      "claimOnSite": "Rera Approved",
+      "note": "The text 'Rera Approved' is a hard-coded badge shown on EVERY project detail page (not per project, no number). Treat as an unverified claim; confirm with the owner before re-using."
+    },
+    "copyright": "© {year} Defence Garden. All rights reserved.",
+    "copyrightNote": "{year} = current year (new Date().getFullYear()).",
+    "policiesEffectiveDate": "July 8, 2026",
+    "policies": [
+      {
+        "path": "/privacy-policy",
+        "title": "Privacy Policy",
+        "file": "src/data/legal/privacy-policy.md"
+      },
+      {
+        "path": "/terms",
+        "title": "Terms & Conditions",
+        "file": "src/data/legal/terms.md"
+      },
+      {
+        "path": "/data-deletion",
+        "title": "Account & Data Deletion",
+        "file": "src/data/legal/data-deletion.md"
+      },
+      {
+        "path": "/refund-policy",
+        "title": "Refund & Cancellation Policy",
+        "file": "src/data/legal/refund-policy.md"
+      }
+    ],
+    "jurisdiction": "These Terms are governed by the laws of India. Any dispute arising from the Services or these Terms is subject to the exclusive jurisdiction of the courts at Shamli, Uttar Pradesh.",
+    "bookingReceiptIdentity": {
+      "monogram": "RG",
+      "brand": "RiverGreen",
+      "tagline": "Premium Plotted Developments",
+      "website": "www.defencegarden.com",
+      "signatoryLine": "For RiverGreen Sales,",
+      "signatoryLabel": "Authorized Signatory",
+      "verificationNote": "Signed PDF · QR-verifiable on defencegarden.com",
+      "note": "From the PDF booking-receipt generator used by the live booking maps (private utility). It is the only other business identity on the site."
+    }
+  },
+  "owner": {
+    "name": "Mr. Kuldeep Tomar",
+    "role": "Owner",
+    "roleLine": "Owner, Defence Garden",
+    "profilePath": "/about/kuldeep-tomar",
+    "initials": "KT",
+    "statement": "The current owner of Defence Garden is Mr. Kuldeep Tomar. He leads the organisation and its real-estate development operations.",
+    "profileDisclaimer": "This official profile is intentionally limited to current company information supplied by Defence Garden. It does not add unverified biographical claims, qualifications, awards or personal history.",
+    "photo": null,
+    "photoNote": "No photograph of the owner exists on the old site; every owner block uses a 'KT' monogram circle instead."
+  },
+  "contact": {
+    "phones": [
+      {
+        "id": "office",
+        "display": "+91 9389925497",
+        "tel": "tel:+919389925497",
+        "e164": "+919389925497",
+        "usedIn": [
+          "Footer 'Call Us' card",
+          "About page closing CTA row",
+          "JSON-LD Organization.telephone"
+        ]
+      },
+      {
+        "id": "sales",
+        "display": "+91 99276 69955",
+        "tel": "tel:+919927669955",
+        "e164": "+919927669955",
+        "usedIn": [
+          "Contact page 'Call Us' card",
+          "Project detail 'Interested in this property?' card",
+          "Investment epilogue",
+          "Legal pages (policy text + 'Contact Us' box)"
+        ]
+      }
+    ],
+    "whatsapp": {
+      "number": "919927669955",
+      "display": "+91 99276 69955",
+      "url": "https://wa.me/919927669955",
+      "chatAriaLabel": "Chat on WhatsApp",
+      "enquiryMessage": {
+        "template": "*New Inquiry — Defence Garden*\n\n*Name:* {name}\n*Phone:* {phone}\n*Message:* {message}",
+        "urlPattern": "https://wa.me/919927669955?text=*New Inquiry — Defence Garden*%0A%0A*Name:* {encodeURIComponent(name)}%0A*Phone:* {encodeURIComponent(phone)}%0A*Message:* {encodeURIComponent(message)}",
+        "note": "Contact form does not POST anywhere: on submit it opens this wa.me URL in a new tab, shows 'Opening WhatsApp…' for 4 s."
+      }
+    },
+    "email": {
+      "address": "defencegarden009@gmail.com",
+      "href": "mailto:defencegarden009@gmail.com"
+    },
+    "hours": {
+      "label": "Working Hours",
+      "display": "Mon – Sat · 9 AM – 8 PM",
+      "derivedOpeningHoursSpec": {
+        "days": [
+          "Mo",
+          "Tu",
+          "We",
+          "Th",
+          "Fr",
+          "Sa"
+        ],
+        "opens": "09:00",
+        "closes": "20:00"
+      }
+    },
+    "responsePromise": "Free site visits with pickup for every colony. Message us and our team responds within working hours — usually much sooner.",
+    "addresses": [
+      {
+        "id": "main-office",
+        "label": "Main Office",
+        "display": "VADHEH, Shamli Rd, Shamli, Mundetkalan, Uttar Pradesh 247776",
+        "displayWithCountry": "VADHEH, Shamli Rd, Shamli, Mundetkalan, Uttar Pradesh 247776, India",
+        "short": "VADHEH, Shamli",
+        "streetAddress": "VADHEH, Shamli Rd, Mundetkalan",
+        "addressLocality": "Shamli",
+        "addressRegion": "Uttar Pradesh",
+        "postalCode": "247776",
+        "addressCountry": "IN",
+        "mapsUrl": "https://www.google.com/maps?q=VADHEH,+Shamli+Rd,+Shamli,+Mundetkalan,+Uttar+Pradesh+247776",
+        "mapsLinkLabel": "Open in Google Maps",
+        "mapsEmbedUrl": "https://www.google.com/maps?q=VADHEH,+Shamli+Rd,+Shamli,+Mundetkalan,+Uttar+Pradesh+247776&output=embed",
+        "mapsEmbedTitle": "Defence Garden Main Office — VADHEH, Shamli Rd, Shamli",
+        "coordinates": null,
+        "coordinatesNote": "No latitude/longitude anywhere on the old site; maps use the address query string only. Only one office address exists (no Meerut/Budhana office)."
+      }
+    ],
+    "siteLocationsNote": "Each project has its own Google Maps search link (see projects.json mapsUrl); the Contact page lists them as 'Visit any colony' chips."
+  },
+  "social": {
+    "profiles": [],
+    "note": "The old site contains no social-media handles or links (no Instagram, Facebook, YouTube, LinkedIn or X). The only messaging channel is WhatsApp (wa.me)."
+  },
+  "nav": {
+    "desktop": {
+      "left": [
+        {
+          "label": "Home",
+          "href": "/",
+          "icon": "house"
+        },
+        {
+          "label": "Colonies",
+          "href": "/ourproject",
+          "icon": "building-2"
+        },
+        {
+          "label": "About",
+          "href": "/about",
+          "icon": "scroll-text"
+        }
+      ],
+      "center": {
+        "type": "logo",
+        "href": "/",
+        "alt": "Defence Garden"
+      },
+      "right": [
+        {
+          "label": "Gallery",
+          "href": "/gallery",
+          "icon": "building-2"
+        },
+        {
+          "label": "Investments",
+          "href": "/investment",
+          "icon": "trending-up"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact",
+          "icon": "mail"
+        }
+      ],
+      "note": "Icons are lucide-react names. Active link gets a 2px underline. Bar is a cream (#F2F0E9) rounded floating pill with a thin red gradient bottom line; hides on scroll-down, shows on scroll-up; on '/' it enters after a 2.8 s delay (after the intro)."
+    },
+    "mobile": {
+      "bar": {
+        "left": {
+          "type": "menu-toggle",
+          "icons": [
+            "menu",
+            "x"
+          ]
+        },
+        "center": {
+          "type": "logo",
+          "href": "/"
+        },
+        "right": {
+          "href": "https://main-sales-rg.vercel.app/",
+          "icon": "phone",
+          "target": "_blank",
+          "label": null,
+          "note": "Icon-only round button. Despite the phone icon it is NOT a tel: link — it opens the external sales software."
+        }
+      },
+      "drawer": {
+        "wordmark": {
+          "eyebrow": "The",
+          "name": "Defence Garden"
+        },
+        "items": [
+          {
+            "label": "Home",
+            "href": "/",
+            "icon": "house"
+          },
+          {
+            "label": "Colonies",
+            "href": "/ourproject",
+            "icon": "building-2"
+          },
+          {
+            "label": "About",
+            "href": "/about",
+            "icon": "scroll-text"
+          },
+          {
+            "label": "Gallery",
+            "href": "/gallery",
+            "icon": "building-2"
+          },
+          {
+            "label": "Investments",
+            "href": "/investment",
+            "icon": "trending-up"
+          },
+          {
+            "label": "Contact",
+            "href": "/contact",
+            "icon": "mail"
+          }
+        ],
+        "cta": {
+          "label": "Open Sales Software",
+          "href": "https://main-sales-rg.vercel.app/",
+          "icon": "phone",
+          "target": "_blank"
+        },
+        "footnote": "Est. 2006 • Investment Group"
+      }
+    },
+    "noJsFallback": [
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "About",
+        "href": "/about"
+      },
+      {
+        "label": "Leadership",
+        "href": "/about/leadership"
+      },
+      {
+        "label": "Projects",
+        "href": "/ourproject"
+      },
+      {
+        "label": "Contact",
+        "href": "/contact"
+      }
+    ],
+    "redirects": [
+      {
+        "from": "/projects",
+        "to": "/ourproject",
+        "note": "Client-side <Navigate replace>."
+      }
+    ],
+    "notInMainNav": [
+      {
+        "path": "/about/leadership",
+        "linkedFrom": "footer Explore list, Home leadership band, About page"
+      },
+      {
+        "path": "/about/kuldeep-tomar",
+        "linkedFrom": "Leadership page, About page, no-JS fallback"
+      },
+      {
+        "path": "/privacy-policy, /terms, /refund-policy, /data-deletion",
+        "linkedFrom": "footer bottom bar"
+      },
+      {
+        "path": "/courses",
+        "linkedFrom": "nowhere (orphan template page)"
+      },
+      {
+        "path": "/verify-receipt, /booking/track/:id",
+        "linkedFrom": "receipt QR codes / booking flow only (private, noindex)"
+      }
+    ]
+  },
+  "footer": {
+    "cta": {
+      "eyebrow": "Premium Living Awaits",
+      "heading": "Ready to find your forever address?",
+      "text": "Speak with our advisors and schedule a private site visit today.",
+      "button": {
+        "label": "Schedule a Visit",
+        "href": "/contact"
+      }
+    },
+    "brandText": "Creating premium residential communities where modern luxury meets natural serenity. Thoughtfully planned, high-value townships designed for elevated living.",
+    "exploreHeading": "Explore",
+    "explore": [
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "About Us",
+        "href": "/about"
+      },
+      {
+        "label": "Leadership",
+        "href": "/about/leadership"
+      },
+      {
+        "label": "Colonies",
+        "href": "/ourproject"
+      },
+      {
+        "label": "Gallery",
+        "href": "/gallery"
+      },
+      {
+        "label": "Investment",
+        "href": "/investment"
+      },
+      {
+        "label": "Contact",
+        "href": "/contact"
+      }
+    ],
+    "contactHeading": "Get in Touch",
+    "contactCards": [
+      {
+        "label": "Call Us",
+        "value": "+91 9389925497",
+        "href": "tel:+919389925497",
+        "icon": "phone"
+      },
+      {
+        "label": "Email Us",
+        "value": "defencegarden009@gmail.com",
+        "href": "mailto:defencegarden009@gmail.com",
+        "icon": "mail"
+      },
+      {
+        "label": "Visit Us",
+        "value": "VADHEH, Shamli Rd, Shamli, Mundetkalan, Uttar Pradesh 247776",
+        "href": "https://www.google.com/maps?q=VADHEH,+Shamli+Rd,+Shamli,+Mundetkalan,+Uttar+Pradesh+247776",
+        "target": "_blank",
+        "linkLabel": "Open in Google Maps",
+        "icon": "map-pin"
+      }
+    ],
+    "copyright": "© {year} Defence Garden. All rights reserved.",
+    "legalLinks": [
+      {
+        "label": "Privacy Policy",
+        "href": "/privacy-policy"
+      },
+      {
+        "label": "Terms",
+        "href": "/terms"
+      },
+      {
+        "label": "Refunds",
+        "href": "/refund-policy"
+      },
+      {
+        "label": "Data Deletion",
+        "href": "/data-deletion"
+      }
+    ],
+    "credit": {
+      "prefix": "Developed by",
+      "name": "Defence Garden",
+      "href": null,
+      "note": "Owner instruction (2026-10-12): copyright and developer credit are Defence Garden only."
+    }
+  },
+  "stats": {
+    "headline": {
+      "where": "Home, stats row under the marquee (the brief's 'headline stats')",
+      "items": [
+        {
+          "value": "1500+",
+          "label": "Premium Plots"
+        },
+        {
+          "value": "40ft",
+          "label": "Wide Roads"
+        },
+        {
+          "value": "24/7",
+          "label": "Gated Security"
+        },
+        {
+          "value": "100%",
+          "label": "Clear Title"
+        }
+      ]
+    },
+    "homeHeroBar": {
+      "where": "Home hero, glass pill at the bottom (hidden on mobile)",
+      "items": [
+        {
+          "value": "5,000+",
+          "label": "Plots Delivered"
+        },
+        {
+          "value": "20+",
+          "label": "Years of Trust"
+        },
+        {
+          "value": "11",
+          "label": "Townships"
+        },
+        {
+          "value": "4.8★",
+          "label": "Buyer Rating"
+        }
+      ]
+    },
+    "homeDevelopmentsPill": {
+      "where": "Home 'Explore Our Premium Developments' section",
+      "items": [
+        {
+          "value": "10",
+          "label": "Townships",
+          "icon": "building-2"
+        },
+        {
+          "value": "03",
+          "label": "Cities",
+          "icon": "map-pin"
+        },
+        {
+          "value": "20+",
+          "label": "Years",
+          "icon": "calendar"
+        }
+      ]
+    },
+    "homePortfolioCard": {
+      "value": "20+",
+      "label": "Years of trust",
+      "text": "Delivering legally-clear, thoughtfully-planned townships across North India."
+    },
+    "homeLiveBadge": "Live · 4",
+    "about": {
+      "where": "About 'Our Story' (count-up animation)",
+      "items": [
+        {
+          "value": "5000+",
+          "label": "Residential Plots"
+        },
+        {
+          "value": "11",
+          "label": "Township Developments"
+        },
+        {
+          "value": "3000+",
+          "label": "Happy Families"
+        },
+        {
+          "value": "20+",
+          "label": "Years of Trust"
+        }
+      ]
+    },
+    "investment": {
+      "where": "Investment 'The Thesis' (count-up, en-IN formatting)",
+      "items": [
+        {
+          "value": "5,000+",
+          "countTo": 5000,
+          "suffix": "+",
+          "label": "Plots"
+        },
+        {
+          "value": "12+",
+          "countTo": 12,
+          "suffix": "+",
+          "label": "Townships"
+        },
+        {
+          "value": "20+",
+          "countTo": 20,
+          "suffix": "+",
+          "label": "Years"
+        }
+      ],
+      "badge": {
+        "value": "20+",
+        "label": "Years Trust"
+      }
+    },
+    "ourproject": {
+      "where": "Our Colonies header pill (computed from projects data)",
+      "items": [
+        {
+          "value": "10",
+          "label": "Townships",
+          "computedFrom": "projects.length"
+        },
+        {
+          "value": "2",
+          "label": "Live Maps",
+          "computedFrom": "projects where hasMap"
+        }
+      ]
+    },
+    "inconsistencyNote": "Township count differs by page: 10 (projects data, Home pill), 11 (Home hero, About), 12+ (Investment). Plot count: 1500+ 'Premium Plots' vs 5,000+ 'Plots Delivered'/'Residential Plots'. The About timeline names 11 colonies (the 10 projects + 'Defence Park', Meerut 2012, which has no project page). Ask the owner which figures are current before reusing."
+  },
+  "externalLinks": [
+    {
+      "url": "https://main-sales-rg.vercel.app/",
+      "label": "Open Sales Software",
+      "where": "Mobile only: icon-only phone-icon button at the right of the mobile nav bar, and a full-width black button 'Open Sales Software' at the bottom of the mobile drawer. Opens in a new tab (rel noopener noreferrer). Not present in the desktop nav.",
+      "purpose": "Link to the company's separate sales web app (hosted on Vercel; 'rg' = RiverGreen). The site gives no further description; it is a staff/agent tool rather than visitor content."
+    },
+    {
+      "url": "https://wa.me/919927669955",
+      "where": "Contact page (form submit + green WhatsApp button)",
+      "labels": [
+        "Chat on WhatsApp",
+        "Send via WhatsApp"
+      ]
+    },
+    {
+      "url": "https://www.google.com/maps?q=VADHEH,+Shamli+Rd,+Shamli,+Mundetkalan,+Uttar+Pradesh+247776",
+      "label": "Open in Google Maps",
+      "where": "Footer, Contact, About CTA"
+    },
+    {
+      "url": "https://rivergreenbackend.onrender.com/api",
+      "label": null,
+      "where": "Backend API (not a visible link): live plot-booking maps on /project/1 and /project/5 (endpoints colony-maps/public/site-plots/1, razorpay/config/1, financial-settings/public/1, bookings/public-book…, razorpay/create-order, razorpay/verify-payment), plus private /booking/track/:id and /verify-receipt utilities."
+    },
+    {
+      "url": "https://checkout.razorpay.com/v1/checkout.js",
+      "label": null,
+      "where": "Loaded by the booking maps for online booking payments (Razorpay)."
+    }
+  ],
+  "seo": {
+    "defaults": {
+      "siteName": "Defence Garden",
+      "lang": "en",
+      "author": "Defence Garden",
+      "keywords": "Defence Garden, River Green Shamli, plots in Shamli, plots in Meerut, plotted township Western UP, residential plots Budhana, gated colony Shamli, buy plot Meerut",
+      "robots": "index, follow, max-image-preview:large",
+      "ogType": "website",
+      "ogLocale": "en_IN",
+      "ogImage": "https://defencegarden.com/og-image.jpg",
+      "ogImageWidth": 1200,
+      "ogImageHeight": 630,
+      "twitterCard": "summary_large_image",
+      "themeColor": "#0b0906",
+      "canonicalRule": "https://defencegarden.com + path without trailing slash ('/' for home)"
+    },
+    "pages": {
+      "/": {
+        "title": "Defence Garden — Premium Plotted Townships in Shamli, Meerut & Budhana",
+        "description": "Premium plotted residential townships across Shamli, Meerut and Budhana, with clear titles, gated colonies and thoughtfully planned communities.",
+        "heading": "Premium plotted townships in Western Uttar Pradesh",
+        "summary": "Defence Garden develops plotted residential communities across Shamli, Meerut and Budhana. Defence Garden is owned and led by Mr. Kuldeep Tomar.",
+        "canonical": "https://defencegarden.com/",
+        "schemaType": "WebPage"
+      },
+      "/about": {
+        "title": "About Defence Garden | Company, Ownership & Leadership",
+        "description": "Learn about Defence Garden, its plotted township developments, values and current ownership under Mr. Kuldeep Tomar.",
+        "heading": "About Defence Garden",
+        "summary": "Defence Garden develops plotted residential townships across Western Uttar Pradesh. The current owner of Defence Garden is Mr. Kuldeep Tomar.",
+        "canonical": "https://defencegarden.com/about",
+        "schemaType": "AboutPage"
+      },
+      "/about/leadership": {
+        "title": "Defence Garden Owner — Mr. Kuldeep Tomar | Official Website",
+        "description": "Mr. Kuldeep Tomar is the current owner of Defence Garden. Visit the official Defence Garden website for company, leadership and project information.",
+        "heading": "Ownership & Leadership at Defence Garden",
+        "summary": "The current owner of Defence Garden is Mr. Kuldeep Tomar. He leads the organisation and its real-estate development operations.",
+        "canonical": "https://defencegarden.com/about/leadership",
+        "schemaType": "AboutPage",
+        "mainEntity": "owner",
+        "faq": true,
+        "noJsFallbackFaqHeading": "Defence Garden ownership questions"
+      },
+      "/about/kuldeep-tomar": {
+        "title": "Mr. Kuldeep Tomar — Owner of Defence Garden",
+        "description": "Official profile of Mr. Kuldeep Tomar, current owner of Defence Garden.",
+        "heading": "Mr. Kuldeep Tomar — Owner of Defence Garden",
+        "summary": "The current owner of Defence Garden is Mr. Kuldeep Tomar. He leads the organisation and its real-estate development operations.",
+        "canonical": "https://defencegarden.com/about/kuldeep-tomar",
+        "schemaType": "ProfilePage",
+        "ogType": "profile",
+        "about": "owner",
+        "mainEntity": "owner"
+      },
+      "/ourproject": {
+        "title": "Our Colonies | Defence Garden",
+        "description": "Explore Defence Garden townships, including River Green, Defence Garden Phase 1 and Phase 2, and communities across Meerut and Budhana.",
+        "heading": "Defence Garden townships and colonies",
+        "summary": "Explore plotted residential communities developed by Defence Garden across Western Uttar Pradesh.",
+        "canonical": "https://defencegarden.com/ourproject",
+        "schemaType": "WebPage"
+      },
+      "/gallery": {
+        "title": "Photo Gallery | Defence Garden",
+        "description": "View on-site photos from Defence Garden communities across Shamli, Meerut and Budhana.",
+        "heading": "Defence Garden photo gallery",
+        "summary": "On-site views of Defence Garden townships and plotted residential communities.",
+        "canonical": "https://defencegarden.com/gallery",
+        "schemaType": "WebPage"
+      },
+      "/investment": {
+        "title": "Plot Investment | Defence Garden",
+        "description": "Explore plot investment opportunities in Defence Garden communities across the Shamli–Meerut belt.",
+        "heading": "Plot investment with Defence Garden",
+        "summary": "Explore plotted township investment opportunities across Shamli, Meerut and Budhana.",
+        "canonical": "https://defencegarden.com/investment",
+        "schemaType": "WebPage"
+      },
+      "/contact": {
+        "title": "Contact Defence Garden | Book a Site Visit",
+        "description": "Contact Defence Garden to discuss available plots or book a site visit in Shamli, Meerut or Budhana.",
+        "heading": "Contact Defence Garden",
+        "summary": "Speak with the Defence Garden team about projects, plots and site visits.",
+        "canonical": "https://defencegarden.com/contact",
+        "schemaType": "WebPage"
+      },
+      "/privacy-policy": {
+        "title": "Privacy Policy | Defence Garden",
+        "description": "Read the Defence Garden privacy policy for its website and mobile application.",
+        "heading": "Defence Garden Privacy Policy",
+        "summary": "How Defence Garden collects, uses and protects information across its services.",
+        "canonical": "https://defencegarden.com/privacy-policy",
+        "schemaType": "WebPage"
+      },
+      "/terms": {
+        "title": "Terms & Conditions | Defence Garden",
+        "description": "Read the terms and conditions for the Defence Garden website and mobile application.",
+        "heading": "Defence Garden Terms & Conditions",
+        "summary": "Terms governing the use of Defence Garden digital services.",
+        "canonical": "https://defencegarden.com/terms",
+        "schemaType": "WebPage"
+      },
+      "/data-deletion": {
+        "title": "Data Deletion | Defence Garden",
+        "runtimeTitle": "Account & Data Deletion | Defence Garden",
+        "description": "Learn how to request deletion of personal data held by Defence Garden.",
+        "heading": "Defence Garden Data Deletion",
+        "summary": "Instructions for requesting deletion of personal information.",
+        "canonical": "https://defencegarden.com/data-deletion",
+        "schemaType": "WebPage",
+        "runtimeTitleSource": "composed by the legal page component: '{policy title} | Defence Garden' (confirmed in rendered page meta)"
+      },
+      "/refund-policy": {
+        "title": "Refund Policy | Defence Garden",
+        "runtimeTitle": "Refund & Cancellation Policy | Defence Garden",
+        "description": "Read the Defence Garden refund and cancellation policy.",
+        "heading": "Defence Garden Refund Policy",
+        "summary": "Information about cancellations, refunds and applicable booking terms.",
+        "canonical": "https://defencegarden.com/refund-policy",
+        "schemaType": "WebPage",
+        "runtimeTitleSource": "composed by the legal page component: '{policy title} | Defence Garden' (confirmed in rendered page meta)"
+      },
+      "/project/:id": {
+        "title": "Township Details | Defence Garden",
+        "description": "View project details for a Defence Garden plotted residential community.",
+        "heading": "Defence Garden township details",
+        "summary": "Project information from Defence Garden.",
+        "canonical": "https://defencegarden.com/project/{id}",
+        "schemaType": "WebPage",
+        "note": "Same generic title/description for all 10 projects on the old site (no per-project SEO existed)."
+      },
+      "privateUtility": {
+        "paths": [
+          "/verify-receipt",
+          "/booking/*"
+        ],
+        "title": "Private utility | Defence Garden",
+        "description": "Private Defence Garden customer utility.",
+        "heading": "Defence Garden customer utility",
+        "summary": "This utility is not intended for search results.",
+        "robots": "noindex, nofollow"
+      },
+      "fallback404": {
+        "title": "Defence Garden — Premium Plotted Townships in Shamli, Meerut & Budhana",
+        "description": "Premium plotted residential townships across Shamli, Meerut and Budhana, with clear titles, gated colonies and thoughtfully planned communities.",
+        "heading": "Defence Garden",
+        "summary": "Defence Garden develops premium plotted residential townships across Shamli, Meerut and Budhana in Western Uttar Pradesh.",
+        "robots": "noindex, follow"
+      }
+    },
+    "runtimeTitleNote": "The legal page component overrides document.title with '<page title> | Defence Garden' (e.g. 'Account & Data Deletion | Defence Garden'); for privacy/terms this equals the SEO title.",
+    "liveSiteBug": "On the live Hostinger site, /about, /ourproject, /about/kuldeep-tomar etc. 301-redirect to a trailing-slash URL; the SPA then fails the route lookup and renders the HOME title with 'noindex, follow' (canonical stays correct). The intended per-page values are the ones above.",
+    "breadcrumbNames": {
+      "/": "Home",
+      "/about": "About",
+      "/about/leadership": "Leadership",
+      "/about/kuldeep-tomar": "Mr. Kuldeep Tomar",
+      "/ourproject": "Projects",
+      "/gallery": "Gallery",
+      "/investment": "Investment",
+      "/contact": "Contact",
+      "note": "BreadcrumbList is emitted for every non-home page: Home > each path segment (unknown segments use the raw segment text, e.g. 'project' > '1')."
+    },
+    "faq": [
+      {
+        "question": "Who is the owner of Defence Garden?",
+        "answer": "The current owner of Defence Garden is Mr. Kuldeep Tomar."
+      },
+      {
+        "question": "What is Defence Garden?",
+        "answer": "Defence Garden is a real-estate development organisation creating plotted residential townships in Western Uttar Pradesh."
+      },
+      {
+        "question": "Where does Defence Garden operate?",
+        "answer": "Defence Garden has township developments across Shamli, Meerut and Budhana."
+      }
+    ],
+    "jsonLd": {
+      "note": "The old site injects one @graph per route: Organization+RealEstateAgent, Person (owner), WebSite, WebPage (type per page), BreadcrumbList (non-home), FAQPage (/about/leadership only). Values below are verbatim.",
+      "organization": {
+        "@type": [
+          "Organization",
+          "RealEstateAgent"
+        ],
+        "@id": "https://defencegarden.com/#organization",
+        "name": "Defence Garden",
+        "url": "https://defencegarden.com/",
+        "logo": "https://defencegarden.com/favicon-192.png",
+        "image": "https://defencegarden.com/og-image.jpg",
+        "description": "Defence Garden develops premium plotted residential townships across Shamli, Meerut and Budhana in Western Uttar Pradesh.",
+        "telephone": "+91 9389925497",
+        "email": "defencegarden009@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "VADHEH, Shamli Rd, Mundetkalan",
+          "addressLocality": "Shamli",
+          "addressRegion": "Uttar Pradesh",
+          "postalCode": "247776",
+          "addressCountry": "IN"
+        },
+        "areaServed": [
+          "Shamli",
+          "Meerut",
+          "Budhana",
+          "Western Uttar Pradesh"
+        ],
+        "owner": {
+          "@id": "https://defencegarden.com/#kuldeep-tomar"
+        }
+      },
+      "person": {
+        "@type": "Person",
+        "@id": "https://defencegarden.com/#kuldeep-tomar",
+        "name": "Mr. Kuldeep Tomar",
+        "jobTitle": "Owner",
+        "url": "https://defencegarden.com/about/kuldeep-tomar",
+        "worksFor": {
+          "@id": "https://defencegarden.com/#organization"
+        }
+      },
+      "website": {
+        "@type": "WebSite",
+        "@id": "https://defencegarden.com/#website",
+        "name": "Defence Garden",
+        "url": "https://defencegarden.com/",
+        "publisher": {
+          "@id": "https://defencegarden.com/#organization"
+        }
+      },
+      "webPageTemplate": {
+        "@type": "{schemaType}",
+        "@id": "{canonical}#webpage",
+        "url": "{canonical}",
+        "name": "{title}",
+        "description": "{description}",
+        "isPartOf": {
+          "@id": "https://defencegarden.com/#website"
+        },
+        "about": {
+          "@id": "https://defencegarden.com/#organization (owner id on /about/kuldeep-tomar)"
+        },
+        "mainEntity": {
+          "@id": "https://defencegarden.com/#kuldeep-tomar (only on /about/kuldeep-tomar and /about/leadership)"
+        }
+      }
+    },
+    "robotsTxt": "User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /api/\nDisallow: /auth/\nDisallow: /verify-receipt\nDisallow: /booking/\n\n# Public search and answer-engine crawlers may access public pages.\nUser-agent: Googlebot\nAllow: /\nDisallow: /admin/\nDisallow: /api/\nDisallow: /auth/\nDisallow: /verify-receipt\nDisallow: /booking/\n\nUser-agent: Bingbot\nAllow: /\nDisallow: /admin/\nDisallow: /api/\nDisallow: /auth/\nDisallow: /verify-receipt\nDisallow: /booking/\n\nUser-agent: OAI-SearchBot\nAllow: /\nDisallow: /admin/\nDisallow: /api/\nDisallow: /auth/\nDisallow: /verify-receipt\nDisallow: /booking/\n\nSitemap: https://defencegarden.com/sitemap.xml\n",
+    "sitemap": [
+      {
+        "loc": "https://defencegarden.com/",
+        "lastmod": "2026-09-16",
+        "changefreq": "weekly",
+        "priority": "1.0"
+      },
+      {
+        "loc": "https://defencegarden.com/about",
+        "lastmod": "2026-09-16",
+        "changefreq": "monthly",
+        "priority": "0.8"
+      },
+      {
+        "loc": "https://defencegarden.com/about/leadership",
+        "lastmod": "2026-09-16",
+        "changefreq": "monthly",
+        "priority": "0.9"
+      },
+      {
+        "loc": "https://defencegarden.com/about/kuldeep-tomar",
+        "lastmod": "2026-09-16",
+        "changefreq": "monthly",
+        "priority": "0.9"
+      },
+      {
+        "loc": "https://defencegarden.com/ourproject",
+        "changefreq": "weekly",
+        "priority": "0.9"
+      },
+      {
+        "loc": "https://defencegarden.com/gallery",
+        "changefreq": "weekly",
+        "priority": "0.7"
+      },
+      {
+        "loc": "https://defencegarden.com/investment",
+        "changefreq": "monthly",
+        "priority": "0.7"
+      },
+      {
+        "loc": "https://defencegarden.com/contact",
+        "changefreq": "monthly",
+        "priority": "0.8"
+      },
+      {
+        "loc": "https://defencegarden.com/project/1",
+        "changefreq": "weekly",
+        "priority": "0.9"
+      },
+      {
+        "loc": "https://defencegarden.com/project/2",
+        "changefreq": "monthly",
+        "priority": "0.6"
+      },
+      {
+        "loc": "https://defencegarden.com/project/3",
+        "changefreq": "monthly",
+        "priority": "0.6"
+      },
+      {
+        "loc": "https://defencegarden.com/project/4",
+        "changefreq": "monthly",
+        "priority": "0.6"
+      },
+      {
+        "loc": "https://defencegarden.com/project/5",
+        "changefreq": "weekly",
+        "priority": "0.8"
+      },
+      {
+        "loc": "https://defencegarden.com/project/6",
+        "changefreq": "monthly",
+        "priority": "0.6"
+      },
+      {
+        "loc": "https://defencegarden.com/project/7",
+        "changefreq": "monthly",
+        "priority": "0.6"
+      },
+      {
+        "loc": "https://defencegarden.com/project/8",
+        "changefreq": "monthly",
+        "priority": "0.6"
+      },
+      {
+        "loc": "https://defencegarden.com/project/9",
+        "changefreq": "monthly",
+        "priority": "0.6"
+      },
+      {
+        "loc": "https://defencegarden.com/project/10",
+        "changefreq": "monthly",
+        "priority": "0.6"
+      },
+      {
+        "loc": "https://defencegarden.com/privacy-policy",
+        "changefreq": "yearly",
+        "priority": "0.3"
+      },
+      {
+        "loc": "https://defencegarden.com/terms",
+        "changefreq": "yearly",
+        "priority": "0.3"
+      },
+      {
+        "loc": "https://defencegarden.com/data-deletion",
+        "changefreq": "yearly",
+        "priority": "0.3"
+      },
+      {
+        "loc": "https://defencegarden.com/refund-policy",
+        "changefreq": "yearly",
+        "priority": "0.3"
+      }
+    ]
+  },
+  "credits": {
+    "webDeveloper": {
+      "name": "Defence Garden",
+      "href": null
+    },
+    "photography": null,
+    "note": "No photographer/videographer credits exist on the old site."
+  },
+  "privateUtilities": [
+    {
+      "path": "/verify-receipt",
+      "robots": "noindex, nofollow",
+      "note": "Receipt QR verification against the backend. Not public content; keep only if the new site must keep the QR links on issued receipts working."
+    },
+    {
+      "path": "/booking/track/:id",
+      "robots": "noindex, nofollow",
+      "note": "Booking status tracking + payment-proof upload against the backend. Same caveat."
+    }
+  ]
+}

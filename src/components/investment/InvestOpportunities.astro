@@ -1,0 +1,69 @@
+---
+// Chapter 02 · Opportunities — four tall photo cards (real Defence Garden aerials/streets). The card stats
+// (₹/sqft, CAGR, hold, "<20 left") and the "scarcity villas" line are old claims → only with investmentClaims.
+import Img from '../ui/Img.astro';
+import Icon from '../ui/Icon.astro';
+import ChapterHead from './ChapterHead.astro';
+import data from '../../data/pages/investment.json';
+import { flags } from '../../lib/flags.js';
+
+const { opportunities: o } = data;
+const claims = flags.investmentClaims;
+---
+<style is:inline>
+  .ivo { scroll-margin-top: 0; }
+  .ivo__head { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: var(--gutter); align-items: end; margin-bottom: clamp(40px, 5vw, 80px); }
+  .ivo__head .ivc__title { font-size: clamp(40px, 5.2vw, 96px); }
+  .ivo__text { max-width: 44ch; justify-self: end; }
+  .ivo__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(10px, 1.2vw, 20px); }
+  .ivo__card { position: relative; display: grid; color: #f4ede6; border-radius: 3px; overflow: hidden; isolation: isolate; }
+  .ivo__media { aspect-ratio: 3 / 4.3; }
+  .ivo__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s var(--ease-out); }
+  .ivo__media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6, 26, 58, .55), rgba(6, 26, 58, 0) 32%, rgba(6, 26, 58, .1) 55%, rgba(6, 26, 58, .9)); transition: background .6s; }
+  .ivo__top { position: absolute; left: 18px; right: 18px; top: 16px; display: flex; justify-content: space-between; align-items: center; z-index: 2; }
+  .ivo__tag { font-family: var(--f-deco); font-weight: 300; font-size: clamp(28px, 2.4vw, 40px); line-height: 1; color: var(--copper); }
+  .ivo__go { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(244, 237, 230, .4); display: grid; place-items: center; transition: background .4s, color .4s, transform .6s var(--ease-out); }
+  .ivo__go .ico { width: 16px; height: 16px; }
+  .ivo__bottom { position: absolute; left: 18px; right: 18px; bottom: 18px; z-index: 2; display: grid; gap: 14px; }
+  .ivo__stat { display: flex; align-items: baseline; gap: 8px; padding-bottom: 14px; border-bottom: 1px solid rgba(244, 237, 230, .25); }
+  .ivo__stat b { font-family: var(--f-sans); font-weight: 500; font-size: clamp(34px, 3.2vw, 56px); letter-spacing: -.045em; line-height: .9; }
+  .ivo__title { font-size: clamp(20px, 1.6vw, 28px); font-weight: 500; letter-spacing: -.02em; line-height: 1.1; }
+  .ivo__cta { display: inline-flex; align-items: center; gap: 8px; color: rgba(244, 237, 230, .8); }
+  .ivo__card:hover .ivo__media img { transform: scale(1.06); }
+  .ivo__card:hover .ivo__go { background: var(--copper); color: var(--navy-deep); border-color: var(--copper); transform: rotate(45deg); }
+  @media (max-width: 1100px) { .ivo__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 860px) { .ivo__head { grid-template-columns: 1fr; } .ivo__text { justify-self: start; } }
+  @media (max-width: 640px) {
+    .ivo__grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); scroll-padding-inline: var(--gutter); }
+    .ivo__grid::-webkit-scrollbar { display: none; }
+    .ivo__card { flex: none; width: 78vw; scroll-snap-align: start; }
+  }
+</style>
+<section class="ivo t-light section" id={o.id} data-header-tone="light">
+  <div class="wrap">
+    <div class="ivo__head">
+      <ChapterHead eyebrow={o.eyebrow} title={o.heading.title} accent={o.heading.accent} />
+      {claims && <p class="body muted ivo__text" data-reveal="fade">{o.text}</p>}
+    </div>
+    <div class="ivo__grid">
+      {o.cards.map((c, i) => (
+        <a class="ivo__card" href={c.cta.href} data-reveal="fade" data-reveal-delay={(i * 0.08).toFixed(2)}>
+          <div class="ivo__media media">
+            <Img src={c.image} alt={c.image.alt} sizes="(min-width: 1101px) 24vw, (min-width: 641px) 46vw, 78vw" widths={[480, 800, 1200]} />
+          </div>
+          <div class="ivo__top">
+            <span class="ivo__tag">{c.tag}</span>
+            <span class="ivo__go" aria-hidden="true"><Icon name="arrow-up-right" /></span>
+          </div>
+          <div class="ivo__bottom">
+            {claims && (
+              <p class="ivo__stat"><b>{c.stat}</b><span class="eyebrow">{c.statLabel}</span></p>
+            )}
+            <h3 class="ivo__title">{c.title}</h3>
+            <span class="ivo__cta small">{c.cta.label} <Icon name="arrow-right" /></span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,56 @@
+---
+// Full-bleed band with Defence Garden's own drone film (video.main-web) — real footage only.
+// Copy: src/data/pages/ourproject.json → banner (verbatim; banner.text is the hero overlay line on /ourproject).
+import Vid from '../ui/Vid.astro';
+import Icon from '../ui/Icon.astro';
+import Ornament from '../ui/Ornament.astro';
+import page from '../../data/pages/ourproject.json';
+
+const b = page.banner;
+const lines = b.heading?.lines?.length ? b.heading.lines : [b.heading?.text || ''];
+const toTitle = (s) => s.toLowerCase().replace(/^./, (m) => m.toUpperCase());
+---
+<section class="flb t-night" data-header-tone="dark" aria-labelledby="flb-title">
+  <div class="flb__media">
+    <div class="flb__scale" data-scale-in>
+      <Vid src={b.video?.key || 'video.main-web'} class="flb__fill" label={b.video?.alt} />
+    </div>
+  </div>
+  <div class="wrap flb__in">
+    <div class="flb__copy">
+      <p class="eyebrow eyebrow--accent" data-reveal="fade">{b.eyebrow}</p>
+      <h2 class="deco flb__title" id="flb-title" data-reveal="lines" set:html={lines.map(toTitle).join('<br />')} />
+    </div>
+    <div class="flb__side">
+      <Ornament variant="diamond" class="flb__orn" />
+      <div class="flb__actions" data-reveal="fade">
+        <button class="btn btn--copper" type="button" data-enquire data-interest="Site visit"><span>Plan a site visit</span><Icon name="arrow-right" /></button>
+        {b.cta && <a class="btn" href={b.cta.href}><span>{b.cta.label}</span><Icon name="arrow-right" /></a>}
+      </div>
+    </div>
+  </div>
+  <p class="eyebrow flb__cap"><Icon name="play" /> Drone film · Defence Garden colonies</p>
+</section>
+
+<style>
+  .flb { position: relative; min-height: 100vh; min-height: 100svh; display: grid; align-content: end; overflow: hidden; padding-block: clamp(120px, 14vw, 220px) clamp(56px, 7vw, 110px); }
+  .flb__media { position: absolute; inset: 0; overflow: hidden; }
+  .flb__scale { position: absolute; inset: 0; }
+  .flb__media :global(.flb__fill) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .flb__media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,26,58,.55) 0%, rgba(6,26,58,.08) 30%, rgba(6,26,58,.45) 62%, rgba(6,26,58,.92) 100%), linear-gradient(90deg, rgba(6,26,58,.45), transparent 60%); pointer-events: none; }
+  .flb__in { position: relative; display: grid; grid-template-columns: 1.7fr 1fr; gap: var(--gutter); align-items: end; }
+  .flb__copy { display: grid; gap: 22px; }
+  .flb__copy .eyebrow { color: var(--copper-soft); text-shadow: 0 1px 14px rgba(6,26,58,.7); }
+  .flb__title { color: #f4ede6; max-width: none; font-size: clamp(38px, 5.6vw, 104px); text-shadow: 0 2px 40px rgba(6,26,58,.35); }
+  .flb__side { display: grid; gap: 22px; justify-items: start; max-width: 48ch; justify-self: end; }
+  .flb__orn { width: 24px; color: var(--copper); }
+  .flb__actions { display: flex; flex-wrap: wrap; gap: 10px; }
+  .flb__cap { position: absolute; z-index: 1; right: var(--gutter); top: calc(var(--header-h) + 24px); display: inline-flex; align-items: center; gap: 8px; color: rgba(244,237,230,.75); font-size: 9.5px; }
+  .flb__cap :global(svg) { width: 12px; height: 12px; }
+  @media (max-width: 860px) {
+    .flb { min-height: 92svh; }
+    .flb__in { grid-template-columns: 1fr; gap: 28px; }
+    .flb__side { justify-self: start; }
+    .flb__cap { top: calc(var(--header-h) + 8px); }
+  }
+</style>

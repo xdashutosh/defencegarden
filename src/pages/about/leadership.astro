@@ -1,0 +1,94 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/ui/Icon.astro';
+import Ornament from '../../components/ui/Ornament.astro';
+import Breadcrumb from '../../components/about/Breadcrumb.astro';
+import Monogram from '../../components/about/Monogram.astro';
+import Faq from '../../components/about/Faq.astro';
+import ExploreLinks from '../../components/about/ExploreLinks.astro';
+import data from '../../data/pages/leadership.json';
+
+const { hero, owner, faq, explore } = data;
+const [l1, l2] = hero.heading.lines;
+const card = owner.monogramCard;
+const detail = owner.detailCard;
+const exploreImg = { '/about': 'about.r2', '/ourproject': 'projects.river-green-society.cover', '/contact': 'projects.defence-garden-phase-2.gallery-03' };
+const links = explore.links.map((l) => ({ label: l.label, href: l.href, img: exploreImg[l.href] }));
+---
+<Base path="/about/leadership" namespace="leadership" tone="light">
+  <section class="lsh t-ivory" data-header-tone="light" aria-labelledby="lsh-title">
+    <Ornament variant="fan" class="lsh__orn" />
+    <div class="wrap lsh__in">
+      <Breadcrumb items={hero.breadcrumb} class="lsh__bc" />
+      <div class="lsh__main">
+        <p class="eyebrow eyebrow--accent lsh__badge" data-reveal="fade" data-reveal-intro><Ornament variant="diamond" class="lsh__dia" />{hero.badge.text}</p>
+        <h1 class="deco lsh__title" id="lsh-title" data-reveal="lines" data-reveal-intro>{l1}<br /><span class="accent">{l2}</span></h1>
+        <p class="lead lsh__text balance" data-reveal="fade" data-reveal-intro data-reveal-delay="0.25">{hero.text}</p>
+      </div>
+      <a class="lsh__cue eyebrow" href="#owner" aria-label="Scroll to the owner"><Icon name="arrow-down" class="ico" /></a>
+    </div>
+  </section>
+
+  <section class="low t-night section" id="owner" data-header-tone="dark" aria-labelledby="low-title">
+    <div class="wrap low__grid">
+      <div class="low__mono" data-reveal="fade">
+        <Monogram class="low__kt" draw={false} />
+        <div class="low__monometa">
+          <p class="eyebrow eyebrow--accent">{card.eyebrow}</p>
+          <p class="low__name">{card.name}</p>
+          <p class="eyebrow muted">{card.roleLine}</p>
+        </div>
+      </div>
+      <div class="low__detail">
+        <p class="eyebrow eyebrow--accent" data-reveal="fade">{detail.eyebrow}</p>
+        <h2 class="deco deco--sm low__title" id="low-title" data-reveal="lines">{detail.heading}</h2>
+        <p class="eyebrow muted" data-reveal="fade">{detail.roleLine}</p>
+        <p class="lead low__text" data-reveal="fade">{detail.text}</p>
+        <dl class="low__facts" data-reveal="fade">
+          {detail.facts.map((f) => <div class="low__fact"><dt class="eyebrow muted">{f.label}</dt><dd>{f.value}</dd></div>)}
+        </dl>
+        <a class="btn btn--copper" href={detail.cta.href} data-reveal="fade"><span>{detail.cta.label}</span><Icon name="arrow-right" class="ico" /></a>
+      </div>
+    </div>
+  </section>
+
+  <Faq eyebrow={faq.eyebrow} heading={faq.heading} items={faq.items} theme="t-light" />
+
+  <ExploreLinks links={links} ariaLabel={explore.ariaLabel} eyebrow="Explore" heading="Explore Defence Garden" />
+</Base>
+
+<style>
+  .lsh { position: relative; min-height: 92vh; min-height: 92svh; display: grid; overflow: hidden; }
+  .lsh__orn { position: absolute; left: 50%; bottom: -8%; width: 120%; height: 108%; transform: translateX(-50%); color: var(--copper-deep); opacity: .16; pointer-events: none; }
+  .lsh__in { position: relative; display: grid; grid-template-rows: auto 1fr auto; gap: 30px; padding-top: calc(var(--header-h) + 28px); padding-bottom: 36px; }
+  .lsh__bc { justify-self: center; }
+  .lsh__main { display: grid; justify-items: center; align-content: center; text-align: center; gap: clamp(20px, 2.4vw, 34px); }
+  .lsh__badge { display: inline-flex; align-items: center; gap: 12px; }
+  .lsh__dia { width: 16px; height: 16px; }
+  .lsh__title { font-size: clamp(48px, 9.4vw, 178px); }
+  .lsh__text { max-width: 40ch; }
+  .lsh__cue { justify-self: center; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--fg) 25%, transparent); transition: background .4s, color .4s; }
+  .lsh__cue:hover { background: var(--fg); color: var(--bg); }
+  .lsh__cue :global(.ico) { width: 16px; height: 16px; }
+
+  .low__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(40px, 8vw, 160px); align-items: center; }
+  .low__mono { position: relative; display: grid; justify-items: center; gap: 28px; padding: clamp(36px, 4vw, 64px) clamp(24px, 4vw, 64px); border: 1px solid rgba(207,143,125,.35); outline: 1px solid rgba(207,143,125,.18); outline-offset: -10px; background: radial-gradient(ellipse at 50% 30%, rgba(207,143,125,.14), transparent 65%); }
+  .low__mono :global(.low__kt) { width: min(100%, 320px); --kt-ink: #f4ede6; }
+  .low__monometa { display: grid; justify-items: center; gap: 8px; text-align: center; }
+  .low__name { font-family: var(--f-serif); font-weight: 300; font-size: clamp(26px, 2.4vw, 40px); line-height: 1.05; }
+  .low__detail { display: grid; gap: 20px; justify-items: start; }
+  .low__title { color: #f4ede6; font-size: clamp(34px, 4.2vw, 76px); }
+  .low__text { max-width: 48ch; color: rgba(244,237,230,.86); }
+  .low__facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: min(100%, 520px); margin: 10px 0; border-top: 1px solid rgba(244,237,230,.18); border-bottom: 1px solid rgba(244,237,230,.18); }
+  .low__fact { display: grid; gap: 8px; padding: 18px 18px 18px 0; }
+  .low__fact + .low__fact { padding-left: 18px; border-left: 1px solid rgba(244,237,230,.18); }
+  .low__fact dd { margin: 0; font-size: 20px; font-weight: 500; letter-spacing: -.01em; }
+
+  @media (max-width: 860px) {
+    .lsh { min-height: 86svh; }
+    .lsh__bc { justify-self: start; }
+    .lsh__title { font-size: clamp(44px, 12.6vw, 90px); }
+    .low__grid { grid-template-columns: 1fr; }
+    .low__mono :global(.low__kt) { width: min(70%, 260px); }
+  }
+</style>

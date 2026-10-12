@@ -1,0 +1,90 @@
+---
+// era.estate contacts page: breadcrumb, big thin-capitals title, then a ledger of contact blocks beside a framed photo.
+import Img from '../ui/Img.astro';
+import Icon from '../ui/Icon.astro';
+import Ornament from '../ui/Ornament.astro';
+import contact from '../../data/pages/contact.json';
+import { phone, whatsappUrl, email, office, hours, site } from '../../lib/site.js';
+
+const h = contact.hero;
+const accent = h.heading.accent; // 'forever address'
+const [pre, post] = h.heading.text.split(accent);
+const sales = phone('sales');
+const officeNo = phone('office');
+const wa = site.contact.whatsapp;
+const blocks = [
+  { label: 'Call us · Sales', value: sales.display, href: sales.tel, icon: 'phone' },
+  { label: 'Office', value: officeNo.display, href: officeNo.tel, icon: 'phone' },
+  { label: 'WhatsApp', value: wa.display, href: whatsappUrl(), icon: 'whatsapp', external: true, aria: wa.chatAriaLabel },
+  { label: 'Email us', value: email.address, href: email.href, icon: 'mail' },
+  { label: office.label, value: office.display, href: office.mapsUrl, icon: 'pin', external: true, cta: office.mapsLinkLabel },
+  { label: hours.label, value: hours.display, icon: 'clock' },
+];
+---
+<section class="chr t-ivory" data-header-tone="light" aria-labelledby="chr-title">
+  <Ornament variant="fan" class="chr__orn" />
+  <div class="wrap chr__in">
+    <nav class="chr__bc" aria-label="Breadcrumb">
+      <a class="eyebrow link-line muted" href="/">Home</a><span class="chr__sep" aria-hidden="true"></span><span class="eyebrow accent" aria-current="page">Contact</span>
+    </nav>
+    <p class="eyebrow eyebrow--accent chr__eyebrow" data-reveal="fade" data-reveal-intro>{h.eyebrow}</p>
+    <h1 class="deco chr__title" id="chr-title" data-reveal="lines" data-reveal-intro>{pre.trim()}<br /><span class="accent">{accent}</span>{post}</h1>
+    <p class="lead chr__text balance" data-reveal="fade" data-reveal-intro data-reveal-delay="0.2">{h.text}</p>
+
+    <div class="chr__grid">
+      <ul class="chr__blocks">
+        {blocks.map((b, i) => (
+          <li class="chr__block" data-reveal="fade" data-reveal-delay={(i * 0.06).toFixed(2)}>
+            <p class="eyebrow muted chr__label"><span class="chr__ico"><Icon name={b.icon} class="ico" /></span>{b.label}</p>
+            {b.href
+              ? <a class="chr__value" href={b.href} target={b.external ? '_blank' : undefined} rel={b.external ? 'noopener' : undefined} aria-label={b.aria}><span class="link-line">{b.value}</span>{b.cta ? '' : <Icon name="arrow-up-right" class="ico chr__go" />}</a>
+              : <p class="chr__value">{b.value}</p>}
+            {b.cta && <a class="eyebrow link-line accent chr__cta" href={b.href} target="_blank" rel="noopener"><span>{b.cta}</span><Icon name="arrow-up-right" class="ico" /></a>}
+          </li>
+        ))}
+      </ul>
+      <figure class="chr__fig" data-reveal="clip" data-reveal-intro data-reveal-delay="0.2">
+        <div class="chr__img media">
+          <Img src="projects.defence-garden-phase-2.gallery-03" eager sizes="(min-width: 861px) 34vw, 92vw" widths={[480, 800, 1200, 1600]} data-parallax="0.07" />
+        </div>
+        <figcaption class="eyebrow muted chr__cap">Defence Garden Phase 2 · Shamli</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<style>
+  .chr { position: relative; overflow: hidden; }
+  .chr__orn { position: absolute; right: -20%; top: -10%; width: 90%; height: 90%; color: var(--copper-deep); opacity: .12; pointer-events: none; }
+  .chr__in { position: relative; display: grid; gap: clamp(18px, 2vw, 28px); padding-top: calc(var(--header-h) + 28px); padding-bottom: clamp(70px, 9vw, 150px); }
+  .chr__bc { display: flex; align-items: center; gap: 12px; margin-bottom: clamp(16px, 2.6vw, 40px); }
+  .chr__sep { width: 18px; height: 1px; background: currentColor; opacity: .35; }
+  .chr__title { font-size: clamp(46px, 6.6vw, 128px); }
+  .chr__text { max-width: 46ch; color: color-mix(in srgb, var(--fg) 78%, transparent); }
+
+  .chr__grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: clamp(36px, 6vw, 120px); align-items: start; margin-top: clamp(36px, 4.4vw, 80px); }
+  .chr__blocks { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); }
+  .chr__block { display: grid; gap: 12px; align-content: start; padding: clamp(20px, 2.2vw, 32px) clamp(16px, 2vw, 28px) clamp(22px, 2.4vw, 34px) 0; border-bottom: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); }
+  .chr__block:nth-child(even) { padding-left: clamp(16px, 2vw, 28px); border-left: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); }
+  .chr__label { display: inline-flex; align-items: center; gap: 10px; }
+  .chr__ico { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent); color: var(--accent); }
+  .chr__ico :global(.ico) { width: 13px; height: 13px; }
+  .chr__value { display: inline-flex; align-items: center; gap: 10px; font-size: clamp(19px, 1.55vw, 26px); font-weight: 500; letter-spacing: -.02em; line-height: 1.2; overflow-wrap: anywhere; }
+  .chr__go { width: 18px; height: 18px; opacity: .45; flex: none; transition: transform .5s var(--ease-out), opacity .3s; }
+  .chr__value:hover .chr__go { transform: translate(3px, -3px); opacity: 1; }
+  .chr__cta { justify-self: start; display: inline-flex; align-items: center; gap: 6px; }
+  .chr__cta :global(.ico) { width: 12px; height: 12px; }
+
+  .chr__fig { margin: 0; display: grid; gap: 12px; }
+  .chr__img { aspect-ratio: 4 / 5; }
+  .chr__img :global(img) { width: 100%; height: 100%; object-fit: cover; }
+
+  @media (max-width: 1100px) { .chr__blocks { grid-template-columns: 1fr; } .chr__block:nth-child(even) { padding-left: 0; border-left: 0; } }
+  @media (max-width: 860px) {
+    .chr__title { font-size: clamp(42px, 12vw, 80px); }
+    .chr__grid { grid-template-columns: 1fr; }
+    .chr__fig { order: -1; }
+    .chr__img { aspect-ratio: 4 / 3; }
+    .chr__value { font-size: 21px; }
+  }
+</style>

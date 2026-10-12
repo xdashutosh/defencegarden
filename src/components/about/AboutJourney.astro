@@ -1,0 +1,135 @@
+---
+// The journey (about.json journey.timeline, verbatim): a vertical navy ledger, entries alternating around a copper
+// centre line, each colony linked to its project page; it ends on the clearly-labelled next chapter (/vision).
+import Img from '../ui/Img.astro';
+import Icon from '../ui/Icon.astro';
+import Ornament from '../ui/Ornament.astro';
+import about from '../../data/pages/about.json';
+import { getProject, displayTitle, projectUrl } from '../../lib/site.js';
+
+const j = about.journey;
+const entries = j.timeline.map((t) => ({ ...t, projects: t.projectIds.map((id) => getProject(id)).filter(Boolean) }));
+const [hA, hB] = j.heading.text.split(', ');
+---
+<section class="ajr t-night section" data-header-tone="dark" aria-labelledby="ajr-title">
+  <Ornament variant="fan" class="ajr__orn" />
+  <div class="wrap">
+    <header class="ajr__head">
+      <p class="eyebrow eyebrow--accent" data-reveal="fade">{j.eyebrow} · 2006 — today</p>
+      <h2 class="deco ajr__title" id="ajr-title" data-reveal="lines">{hA},<br /><span class="accent">{hB}</span></h2>
+    </header>
+
+    <div class="ajr__body">
+    <span class="ajr__line" aria-hidden="true"><span class="ajr__fill"></span></span>
+    <ol class="ajr__list">
+      {entries.map((e, i) => (
+        <li class={`ajr__item ${i % 2 ? 'is-right' : 'is-left'} ${e.projects.length ? '' : 'is-plain'}`}>
+          <span class="ajr__node" aria-hidden="true"><Ornament variant="diamond" /></span>
+          <div class="ajr__copy" data-reveal="fade">
+            <p class="deco ajr__year">{e.year}</p>
+            <h3 class="ajr__name">{e.title}</h3>
+            <p class="body muted ajr__desc">{e.desc}</p>
+            {e.projects.length > 0 && (
+              <p class="ajr__links">
+                {e.projects.map((p) => (
+                  <a class="eyebrow ajr__link" href={projectUrl(p)}><span class="link-line">{displayTitle(p)}</span><span class="ajr__st">· {p.status}<Icon name="arrow-up-right" class="ico ajr__go" /></span></a>
+                ))}
+              </p>
+            )}
+          </div>
+          <div class={`ajr__media ${e.projects.length > 1 ? 'is-pair' : ''}`}>
+            {e.projects.map((p, k) => (
+              <a class="ajr__frame" href={projectUrl(p)} aria-label={`${displayTitle(p)} — view colony`} data-reveal="fade" data-reveal-delay={(k * 0.12).toFixed(2)}>
+                <span class="ajr__pic media"><Img src={p.cover} sizes="(min-width: 861px) 22vw, 60vw" widths={[480, 800, 1200]} /></span>
+              </a>
+            ))}
+          </div>
+        </li>
+      ))}
+      <li class="ajr__item ajr__item--next is-right">
+        <span class="ajr__node ajr__node--next" aria-hidden="true"><Ornament variant="diamond" /></span>
+        <a class="ajr__copy ajr__next" href="/vision" data-reveal="fade">
+          <p class="eyebrow eyebrow--accent">Next chapter — urban high-rise</p>
+          <p class="deco ajr__year">Next</p>
+          <h3 class="ajr__name">The vertical chapter</h3>
+          <p class="body muted ajr__desc">Our vision for residential towers in India’s growing cities.</p>
+          <span class="btn btn--copper ajr__btn"><span>Read the vision</span><Icon name="arrow-right" class="ico" /></span>
+        </a>
+        <div class="ajr__media ajr__media--next" aria-hidden="true"><Ornament variant="spire" class="ajr__spire" /></div>
+      </li>
+    </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ajr { overflow: hidden; }
+  .ajr__orn { position: absolute; left: 50%; top: -10%; width: 150%; height: 70%; transform: translateX(-50%); color: var(--copper); opacity: .06; pointer-events: none; }
+  .ajr__head { position: relative; display: grid; justify-items: center; text-align: center; gap: 22px; margin-bottom: clamp(60px, 8vw, 140px); }
+  .ajr__title { color: #f4ede6; font-size: clamp(40px, 6vw, 112px); }
+
+  .ajr__body { position: relative; }
+  .ajr__list { display: grid; gap: clamp(40px, 6vw, 110px); }
+  .ajr__line { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; transform: translateX(-50%); background: rgba(244,237,230,.14); }
+  .ajr__fill { position: absolute; inset: 0; background: linear-gradient(var(--copper-soft), var(--copper) 60%, var(--copper-deep)); transform-origin: top; }
+  @supports (animation-timeline: view()) {
+    .ajr__fill { animation: ajrFill linear both; animation-timeline: view(); animation-range: cover 50vh cover calc(100% - 50vh); }
+    @keyframes ajrFill { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+  }
+
+  .ajr__item { position: relative; display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(60px, 9vw, 180px); align-items: center; }
+  .ajr__node { position: absolute; left: 50%; top: 50%; width: 22px; height: 22px; transform: translate(-50%, -50%); display: grid; place-items: center; background: var(--navy-deep); color: var(--copper); padding: 2px; }
+  .ajr__node :global(svg) { width: 18px; height: 18px; }
+  .ajr__item.is-left .ajr__copy { grid-column: 1; grid-row: 1; justify-self: end; text-align: right; justify-items: end; }
+  .ajr__item.is-left .ajr__media { grid-column: 2; grid-row: 1; }
+  .ajr__item.is-right .ajr__copy { grid-column: 2; grid-row: 1; }
+  .ajr__item.is-right .ajr__media { grid-column: 1; grid-row: 1; justify-self: end; }
+
+  .ajr__copy { display: grid; gap: 12px; max-width: 460px; }
+  .ajr__year { font-size: clamp(56px, 6.4vw, 120px); line-height: .9; color: var(--copper); }
+  .ajr__name { font-size: clamp(22px, 2vw, 34px); font-weight: 500; letter-spacing: -.025em; line-height: 1.1; color: #f4ede6; }
+  .ajr__desc { max-width: 36ch; }
+  .ajr__links { display: grid; gap: 8px; margin-top: 8px; }
+  .ajr__item.is-left .ajr__links { justify-items: end; }
+  .ajr__link { display: inline-flex; flex-wrap: wrap; align-items: center; column-gap: 8px; row-gap: 2px; color: #f4ede6; }
+  .ajr__item.is-left .ajr__link { justify-content: flex-end; }
+  .ajr__st { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; color: rgba(244,237,230,.55); }
+  .ajr__go { width: 14px; height: 14px; color: var(--copper); transition: transform .5s var(--ease-out); }
+  .ajr__link:hover .ajr__go { transform: translate(2px, -2px); }
+
+  .ajr__media { display: grid; gap: clamp(10px, 1.2vw, 18px); width: min(100%, 440px); }
+  .ajr__media.is-pair { grid-template-columns: 1fr 1fr; width: min(100%, 560px); align-items: end; }
+  .ajr__frame { display: block; padding: 8px; border: 1px solid rgba(207,143,125,.35); transition: border-color .5s; }
+  .ajr__frame:hover { border-color: var(--copper); }
+  .ajr__pic { display: block; aspect-ratio: 4 / 3; }
+  .ajr__media.is-pair .ajr__pic { aspect-ratio: 4 / 5; }
+  .ajr__media.is-pair .ajr__frame + .ajr__frame { margin-bottom: 18%; }
+  .ajr__pic :global(img) { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease-out); }
+  .ajr__frame:hover :global(img) { transform: scale(1.05); }
+
+  .ajr__item--next { margin-top: clamp(10px, 3vw, 40px); }
+  .ajr__node--next { width: 34px; height: 34px; }
+  .ajr__node--next :global(svg) { width: 28px; height: 28px; }
+  .ajr__next { padding: clamp(24px, 3vw, 44px); border: 1px solid rgba(207,143,125,.45); outline: 1px solid rgba(207,143,125,.22); outline-offset: -9px; background: linear-gradient(160deg, rgba(207,143,125,.08), transparent 60%); transition: background .6s var(--ease-out); }
+  .ajr__next:hover { background: linear-gradient(160deg, rgba(207,143,125,.16), transparent 70%); }
+  .ajr__btn { justify-self: start; margin-top: 10px; }
+  .ajr__media--next { justify-items: end; align-items: center; }
+  .ajr__spire { width: clamp(120px, 14vw, 220px); height: auto; color: var(--copper); opacity: .8; }
+
+  @media (max-width: 860px) {
+    .ajr__line { left: 11px; transform: none; }
+    .ajr__list { gap: 56px; }
+    .ajr__item, .ajr__item.is-left, .ajr__item.is-right { grid-template-columns: 1fr; row-gap: 22px; padding-left: 40px; }
+    .ajr__node { left: 11px; top: 24px; }
+    .ajr__item.is-left .ajr__copy, .ajr__item.is-right .ajr__copy { grid-column: 1; grid-row: 1; justify-self: start; text-align: left; justify-items: start; }
+    .ajr__item.is-left .ajr__links { justify-items: start; }
+    .ajr__item.is-left .ajr__link { justify-content: flex-start; }
+    .ajr__item.is-left .ajr__media, .ajr__item.is-right .ajr__media { grid-column: 1; grid-row: 2; justify-self: start; }
+    .ajr__item.is-plain .ajr__media { display: none; }
+    .ajr__media { width: 100%; }
+    .ajr__media.is-pair { width: 100%; }
+    .ajr__frame { padding: 6px; }
+    .ajr__media--next { display: none !important; }
+    .ajr__year { font-size: clamp(52px, 15vw, 80px); }
+  }
+</style>

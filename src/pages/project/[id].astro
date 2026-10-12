@@ -1,0 +1,58 @@
+---
+// /project/1 … /project/10 — one Defence Garden colony (real data and media only; URLs kept from the old site).
+import Base from '../../layouts/Base.astro';
+import FrameHero from '../../components/sections/FrameHero.astro';
+import ProjectFacts from '../../components/projects/ProjectFacts.astro';
+import ProjectAbout from '../../components/projects/ProjectAbout.astro';
+import ProjectAmenities from '../../components/projects/ProjectAmenities.astro';
+import ProjectGallery from '../../components/projects/ProjectGallery.astro';
+import ProjectEnquiry from '../../components/projects/ProjectEnquiry.astro';
+import OtherColonies from '../../components/projects/OtherColonies.astro';
+import BookingMap from '../../components/booking/BookingMap.astro';
+import { projectsData, getProject, displayTitle } from '../../lib/site.js';
+import { galleryFor, titleLines, rankPhotos } from '../../components/projects/util.js';
+
+export function getStaticPaths() {
+  return projectsData.projects.map((p) => ({ params: { id: String(p.id) } }));
+}
+
+const p = getProject(Astro.params.id);
+const title = displayTitle(p);
+const hasFilm = Boolean(p.video);
+// The cover is on screen only when there is no film for the hero; then its twin is dropped from the gallery.
+const photos = galleryFor(p, { coverShown: !hasFilm });
+// distinct, best-suited photos for About (main + inset), Amenities and the enquiry backdrop
+const ranked = rankPhotos(photos);
+const used = new Set();
+const take = (pred = () => true) => { const r = ranked.find((x) => !used.has(x.i) && pred(x)); if (!r) return undefined; used.add(r.i); return r.g; };
+const aboutPhotos = [take(), take()].filter(Boolean);
+const amenityPhoto = take() || aboutPhotos[0];
+const enquiryPhoto = take((x) => x.bleed) || take() || p.cover;
+---
+<Base path={`/project/${p.id}`} namespace="project" tone="light">
+  <FrameHero
+    words={`${title} —`}
+    theme="t-light"
+    tone="light"
+    eyebrow={`Colony ${p.counterLabel}`}
+    sub={`${p.listingEyebrow} · ${p.location}`}
+    note={`${p.status} · Since ${p.year}`}
+    ctas={[
+      { label: 'All colonies', href: '/ourproject' },
+      { label: 'Enquire', enquire: true, interest: 'A plot in an existing colony', colony: displayTitle(p), solid: true },
+    ]}
+    video={hasFilm ? p.video : undefined}
+    image={hasFilm ? undefined : p.cover}
+    overlayEyebrow={`${p.city} · ${p.status}`}
+    overlayTitle={titleLines(p).join('<br/>')}
+    overlayText={p.desc}
+    alt={hasFilm ? p.video.alt : p.cover.alt}
+  />
+  <ProjectFacts p={p} />
+  <ProjectAbout p={p} photos={aboutPhotos} />
+  {p.bookingMap && <BookingMap project={p} />}
+  <ProjectAmenities p={p} photo={amenityPhoto} />
+  <ProjectGallery p={p} photos={photos} />
+  <ProjectEnquiry p={p} photo={enquiryPhoto} />
+  <OtherColonies p={p} />
+</Base>

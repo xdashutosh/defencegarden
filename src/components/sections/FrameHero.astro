@@ -1,0 +1,121 @@
+---
+// Realevate hero (giant marquee line with a framed image/video at its centre) that expands on scroll into an
+// era.estate full-bleed scene with an overlay title. Reused by Home, Vision, Colonies and project pages.
+import Img from '../ui/Img.astro';
+import Vid from '../ui/Vid.astro';
+import Icon from '../ui/Icon.astro';
+import Ornament from '../ui/Ornament.astro';
+import { vision as getVision, visionVideo as getVisionVideo } from '../../lib/vision.js';
+
+interface Cta { label: string; href?: string; enquire?: boolean; interest?: string; colony?: string; solid?: boolean }
+interface Props {
+  words: string;                 // marquee line
+  theme?: string;                // t-light | t-ivory | t-green | t-night …
+  tone?: 'light' | 'dark';       // header tone over the marquee part
+  eyebrow?: string;              // small label bottom-left
+  sub?: string;                  // centred line under the marquee
+  note?: string;                 // small boxed label under the sub (realevate "STARTING FROM …")
+  ctas?: Cta[];
+  image?: unknown;               // DG media (key / data object)
+  vision?: string;               // concept image key
+  video?: unknown;               // DG video key / data object
+  visionVideo?: string;          // concept film key
+  concept?: boolean;             // show the "Concept visualisation" tag on the media
+  overlayEyebrow?: string;
+  overlayTitle?: string;         // deco capitals once full screen
+  overlayText?: string;
+  frameW?: string;               // frame size (CSS length) — default responsive
+  frameH?: string;
+  alt?: string;
+}
+const {
+  words, theme = 't-light', tone = 'light', eyebrow, sub, note, ctas = [], image, vision, video, visionVideo,
+  concept = false, overlayEyebrow, overlayTitle, overlayText, frameW, frameH, alt,
+} = Astro.props;
+// The concept tag appears only when licensed concept media is actually rendered (never on DG's own photos).
+const usingConcept = Boolean((visionVideo && getVisionVideo(visionVideo)) || (!visionVideo && !video && vision && getVision(vision)) || (visionVideo && !getVisionVideo(visionVideo) && !video && vision && getVision(vision)));
+const style = [frameW && `--fh-w:${frameW}`, frameH && `--fh-h:${frameH}`].filter(Boolean).join(';');
+---
+<section class={`fh ${theme}`} data-frame-hero data-header-tone={tone} style={style || undefined}>
+  <div class="fh__zone" data-header-tone="dark" aria-hidden="true"></div>
+  <div class="fh__sticky">
+    <div class="fh__probe" data-fh-probe aria-hidden="true"></div>
+    <div class="fh__ui" data-fh-ui>
+      <h1 class="sr-only">{words.replace(/[—–·]+\s*$/, '').trim()}</h1>
+      <div class="fh__marquee" aria-hidden="true">
+        <div class="fh__track" data-marquee data-marquee-speed="55">
+          <div class="fh__row" data-marquee-track>
+            {[0, 1, 2, 3].map(() => <span class="marquee-type fh__word" data-fh-line>{words}&nbsp;</span>)}
+          </div>
+        </div>
+      </div>
+      <div class="fh__center">
+        {sub && <p class="fh__sub balance" data-fh-sub>{sub}</p>}
+        {note && <p class="fh__note" data-fh-note><span>{note}</span></p>}
+      </div>
+      <div class="fh__bottom">
+        <p class="eyebrow fh__eyebrow" data-fh-fade>{eyebrow}</p>
+        <div class="fh__ctas" data-fh-fade>
+          {ctas.map((c) => c.href
+            ? <a class={`btn ${c.solid ? 'btn--solid' : ''}`} href={c.href}><span>{c.label}</span><Icon name="arrow-right" /></a>
+            : <button class={`btn ${c.solid ? 'btn--solid' : ''}`} type="button" data-enquire data-interest={c.interest} data-colony={c.colony}><span>{c.label}</span><Icon name="arrow-right" /></button>)}
+        </div>
+      </div>
+    </div>
+    <div class="fh__media" data-fh-media>
+      {visionVideo || video
+        ? <Vid vision={visionVideo} src={video} class="fh__fill" eager label={alt} />
+        : <Img vision={vision} src={image} class="fh__fill" eager sizes="100vw" alt={alt} />}
+      <div class="fh__shade" data-fh-shade aria-hidden="true"></div>
+      {(concept || usingConcept) && usingConcept && <span class="concept-tag">Concept visualisation</span>}
+    </div>
+    {(overlayTitle || overlayText) && (
+      <div class="fh__overlay t-night" data-fh-overlay>
+        <Ornament variant="diamond" class="fh__orn" />
+        {overlayEyebrow && <p class="eyebrow eyebrow--accent">{overlayEyebrow}</p>}
+        {overlayTitle && <p class="deco fh__otitle" set:html={overlayTitle} />}
+        {overlayText && <p class="lead fh__otext balance">{overlayText}</p>}
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  /* realevate composition: the frame and its marquee line sit at --fh-y (41% of the viewport), subtitle and boxed
+     label below, small eyebrow bottom-left; actions live in the global dock (bottom-right). */
+  .fh { position: relative; height: 260vh; --fh-w: clamp(170px, 19vw, 380px); --fh-h: clamp(170px, 19vw, 380px); --fh-y: 41%; }
+  .fh__zone { position: absolute; left: 0; right: 0; top: 45%; bottom: 0; pointer-events: none; }
+  .fh__sticky { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+  .fh__probe { position: absolute; left: 50%; top: var(--fh-y); width: var(--fh-w); height: var(--fh-h); transform: translate(-50%, -50%); visibility: hidden; pointer-events: none; }
+  .fh__ui { position: absolute; inset: 0; }
+  .fh__marquee { position: absolute; left: 0; right: 0; top: var(--fh-y); transform: translateY(-50%); overflow: hidden; padding-block: .04em; }
+  .fh__row { display: flex; width: max-content; }
+  .fh__word { display: inline-block; padding-right: .18em; }
+  .fh__center { position: absolute; left: 50%; top: 72.5%; transform: translateX(-50%); width: min(92vw, 760px); display: grid; justify-items: center; gap: clamp(14px, 1.6vw, 26px); text-align: center; }
+  .fh__sub { font-family: var(--f-sans); font-weight: 500; font-size: clamp(17px, 1.65vw, 30px); line-height: 1.3; letter-spacing: -.01em; max-width: 40ch; }
+  .fh__note { font-family: var(--f-wide); font-stretch: 125%; font-weight: 500; font-size: clamp(10px, .9vw, 14px); letter-spacing: .08em; text-transform: uppercase; line-height: 1.35; }
+  .fh__note span { display: inline-block; padding: .3em .7em; border: 1px solid currentColor; }
+  .fh__bottom { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-between; align-items: end; gap: var(--gutter); padding: 0 var(--gutter) calc(var(--gutter) + 6px); }
+  .fh__eyebrow { font-size: 10px; }
+  .fh__ctas { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; margin-bottom: 56px; }
+  .fh__ctas:empty { display: none; }
+  .fh__media { position: absolute; inset: 0; z-index: 2; clip-path: inset(calc(var(--fh-y) - var(--fh-h) / 2) calc(50% - var(--fh-w) / 2) calc(100% - var(--fh-y) - var(--fh-h) / 2)); }
+  .fh__media :global(.fh__fill) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+  .fh__shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,26,58,.35), rgba(6,26,58,.05) 40%, rgba(6,26,58,.55)); pointer-events: none; opacity: 0; }
+  .fh__overlay { position: absolute; inset: 0; z-index: 3; background: radial-gradient(ellipse 58% 52% at 50% 50%, rgba(6,26,58,.55), rgba(6,26,58,.18) 70%, transparent); display: grid; place-content: center; justify-items: center; text-align: center; gap: 22px; padding: var(--gutter); opacity: 0; visibility: hidden; color: #f4ede6; }
+  .fh__orn { width: 26px; color: var(--copper); }
+  .fh__otitle { max-width: 14ch; text-shadow: 0 2px 30px rgba(6,26,58,.35); }
+  .fh__otext { max-width: 44ch; opacity: .92; }
+  @media (max-width: 860px) {
+    .fh { height: 220vh; --fh-w: 40vw; --fh-h: 40vw; --fh-y: 42%; }
+    .fh__center { top: 66%; }
+    .fh__sub { font-size: 17px; }
+    .fh__eyebrow { display: none; }
+    .fh__ctas { margin-bottom: 60px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fh { height: auto; }
+    .fh__sticky { position: relative; height: auto; min-height: 100svh; }
+    .fh__overlay { position: relative; opacity: 1; visibility: visible; background: var(--navy-deep); padding-block: 80px; }
+  }
+</style>

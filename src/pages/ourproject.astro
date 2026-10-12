@@ -1,0 +1,32 @@
+---
+// /ourproject — "Our Colonies": the ten Defence Garden townships (real projects and media only).
+import Base from '../layouts/Base.astro';
+import FrameHero from '../components/sections/FrameHero.astro';
+import ColonyCollection from '../components/projects/ColonyCollection.astro';
+import FilmBand from '../components/projects/FilmBand.astro';
+import ColonyClosing from '../components/projects/ColonyClosing.astro';
+import { getProject, projects } from '../lib/site.js';
+import page from '../data/pages/ourproject.json';
+
+const riverGreen = getProject(1);
+const cities = [...new Set(projects.map((p) => p.city))];
+---
+<Base path="/ourproject" namespace="colonies" tone="dark">
+  <FrameHero
+    words="Legacy Townships —"
+    theme="t-green"
+    tone="dark"
+    eyebrow={page.collection.eyebrow.text}
+    sub={page.noJsFallback.text}
+    note={cities.join(' · ')}
+    ctas={[{ label: 'Plan a site visit', enquire: true, interest: 'Site visit' }]}
+    image={riverGreen.cover}
+    overlayEyebrow="Defence Garden · Since 2006"
+    overlayTitle="Ten colonies.<br/>One standard."
+    overlayText={page.banner.text}
+    alt={riverGreen.cover.alt}
+  />
+  <ColonyCollection />
+  <FilmBand />
+  <ColonyClosing />
+</Base>

@@ -1,0 +1,443 @@
+---
+// "Booking layout map" section for the two colonies with a plot layout: /project/1 (River Green) and
+// /project/5 (Defence Garden Phase 2). Renders nothing for other projects.
+//
+// - The plot SVG (src/data/maps/<id>.svg) is inlined at build time; the map JSON is used here only (plot
+//   labels for the search list, content box). Neither enters the client bundle.
+// - Behaviour: src/scripts/modules/plotmap.js → src/scripts/booking/map.js (global runtime, Barba-safe):
+//   pan/zoom, search, keyboard, side panel, live status from the read-only plot-status endpoint.
+// - No online payment / booking POST: the panel's CTA opens the WhatsApp enquiry modal (data-enquire).
+// - Anchors: #booking-map (section) and #map (old site's anchor) — do not add them again on the page.
+//
+// Props: project — a project object from projects.json or its id/slug.
+import Icon from '../ui/Icon.astro';
+import Ornament from '../ui/Ornament.astro';
+import { getProject, displayTitle, phone, telHref, sharedProjectData } from '../../lib/site.js';
+import rgSvg from '../../data/maps/river-green.svg?raw';
+import dgSvg from '../../data/maps/dg-phase-2.svg?raw';
+import rgData from '../../data/maps/river-green.json';
+import dgData from '../../data/maps/dg-phase-2.json';
+
+interface Props { project: unknown; class?: string }
+const { project, class: cls = '' } = Astro.props;
+
+const p: any = getProject(project as any);
+const MAPS: Record<string, { svg: string; data: any }> = {
+  '1': { svg: rgSvg, data: rgData },
+  '5': { svg: dgSvg, data: dgData },
+};
+const entry = p && p.hasMap !== false && p.bookingMap ? MAPS[String(p.id)] : null;
+
+let view: any = null;
+if (entry) {
+  const { data } = entry;
+  const bm = p.bookingMap;
+  const title = displayTitle(p);
+  const box = (data.contentBox || data.viewBox || [0, 0, 1460, 1370]).join(' ');
+  const svg = entry.svg
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .replace('<svg ', '<svg preserveAspectRatio="xMidYMid meet" focusable="false" ');
+  const natural = (a: string, b: string) => a.localeCompare(b, 'en', { numeric: true, sensitivity: 'base' });
+  const labels = [...new Set((data.plots || []).map((pl: any) => String(pl.label || pl.id)))].sort(natural as any) as string[];
+  const example = (data.plots || []).map((pl: any) => pl.id).find((id: string) => /^[A-Z]-\d{2}$/.test(id)) || labels[0];
+  const api = (import.meta.env.PUBLIC_DG_API_BASE || bm.api || 'https://rivergreenbackend.onrender.com/api').replace(/\/+$/, '');
+  const mapStrings = sharedProjectData?.detailPage?.map || {};
+  view = {
+    id: data.id,
+    title,
+    colony: bm.colonyName || data.colonyName,
+    siteId: bm.siteId || data.backend?.siteId || '1',
+    endpoint: data.backend?.plotsEndpoint || `/colony-maps/public/site-plots/${bm.siteId || '1'}`,
+    api,
+    box,
+    ratio: (data.contentBox || [0, 0, 1460, 1370]).slice(2).join(' / '),
+    svg,
+    labels,
+    example,
+    heading: mapStrings.heading || 'Booking Layout Map',
+    liveLabel: mapStrings.liveLabel || 'Live Availability',
+  };
+}
+const sales = phone('sales');
+const uid = view ? `pm-${view.id}` : 'pm';
+---
+{view && (
+  <section
+    class:list={['bmap t-night section', cls]}
+    id="booking-map"
+    data-header-tone="dark"
+    aria-labelledby={`${uid}-title`}
+    data-plotmap={view.id}
+    data-map-id={view.id}
+    data-colony={view.colony}
+    data-title={view.title}
+    data-api={view.api}
+    data-site-id={view.siteId}
+    data-endpoint={view.endpoint}
+    data-box={view.box}
+    data-live="loading"
+    data-selected="false"
+  >
+    <span id="map" class="bmap__anchor" aria-hidden="true"></span>
+    <Ornament variant="fan" class="bmap__fan" />
+    <div class="wrap">
+      <header class="bmap__head">
+        <div class="bmap__heading">
+          <p class="eyebrow eyebrow--accent" data-reveal="fade">{view.liveLabel} · {view.title}</p>
+          <h2 class="deco bmap__title" id={`${uid}-title`} data-reveal="lines">{view.heading}</h2>
+        </div>
+        <p class="lead bmap__lead balance" data-reveal="fade" data-reveal-delay="0.1">
+          Explore the layout, check a plot’s status and enquire with our sales team in one tap.
+        </p>
+      </header>
+
+      <div class="bmap__grid">
+        <div class="bmap__bar">
+          <ul class="pm-legend" aria-label="Map legend">
+            <li data-state="available"><i class="pm-sw" aria-hidden="true"></i><span>Available</span><b data-pm-count="available">—</b></li>
+            <li data-state="reserved"><i class="pm-sw" aria-hidden="true"></i><span>Reserved</span><b data-pm-count="reserved">—</b></li>
+            <li data-state="sold"><i class="pm-sw" aria-hidden="true"></i><span>Sold</span><b data-pm-count="sold">—</b></li>
+            <li data-state="selected"><i class="pm-sw" aria-hidden="true"></i><span>Selected</span></li>
+          </ul>
+          <div class="pm-live">
+            <span class="pm-live__dot" aria-hidden="true"></span>
+            <span class="pm-live__text" data-pm-live>Checking live availability…</span>
+            <button type="button" class="pm-live__retry link-line" data-pm-retry data-pm-note hidden>Retry</button>
+          </div>
+          <p class="sr-only" data-pm-status aria-live="polite"></p>
+        </div>
+
+        <form class="pm-search" data-pm-search role="search" autocomplete="off">
+          <label class="eyebrow pm-search__label" for={`${uid}-q`}>Find a plot</label>
+          <div class="pm-search__row">
+            <input
+              id={`${uid}-q`}
+              class="pm-search__input"
+              type="search"
+              list={`${uid}-list`}
+              placeholder={`Plot no. — e.g. ${view.example}`}
+              autocomplete="off"
+              autocapitalize="characters"
+              spellcheck="false"
+              enterkeyhint="search"
+              maxlength="12"
+            />
+            <button type="submit" class="pm-search__go" aria-label="Show plot on the map"><Icon name="arrow-right" /></button>
+          </div>
+          <p class="pm-search__msg small" data-pm-search-msg role="status" hidden></p>
+          <datalist id={`${uid}-list`}>{view.labels.map((l: string) => <option value={l} />)}</datalist>
+        </form>
+
+        <div class="bmap__stage">
+          <div class="bmap__frame" style={`--pm-ratio: ${view.ratio}`}>
+            <div
+              class="pm-viewport"
+              data-pm-viewport
+              tabindex="0"
+              aria-label={`${view.title} plot layout. Arrow keys move between plots, Enter selects a plot, plus and minus zoom, 0 fits the map.`}
+            >
+              <Fragment set:html={view.svg} />
+              <div class="pm-tip" data-pm-tip hidden aria-hidden="true"></div>
+              <p class="pm-hint" data-pm-hint aria-hidden="true"></p>
+            </div>
+            <div class="pm-zoom" role="group" aria-label="Map zoom">
+              <button type="button" class="pm-zoom__btn" data-pm-zoom="in" aria-label="Zoom in"><Icon name="plus" /></button>
+              <button type="button" class="pm-zoom__btn" data-pm-zoom="out" aria-label="Zoom out">
+                <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14" /></svg>
+              </button>
+              <button type="button" class="pm-zoom__btn" data-pm-zoom="fit" aria-label="Fit the whole map"><Icon name="expand" /></button>
+            </div>
+            <span class="bmap__corner bmap__corner--tl" aria-hidden="true"></span>
+            <span class="bmap__corner bmap__corner--tr" aria-hidden="true"></span>
+            <span class="bmap__corner bmap__corner--bl" aria-hidden="true"></span>
+            <span class="bmap__corner bmap__corner--br" aria-hidden="true"></span>
+          </div>
+          <noscript>
+            <p class="small pm-noscript">The interactive map needs JavaScript. Call {sales.display} for current availability.</p>
+          </noscript>
+        </div>
+
+        <aside class="bmap__panel" data-pm-panel aria-label="Selected plot">
+          <div class="pm-empty" data-pm-empty>
+            <Ornament variant="spire" class="pm-empty__orn" />
+            <p class="eyebrow eyebrow--accent">Plot finder</p>
+            <p class="serif serif--sm pm-empty__title">Select a plot to see its status</p>
+            <p class="small muted">Click any plot on the layout, or search by its number. Arrow keys move between plots; + and − zoom; drag to pan when zoomed in.</p>
+            <a class="pm-empty__call small link-line" href={telHref('sales')}><Icon name="phone" /> Sales · {sales.display}</a>
+          </div>
+
+          <div class="pm-card" data-pm-card hidden>
+            <button type="button" class="pm-card__close" data-pm-close aria-label="Close plot details"><Icon name="close" /></button>
+            <p class="eyebrow eyebrow--accent">{view.title}</p>
+            <div class="pm-card__top">
+              <h3 class="pm-card__title"><span class="pm-card__pre">Plot</span> <span data-pm-card-id></span></h3>
+              <p class="pm-pill" data-pm-card-pill data-state="loading"></p>
+            </div>
+            <dl class="pm-facts" data-pm-card-facts hidden></dl>
+            <p class="small pm-card__note" data-pm-card-note hidden></p>
+            <div class="pm-card__actions">
+              <button
+                type="button"
+                class="btn btn--copper pm-card__cta"
+                data-pm-card-enquire
+                data-enquire
+                data-interest="A plot in an existing colony"
+                data-colony={view.title}
+              >
+                <Icon name="whatsapp" /><span data-pm-card-enquire-label>Enquire about this plot</span>
+              </button>
+              <a class="pm-card__call small link-line" href={telHref('sales')}><span class="pm-card__call-pre">or call </span>{sales.display}</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+)}
+
+<style is:global>
+  /* ------------------------------------------------------------------ section */
+  .bmap {
+    --pm-ground: #ebe4d7;
+    --pm-land: #f6f0e6;
+    --pm-road: #d8dae2;
+    --pm-ring: #c9cdd8;
+    --pm-highway: #bfc4d1;
+    --pm-green: #d2dbc9;
+    --pm-ink: #061a3a;
+    --pm-avail: #ffffff;
+    --pm-reserved: #eacbbb;
+    --pm-hatch: #a8705f;
+    --pm-sold: #061a3a;
+    --pm-selected: #cf8f7d;
+    --pm-unknown: #faf6ef;
+    --pm-line: color-mix(in srgb, var(--fg) 16%, transparent);
+    position: relative;
+    overflow: clip;
+    isolation: isolate;
+  }
+  .bmap__anchor { position: absolute; top: 0; left: 0; }
+  .bmap__fan { position: absolute; z-index: -1; right: -12%; top: -6%; width: 62%; height: auto; color: var(--copper); opacity: .08; pointer-events: none; }
+  .bmap__head { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); align-items: end; gap: 24px var(--gutter); margin-bottom: clamp(36px, 4.6vw, 76px); }
+  .bmap__heading { display: grid; gap: 18px; }
+  .bmap__title { font-size: clamp(42px, 6.4vw, 116px); }
+  .bmap__lead { max-width: 34ch; justify-self: end; color: color-mix(in srgb, var(--fg) 78%, transparent); }
+
+  .bmap__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(300px, 24vw, 380px);
+    grid-template-areas: "bar search" "stage panel";
+    column-gap: clamp(24px, 2.6vw, 48px);
+    row-gap: 20px;
+    align-items: start;
+  }
+  .bmap__bar { grid-area: bar; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 28px; min-height: 52px; align-self: end; }
+  .pm-search { grid-area: search; align-self: end; position: relative; }
+  .bmap__stage { grid-area: stage; position: relative; min-width: 0; }
+  .bmap__panel { grid-area: panel; position: relative; align-self: stretch; }
+
+  /* ------------------------------------------------------------------ legend + live line */
+  .pm-legend { display: flex; flex-wrap: wrap; gap: 10px 22px; font-family: var(--f-wide); font-stretch: 125%; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; }
+  .pm-legend li { display: inline-flex; align-items: center; gap: 9px; }
+  .pm-legend b { font-family: var(--f-sans); font-stretch: 100%; font-weight: 500; font-size: 13px; letter-spacing: 0; color: var(--accent); min-width: 1ch; }
+  .pm-sw { width: 14px; height: 14px; flex: none; border: 1px solid color-mix(in srgb, var(--fg) 45%, transparent); background: var(--pm-avail); }
+  .pm-legend [data-state='reserved'] .pm-sw { background: repeating-linear-gradient(45deg, var(--pm-hatch) 0 1.5px, var(--pm-reserved) 1.5px 4.5px); }
+  .pm-legend [data-state='sold'] .pm-sw { background: var(--pm-sold); border-color: color-mix(in srgb, var(--fg) 60%, transparent); }
+  .pm-legend [data-state='selected'] .pm-sw { background: var(--pm-selected); border-color: var(--pm-selected); }
+
+  .pm-live { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; color: color-mix(in srgb, var(--fg) 72%, transparent); min-height: 24px; }
+  .pm-live__dot { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--copper); flex: none; }
+  .pm-live__dot::after { content: ''; position: absolute; inset: -5px; border-radius: 50%; border: 1px solid var(--copper); opacity: 0; }
+  .bmap[data-live='loading'] .pm-live__dot::after { animation: pm-ping 1.6s var(--ease-out) infinite; }
+  .bmap[data-live='live'] .pm-live__dot { background: #8fc3a0; }
+  .bmap[data-live='live'] .pm-live__dot::after { border-color: #8fc3a0; animation: pm-ping 2.4s var(--ease-out) infinite; }
+  .bmap[data-live='offline'] .pm-live__dot { background: transparent; border: 1px solid var(--copper); }
+  .pm-live__retry { color: var(--accent); font-size: 13px; }
+  .pm-live__retry[hidden], .pm-search__msg[hidden] { display: none; }
+  @keyframes pm-ping { 0% { transform: scale(.4); opacity: .9; } 100% { transform: scale(1.5); opacity: 0; } }
+
+  /* ------------------------------------------------------------------ search */
+  .pm-search__label { display: block; margin-bottom: 10px; color: color-mix(in srgb, var(--fg) 70%, transparent); }
+  .pm-search__row { display: flex; align-items: center; border-bottom: 1px solid color-mix(in srgb, var(--fg) 40%, transparent); transition: border-color .4s; }
+  .pm-search__row:focus-within { border-bottom-color: var(--copper); }
+  .pm-search.is-miss .pm-search__row { border-bottom-color: #e2877a; }
+  .pm-search__input { flex: 1; min-width: 0; height: 44px; border: 0; background: transparent; font-size: 16px; letter-spacing: .02em; text-transform: uppercase; border-radius: 0; }
+  .pm-search__input::placeholder { text-transform: none; color: color-mix(in srgb, var(--fg) 45%, transparent); }
+  .pm-search__input:focus { outline: none; }
+  .pm-search__input::-webkit-search-cancel-button { display: none; }
+  .pm-search__go { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; transition: background .35s, color .35s; }
+  .pm-search__go:hover { background: var(--copper); color: var(--navy-deep); }
+  .pm-search__go .ico { width: 18px; height: 18px; }
+  .pm-search__msg { position: absolute; left: 0; top: 100%; margin-top: 6px; color: #f0b3a6; }
+
+  /* ------------------------------------------------------------------ frame + viewport */
+  .bmap__frame { position: relative; padding: 12px; border: 1px solid color-mix(in srgb, var(--copper) 42%, transparent); }
+  .bmap__corner { position: absolute; width: 22px; height: 22px; border-color: var(--copper); border-style: solid; border-width: 0; pointer-events: none; }
+  .bmap__corner--tl { top: -5px; left: -5px; border-top-width: 1px; border-left-width: 1px; }
+  .bmap__corner--tr { top: -5px; right: -5px; border-top-width: 1px; border-right-width: 1px; }
+  .bmap__corner--bl { bottom: -5px; left: -5px; border-bottom-width: 1px; border-left-width: 1px; }
+  .bmap__corner--br { bottom: -5px; right: -5px; border-bottom-width: 1px; border-right-width: 1px; }
+
+  .pm-viewport {
+    position: relative; overflow: hidden; width: 100%;
+    aspect-ratio: var(--pm-ratio, 1460 / 1334);
+    max-height: max(440px, calc(100svh - var(--header-h) - 150px));
+    background: var(--pm-ground);
+    color: var(--pm-ink);
+    touch-action: pan-y;
+    cursor: default;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none; -webkit-user-select: none;
+  }
+  .pm-viewport.is-zoomed { cursor: grab; }
+  .pm-viewport.is-dragging, .pm-viewport.is-dragging .pm-plot { cursor: grabbing; }
+  .pm-viewport:focus-visible { outline: 2px solid var(--copper); outline-offset: 4px; }
+  .pm-viewport > svg { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; }
+
+  .pm-zoom { position: absolute; right: 26px; bottom: 26px; z-index: 3; display: grid; gap: 1px; background: color-mix(in srgb, var(--pm-ink) 14%, transparent); border: 1px solid color-mix(in srgb, var(--pm-ink) 14%, transparent); box-shadow: 0 10px 30px rgba(6, 26, 58, .14); }
+  .pm-zoom__btn { width: 42px; height: 42px; display: grid; place-items: center; background: #fff; color: var(--pm-ink); transition: background .3s, color .3s; }
+  @media (hover: hover) { .pm-zoom__btn:hover { background: var(--pm-ink); color: #f4ede6; } }
+  .pm-zoom__btn:active { background: var(--pm-ink); color: #f4ede6; }
+  .pm-zoom__btn .ico { width: 18px; height: 18px; }
+
+  .pm-tip {
+    position: absolute; left: 0; top: 0; z-index: 4; pointer-events: none; white-space: nowrap;
+    padding: 7px 10px; background: #fff; color: var(--pm-ink); border: 1px solid color-mix(in srgb, var(--pm-ink) 18%, transparent);
+    font-family: var(--f-wide); font-stretch: 125%; font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+    opacity: 0; transition: opacity .25s;
+  }
+  .pm-tip.is-on { opacity: 1; }
+  .pm-hint {
+    position: absolute; left: 50%; top: 18px; z-index: 4; transform: translate(-50%, -8px); pointer-events: none;
+    padding: 9px 14px; border-radius: 999px; background: rgba(6, 26, 58, .86); color: #f4ede6; white-space: nowrap;
+    font-family: var(--f-wide); font-stretch: 125%; font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+    opacity: 0; transition: opacity .4s, transform .6s var(--ease-out);
+  }
+  .pm-hint.is-on { opacity: 1; transform: translate(-50%, 0); }
+  .pm-noscript { margin-top: 14px; }
+
+  /* ------------------------------------------------------------------ the SVG */
+  .bmap .pm { font-family: var(--f-sans); }
+  .bmap .pm-ground { fill: var(--pm-ground); }
+  .bmap .pm-land { fill: var(--pm-land); }
+  .bmap .pm-road, .bmap .pm-road--ring-fill, .bmap .pm-road--roundabout { fill: var(--pm-road); }
+  .bmap .pm-road--ring { fill: none; stroke: var(--pm-ring); }
+  .bmap .pm-road--highway { fill: var(--pm-highway); }
+  .bmap .pm-road-line { stroke: var(--pm-ink); stroke-opacity: .22; stroke-width: .75; fill: none; }
+  .bmap .pm-green { fill: var(--pm-green); }
+  .bmap .pm-green--fountain-island { fill: var(--pm-land); stroke: var(--pm-ink); stroke-opacity: .45; stroke-width: .75; }
+  .bmap .pm-fountain-rings circle { fill: none; stroke: var(--pm-ink); stroke-opacity: .3; stroke-width: .75; }
+  .bmap .pm-pat-dots circle { fill: var(--pm-ink); opacity: .28; }
+  .bmap .pm-pat-hatch rect { fill: var(--pm-hatch); opacity: .55; }
+  .bmap .pm-water { fill: var(--pm-ink); opacity: .55; }
+  .bmap .pm-water--core { fill: var(--pm-ink); opacity: .7; }
+  .bmap .pm-outline { fill: none; stroke: var(--pm-ink); stroke-opacity: .3; stroke-width: .6; stroke-dasharray: 3 3; }
+  .bmap .pm-feature__shape { fill: #fff; stroke: var(--pm-ink); stroke-opacity: .5; stroke-width: .75; }
+  .bmap .pm-feature--unit-static .pm-feature__shape { fill: #efe2da; }
+  .bmap .pm-feature__label { fill: var(--pm-ink); font-weight: 500; }
+  .bmap .pm-label { fill: var(--pm-ink); pointer-events: none; }
+  .bmap .pm-label--road-label { font-family: var(--f-deco); font-weight: 400; fill-opacity: .5; }
+  .bmap .pm-label--area-label { font-family: var(--f-deco); font-weight: 500; fill-opacity: .6; }
+  .bmap .pm-label--feature-label { font-family: var(--f-deco); font-weight: 400; fill: var(--copper-deep); }
+  .bmap .pm-label--dimension { fill-opacity: .55; }
+  .bmap .pm-dim { fill: var(--pm-ink); fill-opacity: .5; }
+  .bmap .pm[data-zoom-level='far'] .pm-dims, .bmap .pm:not([data-zoom-level]) .pm-dims { display: none; }
+  .bmap .pm-trees use { fill: var(--green); fill-opacity: .32; }
+  .bmap .pm-wall rect { fill: var(--pm-ink); opacity: .5; }
+  .bmap .pm-crossing line { stroke: #fff; stroke-width: 1.5; }
+  .bmap .pm-compass__ring { fill: var(--pm-land); stroke: var(--pm-ink); stroke-width: 1; }
+  .bmap .pm-compass__needle { fill: var(--copper-deep); }
+  .bmap .pm-compass__needle--ew { fill: var(--pm-ink); opacity: .45; }
+  .bmap .pm-compass__n { fill: var(--pm-ink); font-weight: 500; }
+
+  .bmap .pm-plot { cursor: pointer; outline: none; }
+  .bmap .pm-plot__shape {
+    fill: var(--pm-unknown); stroke: var(--pm-ink); stroke-opacity: .3; stroke-width: .75; vector-effect: non-scaling-stroke;
+    transition: fill .45s var(--ease-out), stroke .3s, stroke-opacity .3s;
+  }
+  .bmap .pm-plot__hatch { fill: url(#rg-pat-hatch); pointer-events: none; }
+  .bmap .pm--dg-phase-2 .pm-plot__hatch { fill: url(#dg2-pat-hatch); }
+  .bmap .pm-plot__label { fill: var(--pm-ink); font-weight: 500; letter-spacing: .02em; pointer-events: none; transition: fill .45s var(--ease-out); }
+  .bmap .pm-plot[data-status='loading'] .pm-plot__label, .bmap .pm-plot[data-status='unknown'] .pm-plot__label { fill-opacity: .72; }
+  .bmap .pm-plot[data-status='available'] .pm-plot__shape { fill: var(--pm-avail); stroke-opacity: .38; }
+  .bmap .pm-plot[data-status='reserved'] .pm-plot__shape { fill: var(--pm-reserved); }
+  .bmap .pm-plot[data-status='sold'] .pm-plot__shape { fill: var(--pm-sold); stroke-opacity: .8; }
+  .bmap .pm-plot[data-status='sold'] .pm-plot__label { fill: #f4ede6; }
+  .bmap .pm-plot[data-status='unavailable'] .pm-plot__shape { fill: color-mix(in srgb, var(--pm-sold) 62%, #fff); }
+  .bmap .pm-plot[data-status='unavailable'] .pm-plot__label { fill: #f4ede6; }
+  .bmap .pm-plot:hover .pm-plot__shape { stroke: var(--pm-ink); stroke-opacity: 1; stroke-width: 1.6; }
+  .bmap .pm-plot.is-selected .pm-plot__shape { fill: var(--pm-selected); stroke: var(--pm-ink); stroke-opacity: 1; stroke-width: 2; }
+  .bmap .pm-plot.is-selected .pm-plot__hatch { display: none; }
+  .bmap .pm-plot.is-selected .pm-plot__label { fill: var(--pm-ink); fill-opacity: 1; }
+  .bmap .pm-plot:focus-visible .pm-plot__shape, .bmap .pm-plot.is-focus:focus .pm-plot__shape { stroke: var(--copper-deep); stroke-opacity: 1; stroke-width: 3; }
+
+  /* ------------------------------------------------------------------ side panel */
+  .pm-empty, .pm-card { display: grid; align-content: start; gap: 16px; padding: clamp(24px, 2.2vw, 36px); border: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); height: 100%; }
+  .pm-empty[hidden], .pm-card[hidden] { display: none; }
+  .pm-empty__orn { width: 46px; height: 46px; color: var(--copper); margin-bottom: 8px; }
+  .pm-empty__title { font-size: clamp(26px, 2.2vw, 38px); }
+  .pm-empty__call { display: inline-flex; align-items: center; gap: 8px; justify-self: start; margin-top: 8px; color: var(--accent); }
+  .pm-card { position: relative; background: color-mix(in srgb, #f4ede6 4%, var(--navy-deep)); }
+  .pm-card__close { position: absolute; top: 14px; right: 14px; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--fg) 22%, transparent); transition: background .3s, color .3s; }
+  .pm-card__close:hover { background: var(--fg); color: var(--bg); }
+  .pm-card__close .ico { width: 16px; height: 16px; }
+  .pm-card__top { display: grid; gap: 16px; justify-items: start; }
+  .pm-card__title { display: flex; align-items: baseline; gap: .28em; font-family: var(--f-sans); font-weight: 500; font-size: clamp(44px, 4.4vw, 76px); line-height: .95; letter-spacing: -.04em; margin-top: 4px; }
+  .pm-card__pre { font-family: var(--f-serif); font-weight: 300; font-style: italic; font-size: .5em; letter-spacing: 0; color: var(--accent); }
+  .pm-pill { justify-self: start; display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--fg) 40%, transparent); font-family: var(--f-wide); font-stretch: 125%; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; }
+  .pm-pill::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: currentColor; opacity: .5; }
+  .pm-pill[data-state='available'] { background: #fff; color: var(--navy-deep); border-color: #fff; }
+  .pm-pill[data-state='available']::before { background: #3f8a5a; opacity: 1; }
+  .pm-pill[data-state='reserved'] { background: var(--pm-reserved); color: var(--navy-deep); border-color: var(--pm-reserved); }
+  .pm-pill[data-state='reserved']::before { background: var(--pm-hatch); opacity: 1; }
+  .pm-pill[data-state='sold'], .pm-pill[data-state='unavailable'] { background: transparent; color: #f4ede6; border-color: color-mix(in srgb, #f4ede6 50%, transparent); }
+  .pm-facts { display: grid; gap: 0; border-top: 1px solid var(--pm-line); }
+  .pm-facts[hidden] { display: none; }
+  .pm-fact { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--pm-line); }
+  .pm-fact dt { color: color-mix(in srgb, var(--fg) 62%, transparent); }
+  .pm-fact dd { margin: 0; text-align: right; font-size: 15px; }
+  .pm-card__note { color: color-mix(in srgb, var(--fg) 72%, transparent); max-width: 36ch; }
+  .pm-card__actions { display: grid; gap: 14px; justify-items: start; margin-top: 6px; }
+  .pm-card__cta { height: 50px; padding: 0 22px; }
+  .pm-card__call { color: color-mix(in srgb, var(--fg) 72%, transparent); }
+
+  /* ------------------------------------------------------------------ tablet / mobile */
+  @media (max-width: 1100px) and (min-width: 861px) {
+    .bmap__grid { grid-template-columns: minmax(0, 1fr) 300px; }
+  }
+  @media (max-width: 860px) {
+    .bmap__head { grid-template-columns: 1fr; }
+    .bmap__lead { justify-self: start; }
+    .bmap__fan { width: 120%; right: -50%; top: -2%; }
+    .bmap__grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "search" "bar" "stage"; row-gap: 16px; }
+    .bmap__bar { min-height: 0; flex-direction: column; align-items: flex-start; gap: 12px; }
+    .pm-legend { gap: 8px 16px; font-size: 9.5px; }
+    .pm-search__msg { position: static; }
+    .bmap__frame { margin-inline: calc(var(--gutter) * -1); padding: 0; border: 0; border-block: 1px solid color-mix(in srgb, var(--copper) 42%, transparent); }
+    .bmap__corner { display: none; }
+    .pm-viewport { aspect-ratio: auto; height: min(118vw, 70svh); max-height: none; }
+    .pm-zoom { right: 12px; top: 12px; bottom: auto; }
+    .pm-zoom__btn { width: 40px; height: 40px; }
+    .bmap__panel { grid-area: stage; align-self: end; z-index: 5; margin: 0 calc(10px - var(--gutter)) 10px; pointer-events: none; }
+    .pm-empty { display: none !important; }
+    .pm-card { pointer-events: auto; height: auto; max-height: calc(min(118vw, 70svh) - 74px); overflow: auto; overscroll-behavior: contain; gap: 10px; padding: 16px 16px 14px; border-color: color-mix(in srgb, var(--copper) 40%, transparent); box-shadow: 0 -12px 40px rgba(0, 0, 0, .35); background: var(--navy-deep); }
+    .pm-card > .eyebrow { display: none; }
+    .pm-card__top { display: flex; align-items: center; gap: 12px; padding-right: 44px; }
+    .pm-card__title { font-size: 32px; margin: 0; }
+    .pm-pill { height: 26px; padding: 0 10px; font-size: 9px; }
+    .pm-card__close { top: 10px; right: 10px; width: 36px; height: 36px; }
+    .pm-facts { display: flex; flex-wrap: wrap; gap: 4px 16px; border: 0; }
+    .pm-fact { padding: 0; border: 0; gap: 7px; }
+    .pm-fact dt { font-size: 9px; }
+    .pm-fact dd { font-size: 14px; }
+    .pm-card__note { font-size: 12.5px; }
+    .pm-card__actions { grid-template-columns: 1fr auto; align-items: center; justify-items: stretch; gap: 12px; margin-top: 2px; }
+    .pm-card__cta { justify-content: center; height: 46px; padding: 0 16px; font-size: 13.5px; }
+    .pm-card__call { justify-self: end; font-size: 12.5px; }
+    .pm-card__call-pre { display: none; }
+    .pm-hint { top: auto; bottom: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bmap .pm-live__dot::after { animation: none !important; }
+  }
+</style>

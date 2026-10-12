@@ -1,0 +1,81 @@
+---
+// Project page facts bar: crumb + previous/next colony, then Location · City · Status · Since · Map (real data only).
+import Icon from '../ui/Icon.astro';
+import { projects, displayTitle, projectUrl } from '../../lib/site.js';
+
+interface Props { p: any }
+const { p } = Astro.props;
+const i = projects.findIndex((x) => x.id === p.id);
+const prev = projects[(i - 1 + projects.length) % projects.length];
+const next = projects[(i + 1) % projects.length];
+const facts = [
+  { k: 'Location', v: p.location },
+  { k: 'City', v: p.city },
+  { k: 'Status', v: p.status, dot: String(p.status).toLowerCase() },
+  { k: 'Since', v: String(p.year) },
+];
+---
+<section class="pfx t-light" data-header-tone="light" aria-label={`${displayTitle(p)} at a glance`}>
+  <div class="wrap">
+    <div class="pfx__top">
+      <nav class="pfx__crumb eyebrow" aria-label="Breadcrumb">
+        <a class="link-line" href="/ourproject">Our Colonies</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{displayTitle(p)}</span>
+      </nav>
+      <div class="pfx__pager">
+        <a class="round-btn" href={projectUrl(prev)} aria-label={`Previous colony: ${displayTitle(prev)}`}><Icon name="arrow-left" /></a>
+        <span class="eyebrow pfx__count">{p.counterLabel}</span>
+        <a class="round-btn" href={projectUrl(next)} aria-label={`Next colony: ${displayTitle(next)}`}><Icon name="arrow-right" /></a>
+      </div>
+    </div>
+    <dl class="pfx__list">
+      {facts.map((f, n) => (
+        <div class="pfx__item" data-reveal="fade" data-reveal-delay={(n * 0.06).toFixed(2)}>
+          <dt class="eyebrow muted">{f.k}</dt>
+          <dd class="pfx__v">{f.dot && <span class={`pfx__dot pfx__dot--${f.dot}`} aria-hidden="true"></span>}{f.v}</dd>
+        </div>
+      ))}
+      <div class="pfx__item pfx__item--map" data-reveal="fade" data-reveal-delay="0.24">
+        <dt class="eyebrow muted">Map</dt>
+        <dd class="pfx__v">
+          <a class="pfx__map" href={p.mapsUrl} target="_blank" rel="noopener" aria-label={p.mapsAriaLabel || `Open ${displayTitle(p)} in Google Maps`}>
+            <Icon name="pin" /><span class="link-line">Google Maps</span><Icon name="arrow-up-right" />
+          </a>
+        </dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<style>
+  .pfx { padding-block: clamp(28px, 3vw, 48px) clamp(56px, 6vw, 100px); }
+  .pfx__top { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-bottom: clamp(26px, 3vw, 46px); }
+  .pfx__crumb { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; color: color-mix(in srgb, var(--fg) 62%, transparent); }
+  .pfx__crumb [aria-current] { color: var(--fg); }
+  .pfx__pager { display: flex; align-items: center; gap: 12px; }
+  .pfx__count { min-width: 64px; text-align: center; }
+  .pfx__list { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); border-bottom: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); }
+  .pfx__item { display: grid; gap: 14px; align-content: start; padding: clamp(20px, 2.2vw, 34px) clamp(14px, 1.6vw, 26px); }
+  .pfx__item:first-child { padding-left: 0; }
+  .pfx__item + .pfx__item { border-left: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); }
+  .pfx__v { margin: 0; display: flex; align-items: center; gap: 10px; font-size: clamp(20px, 1.9vw, 32px); font-weight: 500; letter-spacing: -.03em; line-height: 1.1; }
+  .pfx__dot { width: 9px; height: 9px; border-radius: 50%; background: var(--copper-deep); flex: none; }
+  .pfx__dot--ongoing { background: #2f9e6a; box-shadow: 0 0 0 4px rgba(47,158,106,.14); }
+  .pfx__map { display: inline-flex; align-items: center; gap: 10px; color: var(--green); }
+  .pfx__map :global(svg) { width: 20px; height: 20px; flex: none; }
+  .pfx__map :global(svg:last-child) { width: 16px; height: 16px; transition: transform .5s var(--ease-out); }
+  .pfx__map:hover :global(svg:last-child) { transform: translate(3px, -3px); }
+  @media (max-width: 1100px) {
+    .pfx__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .pfx__item { padding-inline: 0 16px; border-bottom: 1px solid color-mix(in srgb, var(--fg) 12%, transparent); }
+    .pfx__item + .pfx__item { border-left: 0; }
+    .pfx__item:nth-child(even) { padding-left: 16px; border-left: 1px solid color-mix(in srgb, var(--fg) 12%, transparent); }
+    .pfx__item--map { grid-column: 1 / -1; border-bottom: 0; }
+    .pfx__item--map:nth-child(even) { padding-left: 0; border-left: 0; }
+  }
+  @media (max-width: 560px) {
+    .pfx__top { flex-direction: column; align-items: flex-start; }
+    .pfx__pager { align-self: stretch; justify-content: space-between; }
+  }
+</style>

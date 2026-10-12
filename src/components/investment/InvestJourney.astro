@@ -1,0 +1,57 @@
+---
+// Chapter 05 · Your Journey — era.estate night: deco heading, wide real aerial, four numbered steps on a copper line.
+import Img from '../ui/Img.astro';
+import Ornament from '../ui/Ornament.astro';
+import ChapterHead from './ChapterHead.astro';
+import data from '../../data/pages/investment.json';
+
+const { journey: j } = data;
+---
+<style is:inline>
+  .ivj { position: relative; overflow: hidden; }
+  .ivj__head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(30px, 5vw, 100px); align-items: end; margin-bottom: clamp(50px, 7vw, 120px); }
+  .ivj__head .ivc__title { color: #f4ede6; font-size: clamp(40px, 5.6vw, 104px); }
+  .ivj__img { aspect-ratio: 16 / 9; }
+  .ivj__img img { width: 100%; height: 100%; object-fit: cover; }
+  .ivj__steps { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gutter); }
+  .ivj__line { position: absolute; left: 0; right: 0; top: 31px; height: 1px; background: rgba(244, 237, 230, .16); }
+  .ivj__line span { position: absolute; inset: 0; background: linear-gradient(90deg, var(--copper), rgba(207, 143, 125, .2)); transform-origin: left; }
+  html.js .ivj__line:not(.is-in) span { transform: scaleX(0); }
+  html.js .ivj__line span { transition: transform 2.2s var(--ease-in-out); }
+  html.js .ivj__line.is-in span { transform: scaleX(1); }
+  .ivj__step { position: relative; display: grid; gap: 14px; align-content: start; }
+  .ivj__dot { width: 62px; height: 62px; border-radius: 50%; display: grid; place-items: center; background: var(--navy-deep); border: 1px solid rgba(207, 143, 125, .6); color: var(--copper); font-family: var(--f-deco); font-weight: 300; font-size: 22px; margin-bottom: 14px; }
+  .ivj__t { font-family: var(--f-deco); font-weight: 300; text-transform: uppercase; font-size: clamp(22px, 2vw, 34px); line-height: 1.05; color: #f4ede6; }
+  .ivj__d { max-width: 26ch; }
+  @media (max-width: 960px) { .ivj__head { grid-template-columns: 1fr; } }
+  @media (max-width: 760px) {
+    .ivj__steps { grid-template-columns: 1fr; gap: 34px; padding-left: 0; }
+    .ivj__line { left: 31px; right: auto; top: 0; bottom: 0; width: 1px; height: auto; }
+    .ivj__line span { background: linear-gradient(180deg, var(--copper), rgba(207, 143, 125, .2)); transform-origin: top; }
+    html.js .ivj__line:not(.is-in) span { transform: scaleY(0); }
+    html.js .ivj__line.is-in span { transform: scaleY(1); }
+    .ivj__step { grid-template-columns: 62px 1fr; column-gap: 20px; }
+    .ivj__dot { grid-row: span 3; margin: 0; }
+  }
+</style>
+<section class="ivj t-night section" data-header-tone="dark">
+  <div class="wrap">
+    <div class="ivj__head">
+      <ChapterHead eyebrow={j.eyebrow} title={j.heading.title} accent={j.heading.accent} kind="deco" />
+      <figure class="ivj__img media" data-reveal="clip">
+        <Img src="about.r3" sizes="(min-width: 961px) 52vw, 92vw" widths={[480, 800, 1200, 1600]} data-parallax="0.06" />
+      </figure>
+    </div>
+    <ol class="ivj__steps">
+      <li class="ivj__line" data-reveal="fade" aria-hidden="true"><span></span></li>
+      {j.steps.map((s, i) => (
+        <li class="ivj__step" data-reveal="fade" data-reveal-delay={(0.2 + i * 0.12).toFixed(2)}>
+          <span class="ivj__dot" aria-hidden="true">{s.number}</span>
+          <p class="eyebrow eyebrow--accent">{s.label}</p>
+          <h3 class="ivj__t">{s.title}</h3>
+          <p class="body muted ivj__d">{s.desc}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

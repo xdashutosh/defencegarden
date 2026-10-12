@@ -1,0 +1,10286 @@
+{
+ "id": "dg-phase-2",
+ "title": "Defence Garden Phase 2",
+ "colonyName": "Defence Garden Phase 2",
+ "projectId": 5,
+ "projectSlug": "defence-garden-phase-2",
+ "projectUrl": "/project/5",
+ "backend": {
+  "apiBase": "https://rivergreenbackend.onrender.com/api",
+  "siteId": "1",
+  "plotsEndpoint": "/colony-maps/public/site-plots/1",
+  "plotsQuery": {
+   "colony_name": "Defence Garden Phase 2"
+  },
+  "configEndpoint": "/razorpay/config/1",
+  "configQuery": {
+   "colony_name": "Defence Garden Phase 2"
+  },
+  "bookByIdEndpoint": "POST /bookings/public-book/{plotDbId}",
+  "bookByLabelEndpoint": "POST /bookings/public-book-by-label (plot_label, site_id=1, colony_name)",
+  "razorpay": {
+   "checkoutName": "Defence Garden Phase 2",
+   "themeColor": "#7E22CE",
+   "descriptionTemplate": "Plot {label} Booking",
+   "paymentMethodWithoutRazorpay": "CASH"
+  },
+  "receipt": {
+   "signatoryName": "RiverGreen Sales"
+  }
+ },
+ "viewBox": [
+  0,
+  0,
+  1460,
+  1370
+ ],
+ "contentBox": [
+  0,
+  0,
+  1460,
+  1172
+ ],
+ "source": {
+  "capturedFrom": "https://defencegarden.com/project/5 (DefenceGardenPhase2Map-voeJVUR1.js), rendered in Chrome on 2026-10-12; SVG nodes serialised from the DOM, plot ids read from the React click handlers",
+  "coordinateSpace": "SVG user units, viewBox 0 0 1460 1370 (rows below y=1170 are empty ground — crop to contentBox)",
+  "legacyBackground": "#E9E2CC"
+ },
+ "statusModel": {
+  "source": "GET {apiBase}/colony-maps/public/site-plots/{siteId}?colony_name={colonyName} -> plots[].status, matched on plot_number",
+  "matchRule": "normalise both sides: trim, toUpperCase, strip '(' ')'; look up exact, then without '.' and '-', then with a '-' inserted after the leading letters (C12 -> C-12)",
+  "defaultWhenMissing": "AVAILABLE",
+  "states": {
+   "AVAILABLE": {
+    "label": "Available",
+    "bookable": true,
+    "legacyColor": {
+     "river-green": "#2CA45F",
+     "dg-phase-2": "#22C55E"
+    }
+   },
+   "RESERVED": {
+    "label": "Reserved",
+    "bookable": false,
+    "legacyColor": {
+     "river-green": "#D97706",
+     "dg-phase-2": "#EAB308"
+    }
+   },
+   "BOOKED": {
+    "label": "Booked",
+    "bookable": false,
+    "legacyColor": {
+     "river-green": "#E74C3C",
+     "dg-phase-2": "#EAB308"
+    },
+    "note": "treated like RESERVED by the Phase 2 map, like an unknown non-available status by the River Green map"
+   },
+   "SOLD": {
+    "label": "Sold",
+    "bookable": false,
+    "legacyColor": {
+     "river-green": "#7F1D1D",
+     "dg-phase-2": "#EF4444"
+    }
+   },
+   "OTHER": {
+    "label": "(raw status text)",
+    "bookable": false,
+    "legacyColor": {
+     "river-green": "#E74C3C",
+     "dg-phase-2": "#22C55E"
+    },
+    "note": "any other value: RG paints #E74C3C; DG2 paints it green (bug) but the modal still blocks booking because status !== AVAILABLE"
+   }
+  },
+  "proposedEraClasses": {
+   "AVAILABLE": "is-available",
+   "RESERVED": "is-reserved",
+   "BOOKED": "is-reserved",
+   "SOLD": "is-sold",
+   "OTHER": "is-unavailable",
+   "LOADING": "is-loading",
+   "ERROR": "is-unknown"
+  }
+ },
+ "counts": {
+  "plots": 288,
+  "byZone": {
+   "U": 30,
+   "B": 180,
+   "C": 46,
+   "D": 16,
+   "A": 16
+  },
+  "duplicateIds": [
+   "B-158",
+   "B-113",
+   "B-101",
+   "B-153",
+   "B-144",
+   "B-133b",
+   "B-138",
+   "B-128",
+   "D-2",
+   "D-1"
+  ]
+ },
+ "layers": [
+  {
+   "role": "ground",
+   "shape": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 1460,
+   "h": 1370,
+   "legacyFill": "#E9E2CC"
+  },
+  {
+   "role": "land",
+   "shape": "rect",
+   "x": 10,
+   "y": 10,
+   "w": 1440,
+   "h": 1160,
+   "legacyFill": "#C7E5A6",
+   "note": "colony land inside the boundary wall"
+  },
+  {
+   "role": "road",
+   "shape": "polygon",
+   "points": [
+    [
+     75.33,
+     95
+    ],
+    [
+     1330,
+     95
+    ],
+    [
+     1330,
+     130
+    ],
+    [
+     80,
+     130
+    ]
+   ],
+   "legacyFill": "#3A3A3A"
+  },
+  {
+   "role": "road-centerline",
+   "shape": "line",
+   "x1": 77,
+   "y1": 112.5,
+   "x2": 1330,
+   "y2": 112.5,
+   "dash": [
+    6,
+    8
+   ],
+   "strokeWidth": 1,
+   "opacity": 0.6,
+   "legacyStroke": "#FFFFFF"
+  },
+  {
+   "role": "road",
+   "shape": "polygon",
+   "points": [
+    [
+     100,
+     320
+    ],
+    [
+     295,
+     320
+    ],
+    [
+     295,
+     340
+    ],
+    [
+     105,
+     340
+    ]
+   ],
+   "legacyFill": "#3A3A3A"
+  },
+  {
+   "role": "road",
+   "shape": "rect",
+   "x": 295,
+   "y": 130,
+   "w": 25,
+   "h": 400,
+   "legacyFill": "#3A3A3A"
+  },
+  {
+   "role": "road",
+   "shape": "rect",
+   "x": 460,
+   "y": 130,
+   "w": 25,
+   "h": 400,
+   "legacyFill": "#3A3A3A"
+  },
+  {
+   "role": "road",
+   "shape": "rect",
+   "x": 625,
+   "y": 130,
+   "w": 25,
+   "h": 400,
+   "legacyFill": "#3A3A3A"
+  },
+  {
+   "role": "road",
+   "shape": "rect",
+   "x": 790,
+   "y": 130,
+   "w": 25,
+   "h": 400,
+   "legacyFill": "#3A3A3A"
+  },
+  {
+   "role": "road",
+   "shape": "rect",
+   "x": 955,
+   "y": 130,
+   "w": 30,
+   "h": 400,
+   "legacyFill": "#3A3A3A"
+  },
+  {
+   "role": "road",
+   "shape": "rect",
+   "x": 985,
+   "y": 310,
+   "w": 345,
+   "h": 40,
+   "legacyFill": "#3A3A3A"
+  },
+  {
+   "role": "road",
+   "shape": "polygon",
+   "points": [
+    [
+     125,
+     530
+    ],
+    [
+     1330,
+     530
+    ],
+    [
+     1330,
+     565
+    ],
+    [
+     135,
+     565
+    ]
+   ],
+   "legacyFill": "#3A3A3A"
+  },
+  {
+   "role": "road-centerline",
+   "shape": "line",
+   "x1": 130,
+   "y1": 547.5,
+   "x2": 1330,
+   "y2": 547.5,
+   "dash": [
+    6,
+    8
+   ],
+   "strokeWidth": 1,
+   "opacity": 0.6,
+   "legacyStroke": "#FFFFFF"
+  },
+  {
+   "role": "road",
+   "shape": "rect",
+   "x": 295,
+   "y": 565,
+   "w": 25,
+   "h": 420,
+   "legacyFill": "#3A3A3A"
+  },
+  {
+   "role": "road",
+   "shape": "polygon",
+   "points": [
+    [
+     165,
+     705
+    ],
+    [
+     295,
+     705
+    ],
+    [
+     295,
+     725
+    ],
+    [
+     170,
+     725
+    ]
+   ],
+   "legacyFill": "#3A3A3A"
+  },
+  {
+   "role": "road",
+   "shape": "rect",
+   "x": 200,
+   "y": 865,
+   "w": 95,
+   "h": 30,
+   "legacyFill": "#3A3A3A"
+  },
+  {
+   "role": "road",
+   "shape": "polygon",
+   "points": [
+    [
+     955,
+     565
+    ],
+    [
+     985,
+     565
+    ],
+    [
+     985,
+     1040
+    ],
+    [
+     955,
+     1055.8
+    ]
+   ],
+   "legacyFill": "#3A3A3A"
+  },
+  {
+   "role": "road-centerline",
+   "shape": "line",
+   "x1": 970,
+   "y1": 585,
+   "x2": 970,
+   "y2": 1047.9,
+   "dash": [
+    8,
+    10
+   ],
+   "strokeWidth": 1.2,
+   "opacity": 0.6,
+   "legacyStroke": "#FFFFFF"
+  },
+  {
+   "role": "road",
+   "shape": "rect",
+   "x": 460,
+   "y": 565,
+   "w": 25,
+   "h": 423,
+   "legacyFill": "#3A3A3A"
+  },
+  {
+   "role": "road",
+   "shape": "rect",
+   "x": 625,
+   "y": 565,
+   "w": 25,
+   "h": 423,
+   "legacyFill": "#3A3A3A"
+  },
+  {
+   "role": "road",
+   "shape": "rect",
+   "x": 790,
+   "y": 565,
+   "w": 25,
+   "h": 423,
+   "legacyFill": "#3A3A3A"
+  },
+  {
+   "role": "green",
+   "subtype": "park",
+   "shape": "rect",
+   "x": 815,
+   "y": 847,
+   "w": 140,
+   "h": 50,
+   "legacyFill": "#7FC97F",
+   "note": "unlabelled green with a round water feature"
+  },
+  {
+   "role": "water",
+   "shape": "circle",
+   "cx": 885,
+   "cy": 872,
+   "r": 14,
+   "legacyFill": "#A3D4FF",
+   "legacyStroke": "#3784C4"
+  },
+  {
+   "role": "water",
+   "subtype": "core",
+   "shape": "circle",
+   "cx": 885,
+   "cy": 872,
+   "r": 5,
+   "legacyFill": "#3784C4"
+  },
+  {
+   "role": "road",
+   "shape": "rect",
+   "x": 815,
+   "y": 897,
+   "w": 140,
+   "h": 22,
+   "legacyFill": "#3A3A3A"
+  },
+  {
+   "role": "road",
+   "shape": "rect",
+   "x": 10,
+   "y": 985,
+   "w": 945,
+   "h": 38,
+   "legacyFill": "#3A3A3A"
+  },
+  {
+   "role": "road-centerline",
+   "shape": "line",
+   "x1": 10,
+   "y1": 1004,
+   "x2": 955,
+   "y2": 1004,
+   "dash": [
+    6,
+    8
+   ],
+   "strokeWidth": 1,
+   "opacity": 0.6,
+   "legacyStroke": "#FFFFFF"
+  },
+  {
+   "role": "outline",
+   "shape": "path",
+   "d": "M 0 1065 L 937.5 1065 L 937.5 1170 L 0 1170 Z",
+   "legacyStroke": "#1F1F1F",
+   "legacyStrokeWidth": 0.4,
+   "note": "outline of the southern strip (no fill)"
+  },
+  {
+   "role": "chak-road-strip",
+   "shape": "path",
+   "d": "M 50 55 L 70 55 L 80 130 L 90 225 L 100 320 L 105 340 L 115 435 L 125 530 L 135 565 L 150 635 L 165 705 L 170 725 L 185 795 L 200 865 L 201 895 L 200 935 L 10 935 L 10 920 L 185 920 L 185 865 L 165 795 L 150 725 L 145 705 L 130 635 L 115 565 L 105 530 L 95 435 L 85 340 L 80 320 L 70 225 L 60 130 L 50 55 Z",
+   "legacyStroke": "#1F1F1F",
+   "legacyStrokeWidth": 0.4,
+   "note": "outline of the irregular west strip along the chak road (no fill)"
+  },
+  {
+   "role": "highway",
+   "shape": "polygon",
+   "points": [
+    [
+     1460,
+     790
+    ],
+    [
+     1460,
+     910
+    ],
+    [
+     998,
+     1170
+    ],
+    [
+     738,
+     1170
+    ]
+   ],
+   "legacyFill": "#3A3A3A",
+   "legacyStroke": "#1f1f1f",
+   "legacyStrokeWidth": 0.8
+  },
+  {
+   "role": "highway-centerline",
+   "shape": "line",
+   "x1": 1460,
+   "y1": 850,
+   "x2": 868,
+   "y2": 1170,
+   "dash": [
+    16,
+    14
+   ],
+   "strokeWidth": 2.5,
+   "opacity": 0.7,
+   "legacyStroke": "#FFFFFF"
+  }
+ ],
+ "features": [
+  {
+   "role": "commercial",
+   "id": "defence-plaza",
+   "name": "DEFENCE PLAZA (THE MALL)",
+   "shape": "polygon",
+   "points": [
+    [
+     1035,
+     565
+    ],
+    [
+     1330,
+     565
+    ],
+    [
+     1330,
+     849
+    ],
+    [
+     1035,
+     1008.7
+    ]
+   ],
+   "legacyFill": "#FDFCF6",
+   "legacyStroke": "#1F1F1F",
+   "interactive": false,
+   "note": "labelled on the map with dimensions 190'-0\", 360'-0\", 350'-0\"; not bookable in the old map"
+  },
+  {
+   "role": "unit-static",
+   "id": "D-3-static",
+   "name": "D-3",
+   "shape": "polygon",
+   "points": [
+    [
+     875,
+     1023
+    ],
+    [
+     955,
+     1023
+    ],
+    [
+     955,
+     1050.8
+    ],
+    [
+     928,
+     1065
+    ],
+    [
+     875,
+     1065
+    ]
+   ],
+   "labelAt": {
+    "x": 915,
+    "y": 1045,
+    "fontSize": 12
+   },
+   "legacyFill": "#C9388A",
+   "interactive": false,
+   "note": "big pink 'D-3' block, NOT clickable in the old map; shares the label D-3 with a clickable plot in the D block"
+  }
+ ],
+ "labels": [
+  {
+   "role": "road-label",
+   "text": "ROAD 30'-0\" WD.",
+   "x": 350,
+   "y": 116,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "road-label",
+   "text": "ROAD 30'-0\" WD.",
+   "x": 600,
+   "y": 116,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "road-label",
+   "text": "ROAD 30'-0\" WD.",
+   "x": 850,
+   "y": 116,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "road-label",
+   "text": "ROAD 30'-0\" WD.",
+   "x": 1100,
+   "y": 116,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "road-label",
+   "text": "ROAD 30'-0\" WD.",
+   "x": 1260,
+   "y": 116,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "road-label",
+   "text": "ROAD 25'-0\" WD.",
+   "x": 195,
+   "y": 333,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "road-label",
+   "text": "ROAD 20'-0\" WD.",
+   "x": 307,
+   "y": 330,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": -90,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "road-label",
+   "text": "ROAD 20'-0\" WD.",
+   "x": 472,
+   "y": 330,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": -90,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "road-label",
+   "text": "ROAD 20'-0\" WD.",
+   "x": 637,
+   "y": 330,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": -90,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "road-label",
+   "text": "ROAD 20'-0\" WD.",
+   "x": 802,
+   "y": 330,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": -90,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "road-label",
+   "text": "ROAD 100'-0\" WD.",
+   "x": 970,
+   "y": 330,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": -90,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "road-label",
+   "text": "ROAD 40'-0\" WD.",
+   "x": 1160,
+   "y": 333,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "road-label",
+   "text": "ROAD 40'-0\" WD.",
+   "x": 350,
+   "y": 551,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "road-label",
+   "text": "ROAD 40'-0\" WD.",
+   "x": 600,
+   "y": 551,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "road-label",
+   "text": "ROAD 40'-0\" WD.",
+   "x": 850,
+   "y": 551,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "road-label",
+   "text": "ROAD 40'-0\" WD.",
+   "x": 1160,
+   "y": 551,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "road-label",
+   "text": "ROAD 20'-0\" WD.",
+   "x": 307,
+   "y": 775,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": -90,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "road-label",
+   "text": "ROAD 25'-0\" WD.",
+   "x": 230,
+   "y": 718,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "road-label",
+   "text": "ROAD 35'-0\" WD.",
+   "x": 247,
+   "y": 883,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "area-label",
+   "text": "CHAKROAD",
+   "x": 105,
+   "y": 931,
+   "fontSize": 10,
+   "letterSpacing": 1,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "feature-label",
+   "text": "DEFENCE",
+   "x": 1190,
+   "y": 730,
+   "fontSize": 32,
+   "fontWeight": 800,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "middle",
+   "feature": "defence-plaza",
+   "legacyColor": "#7A2376"
+  },
+  {
+   "role": "feature-label",
+   "text": "PLAZA",
+   "x": 1190,
+   "y": 772,
+   "fontSize": 32,
+   "fontWeight": 800,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "middle",
+   "feature": "defence-plaza",
+   "legacyColor": "#7A2376"
+  },
+  {
+   "role": "feature-label",
+   "text": "(THE MALL)",
+   "x": 1190,
+   "y": 810,
+   "fontSize": 20,
+   "fontWeight": 700,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "middle",
+   "feature": "defence-plaza",
+   "legacyColor": "#7A2376"
+  },
+  {
+   "role": "dimension",
+   "text": "190'-0\"",
+   "x": 1322,
+   "y": 595,
+   "fontSize": 11,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "end"
+  },
+  {
+   "role": "dimension",
+   "text": "350'-0\"",
+   "x": 1045,
+   "y": 780,
+   "fontSize": 11,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "start"
+  },
+  {
+   "role": "dimension",
+   "text": "360'-0\"",
+   "x": 1320,
+   "y": 700,
+   "fontSize": 11,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "end"
+  },
+  {
+   "role": "road-label",
+   "text": "ROAD 100'-0\" WD.",
+   "x": 970,
+   "y": 780,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": -90,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "road-label",
+   "text": "ROAD 20'-0\" WD.",
+   "x": 472,
+   "y": 780,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": -90,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "road-label",
+   "text": "ROAD 20'-0\" WD.",
+   "x": 637,
+   "y": 780,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": -90,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "road-label",
+   "text": "ROAD 20'-0\" WD.",
+   "x": 802,
+   "y": 780,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": -90,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "road-label",
+   "text": "ROAD 10'-0\" WD.",
+   "x": 885,
+   "y": 911,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "road-label",
+   "text": "ROAD 47'-0\" WD.",
+   "x": 350,
+   "y": 1008,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "road-label",
+   "text": "ROAD 47'-0\" WD.",
+   "x": 600,
+   "y": 1008,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "road-label",
+   "text": "ROAD 47'-0\" WD.",
+   "x": 900,
+   "y": 1008,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "road-label",
+   "text": "ROAD 47'-0\" WD.",
+   "x": 1250,
+   "y": 1008,
+   "fontSize": 10,
+   "letterSpacing": 2,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "middle"
+  },
+  {
+   "role": "dimension",
+   "text": "50'-0\"",
+   "x": 50,
+   "y": 1060,
+   "fontSize": 9,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "start"
+  },
+  {
+   "role": "dimension",
+   "text": "374'-0\"",
+   "x": 170,
+   "y": 1060,
+   "fontSize": 9,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "start"
+  },
+  {
+   "role": "dimension",
+   "text": "181'-0\"",
+   "x": 630,
+   "y": 1060,
+   "fontSize": 9,
+   "rotate": 0,
+   "baseline": "alphabetic",
+   "anchor": "start"
+  }
+ ],
+ "plots": [
+  {
+   "id": "U-1",
+   "key": "U-1",
+   "label": "U-1",
+   "zone": "U",
+   "number": 1,
+   "kind": "plot",
+   "shape": "polygon",
+   "points": [
+    [
+     70,
+     55
+    ],
+    [
+     112,
+     55
+    ],
+    [
+     112,
+     95
+    ],
+    [
+     75.33,
+     95
+    ]
+   ],
+   "bbox": {
+    "x": 70,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 91,
+    "y": 75,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-2",
+   "key": "U-2",
+   "label": "U-2",
+   "zone": "U",
+   "number": 2,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 112,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 112,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 133,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-3",
+   "key": "U-3",
+   "label": "U-3",
+   "zone": "U",
+   "number": 3,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 154,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 154,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 175,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-4",
+   "key": "U-4",
+   "label": "U-4",
+   "zone": "U",
+   "number": 4,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 196,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 196,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 217,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-5",
+   "key": "U-5",
+   "label": "U-5",
+   "zone": "U",
+   "number": 5,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 238,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 238,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 259,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-6",
+   "key": "U-6",
+   "label": "U-6",
+   "zone": "U",
+   "number": 6,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 280,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 280,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 301,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-7",
+   "key": "U-7",
+   "label": "U-7",
+   "zone": "U",
+   "number": 7,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 322,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 322,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 343,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-8",
+   "key": "U-8",
+   "label": "U-8",
+   "zone": "U",
+   "number": 8,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 364,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 364,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 385,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-9",
+   "key": "U-9",
+   "label": "U-9",
+   "zone": "U",
+   "number": 9,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 406,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 406,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 427,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-10",
+   "key": "U-10",
+   "label": "U-10",
+   "zone": "U",
+   "number": 10,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 448,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 448,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 469,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-11",
+   "key": "U-11",
+   "label": "U-11",
+   "zone": "U",
+   "number": 11,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 490,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 490,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 511,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-12",
+   "key": "U-12",
+   "label": "U-12",
+   "zone": "U",
+   "number": 12,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 532,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 532,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 553,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-13",
+   "key": "U-13",
+   "label": "U-13",
+   "zone": "U",
+   "number": 13,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 574,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 574,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 595,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-14",
+   "key": "U-14",
+   "label": "U-14",
+   "zone": "U",
+   "number": 14,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 616,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 616,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 637,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-15",
+   "key": "U-15",
+   "label": "U-15",
+   "zone": "U",
+   "number": 15,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 658,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 658,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 679,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-16",
+   "key": "U-16",
+   "label": "U-16",
+   "zone": "U",
+   "number": 16,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 700,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 700,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 721,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-17",
+   "key": "U-17",
+   "label": "U-17",
+   "zone": "U",
+   "number": 17,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 742,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 742,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 763,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-18",
+   "key": "U-18",
+   "label": "U-18",
+   "zone": "U",
+   "number": 18,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 784,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 784,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 805,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-19",
+   "key": "U-19",
+   "label": "U-19",
+   "zone": "U",
+   "number": 19,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 826,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 826,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 847,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-20",
+   "key": "U-20",
+   "label": "U-20",
+   "zone": "U",
+   "number": 20,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 868,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 868,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 889,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-21",
+   "key": "U-21",
+   "label": "U-21",
+   "zone": "U",
+   "number": 21,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 910,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 910,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 931,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-22",
+   "key": "U-22",
+   "label": "U-22",
+   "zone": "U",
+   "number": 22,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 952,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 952,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 973,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-23",
+   "key": "U-23",
+   "label": "U-23",
+   "zone": "U",
+   "number": 23,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 994,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 994,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 1015,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-24",
+   "key": "U-24",
+   "label": "U-24",
+   "zone": "U",
+   "number": 24,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1036,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 1036,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 1057,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-25",
+   "key": "U-25",
+   "label": "U-25",
+   "zone": "U",
+   "number": 25,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1078,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 1078,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 1099,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-26",
+   "key": "U-26",
+   "label": "U-26",
+   "zone": "U",
+   "number": 26,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1120,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 1120,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 1141,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-27",
+   "key": "U-27",
+   "label": "U-27",
+   "zone": "U",
+   "number": 27,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1162,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 1162,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 1183,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-28",
+   "key": "U-28",
+   "label": "U-28",
+   "zone": "U",
+   "number": 28,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1204,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 1204,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 1225,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-29",
+   "key": "U-29",
+   "label": "U-29",
+   "zone": "U",
+   "number": 29,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1246,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 1246,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 1267,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "U-30",
+   "key": "U-30",
+   "label": "U-30",
+   "zone": "U",
+   "number": 30,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1288,
+   "y": 55,
+   "w": 42,
+   "h": 40,
+   "bbox": {
+    "x": 1288,
+    "y": 55,
+    "w": 42,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 1309,
+    "y": 78,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-166",
+   "key": "B-166",
+   "label": "B-166",
+   "zone": "B",
+   "number": 166,
+   "kind": "plot",
+   "shape": "polygon",
+   "points": [
+    [
+     80,
+     130
+    ],
+    [
+     125,
+     130
+    ],
+    [
+     125,
+     225
+    ],
+    [
+     90,
+     225
+    ]
+   ],
+   "bbox": {
+    "x": 80,
+    "y": 130,
+    "w": 45,
+    "h": 95
+   },
+   "labelAt": {
+    "x": 105,
+    "y": 177,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-158",
+   "key": "B-158",
+   "label": "B-158",
+   "zone": "B",
+   "number": 158,
+   "kind": "plot",
+   "shape": "polygon",
+   "points": [
+    [
+     90,
+     225
+    ],
+    [
+     125,
+     225
+    ],
+    [
+     125,
+     320
+    ],
+    [
+     100,
+     320
+    ]
+   ],
+   "bbox": {
+    "x": 90,
+    "y": 225,
+    "w": 35,
+    "h": 95
+   },
+   "labelAt": {
+    "x": 110,
+    "y": 272,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-188",
+   "key": "B-188",
+   "label": "B-188",
+   "zone": "B",
+   "number": 188,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 125,
+   "y": 130,
+   "w": 40,
+   "h": 95,
+   "bbox": {
+    "x": 125,
+    "y": 130,
+    "w": 40,
+    "h": 95
+   },
+   "labelAt": {
+    "x": 145,
+    "y": 180.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-113",
+   "key": "B-113",
+   "label": "B-113",
+   "zone": "B",
+   "number": 113,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 125,
+   "y": 225,
+   "w": 40,
+   "h": 95,
+   "bbox": {
+    "x": 125,
+    "y": 225,
+    "w": 40,
+    "h": 95
+   },
+   "labelAt": {
+    "x": 145,
+    "y": 275.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-168",
+   "key": "B-168",
+   "label": "B-168",
+   "zone": "B",
+   "number": 168,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 165,
+   "y": 130,
+   "w": 40,
+   "h": 95,
+   "bbox": {
+    "x": 165,
+    "y": 130,
+    "w": 40,
+    "h": 95
+   },
+   "labelAt": {
+    "x": 185,
+    "y": 180.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-118",
+   "key": "B-118",
+   "label": "B-118",
+   "zone": "B",
+   "number": 118,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 165,
+   "y": 225,
+   "w": 40,
+   "h": 95,
+   "bbox": {
+    "x": 165,
+    "y": 225,
+    "w": 40,
+    "h": 95
+   },
+   "labelAt": {
+    "x": 185,
+    "y": 275.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-193",
+   "key": "B-193",
+   "label": "B-193",
+   "zone": "B",
+   "number": 193,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 205,
+   "y": 130,
+   "w": 40,
+   "h": 95,
+   "bbox": {
+    "x": 205,
+    "y": 130,
+    "w": 40,
+    "h": 95
+   },
+   "labelAt": {
+    "x": 225,
+    "y": 180.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-143",
+   "key": "B-143",
+   "label": "B-143",
+   "zone": "B",
+   "number": 143,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 205,
+   "y": 225,
+   "w": 40,
+   "h": 95,
+   "bbox": {
+    "x": 205,
+    "y": 225,
+    "w": 40,
+    "h": 95
+   },
+   "labelAt": {
+    "x": 225,
+    "y": 275.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-183",
+   "key": "B-183",
+   "label": "B-183",
+   "zone": "B",
+   "number": 183,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 245,
+   "y": 130,
+   "w": 50,
+   "h": 95,
+   "bbox": {
+    "x": 245,
+    "y": 130,
+    "w": 50,
+    "h": 95
+   },
+   "labelAt": {
+    "x": 270,
+    "y": 180.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-163",
+   "key": "B-163",
+   "label": "B-163",
+   "zone": "B",
+   "number": 163,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 245,
+   "y": 225,
+   "w": 50,
+   "h": 95,
+   "bbox": {
+    "x": 245,
+    "y": 225,
+    "w": 50,
+    "h": 95
+   },
+   "labelAt": {
+    "x": 270,
+    "y": 275.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-157",
+   "key": "B-157",
+   "label": "B-157",
+   "zone": "B",
+   "number": 157,
+   "kind": "plot",
+   "shape": "polygon",
+   "points": [
+    [
+     105,
+     340
+    ],
+    [
+     135,
+     340
+    ],
+    [
+     135,
+     435
+    ],
+    [
+     115,
+     435
+    ]
+   ],
+   "bbox": {
+    "x": 105,
+    "y": 340,
+    "w": 30,
+    "h": 95
+   },
+   "labelAt": {
+    "x": 122,
+    "y": 387,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-101",
+   "key": "B-101",
+   "label": "B-101",
+   "zone": "B",
+   "number": 101,
+   "kind": "plot",
+   "shape": "polygon",
+   "points": [
+    [
+     115,
+     435
+    ],
+    [
+     135,
+     435
+    ],
+    [
+     135,
+     530
+    ],
+    [
+     125,
+     530
+    ]
+   ],
+   "bbox": {
+    "x": 115,
+    "y": 435,
+    "w": 20,
+    "h": 95
+   },
+   "labelAt": {
+    "x": 127,
+    "y": 482,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-153",
+   "key": "B-153",
+   "label": "B-153",
+   "zone": "B",
+   "number": 153,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 135,
+   "y": 340,
+   "w": 40,
+   "h": 95,
+   "bbox": {
+    "x": 135,
+    "y": 340,
+    "w": 40,
+    "h": 95
+   },
+   "labelAt": {
+    "x": 155,
+    "y": 390.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-108",
+   "key": "B-108",
+   "label": "B-108",
+   "zone": "B",
+   "number": 108,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 135,
+   "y": 435,
+   "w": 40,
+   "h": 95,
+   "bbox": {
+    "x": 135,
+    "y": 435,
+    "w": 40,
+    "h": 95
+   },
+   "labelAt": {
+    "x": 155,
+    "y": 485.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-143b",
+   "key": "B-143b",
+   "label": "B-143b",
+   "zone": "B",
+   "number": 143,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 175,
+   "y": 340,
+   "w": 40,
+   "h": 95,
+   "bbox": {
+    "x": 175,
+    "y": 340,
+    "w": 40,
+    "h": 95
+   },
+   "labelAt": {
+    "x": 195,
+    "y": 390.5,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-198",
+   "key": "B-198",
+   "label": "B-198",
+   "zone": "B",
+   "number": 198,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 175,
+   "y": 435,
+   "w": 40,
+   "h": 95,
+   "bbox": {
+    "x": 175,
+    "y": 435,
+    "w": 40,
+    "h": 95
+   },
+   "labelAt": {
+    "x": 195,
+    "y": 485.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-133",
+   "key": "B-133",
+   "label": "B-133",
+   "zone": "B",
+   "number": 133,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 215,
+   "y": 340,
+   "w": 35,
+   "h": 95,
+   "bbox": {
+    "x": 215,
+    "y": 340,
+    "w": 35,
+    "h": 95
+   },
+   "labelAt": {
+    "x": 232.5,
+    "y": 390.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-113b",
+   "key": "B-113b",
+   "label": "B-113b",
+   "zone": "B",
+   "number": 113,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 215,
+   "y": 435,
+   "w": 35,
+   "h": 95,
+   "bbox": {
+    "x": 215,
+    "y": 435,
+    "w": 35,
+    "h": 95
+   },
+   "labelAt": {
+    "x": 232.5,
+    "y": 485.5,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-189",
+   "key": "B-189",
+   "label": "B-189",
+   "zone": "B",
+   "number": 189,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 250,
+   "y": 340,
+   "w": 45,
+   "h": 63.3,
+   "bbox": {
+    "x": 250,
+    "y": 340,
+    "w": 45,
+    "h": 63.3
+   },
+   "labelAt": {
+    "x": 272.5,
+    "y": 374.65,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-168b",
+   "key": "B-168b",
+   "label": "B-168b",
+   "zone": "B",
+   "number": 168,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 250,
+   "y": 403.3,
+   "w": 45,
+   "h": 63.3,
+   "bbox": {
+    "x": 250,
+    "y": 403.3,
+    "w": 45,
+    "h": 63.3
+   },
+   "labelAt": {
+    "x": 272.5,
+    "y": 437.95,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-159",
+   "key": "B-159",
+   "label": "B-159",
+   "zone": "B",
+   "number": 159,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 250,
+   "y": 466.6,
+   "w": 45,
+   "h": 63.4,
+   "bbox": {
+    "x": 250,
+    "y": 466.6,
+    "w": 45,
+    "h": 63.4
+   },
+   "labelAt": {
+    "x": 272.5,
+    "y": 501.3,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-219",
+   "key": "B-219",
+   "label": "B-219",
+   "zone": "B",
+   "number": 219,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 320,
+   "y": 130,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 320,
+    "y": 130,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 355,
+    "y": 158,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-29",
+   "key": "B-29",
+   "label": "B-29",
+   "zone": "B",
+   "number": 29,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 320,
+   "y": 180,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 320,
+    "y": 180,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 355,
+    "y": 208,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-30",
+   "key": "B-30",
+   "label": "B-30",
+   "zone": "B",
+   "number": 30,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 320,
+   "y": 230,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 320,
+    "y": 230,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 355,
+    "y": 258,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-31",
+   "key": "B-31",
+   "label": "B-31",
+   "zone": "B",
+   "number": 31,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 320,
+   "y": 280,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 320,
+    "y": 280,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 355,
+    "y": 308,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-32",
+   "key": "B-32",
+   "label": "B-32",
+   "zone": "B",
+   "number": 32,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 320,
+   "y": 330,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 320,
+    "y": 330,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 355,
+    "y": 358,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-123",
+   "key": "B-123",
+   "label": "B-123",
+   "zone": "B",
+   "number": 123,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 320,
+   "y": 380,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 320,
+    "y": 380,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 355,
+    "y": 408,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-134",
+   "key": "B-134",
+   "label": "B-134",
+   "zone": "B",
+   "number": 134,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 320,
+   "y": 430,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 320,
+    "y": 430,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 355,
+    "y": 458,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-126",
+   "key": "B-126",
+   "label": "B-126",
+   "zone": "B",
+   "number": 126,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 320,
+   "y": 480,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 320,
+    "y": 480,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 355,
+    "y": 508,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-119",
+   "key": "B-119",
+   "label": "B-119",
+   "zone": "B",
+   "number": 119,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 390,
+   "y": 130,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 390,
+    "y": 130,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 425,
+    "y": 158,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-122",
+   "key": "B-122",
+   "label": "B-122",
+   "zone": "B",
+   "number": 122,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 390,
+   "y": 180,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 390,
+    "y": 180,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 425,
+    "y": 208,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-127",
+   "key": "B-127",
+   "label": "B-127",
+   "zone": "B",
+   "number": 127,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 390,
+   "y": 230,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 390,
+    "y": 230,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 425,
+    "y": 258,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-116",
+   "key": "B-116",
+   "label": "B-116",
+   "zone": "B",
+   "number": 116,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 390,
+   "y": 280,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 390,
+    "y": 280,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 425,
+    "y": 308,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-124",
+   "key": "B-124",
+   "label": "B-124",
+   "zone": "B",
+   "number": 124,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 390,
+   "y": 330,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 390,
+    "y": 330,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 425,
+    "y": 358,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-114",
+   "key": "B-114",
+   "label": "B-114",
+   "zone": "B",
+   "number": 114,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 390,
+   "y": 380,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 390,
+    "y": 380,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 425,
+    "y": 408,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-113",
+   "key": "B-113~2",
+   "label": "B-113",
+   "zone": "B",
+   "number": 113,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 390,
+   "y": 430,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 390,
+    "y": 430,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 425,
+    "y": 458,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-111",
+   "key": "B-111",
+   "label": "B-111",
+   "zone": "B",
+   "number": 111,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 390,
+   "y": 480,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 390,
+    "y": 480,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 425,
+    "y": 508,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-19b",
+   "key": "B-19b",
+   "label": "B-19b",
+   "zone": "B",
+   "number": 19,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 485,
+   "y": 130,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 485,
+    "y": 130,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 520,
+    "y": 158,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-24",
+   "key": "B-24",
+   "label": "B-24",
+   "zone": "B",
+   "number": 24,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 485,
+   "y": 180,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 485,
+    "y": 180,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 520,
+    "y": 208,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-30b",
+   "key": "B-30b",
+   "label": "B-30b",
+   "zone": "B",
+   "number": 30,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 485,
+   "y": 230,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 485,
+    "y": 230,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 520,
+    "y": 258,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-31b",
+   "key": "B-31b",
+   "label": "B-31b",
+   "zone": "B",
+   "number": 31,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 485,
+   "y": 280,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 485,
+    "y": 280,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 520,
+    "y": 308,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-32b",
+   "key": "B-32b",
+   "label": "B-32b",
+   "zone": "B",
+   "number": 32,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 485,
+   "y": 330,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 485,
+    "y": 330,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 520,
+    "y": 358,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-34",
+   "key": "B-34",
+   "label": "B-34",
+   "zone": "B",
+   "number": 34,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 485,
+   "y": 380,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 485,
+    "y": 380,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 520,
+    "y": 408,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-35",
+   "key": "B-35",
+   "label": "B-35",
+   "zone": "B",
+   "number": 35,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 485,
+   "y": 430,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 485,
+    "y": 430,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 520,
+    "y": 458,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-37",
+   "key": "B-37",
+   "label": "B-37",
+   "zone": "B",
+   "number": 37,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 485,
+   "y": 480,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 485,
+    "y": 480,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 520,
+    "y": 508,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-62",
+   "key": "B-62",
+   "label": "B-62",
+   "zone": "B",
+   "number": 62,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 555,
+   "y": 130,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 555,
+    "y": 130,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 590,
+    "y": 158,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-61",
+   "key": "B-61",
+   "label": "B-61",
+   "zone": "B",
+   "number": 61,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 555,
+   "y": 180,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 555,
+    "y": 180,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 590,
+    "y": 208,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-60",
+   "key": "B-60",
+   "label": "B-60",
+   "zone": "B",
+   "number": 60,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 555,
+   "y": 230,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 555,
+    "y": 230,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 590,
+    "y": 258,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-216",
+   "key": "B-216",
+   "label": "B-216",
+   "zone": "B",
+   "number": 216,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 555,
+   "y": 280,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 555,
+    "y": 280,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 590,
+    "y": 308,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-215",
+   "key": "B-215",
+   "label": "B-215",
+   "zone": "B",
+   "number": 215,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 555,
+   "y": 330,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 555,
+    "y": 330,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 590,
+    "y": 358,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-71",
+   "key": "B-71",
+   "label": "B-71",
+   "zone": "B",
+   "number": 71,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 555,
+   "y": 380,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 555,
+    "y": 380,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 590,
+    "y": 408,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-212",
+   "key": "B-212",
+   "label": "B-212",
+   "zone": "B",
+   "number": 212,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 555,
+   "y": 430,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 555,
+    "y": 430,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 590,
+    "y": 458,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-53",
+   "key": "B-53",
+   "label": "B-53",
+   "zone": "B",
+   "number": 53,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 555,
+   "y": 480,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 555,
+    "y": 480,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 590,
+    "y": 508,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-47",
+   "key": "B-47",
+   "label": "B-47",
+   "zone": "B",
+   "number": 47,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 650,
+   "y": 130,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 650,
+    "y": 130,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 685,
+    "y": 158,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-48",
+   "key": "B-48",
+   "label": "B-48",
+   "zone": "B",
+   "number": 48,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 650,
+   "y": 180,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 650,
+    "y": 180,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 685,
+    "y": 208,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-49",
+   "key": "B-49",
+   "label": "B-49",
+   "zone": "B",
+   "number": 49,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 650,
+   "y": 230,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 650,
+    "y": 230,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 685,
+    "y": 258,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-50",
+   "key": "B-50",
+   "label": "B-50",
+   "zone": "B",
+   "number": 50,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 650,
+   "y": 280,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 650,
+    "y": 280,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 685,
+    "y": 308,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-51",
+   "key": "B-51",
+   "label": "B-51",
+   "zone": "B",
+   "number": 51,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 650,
+   "y": 330,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 650,
+    "y": 330,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 685,
+    "y": 358,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-52",
+   "key": "B-52",
+   "label": "B-52",
+   "zone": "B",
+   "number": 52,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 650,
+   "y": 380,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 650,
+    "y": 380,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 685,
+    "y": 408,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-54",
+   "key": "B-54",
+   "label": "B-54",
+   "zone": "B",
+   "number": 54,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 650,
+   "y": 430,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 650,
+    "y": 430,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 685,
+    "y": 458,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-55",
+   "key": "B-55",
+   "label": "B-55",
+   "zone": "B",
+   "number": 55,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 650,
+   "y": 480,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 650,
+    "y": 480,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 685,
+    "y": 508,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-46",
+   "key": "B-46",
+   "label": "B-46",
+   "zone": "B",
+   "number": 46,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 720,
+   "y": 130,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 720,
+    "y": 130,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 755,
+    "y": 158,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-45",
+   "key": "B-45",
+   "label": "B-45",
+   "zone": "B",
+   "number": 45,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 720,
+   "y": 180,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 720,
+    "y": 180,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 755,
+    "y": 208,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-44",
+   "key": "B-44",
+   "label": "B-44",
+   "zone": "B",
+   "number": 44,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 720,
+   "y": 230,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 720,
+    "y": 230,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 755,
+    "y": 258,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-43",
+   "key": "B-43",
+   "label": "B-43",
+   "zone": "B",
+   "number": 43,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 720,
+   "y": 280,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 720,
+    "y": 280,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 755,
+    "y": 308,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-42",
+   "key": "B-42",
+   "label": "B-42",
+   "zone": "B",
+   "number": 42,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 720,
+   "y": 330,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 720,
+    "y": 330,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 755,
+    "y": 358,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-41",
+   "key": "B-41",
+   "label": "B-41",
+   "zone": "B",
+   "number": 41,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 720,
+   "y": 380,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 720,
+    "y": 380,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 755,
+    "y": 408,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-60b",
+   "key": "B-60b",
+   "label": "B-60b",
+   "zone": "B",
+   "number": 60,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 720,
+   "y": 430,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 720,
+    "y": 430,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 755,
+    "y": 458,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-38",
+   "key": "B-38",
+   "label": "B-38",
+   "zone": "B",
+   "number": 38,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 720,
+   "y": 480,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 720,
+    "y": 480,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 755,
+    "y": 508,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-15",
+   "key": "B-15",
+   "label": "B-15",
+   "zone": "B",
+   "number": 15,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 815,
+   "y": 130,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 815,
+    "y": 130,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 850,
+    "y": 158,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-16",
+   "key": "B-16",
+   "label": "B-16",
+   "zone": "B",
+   "number": 16,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 815,
+   "y": 180,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 815,
+    "y": 180,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 850,
+    "y": 208,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-17",
+   "key": "B-17",
+   "label": "B-17",
+   "zone": "B",
+   "number": 17,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 815,
+   "y": 230,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 815,
+    "y": 230,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 850,
+    "y": 258,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-18",
+   "key": "B-18",
+   "label": "B-18",
+   "zone": "B",
+   "number": 18,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 815,
+   "y": 280,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 815,
+    "y": 280,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 850,
+    "y": 308,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-19",
+   "key": "B-19",
+   "label": "B-19",
+   "zone": "B",
+   "number": 19,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 815,
+   "y": 330,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 815,
+    "y": 330,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 850,
+    "y": 358,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-20",
+   "key": "B-20",
+   "label": "B-20",
+   "zone": "B",
+   "number": 20,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 815,
+   "y": 380,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 815,
+    "y": 380,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 850,
+    "y": 408,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-21",
+   "key": "B-21",
+   "label": "B-21",
+   "zone": "B",
+   "number": 21,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 815,
+   "y": 430,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 815,
+    "y": 430,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 850,
+    "y": 458,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-22",
+   "key": "B-22",
+   "label": "B-22",
+   "zone": "B",
+   "number": 22,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 815,
+   "y": 480,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 815,
+    "y": 480,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 850,
+    "y": 508,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-14",
+   "key": "B-14",
+   "label": "B-14",
+   "zone": "B",
+   "number": 14,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 885,
+   "y": 130,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 885,
+    "y": 130,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 920,
+    "y": 158,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-13",
+   "key": "B-13",
+   "label": "B-13",
+   "zone": "B",
+   "number": 13,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 885,
+   "y": 180,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 885,
+    "y": 180,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 920,
+    "y": 208,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-12",
+   "key": "B-12",
+   "label": "B-12",
+   "zone": "B",
+   "number": 12,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 885,
+   "y": 230,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 885,
+    "y": 230,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 920,
+    "y": 258,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-11",
+   "key": "B-11",
+   "label": "B-11",
+   "zone": "B",
+   "number": 11,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 885,
+   "y": 280,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 885,
+    "y": 280,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 920,
+    "y": 308,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-10",
+   "key": "B-10",
+   "label": "B-10",
+   "zone": "B",
+   "number": 10,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 885,
+   "y": 330,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 885,
+    "y": 330,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 920,
+    "y": 358,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-9",
+   "key": "B-9",
+   "label": "B-9",
+   "zone": "B",
+   "number": 9,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 885,
+   "y": 380,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 885,
+    "y": 380,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 920,
+    "y": 408,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-8",
+   "key": "B-8",
+   "label": "B-8",
+   "zone": "B",
+   "number": 8,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 885,
+   "y": 430,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 885,
+    "y": 430,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 920,
+    "y": 458,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-7",
+   "key": "B-7",
+   "label": "B-7",
+   "zone": "B",
+   "number": 7,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 885,
+   "y": 480,
+   "w": 70,
+   "h": 50,
+   "bbox": {
+    "x": 885,
+    "y": 480,
+    "w": 70,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 920,
+    "y": 508,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-39",
+   "key": "C-39",
+   "label": "C-39",
+   "zone": "C",
+   "number": 39,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 985,
+   "y": 130,
+   "w": 38.33,
+   "h": 90,
+   "bbox": {
+    "x": 985,
+    "y": 130,
+    "w": 38.33,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1004.17,
+    "y": 178,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-38",
+   "key": "C-38",
+   "label": "C-38",
+   "zone": "C",
+   "number": 38,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1023.33,
+   "y": 130,
+   "w": 38.33,
+   "h": 90,
+   "bbox": {
+    "x": 1023.33,
+    "y": 130,
+    "w": 38.33,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1042.5,
+    "y": 178,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-37",
+   "key": "C-37",
+   "label": "C-37",
+   "zone": "C",
+   "number": 37,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1061.66,
+   "y": 130,
+   "w": 38.34,
+   "h": 90,
+   "bbox": {
+    "x": 1061.66,
+    "y": 130,
+    "w": 38.34,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1080.83,
+    "y": 178,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-36",
+   "key": "C-36",
+   "label": "C-36",
+   "zone": "C",
+   "number": 36,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1100,
+   "y": 130,
+   "w": 38.33,
+   "h": 90,
+   "bbox": {
+    "x": 1100,
+    "y": 130,
+    "w": 38.33,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1119.17,
+    "y": 178,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-35",
+   "key": "C-35",
+   "label": "C-35",
+   "zone": "C",
+   "number": 35,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1138.33,
+   "y": 130,
+   "w": 38.33,
+   "h": 90,
+   "bbox": {
+    "x": 1138.33,
+    "y": 130,
+    "w": 38.33,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1157.49,
+    "y": 178,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-34",
+   "key": "C-34",
+   "label": "C-34",
+   "zone": "C",
+   "number": 34,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1176.66,
+   "y": 130,
+   "w": 38.34,
+   "h": 90,
+   "bbox": {
+    "x": 1176.66,
+    "y": 130,
+    "w": 38.34,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1195.83,
+    "y": 178,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-33",
+   "key": "C-33",
+   "label": "C-33",
+   "zone": "C",
+   "number": 33,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1215,
+   "y": 130,
+   "w": 38.33,
+   "h": 90,
+   "bbox": {
+    "x": 1215,
+    "y": 130,
+    "w": 38.33,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1234.17,
+    "y": 178,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-32",
+   "key": "C-32",
+   "label": "C-32",
+   "zone": "C",
+   "number": 32,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1253.33,
+   "y": 130,
+   "w": 38.33,
+   "h": 90,
+   "bbox": {
+    "x": 1253.33,
+    "y": 130,
+    "w": 38.33,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1272.49,
+    "y": 178,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-31",
+   "key": "C-31",
+   "label": "C-31",
+   "zone": "C",
+   "number": 31,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1291.66,
+   "y": 130,
+   "w": 38.34,
+   "h": 90,
+   "bbox": {
+    "x": 1291.66,
+    "y": 130,
+    "w": 38.34,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1310.83,
+    "y": 178,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-40",
+   "key": "C-40",
+   "label": "C-40",
+   "zone": "C",
+   "number": 40,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 985,
+   "y": 220,
+   "w": 38.33,
+   "h": 90,
+   "bbox": {
+    "x": 985,
+    "y": 220,
+    "w": 38.33,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1004.17,
+    "y": 268,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-41",
+   "key": "C-41",
+   "label": "C-41",
+   "zone": "C",
+   "number": 41,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1023.33,
+   "y": 220,
+   "w": 38.33,
+   "h": 90,
+   "bbox": {
+    "x": 1023.33,
+    "y": 220,
+    "w": 38.33,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1042.5,
+    "y": 268,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-42",
+   "key": "C-42",
+   "label": "C-42",
+   "zone": "C",
+   "number": 42,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1061.66,
+   "y": 220,
+   "w": 38.34,
+   "h": 90,
+   "bbox": {
+    "x": 1061.66,
+    "y": 220,
+    "w": 38.34,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1080.83,
+    "y": 268,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-43",
+   "key": "C-43",
+   "label": "C-43",
+   "zone": "C",
+   "number": 43,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1100,
+   "y": 220,
+   "w": 38.33,
+   "h": 90,
+   "bbox": {
+    "x": 1100,
+    "y": 220,
+    "w": 38.33,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1119.17,
+    "y": 268,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-44",
+   "key": "C-44",
+   "label": "C-44",
+   "zone": "C",
+   "number": 44,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1138.33,
+   "y": 220,
+   "w": 38.33,
+   "h": 90,
+   "bbox": {
+    "x": 1138.33,
+    "y": 220,
+    "w": 38.33,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1157.49,
+    "y": 268,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-45",
+   "key": "C-45",
+   "label": "C-45",
+   "zone": "C",
+   "number": 45,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1176.66,
+   "y": 220,
+   "w": 38.34,
+   "h": 90,
+   "bbox": {
+    "x": 1176.66,
+    "y": 220,
+    "w": 38.34,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1195.83,
+    "y": 268,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-46",
+   "key": "C-46",
+   "label": "C-46",
+   "zone": "C",
+   "number": 46,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1215,
+   "y": 220,
+   "w": 38.33,
+   "h": 90,
+   "bbox": {
+    "x": 1215,
+    "y": 220,
+    "w": 38.33,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1234.17,
+    "y": 268,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-47",
+   "key": "C-47",
+   "label": "C-47",
+   "zone": "C",
+   "number": 47,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1253.33,
+   "y": 220,
+   "w": 38.33,
+   "h": 90,
+   "bbox": {
+    "x": 1253.33,
+    "y": 220,
+    "w": 38.33,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1272.49,
+    "y": 268,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-48",
+   "key": "C-48",
+   "label": "C-48",
+   "zone": "C",
+   "number": 48,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1291.66,
+   "y": 220,
+   "w": 38.34,
+   "h": 90,
+   "bbox": {
+    "x": 1291.66,
+    "y": 220,
+    "w": 38.34,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1310.83,
+    "y": 268,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-49",
+   "key": "C-49",
+   "label": "C-49",
+   "zone": "C",
+   "number": 49,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 985,
+   "y": 350,
+   "w": 38.33,
+   "h": 90,
+   "bbox": {
+    "x": 985,
+    "y": 350,
+    "w": 38.33,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1004.17,
+    "y": 398,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-50",
+   "key": "C-50",
+   "label": "C-50",
+   "zone": "C",
+   "number": 50,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1023.33,
+   "y": 350,
+   "w": 38.33,
+   "h": 90,
+   "bbox": {
+    "x": 1023.33,
+    "y": 350,
+    "w": 38.33,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1042.5,
+    "y": 398,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-51",
+   "key": "C-51",
+   "label": "C-51",
+   "zone": "C",
+   "number": 51,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1061.66,
+   "y": 350,
+   "w": 38.34,
+   "h": 90,
+   "bbox": {
+    "x": 1061.66,
+    "y": 350,
+    "w": 38.34,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1080.83,
+    "y": 398,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-52",
+   "key": "C-52",
+   "label": "C-52",
+   "zone": "C",
+   "number": 52,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1100,
+   "y": 350,
+   "w": 38.33,
+   "h": 90,
+   "bbox": {
+    "x": 1100,
+    "y": 350,
+    "w": 38.33,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1119.17,
+    "y": 398,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-53",
+   "key": "C-53",
+   "label": "C-53",
+   "zone": "C",
+   "number": 53,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1138.33,
+   "y": 350,
+   "w": 38.33,
+   "h": 90,
+   "bbox": {
+    "x": 1138.33,
+    "y": 350,
+    "w": 38.33,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1157.49,
+    "y": 398,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-54",
+   "key": "C-54",
+   "label": "C-54",
+   "zone": "C",
+   "number": 54,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1176.66,
+   "y": 350,
+   "w": 38.34,
+   "h": 90,
+   "bbox": {
+    "x": 1176.66,
+    "y": 350,
+    "w": 38.34,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1195.83,
+    "y": 398,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-55",
+   "key": "C-55",
+   "label": "C-55",
+   "zone": "C",
+   "number": 55,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1215,
+   "y": 350,
+   "w": 38.33,
+   "h": 90,
+   "bbox": {
+    "x": 1215,
+    "y": 350,
+    "w": 38.33,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1234.17,
+    "y": 398,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-56",
+   "key": "C-56",
+   "label": "C-56",
+   "zone": "C",
+   "number": 56,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1253.33,
+   "y": 350,
+   "w": 38.33,
+   "h": 90,
+   "bbox": {
+    "x": 1253.33,
+    "y": 350,
+    "w": 38.33,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1272.49,
+    "y": 398,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-57",
+   "key": "C-57",
+   "label": "C-57",
+   "zone": "C",
+   "number": 57,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1291.66,
+   "y": 350,
+   "w": 38.34,
+   "h": 90,
+   "bbox": {
+    "x": 1291.66,
+    "y": 350,
+    "w": 38.34,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1310.83,
+    "y": 398,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-58",
+   "key": "C-58",
+   "label": "C-58",
+   "zone": "C",
+   "number": 58,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 985,
+   "y": 440,
+   "w": 38.33,
+   "h": 90,
+   "bbox": {
+    "x": 985,
+    "y": 440,
+    "w": 38.33,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1004.17,
+    "y": 488,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-59",
+   "key": "C-59",
+   "label": "C-59",
+   "zone": "C",
+   "number": 59,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1023.33,
+   "y": 440,
+   "w": 38.33,
+   "h": 90,
+   "bbox": {
+    "x": 1023.33,
+    "y": 440,
+    "w": 38.33,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1042.5,
+    "y": 488,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-60",
+   "key": "C-60",
+   "label": "C-60",
+   "zone": "C",
+   "number": 60,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1061.66,
+   "y": 440,
+   "w": 38.34,
+   "h": 90,
+   "bbox": {
+    "x": 1061.66,
+    "y": 440,
+    "w": 38.34,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1080.83,
+    "y": 488,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-61",
+   "key": "C-61",
+   "label": "C-61",
+   "zone": "C",
+   "number": 61,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1100,
+   "y": 440,
+   "w": 38.33,
+   "h": 90,
+   "bbox": {
+    "x": 1100,
+    "y": 440,
+    "w": 38.33,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1119.17,
+    "y": 488,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-62",
+   "key": "C-62",
+   "label": "C-62",
+   "zone": "C",
+   "number": 62,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1138.33,
+   "y": 440,
+   "w": 38.33,
+   "h": 90,
+   "bbox": {
+    "x": 1138.33,
+    "y": 440,
+    "w": 38.33,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1157.49,
+    "y": 488,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-63",
+   "key": "C-63",
+   "label": "C-63",
+   "zone": "C",
+   "number": 63,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1176.66,
+   "y": 440,
+   "w": 38.34,
+   "h": 90,
+   "bbox": {
+    "x": 1176.66,
+    "y": 440,
+    "w": 38.34,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1195.83,
+    "y": 488,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-64",
+   "key": "C-64",
+   "label": "C-64",
+   "zone": "C",
+   "number": 64,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1215,
+   "y": 440,
+   "w": 38.33,
+   "h": 90,
+   "bbox": {
+    "x": 1215,
+    "y": 440,
+    "w": 38.33,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1234.17,
+    "y": 488,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-65",
+   "key": "C-65",
+   "label": "C-65",
+   "zone": "C",
+   "number": 65,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1253.33,
+   "y": 440,
+   "w": 38.33,
+   "h": 90,
+   "bbox": {
+    "x": 1253.33,
+    "y": 440,
+    "w": 38.33,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1272.49,
+    "y": 488,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-66",
+   "key": "C-66",
+   "label": "C-66",
+   "zone": "C",
+   "number": 66,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 1291.66,
+   "y": 440,
+   "w": 38.34,
+   "h": 90,
+   "bbox": {
+    "x": 1291.66,
+    "y": 440,
+    "w": 38.34,
+    "h": 90
+   },
+   "labelAt": {
+    "x": 1310.83,
+    "y": 488,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-148",
+   "key": "B-148",
+   "label": "B-148",
+   "zone": "B",
+   "number": 148,
+   "kind": "plot",
+   "shape": "polygon",
+   "points": [
+    [
+     135,
+     565
+    ],
+    [
+     170,
+     565
+    ],
+    [
+     170,
+     635
+    ],
+    [
+     150,
+     635
+    ]
+   ],
+   "bbox": {
+    "x": 135,
+    "y": 565,
+    "w": 35,
+    "h": 70
+   },
+   "labelAt": {
+    "x": 155,
+    "y": 600,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-160",
+   "key": "B-160",
+   "label": "B-160",
+   "zone": "B",
+   "number": 160,
+   "kind": "plot",
+   "shape": "polygon",
+   "points": [
+    [
+     150,
+     635
+    ],
+    [
+     170,
+     635
+    ],
+    [
+     170,
+     705
+    ],
+    [
+     165,
+     705
+    ]
+   ],
+   "bbox": {
+    "x": 150,
+    "y": 635,
+    "w": 20,
+    "h": 70
+   },
+   "labelAt": {
+    "x": 163,
+    "y": 670,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-193b",
+   "key": "B-193b",
+   "label": "B-193b",
+   "zone": "B",
+   "number": 193,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 170,
+   "y": 565,
+   "w": 30,
+   "h": 70,
+   "bbox": {
+    "x": 170,
+    "y": 565,
+    "w": 30,
+    "h": 70
+   },
+   "labelAt": {
+    "x": 185,
+    "y": 603,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-198b",
+   "key": "B-198b",
+   "label": "B-198b",
+   "zone": "B",
+   "number": 198,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 170,
+   "y": 635,
+   "w": 30,
+   "h": 70,
+   "bbox": {
+    "x": 170,
+    "y": 635,
+    "w": 30,
+    "h": 70
+   },
+   "labelAt": {
+    "x": 185,
+    "y": 673,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-144",
+   "key": "B-144",
+   "label": "B-144",
+   "zone": "B",
+   "number": 144,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 200,
+   "y": 565,
+   "w": 30,
+   "h": 70,
+   "bbox": {
+    "x": 200,
+    "y": 565,
+    "w": 30,
+    "h": 70
+   },
+   "labelAt": {
+    "x": 215,
+    "y": 603,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-198c",
+   "key": "B-198c",
+   "label": "B-198c",
+   "zone": "B",
+   "number": 198,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 200,
+   "y": 635,
+   "w": 30,
+   "h": 70,
+   "bbox": {
+    "x": 200,
+    "y": 635,
+    "w": 30,
+    "h": 70
+   },
+   "labelAt": {
+    "x": 215,
+    "y": 673,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-133b",
+   "key": "B-133b",
+   "label": "B-133b",
+   "zone": "B",
+   "number": 133,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 230,
+   "y": 565,
+   "w": 30,
+   "h": 70,
+   "bbox": {
+    "x": 230,
+    "y": 565,
+    "w": 30,
+    "h": 70
+   },
+   "labelAt": {
+    "x": 245,
+    "y": 603,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-163b",
+   "key": "B-163b",
+   "label": "B-163b",
+   "zone": "B",
+   "number": 163,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 230,
+   "y": 635,
+   "w": 30,
+   "h": 70,
+   "bbox": {
+    "x": 230,
+    "y": 635,
+    "w": 30,
+    "h": 70
+   },
+   "labelAt": {
+    "x": 245,
+    "y": 673,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-188b",
+   "key": "B-188b",
+   "label": "B-188b",
+   "zone": "B",
+   "number": 188,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 260,
+   "y": 565,
+   "w": 35,
+   "h": 70,
+   "bbox": {
+    "x": 260,
+    "y": 565,
+    "w": 35,
+    "h": 70
+   },
+   "labelAt": {
+    "x": 277.5,
+    "y": 603,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-183b",
+   "key": "B-183b",
+   "label": "B-183b",
+   "zone": "B",
+   "number": 183,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 260,
+   "y": 635,
+   "w": 35,
+   "h": 70,
+   "bbox": {
+    "x": 260,
+    "y": 635,
+    "w": 35,
+    "h": 70
+   },
+   "labelAt": {
+    "x": 277.5,
+    "y": 673,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-138",
+   "key": "B-138",
+   "label": "B-138",
+   "zone": "B",
+   "number": 138,
+   "kind": "plot",
+   "shape": "polygon",
+   "points": [
+    [
+     170,
+     725
+    ],
+    [
+     210,
+     725
+    ],
+    [
+     210,
+     795
+    ],
+    [
+     185,
+     795
+    ]
+   ],
+   "bbox": {
+    "x": 170,
+    "y": 725,
+    "w": 40,
+    "h": 70
+   },
+   "labelAt": {
+    "x": 192,
+    "y": 760,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-168c",
+   "key": "B-168c",
+   "label": "B-168c",
+   "zone": "B",
+   "number": 168,
+   "kind": "plot",
+   "shape": "polygon",
+   "points": [
+    [
+     185,
+     795
+    ],
+    [
+     210,
+     795
+    ],
+    [
+     210,
+     865
+    ],
+    [
+     200,
+     865
+    ]
+   ],
+   "bbox": {
+    "x": 185,
+    "y": 795,
+    "w": 25,
+    "h": 70
+   },
+   "labelAt": {
+    "x": 200,
+    "y": 830,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-128",
+   "key": "B-128",
+   "label": "B-128",
+   "zone": "B",
+   "number": 128,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 210,
+   "y": 725,
+   "w": 30,
+   "h": 70,
+   "bbox": {
+    "x": 210,
+    "y": 725,
+    "w": 30,
+    "h": 70
+   },
+   "labelAt": {
+    "x": 225,
+    "y": 763,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-163c",
+   "key": "B-163c",
+   "label": "B-163c",
+   "zone": "B",
+   "number": 163,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 210,
+   "y": 795,
+   "w": 30,
+   "h": 70,
+   "bbox": {
+    "x": 210,
+    "y": 795,
+    "w": 30,
+    "h": 70
+   },
+   "labelAt": {
+    "x": 225,
+    "y": 833,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-198d",
+   "key": "B-198d",
+   "label": "B-198d",
+   "zone": "B",
+   "number": 198,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 240,
+   "y": 725,
+   "w": 30,
+   "h": 70,
+   "bbox": {
+    "x": 240,
+    "y": 725,
+    "w": 30,
+    "h": 70
+   },
+   "labelAt": {
+    "x": 255,
+    "y": 763,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-189b",
+   "key": "B-189b",
+   "label": "B-189b",
+   "zone": "B",
+   "number": 189,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 240,
+   "y": 795,
+   "w": 30,
+   "h": 70,
+   "bbox": {
+    "x": 240,
+    "y": 795,
+    "w": 30,
+    "h": 70
+   },
+   "labelAt": {
+    "x": 255,
+    "y": 833,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-183c",
+   "key": "B-183c",
+   "label": "B-183c",
+   "zone": "B",
+   "number": 183,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 270,
+   "y": 725,
+   "w": 25,
+   "h": 70,
+   "bbox": {
+    "x": 270,
+    "y": 725,
+    "w": 25,
+    "h": 70
+   },
+   "labelAt": {
+    "x": 282.5,
+    "y": 763,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-163d",
+   "key": "B-163d",
+   "label": "B-163d",
+   "zone": "B",
+   "number": 163,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 270,
+   "y": 795,
+   "w": 25,
+   "h": 70,
+   "bbox": {
+    "x": 270,
+    "y": 795,
+    "w": 25,
+    "h": 70
+   },
+   "labelAt": {
+    "x": 282.5,
+    "y": 833,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-153",
+   "key": "B-153~2",
+   "label": "B-153",
+   "zone": "B",
+   "number": 153,
+   "kind": "plot",
+   "shape": "polygon",
+   "points": [
+    [
+     201,
+     895
+    ],
+    [
+     218,
+     895
+    ],
+    [
+     218,
+     935
+    ],
+    [
+     200,
+     935
+    ]
+   ],
+   "bbox": {
+    "x": 200,
+    "y": 895,
+    "w": 18,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 210,
+    "y": 915,
+    "fontSize": 6,
+    "rotate": -90,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#22C55E",
+   "statusDriven": true,
+   "onClickVia": "inline"
+  },
+  {
+   "id": "B-158",
+   "key": "B-158~2",
+   "label": "B-158",
+   "zone": "B",
+   "number": 158,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 218,
+   "y": 895,
+   "w": 14.7,
+   "h": 40,
+   "bbox": {
+    "x": 218,
+    "y": 895,
+    "w": 14.7,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 225.3,
+    "y": 915,
+    "fontSize": 6,
+    "rotate": -90,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#22C55E",
+   "statusDriven": true,
+   "onClickVia": "inline"
+  },
+  {
+   "id": "B-159a",
+   "key": "B-159a",
+   "label": "B-159",
+   "zone": "B",
+   "number": 159,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 232.7,
+   "y": 895,
+   "w": 14.8,
+   "h": 40,
+   "bbox": {
+    "x": 232.7,
+    "y": 895,
+    "w": 14.8,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 240.1,
+    "y": 915,
+    "fontSize": 6,
+    "rotate": -90,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#22C55E",
+   "statusDriven": true,
+   "onClickVia": "inline"
+  },
+  {
+   "id": "B-159b",
+   "key": "B-159b",
+   "label": "B-159",
+   "zone": "B",
+   "number": 159,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 247.5,
+   "y": 895,
+   "w": 47.5,
+   "h": 40,
+   "bbox": {
+    "x": 247.5,
+    "y": 895,
+    "w": 47.5,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 271.2,
+    "y": 915,
+    "fontSize": 8,
+    "rotate": -90,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#22C55E",
+   "statusDriven": true,
+   "onClickVia": "inline"
+  },
+  {
+   "id": "B-146",
+   "key": "B-146",
+   "label": "B-146",
+   "zone": "B",
+   "number": 146,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 10,
+   "y": 935,
+   "w": 47.5,
+   "h": 50,
+   "bbox": {
+    "x": 10,
+    "y": 935,
+    "w": 47.5,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 33.75,
+    "y": 963,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-145",
+   "key": "B-145",
+   "label": "B-145",
+   "zone": "B",
+   "number": 145,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 57.5,
+   "y": 935,
+   "w": 47.5,
+   "h": 50,
+   "bbox": {
+    "x": 57.5,
+    "y": 935,
+    "w": 47.5,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 81.25,
+    "y": 963,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-144",
+   "key": "B-144~2",
+   "label": "B-144",
+   "zone": "B",
+   "number": 144,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 105,
+   "y": 935,
+   "w": 47.5,
+   "h": 50,
+   "bbox": {
+    "x": 105,
+    "y": 935,
+    "w": 47.5,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 128.75,
+    "y": 963,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-104",
+   "key": "B-104",
+   "label": "B-104",
+   "zone": "B",
+   "number": 104,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 152.5,
+   "y": 935,
+   "w": 47.5,
+   "h": 50,
+   "bbox": {
+    "x": 152.5,
+    "y": 935,
+    "w": 47.5,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 176.25,
+    "y": 963,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-139",
+   "key": "B-139",
+   "label": "B-139",
+   "zone": "B",
+   "number": 139,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 200,
+   "y": 935,
+   "w": 18,
+   "h": 50,
+   "bbox": {
+    "x": 200,
+    "y": 935,
+    "w": 18,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 209,
+    "y": 960,
+    "fontSize": 7,
+    "rotate": -90,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#22C55E",
+   "statusDriven": true,
+   "onClickVia": "inline"
+  },
+  {
+   "id": "B-138",
+   "key": "B-138~2",
+   "label": "B-138",
+   "zone": "B",
+   "number": 138,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 218,
+   "y": 935,
+   "w": 29.5,
+   "h": 50,
+   "bbox": {
+    "x": 218,
+    "y": 935,
+    "w": 29.5,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 232.7,
+    "y": 960,
+    "fontSize": 8,
+    "rotate": -90,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#22C55E",
+   "statusDriven": true,
+   "onClickVia": "inline"
+  },
+  {
+   "id": "B-132",
+   "key": "B-132",
+   "label": "B-132",
+   "zone": "B",
+   "number": 132,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 247.5,
+   "y": 935,
+   "w": 47.5,
+   "h": 50,
+   "bbox": {
+    "x": 247.5,
+    "y": 935,
+    "w": 47.5,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 271.25,
+    "y": 963,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-10",
+   "key": "C-10",
+   "label": "C-10",
+   "zone": "C",
+   "number": 10,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 985,
+   "y": 565,
+   "w": 50,
+   "h": 42,
+   "bbox": {
+    "x": 985,
+    "y": 565,
+    "w": 50,
+    "h": 42
+   },
+   "labelAt": {
+    "x": 1010,
+    "y": 589,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-9",
+   "key": "C-9",
+   "label": "C-9",
+   "zone": "C",
+   "number": 9,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 985,
+   "y": 607,
+   "w": 50,
+   "h": 42,
+   "bbox": {
+    "x": 985,
+    "y": 607,
+    "w": 50,
+    "h": 42
+   },
+   "labelAt": {
+    "x": 1010,
+    "y": 631,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-8",
+   "key": "C-8",
+   "label": "C-8",
+   "zone": "C",
+   "number": 8,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 985,
+   "y": 649,
+   "w": 50,
+   "h": 42,
+   "bbox": {
+    "x": 985,
+    "y": 649,
+    "w": 50,
+    "h": 42
+   },
+   "labelAt": {
+    "x": 1010,
+    "y": 673,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-7",
+   "key": "C-7",
+   "label": "C-7",
+   "zone": "C",
+   "number": 7,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 985,
+   "y": 691,
+   "w": 50,
+   "h": 42,
+   "bbox": {
+    "x": 985,
+    "y": 691,
+    "w": 50,
+    "h": 42
+   },
+   "labelAt": {
+    "x": 1010,
+    "y": 715,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-6",
+   "key": "C-6",
+   "label": "C-6",
+   "zone": "C",
+   "number": 6,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 985,
+   "y": 733,
+   "w": 50,
+   "h": 42,
+   "bbox": {
+    "x": 985,
+    "y": 733,
+    "w": 50,
+    "h": 42
+   },
+   "labelAt": {
+    "x": 1010,
+    "y": 757,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-5",
+   "key": "C-5",
+   "label": "C-5",
+   "zone": "C",
+   "number": 5,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 985,
+   "y": 775,
+   "w": 50,
+   "h": 42,
+   "bbox": {
+    "x": 985,
+    "y": 775,
+    "w": 50,
+    "h": 42
+   },
+   "labelAt": {
+    "x": 1010,
+    "y": 799,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-4",
+   "key": "C-4",
+   "label": "C-4",
+   "zone": "C",
+   "number": 4,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 985,
+   "y": 817,
+   "w": 50,
+   "h": 42,
+   "bbox": {
+    "x": 985,
+    "y": 817,
+    "w": 50,
+    "h": 42
+   },
+   "labelAt": {
+    "x": 1010,
+    "y": 841,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-3",
+   "key": "C-3",
+   "label": "C-3",
+   "zone": "C",
+   "number": 3,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 985,
+   "y": 859,
+   "w": 50,
+   "h": 42,
+   "bbox": {
+    "x": 985,
+    "y": 859,
+    "w": 50,
+    "h": 42
+   },
+   "labelAt": {
+    "x": 1010,
+    "y": 883,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-2",
+   "key": "C-2",
+   "label": "C-2",
+   "zone": "C",
+   "number": 2,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 985,
+   "y": 901,
+   "w": 50,
+   "h": 42,
+   "bbox": {
+    "x": 985,
+    "y": 901,
+    "w": 50,
+    "h": 42
+   },
+   "labelAt": {
+    "x": 1010,
+    "y": 925,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "C-1",
+   "key": "C-1",
+   "label": "C-1",
+   "zone": "C",
+   "number": 1,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 985,
+   "y": 943,
+   "w": 50,
+   "h": 42,
+   "bbox": {
+    "x": 985,
+    "y": 943,
+    "w": 50,
+    "h": 42
+   },
+   "labelAt": {
+    "x": 1010,
+    "y": 967,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E0A832",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "D-2",
+   "key": "D-2",
+   "label": "D-2",
+   "zone": "D",
+   "number": 2,
+   "kind": "plot",
+   "shape": "polygon",
+   "points": [
+    [
+     985,
+     985
+    ],
+    [
+     1010,
+     985
+    ],
+    [
+     1010,
+     1021.8
+    ],
+    [
+     985,
+     1035
+    ]
+   ],
+   "bbox": {
+    "x": 985,
+    "y": 985,
+    "w": 25,
+    "h": 50
+   },
+   "labelAt": {
+    "x": 997.5,
+    "y": 1005,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#C9388A",
+   "statusDriven": false,
+   "onClickVia": "inline"
+  },
+  {
+   "id": "D-1",
+   "key": "D-1",
+   "label": "D-1",
+   "zone": "D",
+   "number": 1,
+   "kind": "plot",
+   "shape": "polygon",
+   "points": [
+    [
+     1010,
+     985
+    ],
+    [
+     1035,
+     985
+    ],
+    [
+     1035,
+     1008.7
+    ],
+    [
+     1010,
+     1021.8
+    ]
+   ],
+   "bbox": {
+    "x": 1010,
+    "y": 985,
+    "w": 25,
+    "h": 36.8
+   },
+   "labelAt": {
+    "x": 1022.5,
+    "y": 1000,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#C9388A",
+   "statusDriven": false,
+   "onClickVia": "inline"
+  },
+  {
+   "id": "B-127b",
+   "key": "B-127b",
+   "label": "B-127b",
+   "zone": "B",
+   "number": 127,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 320,
+   "y": 565,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 320,
+    "y": 565,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 355,
+    "y": 591.5,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-128",
+   "key": "B-128~2",
+   "label": "B-128",
+   "zone": "B",
+   "number": 128,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 320,
+   "y": 612,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 320,
+    "y": 612,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 355,
+    "y": 638.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-129",
+   "key": "B-129",
+   "label": "B-129",
+   "zone": "B",
+   "number": 129,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 320,
+   "y": 659,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 320,
+    "y": 659,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 355,
+    "y": 685.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-133b",
+   "key": "B-133b~2",
+   "label": "B-133b",
+   "zone": "B",
+   "number": 133,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 320,
+   "y": 706,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 320,
+    "y": 706,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 355,
+    "y": 732.5,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-137",
+   "key": "B-137",
+   "label": "B-137",
+   "zone": "B",
+   "number": 137,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 320,
+   "y": 753,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 320,
+    "y": 753,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 355,
+    "y": 779.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-133c",
+   "key": "B-133c",
+   "label": "B-133c",
+   "zone": "B",
+   "number": 133,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 320,
+   "y": 800,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 320,
+    "y": 800,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 355,
+    "y": 826.5,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-130",
+   "key": "B-130",
+   "label": "B-130",
+   "zone": "B",
+   "number": 130,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 320,
+   "y": 847,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 320,
+    "y": 847,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 355,
+    "y": 873.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-131",
+   "key": "B-131",
+   "label": "B-131",
+   "zone": "B",
+   "number": 131,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 320,
+   "y": 894,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 320,
+    "y": 894,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 355,
+    "y": 920.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-126b",
+   "key": "B-126b",
+   "label": "B-126b",
+   "zone": "B",
+   "number": 126,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 320,
+   "y": 941,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 320,
+    "y": 941,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 355,
+    "y": 967.5,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-119b",
+   "key": "B-119b",
+   "label": "B-119b",
+   "zone": "B",
+   "number": 119,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 390,
+   "y": 565,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 390,
+    "y": 565,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 425,
+    "y": 591.5,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-109",
+   "key": "B-109",
+   "label": "B-109",
+   "zone": "B",
+   "number": 109,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 390,
+   "y": 612,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 390,
+    "y": 612,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 425,
+    "y": 638.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-110",
+   "key": "B-110",
+   "label": "B-110",
+   "zone": "B",
+   "number": 110,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 390,
+   "y": 659,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 390,
+    "y": 659,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 425,
+    "y": 685.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-109b",
+   "key": "B-109b",
+   "label": "B-109b",
+   "zone": "B",
+   "number": 109,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 390,
+   "y": 706,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 390,
+    "y": 706,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 425,
+    "y": 732.5,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-105",
+   "key": "B-105",
+   "label": "B-105",
+   "zone": "B",
+   "number": 105,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 390,
+   "y": 753,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 390,
+    "y": 753,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 425,
+    "y": 779.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-135",
+   "key": "B-135",
+   "label": "B-135",
+   "zone": "B",
+   "number": 135,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 390,
+   "y": 800,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 390,
+    "y": 800,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 425,
+    "y": 826.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-134b",
+   "key": "B-134b",
+   "label": "B-134b",
+   "zone": "B",
+   "number": 134,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 390,
+   "y": 847,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 390,
+    "y": 847,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 425,
+    "y": 873.5,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-102",
+   "key": "B-102",
+   "label": "B-102",
+   "zone": "B",
+   "number": 102,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 390,
+   "y": 894,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 390,
+    "y": 894,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 425,
+    "y": 920.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-101",
+   "key": "B-101~2",
+   "label": "B-101",
+   "zone": "B",
+   "number": 101,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 390,
+   "y": 941,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 390,
+    "y": 941,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 425,
+    "y": 967.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-91",
+   "key": "B-91",
+   "label": "B-91",
+   "zone": "B",
+   "number": 91,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 485,
+   "y": 565,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 485,
+    "y": 565,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 520,
+    "y": 591.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-92",
+   "key": "B-92",
+   "label": "B-92",
+   "zone": "B",
+   "number": 92,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 485,
+   "y": 612,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 485,
+    "y": 612,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 520,
+    "y": 638.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-93",
+   "key": "B-93",
+   "label": "B-93",
+   "zone": "B",
+   "number": 93,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 485,
+   "y": 659,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 485,
+    "y": 659,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 520,
+    "y": 685.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-96",
+   "key": "B-96",
+   "label": "B-96",
+   "zone": "B",
+   "number": 96,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 485,
+   "y": 706,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 485,
+    "y": 706,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 520,
+    "y": 732.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-96b",
+   "key": "B-96b",
+   "label": "B-96b",
+   "zone": "B",
+   "number": 96,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 485,
+   "y": 753,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 485,
+    "y": 753,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 520,
+    "y": 779.5,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-97",
+   "key": "B-97",
+   "label": "B-97",
+   "zone": "B",
+   "number": 97,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 485,
+   "y": 800,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 485,
+    "y": 800,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 520,
+    "y": 826.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-99",
+   "key": "B-99",
+   "label": "B-99",
+   "zone": "B",
+   "number": 99,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 485,
+   "y": 847,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 485,
+    "y": 847,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 520,
+    "y": 873.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-99b",
+   "key": "B-99b",
+   "label": "B-99b",
+   "zone": "B",
+   "number": 99,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 485,
+   "y": 894,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 485,
+    "y": 894,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 520,
+    "y": 920.5,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-100b",
+   "key": "B-100b",
+   "label": "B-100b",
+   "zone": "B",
+   "number": 100,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 485,
+   "y": 941,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 485,
+    "y": 941,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 520,
+    "y": 967.5,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-74",
+   "key": "B-74",
+   "label": "B-74",
+   "zone": "B",
+   "number": 74,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 555,
+   "y": 565,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 555,
+    "y": 565,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 590,
+    "y": 591.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-73",
+   "key": "B-73",
+   "label": "B-73",
+   "zone": "B",
+   "number": 73,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 555,
+   "y": 612,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 555,
+    "y": 612,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 590,
+    "y": 638.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-72",
+   "key": "B-72",
+   "label": "B-72",
+   "zone": "B",
+   "number": 72,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 555,
+   "y": 659,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 555,
+    "y": 659,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 590,
+    "y": 685.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-71b",
+   "key": "B-71b",
+   "label": "B-71b",
+   "zone": "B",
+   "number": 71,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 555,
+   "y": 706,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 555,
+    "y": 706,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 590,
+    "y": 732.5,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-69",
+   "key": "B-69",
+   "label": "B-69",
+   "zone": "B",
+   "number": 69,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 555,
+   "y": 753,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 555,
+    "y": 753,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 590,
+    "y": 779.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-69b",
+   "key": "B-69b",
+   "label": "B-69b",
+   "zone": "B",
+   "number": 69,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 555,
+   "y": 800,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 555,
+    "y": 800,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 590,
+    "y": 826.5,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-68",
+   "key": "B-68",
+   "label": "B-68",
+   "zone": "B",
+   "number": 68,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 555,
+   "y": 847,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 555,
+    "y": 847,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 590,
+    "y": 873.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-67",
+   "key": "B-67",
+   "label": "B-67",
+   "zone": "B",
+   "number": 67,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 555,
+   "y": 894,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 555,
+    "y": 894,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 590,
+    "y": 920.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-65",
+   "key": "B-65",
+   "label": "B-65",
+   "zone": "B",
+   "number": 65,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 555,
+   "y": 941,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 555,
+    "y": 941,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 590,
+    "y": 967.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-55b",
+   "key": "B-55b",
+   "label": "B-55b",
+   "zone": "B",
+   "number": 55,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 650,
+   "y": 565,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 650,
+    "y": 565,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 685,
+    "y": 591.5,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-56",
+   "key": "B-56",
+   "label": "B-56",
+   "zone": "B",
+   "number": 56,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 650,
+   "y": 612,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 650,
+    "y": 612,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 685,
+    "y": 638.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-57",
+   "key": "B-57",
+   "label": "B-57",
+   "zone": "B",
+   "number": 57,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 650,
+   "y": 659,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 650,
+    "y": 659,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 685,
+    "y": 685.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-59",
+   "key": "B-59",
+   "label": "B-59",
+   "zone": "B",
+   "number": 59,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 650,
+   "y": 706,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 650,
+    "y": 706,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 685,
+    "y": 732.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-60c",
+   "key": "B-60c",
+   "label": "B-60c",
+   "zone": "B",
+   "number": 60,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 650,
+   "y": 753,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 650,
+    "y": 753,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 685,
+    "y": 779.5,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-61b",
+   "key": "B-61b",
+   "label": "B-61b",
+   "zone": "B",
+   "number": 61,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 650,
+   "y": 800,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 650,
+    "y": 800,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 685,
+    "y": 826.5,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-62b",
+   "key": "B-62b",
+   "label": "B-62b",
+   "zone": "B",
+   "number": 62,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 650,
+   "y": 847,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 650,
+    "y": 847,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 685,
+    "y": 873.5,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-63",
+   "key": "B-63",
+   "label": "B-63",
+   "zone": "B",
+   "number": 63,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 650,
+   "y": 894,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 650,
+    "y": 894,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 685,
+    "y": 920.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-64",
+   "key": "B-64",
+   "label": "B-64",
+   "zone": "B",
+   "number": 64,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 650,
+   "y": 941,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 650,
+    "y": 941,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 685,
+    "y": 967.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-38b",
+   "key": "B-38b",
+   "label": "B-38b",
+   "zone": "B",
+   "number": 38,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 720,
+   "y": 565,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 720,
+    "y": 565,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 755,
+    "y": 591.5,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-37b",
+   "key": "B-37b",
+   "label": "B-37b",
+   "zone": "B",
+   "number": 37,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 720,
+   "y": 612,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 720,
+    "y": 612,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 755,
+    "y": 638.5,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-36",
+   "key": "B-36",
+   "label": "B-36",
+   "zone": "B",
+   "number": 36,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 720,
+   "y": 659,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 720,
+    "y": 659,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 755,
+    "y": 685.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-34b",
+   "key": "B-34b",
+   "label": "B-34b",
+   "zone": "B",
+   "number": 34,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 720,
+   "y": 706,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 720,
+    "y": 706,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 755,
+    "y": 732.5,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-33",
+   "key": "B-33",
+   "label": "B-33",
+   "zone": "B",
+   "number": 33,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 720,
+   "y": 753,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 720,
+    "y": 753,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 755,
+    "y": 779.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-32c",
+   "key": "B-32c",
+   "label": "B-32c",
+   "zone": "B",
+   "number": 32,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 720,
+   "y": 800,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 720,
+    "y": 800,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 755,
+    "y": 826.5,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-31c",
+   "key": "B-31c",
+   "label": "B-31c",
+   "zone": "B",
+   "number": 31,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 720,
+   "y": 847,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 720,
+    "y": 847,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 755,
+    "y": 873.5,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-30c",
+   "key": "B-30c",
+   "label": "B-30c",
+   "zone": "B",
+   "number": 30,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 720,
+   "y": 894,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 720,
+    "y": 894,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 755,
+    "y": 920.5,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-29b",
+   "key": "B-29b",
+   "label": "B-29b",
+   "zone": "B",
+   "number": 29,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 720,
+   "y": 941,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 720,
+    "y": 941,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 755,
+    "y": 967.5,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-23",
+   "key": "B-23",
+   "label": "B-23",
+   "zone": "B",
+   "number": 23,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 815,
+   "y": 565,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 815,
+    "y": 565,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 850,
+    "y": 591.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-24b",
+   "key": "B-24b",
+   "label": "B-24b",
+   "zone": "B",
+   "number": 24,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 815,
+   "y": 612,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 815,
+    "y": 612,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 850,
+    "y": 638.5,
+    "fontSize": 8,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-25",
+   "key": "B-25",
+   "label": "B-25",
+   "zone": "B",
+   "number": 25,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 815,
+   "y": 659,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 815,
+    "y": 659,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 850,
+    "y": 685.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-26",
+   "key": "B-26",
+   "label": "B-26",
+   "zone": "B",
+   "number": 26,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 815,
+   "y": 706,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 815,
+    "y": 706,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 850,
+    "y": 732.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-27",
+   "key": "B-27",
+   "label": "B-27",
+   "zone": "B",
+   "number": 27,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 815,
+   "y": 753,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 815,
+    "y": 753,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 850,
+    "y": 779.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-28",
+   "key": "B-28",
+   "label": "B-28",
+   "zone": "B",
+   "number": 28,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 815,
+   "y": 800,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 815,
+    "y": 800,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 850,
+    "y": 826.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-6",
+   "key": "B-6",
+   "label": "B-6",
+   "zone": "B",
+   "number": 6,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 885,
+   "y": 565,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 885,
+    "y": 565,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 920,
+    "y": 591.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-5",
+   "key": "B-5",
+   "label": "B-5",
+   "zone": "B",
+   "number": 5,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 885,
+   "y": 612,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 885,
+    "y": 612,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 920,
+    "y": 638.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-4",
+   "key": "B-4",
+   "label": "B-4",
+   "zone": "B",
+   "number": 4,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 885,
+   "y": 659,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 885,
+    "y": 659,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 920,
+    "y": 685.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-3",
+   "key": "B-3",
+   "label": "B-3",
+   "zone": "B",
+   "number": 3,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 885,
+   "y": 706,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 885,
+    "y": 706,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 920,
+    "y": 732.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-2",
+   "key": "B-2",
+   "label": "B-2",
+   "zone": "B",
+   "number": 2,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 885,
+   "y": 753,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 885,
+    "y": 753,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 920,
+    "y": 779.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "B-1",
+   "key": "B-1",
+   "label": "B-1",
+   "zone": "B",
+   "number": 1,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 885,
+   "y": 800,
+   "w": 70,
+   "h": 47,
+   "bbox": {
+    "x": 885,
+    "y": 800,
+    "w": 70,
+    "h": 47
+   },
+   "labelAt": {
+    "x": 920,
+    "y": 826.5,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#F4C04A",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "D-12",
+   "key": "D-12",
+   "label": "D-12",
+   "zone": "D",
+   "number": 12,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 815,
+   "y": 920,
+   "w": 20,
+   "h": 40,
+   "bbox": {
+    "x": 815,
+    "y": 920,
+    "w": 20,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 825,
+    "y": 943,
+    "fontSize": 7,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E94CA0",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "D-11",
+   "key": "D-11",
+   "label": "D-11",
+   "zone": "D",
+   "number": 11,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 835,
+   "y": 920,
+   "w": 20,
+   "h": 40,
+   "bbox": {
+    "x": 835,
+    "y": 920,
+    "w": 20,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 845,
+    "y": 943,
+    "fontSize": 7,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E94CA0",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "D-10",
+   "key": "D-10",
+   "label": "D-10",
+   "zone": "D",
+   "number": 10,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 855,
+   "y": 920,
+   "w": 20,
+   "h": 40,
+   "bbox": {
+    "x": 855,
+    "y": 920,
+    "w": 20,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 865,
+    "y": 943,
+    "fontSize": 7,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E94CA0",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "D-9",
+   "key": "D-9",
+   "label": "D-9",
+   "zone": "D",
+   "number": 9,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 875,
+   "y": 920,
+   "w": 20,
+   "h": 40,
+   "bbox": {
+    "x": 875,
+    "y": 920,
+    "w": 20,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 885,
+    "y": 943,
+    "fontSize": 7,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E94CA0",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "D-8",
+   "key": "D-8",
+   "label": "D-8",
+   "zone": "D",
+   "number": 8,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 895,
+   "y": 920,
+   "w": 20,
+   "h": 40,
+   "bbox": {
+    "x": 895,
+    "y": 920,
+    "w": 20,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 905,
+    "y": 943,
+    "fontSize": 7,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E94CA0",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "D-7",
+   "key": "D-7",
+   "label": "D-7",
+   "zone": "D",
+   "number": 7,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 915,
+   "y": 920,
+   "w": 20,
+   "h": 40,
+   "bbox": {
+    "x": 915,
+    "y": 920,
+    "w": 20,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 925,
+    "y": 943,
+    "fontSize": 7,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E94CA0",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "D-6",
+   "key": "D-6",
+   "label": "D-6",
+   "zone": "D",
+   "number": 6,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 935,
+   "y": 920,
+   "w": 20,
+   "h": 40,
+   "bbox": {
+    "x": 935,
+    "y": 920,
+    "w": 20,
+    "h": 40
+   },
+   "labelAt": {
+    "x": 945,
+    "y": 943,
+    "fontSize": 7,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E94CA0",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "D-5",
+   "key": "D-5",
+   "label": "D-5",
+   "zone": "D",
+   "number": 5,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 815,
+   "y": 960,
+   "w": 20,
+   "h": 28,
+   "bbox": {
+    "x": 815,
+    "y": 960,
+    "w": 20,
+    "h": 28
+   },
+   "labelAt": {
+    "x": 825,
+    "y": 977,
+    "fontSize": 7,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E94CA0",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "D-4",
+   "key": "D-4",
+   "label": "D-4",
+   "zone": "D",
+   "number": 4,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 835,
+   "y": 960,
+   "w": 20,
+   "h": 28,
+   "bbox": {
+    "x": 835,
+    "y": 960,
+    "w": 20,
+    "h": 28
+   },
+   "labelAt": {
+    "x": 845,
+    "y": 977,
+    "fontSize": 7,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E94CA0",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "D-3",
+   "key": "D-3",
+   "label": "D-3",
+   "zone": "D",
+   "number": 3,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 855,
+   "y": 960,
+   "w": 20,
+   "h": 28,
+   "bbox": {
+    "x": 855,
+    "y": 960,
+    "w": 20,
+    "h": 28
+   },
+   "labelAt": {
+    "x": 865,
+    "y": 977,
+    "fontSize": 7,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E94CA0",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "D-2",
+   "key": "D-2~2",
+   "label": "D-2",
+   "zone": "D",
+   "number": 2,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 875,
+   "y": 960,
+   "w": 20,
+   "h": 28,
+   "bbox": {
+    "x": 875,
+    "y": 960,
+    "w": 20,
+    "h": 28
+   },
+   "labelAt": {
+    "x": 885,
+    "y": 977,
+    "fontSize": 7,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E94CA0",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "D-1",
+   "key": "D-1~2",
+   "label": "D-1",
+   "zone": "D",
+   "number": 1,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 895,
+   "y": 960,
+   "w": 20,
+   "h": 28,
+   "bbox": {
+    "x": 895,
+    "y": 960,
+    "w": 20,
+    "h": 28
+   },
+   "labelAt": {
+    "x": 905,
+    "y": 977,
+    "fontSize": 7,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E94CA0",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "D-13",
+   "key": "D-13",
+   "label": "D-13",
+   "zone": "D",
+   "number": 13,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 915,
+   "y": 960,
+   "w": 20,
+   "h": 28,
+   "bbox": {
+    "x": 915,
+    "y": 960,
+    "w": 20,
+    "h": 28
+   },
+   "labelAt": {
+    "x": 925,
+    "y": 977,
+    "fontSize": 7,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E94CA0",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "D-14",
+   "key": "D-14",
+   "label": "D-14",
+   "zone": "D",
+   "number": 14,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 935,
+   "y": 960,
+   "w": 20,
+   "h": 28,
+   "bbox": {
+    "x": 935,
+    "y": 960,
+    "w": 20,
+    "h": 28
+   },
+   "labelAt": {
+    "x": 945,
+    "y": 977,
+    "fontSize": 7,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#E94CA0",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "A-54",
+   "key": "A-54",
+   "label": "A-54",
+   "zone": "A",
+   "number": 54,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 10,
+   "y": 1023,
+   "w": 47.5,
+   "h": 42,
+   "bbox": {
+    "x": 10,
+    "y": 1023,
+    "w": 47.5,
+    "h": 42
+   },
+   "labelAt": {
+    "x": 33.75,
+    "y": 1047,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#A7D8F2",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "A-53",
+   "key": "A-53",
+   "label": "A-53",
+   "zone": "A",
+   "number": 53,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 57.5,
+   "y": 1023,
+   "w": 47.5,
+   "h": 42,
+   "bbox": {
+    "x": 57.5,
+    "y": 1023,
+    "w": 47.5,
+    "h": 42
+   },
+   "labelAt": {
+    "x": 81.25,
+    "y": 1047,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#A7D8F2",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "A-52",
+   "key": "A-52",
+   "label": "A-52",
+   "zone": "A",
+   "number": 52,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 105,
+   "y": 1023,
+   "w": 47.5,
+   "h": 42,
+   "bbox": {
+    "x": 105,
+    "y": 1023,
+    "w": 47.5,
+    "h": 42
+   },
+   "labelAt": {
+    "x": 128.75,
+    "y": 1047,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#A7D8F2",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "A-51",
+   "key": "A-51",
+   "label": "A-51",
+   "zone": "A",
+   "number": 51,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 152.5,
+   "y": 1023,
+   "w": 47.5,
+   "h": 42,
+   "bbox": {
+    "x": 152.5,
+    "y": 1023,
+    "w": 47.5,
+    "h": 42
+   },
+   "labelAt": {
+    "x": 176.25,
+    "y": 1047,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#A7D8F2",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "A-50",
+   "key": "A-50",
+   "label": "A-50",
+   "zone": "A",
+   "number": 50,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 200,
+   "y": 1023,
+   "w": 47.5,
+   "h": 42,
+   "bbox": {
+    "x": 200,
+    "y": 1023,
+    "w": 47.5,
+    "h": 42
+   },
+   "labelAt": {
+    "x": 223.75,
+    "y": 1047,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#A7D8F2",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "A-45",
+   "key": "A-45",
+   "label": "A-45",
+   "zone": "A",
+   "number": 45,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 247.5,
+   "y": 1023,
+   "w": 47.5,
+   "h": 42,
+   "bbox": {
+    "x": 247.5,
+    "y": 1023,
+    "w": 47.5,
+    "h": 42
+   },
+   "labelAt": {
+    "x": 271.25,
+    "y": 1047,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#A7D8F2",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "A-46",
+   "key": "A-46",
+   "label": "A-46",
+   "zone": "A",
+   "number": 46,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 295,
+   "y": 1023,
+   "w": 40,
+   "h": 42,
+   "bbox": {
+    "x": 295,
+    "y": 1023,
+    "w": 40,
+    "h": 42
+   },
+   "labelAt": {
+    "x": 315,
+    "y": 1047,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#A7D8F2",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "A-9",
+   "key": "A-9",
+   "label": "A-9",
+   "zone": "A",
+   "number": 9,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 335,
+   "y": 1023,
+   "w": 60,
+   "h": 42,
+   "bbox": {
+    "x": 335,
+    "y": 1023,
+    "w": 60,
+    "h": 42
+   },
+   "labelAt": {
+    "x": 365,
+    "y": 1047,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#A7D8F2",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "A-8",
+   "key": "A-8",
+   "label": "A-8",
+   "zone": "A",
+   "number": 8,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 395,
+   "y": 1023,
+   "w": 60,
+   "h": 42,
+   "bbox": {
+    "x": 395,
+    "y": 1023,
+    "w": 60,
+    "h": 42
+   },
+   "labelAt": {
+    "x": 425,
+    "y": 1047,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#A7D8F2",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "A-7",
+   "key": "A-7",
+   "label": "A-7",
+   "zone": "A",
+   "number": 7,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 455,
+   "y": 1023,
+   "w": 60,
+   "h": 42,
+   "bbox": {
+    "x": 455,
+    "y": 1023,
+    "w": 60,
+    "h": 42
+   },
+   "labelAt": {
+    "x": 485,
+    "y": 1047,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#A7D8F2",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "A-6",
+   "key": "A-6",
+   "label": "A-6",
+   "zone": "A",
+   "number": 6,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 515,
+   "y": 1023,
+   "w": 60,
+   "h": 42,
+   "bbox": {
+    "x": 515,
+    "y": 1023,
+    "w": 60,
+    "h": 42
+   },
+   "labelAt": {
+    "x": 545,
+    "y": 1047,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#A7D8F2",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "A-5",
+   "key": "A-5",
+   "label": "A-5",
+   "zone": "A",
+   "number": 5,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 575,
+   "y": 1023,
+   "w": 60,
+   "h": 42,
+   "bbox": {
+    "x": 575,
+    "y": 1023,
+    "w": 60,
+    "h": 42
+   },
+   "labelAt": {
+    "x": 605,
+    "y": 1047,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#A7D8F2",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "A-4",
+   "key": "A-4",
+   "label": "A-4",
+   "zone": "A",
+   "number": 4,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 635,
+   "y": 1023,
+   "w": 60,
+   "h": 42,
+   "bbox": {
+    "x": 635,
+    "y": 1023,
+    "w": 60,
+    "h": 42
+   },
+   "labelAt": {
+    "x": 665,
+    "y": 1047,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#A7D8F2",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "A-3",
+   "key": "A-3",
+   "label": "A-3",
+   "zone": "A",
+   "number": 3,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 695,
+   "y": 1023,
+   "w": 60,
+   "h": 42,
+   "bbox": {
+    "x": 695,
+    "y": 1023,
+    "w": 60,
+    "h": 42
+   },
+   "labelAt": {
+    "x": 725,
+    "y": 1047,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#A7D8F2",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "A-2",
+   "key": "A-2",
+   "label": "A-2",
+   "zone": "A",
+   "number": 2,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 755,
+   "y": 1023,
+   "w": 60,
+   "h": 42,
+   "bbox": {
+    "x": 755,
+    "y": 1023,
+    "w": 60,
+    "h": 42
+   },
+   "labelAt": {
+    "x": 785,
+    "y": 1047,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#A7D8F2",
+   "statusDriven": true,
+   "onClickVia": "component"
+  },
+  {
+   "id": "A-1",
+   "key": "A-1",
+   "label": "A-1",
+   "zone": "A",
+   "number": 1,
+   "kind": "plot",
+   "shape": "rect",
+   "x": 815,
+   "y": 1023,
+   "w": 60,
+   "h": 42,
+   "bbox": {
+    "x": 815,
+    "y": 1023,
+    "w": 60,
+    "h": 42
+   },
+   "labelAt": {
+    "x": 845,
+    "y": 1047,
+    "fontSize": 9,
+    "rotate": 0,
+    "baseline": "alphabetic"
+   },
+   "legacyZoneFill": "#A7D8F2",
+   "statusDriven": true,
+   "onClickVia": "component"
+  }
+ ],
+ "decor": {
+  "trees": [
+   {
+    "x": 32,
+    "y": 29,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 92,
+    "y": 32,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 152,
+    "y": 35,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 212,
+    "y": 29,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 272,
+    "y": 32,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 332,
+    "y": 35,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 392,
+    "y": 29,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 452,
+    "y": 32,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 512,
+    "y": 35,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 572,
+    "y": 29,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 632,
+    "y": 32,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 692,
+    "y": 35,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 752,
+    "y": 29,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 812,
+    "y": 32,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 872,
+    "y": 35,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 932,
+    "y": 29,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 992,
+    "y": 32,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 1052,
+    "y": 35,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 1112,
+    "y": 29,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 1172,
+    "y": 32,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 1232,
+    "y": 35,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 1292,
+    "y": 29,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 1352,
+    "y": 32,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 1412,
+    "y": 35,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 42,
+    "y": 64,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 51.48,
+    "y": 124,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 60.96,
+    "y": 184,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 70.44,
+    "y": 244,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 79.92,
+    "y": 304,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 89.4,
+    "y": 364,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 98.88,
+    "y": 424,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 108.36,
+    "y": 484,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 117.84,
+    "y": 544,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 127.32,
+    "y": 604,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 136.8,
+    "y": 664,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 146.28,
+    "y": 724,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 155.76,
+    "y": 784,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 165.24,
+    "y": 844,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 174.72,
+    "y": 904,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 1432,
+    "y": 34,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 1437,
+    "y": 94,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 1432,
+    "y": 154,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 1437,
+    "y": 214,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 1432,
+    "y": 274,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 1437,
+    "y": 334,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 1432,
+    "y": 394,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 1437,
+    "y": 454,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 1432,
+    "y": 514,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 1437,
+    "y": 574,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 1432,
+    "y": 634,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 1437,
+    "y": 694,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 1432,
+    "y": 754,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 1372,
+    "y": 831.63,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 1407,
+    "y": 813.21,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 1442,
+    "y": 794.79,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 32,
+    "y": 1134,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 92,
+    "y": 1139,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 152,
+    "y": 1134,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 212,
+    "y": 1139,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 272,
+    "y": 1134,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 332,
+    "y": 1139,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 392,
+    "y": 1134,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 452,
+    "y": 1139,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 512,
+    "y": 1134,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 572,
+    "y": 1139,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 632,
+    "y": 1134,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 692,
+    "y": 1139,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 772,
+    "y": 1152.42,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 812,
+    "y": 1131.37,
+    "kind": "conifer",
+    "size": 24
+   },
+   {
+    "x": 852,
+    "y": 1110.32,
+    "kind": "broadleaf",
+    "size": 24
+   },
+   {
+    "x": 892,
+    "y": 1089.26,
+    "kind": "conifer",
+    "size": 24
+   }
+  ],
+  "traffic": [
+   {
+    "id": "car1",
+    "type": "car",
+    "legacyColor": "#D32F2F",
+    "speed": 90,
+    "waypoints": [
+     [
+      100,
+      112
+     ],
+     [
+      1300,
+      112
+     ]
+    ],
+    "mode": "ping-pong"
+   },
+   {
+    "id": "car2",
+    "type": "car",
+    "legacyColor": "#F4C04A",
+    "speed": 70,
+    "waypoints": [
+     [
+      1000,
+      333
+     ],
+     [
+      1320,
+      333
+     ]
+    ],
+    "mode": "ping-pong"
+   },
+   {
+    "id": "car3",
+    "type": "car",
+    "legacyColor": "#1565C0",
+    "speed": 85,
+    "waypoints": [
+     [
+      150,
+      547
+     ],
+     [
+      1300,
+      547
+     ]
+    ],
+    "mode": "ping-pong"
+   },
+   {
+    "id": "car4",
+    "type": "car",
+    "legacyColor": "#2E7D32",
+    "speed": 65,
+    "waypoints": [
+     [
+      970,
+      200
+     ],
+     [
+      970,
+      1020
+     ]
+    ],
+    "mode": "ping-pong"
+   },
+   {
+    "id": "car5",
+    "type": "car",
+    "legacyColor": "#7E22CE",
+    "speed": 80,
+    "waypoints": [
+     [
+      40,
+      1004
+     ],
+     [
+      930,
+      1004
+     ]
+    ],
+    "mode": "ping-pong"
+   },
+   {
+    "id": "hw-u1",
+    "type": "car",
+    "legacyColor": "#D32F2F",
+    "speed": 60,
+    "waypoints": [
+     [
+      1505,
+      796
+     ],
+     [
+      765,
+      1190
+     ]
+    ],
+    "mode": "loop",
+    "startOffset": 0
+   },
+   {
+    "id": "hw-u2",
+    "type": "truck",
+    "legacyColor": "#1D4ED8",
+    "speed": 50,
+    "waypoints": [
+     [
+      1505,
+      796
+     ],
+     [
+      765,
+      1190
+     ]
+    ],
+    "mode": "loop",
+    "startOffset": 0.5
+   },
+   {
+    "id": "hw-d1",
+    "type": "car",
+    "legacyColor": "#16A34A",
+    "speed": 65,
+    "waypoints": [
+     [
+      897,
+      1190
+     ],
+     [
+      1505,
+      855
+     ]
+    ],
+    "mode": "loop",
+    "startOffset": 0
+   },
+   {
+    "id": "hw-d2",
+    "type": "car",
+    "legacyColor": "#FBBF24",
+    "speed": 55,
+    "waypoints": [
+     [
+      897,
+      1190
+     ],
+     [
+      1505,
+      855
+     ]
+    ],
+    "mode": "loop",
+    "startOffset": 0.5
+   }
+  ],
+  "compass": {
+   "cx": 90,
+   "cy": 510,
+   "rOuter": 28,
+   "rInner": 20,
+   "northLabel": "N",
+   "legacyColors": [
+    "#D8508A",
+    "#9C2A64"
+   ]
+  },
+  "wall": {
+   "note": "brown boundary wall (10 units thick) on top, left, right (y<1100) and bottom (x<1208) with posts every 40 units; gate gaps at bottom-right",
+   "segments": [
+    {
+     "x": 0,
+     "y": 0,
+     "w": 1460,
+     "h": 10,
+     "fill": "#7a5230"
+    },
+    {
+     "x": 0,
+     "y": 0,
+     "w": 10,
+     "h": 1170,
+     "fill": "#7a5230"
+    },
+    {
+     "x": 1450,
+     "y": 0,
+     "w": 10,
+     "h": 1100,
+     "fill": "#7a5230"
+    },
+    {
+     "x": 0,
+     "y": 1160,
+     "w": 1208,
+     "h": 10,
+     "fill": "#7a5230"
+    }
+   ],
+   "posts": 68,
+   "legacyFill": "#7A5230"
+  },
+  "crossings": [
+   {
+    "lines": [
+     [
+      957,
+      975,
+      957,
+      985
+     ],
+     [
+      961,
+      975,
+      961,
+      985
+     ],
+     [
+      965,
+      975,
+      965,
+      985
+     ],
+     [
+      969,
+      975,
+      969,
+      985
+     ],
+     [
+      973,
+      975,
+      973,
+      985
+     ],
+     [
+      977,
+      975,
+      977,
+      985
+     ],
+     [
+      981,
+      975,
+      981,
+      985
+     ]
+    ],
+    "strokeWidth": 1.5,
+    "opacity": 0.8
+   },
+   {
+    "lines": [
+     [
+      943,
+      987,
+      953,
+      987
+     ],
+     [
+      943,
+      991,
+      953,
+      991
+     ],
+     [
+      943,
+      995,
+      953,
+      995
+     ],
+     [
+      943,
+      999,
+      953,
+      999
+     ],
+     [
+      943,
+      1003,
+      953,
+      1003
+     ],
+     [
+      943,
+      1007,
+      953,
+      1007
+     ],
+     [
+      943,
+      1011,
+      953,
+      1011
+     ],
+     [
+      943,
+      1015,
+      953,
+      1015
+     ],
+     [
+      943,
+      1019,
+      953,
+      1019
+     ]
+    ],
+    "strokeWidth": 1.5,
+    "opacity": 0.8
+   }
+  ]
+ },
+ "dataQuality": [
+  "Duplicate plot ids on this map (same id drawn 10 times as separate shapes; they share one status and one booking): B-158 x2, B-113 x2, B-101 x2, B-153 x2, B-144 x2, B-133b x2, B-138 x2, B-128 x2, D-2 x2, D-1 x2. Each shape has a unique 'key' (id~2 for the second copy). Owner/sales team must confirm which shape is the real plot.",
+  "Shapes whose visible label differs from the booking id: B-159a shows \"B-159\", B-159b shows \"B-159\".",
+  "Fixed-colour shapes that never show status in the old map: D-2, D-1 (pink triangles beside the mall; they reuse the ids D-1/D-2 of the small D-block plots).",
+  "The big pink 'D-3' block at the bottom (x 875-955, y 1023-1065) is not clickable; a different, clickable D-3 exists in the D block.",
+  "Backend rows for this colony on 2026-10-12: B-3 SOLD, C-1 RESERVED, D-3 / B-138 / B-159 / B-139 / B-29B AVAILABLE (with some dimensions/areas). Everything else is not in the database and renders AVAILABLE."
+ ]
+}

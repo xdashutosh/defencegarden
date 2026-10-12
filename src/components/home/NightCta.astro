@@ -1,0 +1,39 @@
+---
+// Full-bleed night film (concept) with a slow marquee and the "register interest" call to action.
+import Vid from '../ui/Vid.astro';
+import Img from '../ui/Img.astro';
+import Icon from '../ui/Icon.astro';
+import { visionVideo, vision } from '../../lib/vision.js';
+const hasFilm = Boolean(visionVideo('night-film'));
+const isConcept = hasFilm || Boolean(vision('skyline-night'));
+---
+<section class="nct t-night" data-header-tone="dark">
+  <div class="nct__media">
+    {hasFilm ? <Vid vision="night-film" class="nct__fill" /> : <Img vision="skyline-night" src="about.r3" class="nct__fill" sizes="100vw" data-scale-in />}
+    {isConcept && <span class="concept-tag">Concept visualisation</span>}
+  </div>
+  <div class="nct__marquee" data-marquee data-marquee-speed="40" aria-hidden="true">
+    <div class="nct__row" data-marquee-track>
+      {[0, 1, 2, 3].map(() => <span class="marquee-type">Rising higher&nbsp;—&nbsp;</span>)}
+    </div>
+  </div>
+  <div class="wrap nct__in">
+    <p class="eyebrow eyebrow--accent" data-reveal="fade">Upcoming high-rise projects</p>
+    <h2 class="deco deco--sm nct__title" data-reveal="lines">Be the first to know when our first tower launches</h2>
+    <div class="nct__actions" data-reveal="fade">
+      <button class="btn btn--copper" type="button" data-enquire data-interest="Upcoming high-rise residences"><Icon name="whatsapp" /><span>Register your interest</span></button>
+      <a class="btn" href="/vision"><span>Read the vision</span><Icon name="arrow-right" /></a>
+    </div>
+  </div>
+</section>
+<style>
+  .nct { position: relative; min-height: 110vh; display: grid; align-content: end; overflow: hidden; padding-bottom: clamp(60px, 8vw, 130px); }
+  .nct__media { position: absolute; inset: 0; }
+  .nct__media :global(.nct__fill) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .nct__media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,26,58,.55), rgba(6,26,58,.15) 40%, rgba(6,26,58,.92)); }
+  .nct__marquee { position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-60%); overflow: hidden; color: rgba(244,237,230,.92); mix-blend-mode: overlay; }
+  .nct__row { display: flex; width: max-content; }
+  .nct__in { position: relative; display: grid; justify-items: center; text-align: center; gap: 24px; }
+  .nct__title { max-width: 22ch; color: #f4ede6; }
+  .nct__actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+</style>

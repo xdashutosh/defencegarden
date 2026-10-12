@@ -1,0 +1,84 @@
+// Realevate-style hero: a giant marquee line with a small framed image/video in it; on scroll the frame expands to
+// full screen (era.estate full-bleed), then an overlay title rises.
+// Markup inside <section data-frame-hero> (tall section, sticky inner):
+//   [data-fh-probe]   invisible box at the frame's place/size (CSS --fh-w/--fh-h/--fh-y) — the single source of geometry
+//   [data-fh-media]   full-screen media layer clipped to the probe rect (contains <img>/<video>), [data-fh-shade] inside
+//   [data-fh-ui]      wrapper faded out on scroll; [data-fh-line] marquee words, [data-fh-sub], [data-fh-note], [data-fh-fade]
+//   [data-fh-overlay] title shown once the frame is full screen
+// First visit: the preloader (src/scripts/chrome/preloader.js) morphs its last image onto the probe rect and hands
+// over, so the intro here does not reopen the frame. Barba arrivals open the frame from its centre instead.
+import { gsap, SplitText, reduced } from '../core/gsap.js';
+import { register } from '../core/page.js';
+import { whenIntro } from '../core/intro.js';
+
+/** clip-path inset() that shows only `probe`'s rectangle of `media` */
+export function probeInset(media, probe) {
+  const m = media.getBoundingClientRect();
+  const p = probe.getBoundingClientRect();
+  return `inset(${p.top - m.top}px ${m.right - p.right}px ${m.bottom - p.bottom}px ${p.left - m.left}px)`;
+}
+
+register({
+  name: 'frame-hero',
+  selector: '[data-frame-hero]',
+  init(sec) {
+    const media = sec.querySelector('[data-fh-media]');
+    const probe = sec.querySelector('[data-fh-probe]');
+    const inner = media?.querySelector('img, video');
+    const shade = sec.querySelector('[data-fh-shade]');
+    const ui = sec.querySelector('[data-fh-ui]');
+    const overlay = sec.querySelector('[data-fh-overlay]');
+    const lines = sec.querySelectorAll('[data-fh-line]');
+    const sub = sec.querySelector('[data-fh-sub]');
+    const note = sec.querySelector('[data-fh-note] span');
+    const fade = sec.querySelectorAll('[data-fh-fade]');
+    if (!media || !probe) return;
+    const frameInset = () => probeInset(media, probe);
+
+    if (reduced()) { gsap.set(media, { clipPath: frameInset() }); return; }
+
+    const handedOver = document.documentElement.classList.contains('pre-run') && sec === document.querySelector('[data-frame-hero]');
+
+    // scroll: frame → full screen, shade + overlay in, UI out
+    const tl = gsap.timeline({
+      scrollTrigger: { trigger: sec, start: 'top top', end: 'bottom bottom', scrub: 0.7, invalidateOnRefresh: true },
+      defaults: { ease: 'none' },
+    });
+    tl.fromTo(media, { clipPath: () => frameInset() }, { clipPath: 'inset(0px 0px 0px 0px)', duration: 1 }, 0);
+    if (inner) tl.fromTo(inner, { scale: 1.3 }, { scale: 1, duration: 1 }, 0);
+    if (shade) tl.fromTo(shade, { opacity: 0 }, { opacity: 1, duration: 0.5 }, 0.3);
+    if (ui) tl.fromTo(ui, { autoAlpha: 1 }, { autoAlpha: 0, duration: 0.3 }, 0.05);
+    if (overlay) tl.fromTo(overlay, { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.3 }, 0.7);
+
+    // intro (realevate order): marquee rises, subtitle lines unmask, label box draws, small labels fade
+    let split = null;
+    const intro = gsap.timeline({ paused: true });
+    const t0 = handedOver ? 0.55 : 0.35;
+    if (!handedOver) {
+      // explicit 4-value ends: browsers shorten symmetric inset() values, which breaks string interpolation
+      const pointInset = () => {
+        const r = frameInset().match(/-?[\d.]+/g).map(Number); // top right bottom left
+        const cy = r[0] + (media.clientHeight - r[0] - r[2]) / 2, cx = r[3] + (media.clientWidth - r[1] - r[3]) / 2;
+        return `inset(${cy}px ${media.clientWidth - cx}px ${media.clientHeight - cy}px ${cx}px)`;
+      };
+      intro.fromTo(media, { clipPath: pointInset }, { clipPath: () => frameInset(), duration: 1.5, ease: 'power4.out' }, 0);
+    }
+    intro.from(lines, { yPercent: 110, duration: 1.2, ease: 'power4.out' }, t0);
+    if (note) intro.from(note, { clipPath: 'inset(0 100% 0 0)', duration: 0.9, ease: 'power3.out' }, t0 + 0.55);
+    intro.from(fade, { autoAlpha: 0, y: 14, duration: 0.9, stagger: 0.06, ease: 'power3.out' }, t0 + 0.35);
+    if (sub) {
+      gsap.set(sub, { autoAlpha: 0 });
+      document.fonts.ready.then(() => {
+        gsap.set(sub, { autoAlpha: 1 });
+        if (intro.progress() === 1) return; // intro already fast-forwarded (page restored mid-scroll)
+        split = SplitText.create(sub, { type: 'lines', mask: 'lines' });
+        intro.from(split.lines, { yPercent: 105, duration: 1, stagger: 0.08, ease: 'power4.out' }, t0 + 0.15);
+      });
+    }
+    whenIntro().then(() => {
+      if (window.scrollY > 10) { intro.progress(1); return; }
+      document.fonts.ready.then(() => intro.play());
+    });
+    return () => { intro.kill(); split?.revert(); };
+  },
+});

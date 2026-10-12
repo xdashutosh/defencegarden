@@ -1,0 +1,53 @@
+---
+// Chapter 06 · Choose Your Path — three track cards (the popular one in night navy). "High Appreciation" is a
+// return claim → shown only with investmentClaims. "Request Details" opens the WhatsApp enquiry (Investment enquiry).
+import Icon from '../ui/Icon.astro';
+import Ornament from '../ui/Ornament.astro';
+import ChapterHead from './ChapterHead.astro';
+import data from '../../data/pages/investment.json';
+import { flags } from '../../lib/flags.js';
+
+const { tracks: t } = data;
+const claims = flags.investmentClaims;
+const tagline = (it) => (!claims && /appreciation/i.test(it.tagline) ? null : it.tagline);
+---
+<style is:inline>
+  .ivr__head { display: grid; justify-items: center; text-align: center; margin-bottom: clamp(40px, 5vw, 80px); }
+  .ivr__head .ivc { justify-items: center; }
+  .ivr__head .ivc__title { font-size: clamp(44px, 6vw, 112px); }
+  .ivr__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 1.2vw, 20px); align-items: stretch; }
+  .ivr__card { position: relative; display: grid; grid-template-rows: auto auto 1fr auto; gap: 22px; padding: clamp(24px, 2.6vw, 42px); border: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); border-radius: 4px; background: var(--bg); transition: transform .8s var(--ease-out), box-shadow .8s var(--ease-out); }
+  .ivr__card:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -36px rgba(6, 26, 58, .45); }
+  .ivr__card.t-night { border-color: transparent; }
+  .ivr__badge { position: absolute; top: clamp(24px, 2.6vw, 42px); right: clamp(24px, 2.6vw, 42px); padding: 6px 10px; border: 1px solid var(--copper); color: var(--copper); border-radius: 999px; }
+  .ivr__arch { width: 46px; height: 62px; border: 1px solid color-mix(in srgb, var(--accent) 70%, transparent); border-bottom: 0; border-radius: 23px 23px 0 0; display: grid; place-items: center; color: var(--accent); }
+  .ivr__arch svg { width: 16px; }
+  .ivr__name { font-family: var(--f-deco); font-weight: 300; text-transform: uppercase; font-size: clamp(28px, 2.6vw, 46px); line-height: 1; }
+  .ivr__tagline { margin-top: 10px; }
+  .ivr__feat { border-top: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); }
+  .ivr__feat li { display: flex; align-items: center; gap: 12px; padding: 13px 0; border-bottom: 1px solid color-mix(in srgb, var(--fg) 10%, transparent); font-size: 15px; }
+  .ivr__feat li::before { content: ''; width: 6px; height: 6px; flex: none; transform: rotate(45deg); border: 1px solid var(--accent); }
+  .ivr__cta { justify-self: start; }
+  @media (max-width: 960px) { .ivr__grid { grid-template-columns: 1fr; max-width: 560px; margin-inline: auto; } }
+</style>
+<section class="ivr t-ivory section" data-header-tone="light">
+  <div class="wrap">
+    <div class="ivr__head">
+      <ChapterHead eyebrow={t.eyebrow} title={t.heading.title} accent={t.heading.accent} />
+    </div>
+    <div class="ivr__grid">
+      {t.items.map((it, i) => (
+        <article class={`ivr__card ${it.popular ? 't-night' : ''}`} data-reveal="fade" data-reveal-delay={(i * 0.1).toFixed(1)}>
+          {it.popular && <p class="eyebrow ivr__badge">{it.popularBadge}</p>}
+          <span class="ivr__arch" aria-hidden="true"><Ornament variant="diamond" /></span>
+          <div>
+            <h3 class="ivr__name">{it.name}</h3>
+            {tagline(it) && <p class="eyebrow eyebrow--accent ivr__tagline">{tagline(it)}</p>}
+          </div>
+          <ul class="ivr__feat">{it.features.map((f) => <li>{f}</li>)}</ul>
+          <button class={`btn ivr__cta ${it.popular ? 'btn--copper' : ''}`} type="button" data-enquire data-interest="Investment enquiry"><span>{it.cta.label}</span><Icon name="arrow-right" /></button>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

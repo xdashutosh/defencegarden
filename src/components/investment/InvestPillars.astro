@@ -1,0 +1,54 @@
+---
+// Chapter 04 · Why It Works — light editorial: framed real photo + a 2×2 grid of pillars with hairlines.
+// Pillar 01 (growth) and 03 ("fast-tracked to Delhi NCR") are old claims → only with investmentClaims.
+import Img from '../ui/Img.astro';
+import ChapterHead from './ChapterHead.astro';
+import data from '../../data/pages/investment.json';
+import { flags } from '../../lib/flags.js';
+
+const { pillars: p } = data;
+const claims = flags.investmentClaims;
+const items = claims ? p.items : p.items.filter((it) => it.number !== '01' && it.number !== '03');
+const title = claims ? p.heading.title : 'Pillars of';
+---
+<style is:inline>
+  .ivp__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(36px, 6vw, 120px); align-items: start; }
+  .ivp__side { display: grid; gap: clamp(30px, 4vw, 60px); position: sticky; top: calc(var(--header-h) + 30px); }
+  .ivp__side .ivc__title { font-size: clamp(40px, 4.8vw, 88px); }
+  .ivp__img { aspect-ratio: 5 / 4; }
+  .ivp__img img { width: 100%; height: 100%; object-fit: cover; }
+  .ivp__list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); border-left: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); }
+  .ivp__item { position: relative; display: grid; align-content: space-between; gap: clamp(50px, 7vw, 130px); padding: clamp(22px, 2.4vw, 38px); border-right: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); border-bottom: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); min-height: clamp(240px, 24vw, 400px); transition: background .6s var(--ease-out); }
+  .ivp__item:hover { background: color-mix(in srgb, var(--fg) 4%, transparent); }
+  .ivp__top { display: flex; justify-content: space-between; align-items: start; gap: 12px; }
+  .ivp__n { font-family: var(--f-deco); font-weight: 300; font-size: clamp(44px, 4.6vw, 84px); line-height: .9; color: var(--accent); }
+  .ivp__arch { width: 34px; height: 46px; border: 1px solid color-mix(in srgb, var(--accent) 70%, transparent); border-bottom: 0; border-radius: 17px 17px 0 0; }
+  .ivp__t { font-size: clamp(22px, 2vw, 34px); font-weight: 500; letter-spacing: -.03em; line-height: 1.05; margin-bottom: 10px; }
+  @media (max-width: 960px) { .ivp__grid { grid-template-columns: 1fr; } .ivp__side { position: static; } }
+  @media (max-width: 560px) { .ivp__list { grid-template-columns: 1fr; } .ivp__item { min-height: 0; gap: 34px; } }
+</style>
+<section class="ivp t-mist section" data-header-tone="light">
+  <div class="wrap ivp__grid">
+    <div class="ivp__side">
+      <ChapterHead eyebrow={p.eyebrow} title={title} accent={p.heading.accent} />
+      <figure class="ivp__img media" data-reveal="clip">
+        <Img src="about.r2" sizes="(min-width: 961px) 38vw, 92vw" widths={[480, 800, 1200, 1600]} data-parallax="0.06" />
+      </figure>
+    </div>
+    <ol class="ivp__list">
+      {items.map((it, i) => (
+        <li class="ivp__item" data-reveal="fade" data-reveal-delay={(i * 0.08).toFixed(2)}>
+          <div class="ivp__top">
+            <span class="ivp__n">{it.number}</span>
+            <span class="ivp__arch" aria-hidden="true"></span>
+          </div>
+          <div>
+            <p class="eyebrow muted" style="margin-bottom:14px">{it.label}</p>
+            <h3 class="ivp__t">{it.title}</h3>
+            <p class="body muted">{it.desc}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

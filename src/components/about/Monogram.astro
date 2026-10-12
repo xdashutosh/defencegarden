@@ -1,0 +1,46 @@
+---
+// "KT" monogram in an Art Deco arch frame (original line work, copper via currentColor).
+// No portrait of Mr. Kuldeep Tomar exists, so the monogram stands in for one on every leadership surface.
+interface Props { class?: string; caption?: string; label?: string; draw?: boolean }
+const { class: cls = '', caption, label = 'KT monogram — Mr. Kuldeep Tomar', draw = true } = Astro.props;
+
+const cx = 160;
+const cy = 168;
+const rays = Array.from({ length: 13 }, (_, i) => {
+  const a = Math.PI + (i * Math.PI) / 12;
+  const r1 = 66;
+  const r2 = i % 2 ? 100 : 112;
+  const f = (n: number) => n.toFixed(1);
+  return `M${f(cx + Math.cos(a) * r1)} ${f(cy + Math.sin(a) * r1)} L${f(cx + Math.cos(a) * r2)} ${f(cy + Math.sin(a) * r2)}`;
+}).join(' ');
+---
+<div class={`kt ${cls}`} role="img" aria-label={label} data-reveal={draw ? 'fade' : undefined}>
+  <svg class="kt__frame" viewBox="0 0 320 420" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true" vector-effect="non-scaling-stroke">
+    <path d="M12 416 V164 A148 148 0 0 1 308 164 V416 Z" />
+    <path d="M24 416 V164 A136 136 0 0 1 296 164 V416" opacity=".55" />
+    <path d="M40 402 V168 A120 120 0 0 1 280 168 V402 Z" />
+    <path d={rays} opacity=".7" />
+    <path d="M100 168 A60 60 0 0 1 220 168" />
+    <path d="M40 168 H100 M220 168 H280" opacity=".55" />
+    <path d="M54 402 V200 M266 402 V200" opacity=".35" />
+    <path d="M70 340 H146 M174 340 H250" />
+    <path d="M160 331 L169 340 L160 349 L151 340 Z" />
+    <path d="M40 388 H280 M56 374 H264" opacity=".45" />
+  </svg>
+  <span class="kt__letters" aria-hidden="true">KT</span>
+  {caption && <span class="kt__cap" aria-hidden="true">{caption}</span>}
+</div>
+<style>
+  .kt { position: relative; container-type: inline-size; width: 100%; aspect-ratio: 320 / 420; color: var(--accent); }
+  .kt__frame { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .kt__letters {
+    position: absolute; left: 0; right: 0; top: 47%; transform: translateY(-50%);
+    text-align: center; font-family: var(--f-deco); font-weight: 200; font-size: 31cqw; line-height: 1;
+    letter-spacing: .02em; text-indent: .02em; color: var(--kt-ink, var(--fg));
+  }
+  .kt__cap {
+    position: absolute; left: 0; right: 0; top: 85%; text-align: center;
+    font-family: var(--f-wide); font-stretch: 125%; font-weight: 500; font-size: max(8px, 3.1cqw); letter-spacing: .16em; text-transform: uppercase;
+    color: color-mix(in srgb, var(--kt-ink, var(--fg)) 70%, transparent);
+  }
+</style>

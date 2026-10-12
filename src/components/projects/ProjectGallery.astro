@@ -1,0 +1,120 @@
+---
+// Project page gallery: a realevate draggable strip of the colony's photographs (round arrows, staggered frames)
+// and the full grid below. Both open the full-screen lightbox (full-size WebP via astro:assets getImage,
+// captions = the photo's alt text). Only real photos (no notPhoto / rightsUnclear items).
+import { getImage } from 'astro:assets';
+import Img from '../ui/Img.astro';
+import Icon from '../ui/Icon.astro';
+import { preferred } from '../../lib/media.js';
+import { sharedProjectData, displayTitle } from '../../lib/site.js';
+
+interface Props { p: any; photos: any[] }
+const { p, photos = [] } = Astro.props;
+const g = sharedProjectData?.detailPage?.gallery || {};
+const heading = g.heading || 'Photo Gallery';
+const countLabel = (g.countTemplate || '{n} Photos').replace('{n}', String(photos.length));
+
+const items = await Promise.all(photos.map(async (ph, i) => {
+  const rec = preferred(ph);
+  const full = await getImage({ src: rec.image, width: Math.min(2000, rec.width), format: 'webp' });
+  return { ph, rec, href: full.src, alt: ph.alt || rec.alt || `${displayTitle(p)} photo ${i + 1}`, n: String(i + 1).padStart(2, '0') };
+}));
+const shape = (i) => ['is-a', 'is-b', 'is-c'][i % 3];
+// grid columns that leave the fewest empty cells in the last row (4, then 5, then 3 on ties)
+const n = items.length;
+const cols = n <= 5 ? Math.max(n, 1) : [4, 5, 3].reduce((best, c) => ((c - (n % c || c)) < (best - (n % best || best)) ? c : best), 4);
+const total = String(items.length).padStart(2, '0');
+---
+{items.length > 0 && (
+  <section class="pgl t-light section" data-header-tone="light" aria-labelledby="pgl-title">
+    <div data-strip>
+      <div class="wrap pgl__head">
+        <div class="sec-head">
+          <p class="eyebrow eyebrow--accent" data-reveal="fade">{heading}</p>
+          <h2 class="display pgl__title" id="pgl-title" data-reveal="lines">{countLabel}</h2>
+        </div>
+        <div class="pgl__nav">
+          <p class="body muted pgl__hint hide-mob">Drag to browse · click to expand</p>
+          <div class="strip__nav">
+            <span class="eyebrow muted" data-strip-count>01 / {total}</span>
+            <button class="round-btn" type="button" data-strip-prev aria-label="Previous photos"><Icon name="arrow-left" /></button>
+            <button class="round-btn" type="button" data-strip-next aria-label="Next photos"><Icon name="arrow-right" /></button>
+          </div>
+        </div>
+      </div>
+      <ul class="strip__track pgl__track" data-strip-track data-lightbox>
+        {items.map((it, i) => (
+          <li class={`pgl__slide ${shape(i)}`}>
+            <a class="pgl__frame" href={it.href} data-lightbox-item data-no-barba data-caption={it.alt} data-alt={it.alt} aria-label={`Open photo ${it.n}: ${it.alt}`}>
+              <figure class="media pgl__img">
+                <Img src={it.ph} sizes="(min-width: 861px) 36vw, 80vw" widths={[480, 800, 1200]} alt={it.alt} draggable="false" />
+                <span class="pgl__zoom" aria-hidden="true"><Icon name="expand" /></span>
+              </figure>
+              <span class="pgl__cap"><span class="eyebrow accent">{it.n}</span><span class="small pgl__captext">{it.alt}</span></span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="wrap pgl__all">
+      <div class="pgl__allhead">
+        <p class="eyebrow">All photographs <span class="muted">· {total}</span></p>
+        <p class="eyebrow muted">{displayTitle(p)} · {p.location}</p>
+      </div>
+      <ul class="pgl__grid" data-lightbox style={`--cols:${cols}`}>
+        {items.map((it, i) => (
+          <li class="pgl__cell" data-reveal="fade" data-reveal-delay={((i % 4) * 0.05).toFixed(2)}>
+            <a class="pgl__thumb media" href={it.href} data-lightbox-item data-no-barba data-caption={it.alt} data-alt={it.alt} aria-label={`Open photo ${it.n}: ${it.alt}`}>
+              <Img src={it.ph} sizes="(min-width: 1100px) 24vw, (min-width: 700px) 32vw, 48vw" widths={[320, 480, 800]} alt={it.alt} />
+              <span class="pgl__tn eyebrow" aria-hidden="true">{it.n}</span>
+              <span class="pgl__zoom" aria-hidden="true"><Icon name="expand" /></span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
+
+<style>
+  .pgl { overflow: hidden; }
+  .pgl__head { display: flex; justify-content: space-between; align-items: end; gap: var(--gutter); margin-bottom: clamp(36px, 4.5vw, 70px); flex-wrap: wrap; }
+  .pgl__title { font-size: clamp(44px, 6vw, 110px); }
+  .pgl__nav { display: grid; justify-items: end; gap: 16px; }
+  .pgl__hint { text-align: right; }
+  .pgl__track { padding-inline: var(--gutter); align-items: flex-start; scroll-padding-inline: var(--gutter); }
+  .pgl__slide { width: clamp(260px, 30vw, 520px); }
+  .pgl__slide.is-b { width: clamp(280px, 38vw, 660px); margin-top: clamp(40px, 6vw, 110px); }
+  .pgl__slide.is-c { width: clamp(240px, 24vw, 420px); margin-top: clamp(16px, 2vw, 36px); }
+  .pgl__frame { display: grid; gap: 12px; cursor: inherit; }
+  .pgl__img { aspect-ratio: 4 / 5; }
+  .is-b .pgl__img { aspect-ratio: 4 / 3; }
+  .is-c .pgl__img { aspect-ratio: 1; }
+  .pgl__img :global(img) { width: 100%; height: 100%; object-fit: cover; pointer-events: none; user-select: none; transition: transform 1.2s var(--ease-out); }
+  .pgl__frame:hover .pgl__img :global(img) { transform: scale(1.04); }
+  .pgl__cap { display: flex; align-items: baseline; gap: 12px; border-top: 1px solid color-mix(in srgb, var(--fg) 14%, transparent); padding-top: 12px; color: color-mix(in srgb, var(--fg) 66%, transparent); }
+  .pgl__captext { display: -webkit-box; -webkit-line-clamp: 1; line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .pgl__zoom { position: absolute; right: 12px; top: 12px; z-index: 2; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.9); color: var(--navy); opacity: 0; transform: scale(.85); transition: opacity .4s, transform .5s var(--ease-out); }
+  .pgl__zoom :global(svg) { width: 16px; height: 16px; }
+  .pgl__frame:hover .pgl__zoom, .pgl__thumb:hover .pgl__zoom, .pgl__frame:focus-visible .pgl__zoom, .pgl__thumb:focus-visible .pgl__zoom { opacity: 1; transform: none; }
+
+  .pgl__all { margin-top: clamp(80px, 9vw, 160px); }
+  .pgl__allhead { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-bottom: 18px; margin-bottom: clamp(20px, 2.4vw, 36px); border-bottom: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); }
+  .pgl__grid { display: grid; grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr)); gap: clamp(8px, 1vw, 16px); }
+  .pgl__thumb { display: block; aspect-ratio: 4 / 3; border-radius: 2px; }
+  .pgl__thumb :global(img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease-out), opacity .4s; }
+  .pgl__thumb:hover :global(img) { transform: scale(1.05); }
+  .pgl__tn { position: absolute; left: 10px; bottom: 10px; z-index: 2; color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,.45); font-size: 9.5px; }
+  @media (max-width: 1099px) { .pgl__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 860px) {
+    .pgl__head { flex-direction: column; align-items: stretch; }
+    .pgl__nav { justify-items: stretch; }
+    .pgl__nav .strip__nav { justify-content: space-between; }
+    .pgl__slide, .pgl__slide.is-b, .pgl__slide.is-c { width: 78vw; margin-top: 0; }
+    .pgl__img, .is-b .pgl__img, .is-c .pgl__img { aspect-ratio: 4 / 5; }
+    .pgl__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .pgl__cell:last-child:nth-child(odd) { grid-column: 1 / -1; }
+    .pgl__cell:last-child:nth-child(odd) .pgl__thumb { aspect-ratio: 16 / 9; }
+  }
+</style>

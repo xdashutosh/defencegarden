@@ -1,0 +1,37 @@
+---
+// Project page footer row: three other colonies (same city first) as listing cards + a link back to /ourproject.
+import ColonyCard from './ColonyCard.astro';
+import Icon from '../ui/Icon.astro';
+import { projects } from '../../lib/site.js';
+import { otherColonies, pad2 } from './util.js';
+
+interface Props { p: any }
+const { p } = Astro.props;
+const list = otherColonies(p, 3);
+const sameCity = list.filter((x) => x.city === p.city).length;
+---
+<section class="ocl t-mist section" data-header-tone="light" aria-labelledby="ocl-title">
+  <div class="wrap">
+    <div class="sec-head sec-head--row ocl__head">
+      <div class="sec-head">
+        <p class="eyebrow eyebrow--accent" data-reveal="fade">{sameCity === list.length ? `More in ${p.city}` : 'Keep exploring'}</p>
+        <h2 class="display ocl__title" id="ocl-title" data-reveal="lines">Other colonies</h2>
+      </div>
+      <a class="btn" href="/ourproject" data-reveal="fade"><span>All {projects.length} colonies</span><Icon name="grid" /></a>
+    </div>
+    <ul class="ocl__grid">
+      {list.map((o, i) => <ColonyCard p={o} n={pad2(projects.findIndex((x) => x.id === o.id) + 1)} delay={i * 0.08} class="ocl__card" sizes="(min-width: 861px) 30vw, 80vw" />)}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .ocl__head { margin-bottom: clamp(36px, 5vw, 80px); }
+  .ocl__title { font-size: clamp(44px, 6vw, 110px); }
+  .ocl__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gutter); }
+  @media (max-width: 860px) {
+    .ocl__grid { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); scroll-padding-inline: var(--gutter); }
+    .ocl__grid::-webkit-scrollbar { display: none; }
+    .ocl__grid > :global(.ocl__card) { flex: none; width: 80vw; scroll-snap-align: start; }
+  }
+</style>

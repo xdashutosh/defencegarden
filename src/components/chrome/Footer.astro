@@ -1,0 +1,95 @@
+---
+import Logo from './Logo.astro';
+import Icon from '../ui/Icon.astro';
+import Ornament from '../ui/Ornament.astro';
+import { site, phone, telHref, email, office, hours, copyright, whatsappUrl } from '../../lib/site.js';
+
+const sales = phone('sales');
+const officeNo = phone('office');
+// Owner instruction: copyright and "Developed by" are Defence Garden only.
+const credit = 'Developed by Defence Garden';
+const explore = [
+  { label: 'Home', href: '/' },
+  { label: 'The Vision', href: '/vision' },
+  { label: 'Our Colonies', href: '/ourproject' },
+  { label: 'About Us', href: '/about' },
+  { label: 'Leadership', href: '/about/leadership' },
+  { label: 'Gallery', href: '/gallery' },
+  { label: 'Investment', href: '/investment' },
+  { label: 'Contact', href: '/contact' },
+];
+const legal = site.footer.legalLinks || [];
+---
+<footer class="ftr t-night" data-header-tone="dark">
+  <Ornament variant="fan" class="ftr__orn" />
+  <div class="wrap ftr__top">
+    <p class="eyebrow eyebrow--accent">The next chapter</p>
+    <h2 class="deco ftr__title" data-reveal="lines">From colonies<br />to skylines</h2>
+    <div class="ftr__actions">
+      <button class="btn btn--copper" type="button" data-enquire><Icon name="whatsapp" /><span>Register your interest</span></button>
+      <a class="btn" href={telHref('sales')}><Icon name="phone" /><span>{sales.display}</span></a>
+    </div>
+  </div>
+
+  <div class="ftr__marquee" data-marquee aria-hidden="true">
+    <div class="ftr__track" data-marquee-track>
+      {[0, 1].map(() => (<span class="marquee-type">Defence Garden&nbsp;·&nbsp;Since 2006&nbsp;·&nbsp;</span>))}
+    </div>
+  </div>
+
+  <div class="wrap ftr__grid">
+    <div class="ftr__brand">
+      <Logo />
+      <p class="small muted ftr__blurb">Plotted townships across Shamli, Meerut and Budhana since 2006 — now taking the same promise vertical in urban India.</p>
+    </div>
+    <nav aria-label="Footer">
+      <p class="eyebrow eyebrow--accent">Explore</p>
+      <ul class="ftr__list">{explore.map((l) => <li><a class="link-line" href={l.href}>{l.label}</a></li>)}</ul>
+    </nav>
+    <div>
+      <p class="eyebrow eyebrow--accent">Contact</p>
+      <ul class="ftr__list">
+        <li><a class="link-line" href={telHref('office')}>Office {officeNo.display}</a></li>
+        <li><a class="link-line" href={telHref('sales')}>Sales {sales.display}</a></li>
+        <li><a class="link-line" href={whatsappUrl()} target="_blank" rel="noopener">WhatsApp</a></li>
+        <li><a class="link-line" href={email.href}>{email.address}</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="eyebrow eyebrow--accent">Visit</p>
+      <p class="small ftr__addr">{office.display}</p>
+      <p class="small muted">{hours.display}</p>
+      <a class="small link-line ftr__map" href={office.mapsUrl} target="_blank" rel="noopener">Open in Google Maps ↗</a>
+    </div>
+  </div>
+
+  <div class="wrap ftr__bottom">
+    <p class="small muted ftr__disclaimer">Images marked “concept” are representative visualisations from licensed stock libraries and do not depict Defence Garden projects. Future high-rise projects will be announced with their approvals. <a class="link-line" href="/credits">Image credits</a></p>
+    <div class="ftr__legal small">
+      <span>{copyright()}</span>
+      {legal.map((l) => <a class="link-line" href={l.href}>{l.label}</a>)}
+      <span class="muted">{credit}</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .ftr { position: relative; overflow: hidden; padding-top: clamp(90px, 12vw, 200px); }
+  .ftr__orn { position: absolute; left: 50%; top: -10%; width: 120%; height: 90%; transform: translateX(-50%); color: var(--copper); opacity: .08; pointer-events: none; }
+  .ftr__top { position: relative; text-align: center; display: grid; justify-items: center; gap: 28px; }
+  .ftr__title { color: #f4ede6; }
+  .ftr__actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+  .ftr__marquee { overflow: hidden; margin-top: clamp(60px, 9vw, 150px); color: color-mix(in srgb, #f4ede6 9%, transparent); }
+  .ftr__track { display: flex; width: max-content; }
+  .ftr__grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px var(--gutter); padding-block: clamp(48px, 6vw, 90px) 48px; border-top: 1px solid rgba(244,237,230,.14); }
+  .ftr__blurb { max-width: 34ch; margin-top: 22px; }
+  .ftr__list { display: grid; gap: 10px; margin-top: 16px; font-size: 15px; }
+  .ftr__addr { margin-top: 16px; max-width: 28ch; }
+  .ftr__map { margin-top: 10px; display: inline-block; color: var(--copper); }
+  .ftr__bottom { display: grid; gap: 18px; padding-bottom: 40px; padding-top: 24px; border-top: 1px solid rgba(244,237,230,.14); }
+  .ftr__disclaimer { max-width: 90ch; }
+  .ftr__disclaimer a { color: var(--copper); }
+  .ftr__legal { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+  @media (max-width: 860px) { .ftr__grid { grid-template-columns: 1fr 1fr; } .ftr__brand { grid-column: 1 / -1; } }
+  @media (max-width: 520px) { .ftr__grid { grid-template-columns: 1fr; } }
+</style>

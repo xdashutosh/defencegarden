@@ -1,0 +1,50 @@
+---
+// Ongoing colonies (real projects, real media) — the present, between legacy and vision.
+import Img from '../ui/Img.astro';
+import Vid from '../ui/Vid.astro';
+import Icon from '../ui/Icon.astro';
+import { getProject, displayTitle, projectUrl } from '../../lib/site.js';
+const featured = [1, 5].map((id) => getProject(id)).filter(Boolean);
+---
+<section class="nbk t-light section" data-header-tone="light">
+  <div class="wrap">
+    <div class="sec-head sec-head--row nbk__head">
+      <div class="sec-head">
+        <p class="eyebrow eyebrow--accent" data-reveal="fade">Now booking · Shamli</p>
+        <h2 class="display" data-reveal="lines">Plots open<br />in our newest townships</h2>
+      </div>
+      <a class="btn" href="/ourproject" data-reveal="fade"><span>View all ten</span><Icon name="arrow-right" /></a>
+    </div>
+    <div class="nbk__grid">
+      {featured.map((p, i) => (
+        <a class="nbk__card" href={projectUrl(p)} data-reveal="fade" data-reveal-delay={(i * 0.1).toFixed(1)}>
+          <div class="media nbk__media">
+            {p.video ? <Vid src={p.video} class="nbk__fill" /> : <Img src={p.cover} class="nbk__fill" sizes="(min-width: 861px) 48vw, 92vw" />}
+            <span class="nbk__badge eyebrow">{p.status}</span>
+          </div>
+          <div class="nbk__meta">
+            <div>
+              <h3 class="nbk__title">{displayTitle(p)}</h3>
+              <p class="eyebrow muted">{p.location} · Since {p.year}</p>
+            </div>
+            <span class="btn-square" aria-hidden="true"><Icon name="arrow-up-right" /></span>
+          </div>
+          <p class="body muted nbk__desc">{p.desc}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+<style>
+  .nbk__head { margin-bottom: clamp(36px, 5vw, 70px); }
+  .nbk__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gutter); }
+  .nbk__card { display: grid; gap: 16px; }
+  .nbk__media { aspect-ratio: 16 / 11; }
+  .nbk__media :global(.nbk__fill) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s var(--ease-out); }
+  .nbk__card:hover .nbk__media :global(.nbk__fill) { transform: scale(1.04); }
+  .nbk__badge { position: absolute; left: 14px; top: 14px; padding: 6px 10px; background: rgba(255,255,255,.9); color: var(--navy); }
+  .nbk__meta { display: flex; justify-content: space-between; align-items: end; gap: 16px; }
+  .nbk__title { font-size: clamp(26px, 2.4vw, 42px); font-weight: 500; letter-spacing: -.035em; line-height: 1; margin-bottom: 8px; }
+  .nbk__desc { max-width: 56ch; }
+  @media (max-width: 860px) { .nbk__grid { grid-template-columns: 1fr; } }
+</style>

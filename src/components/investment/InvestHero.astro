@@ -1,0 +1,68 @@
+---
+// /investment hero — era.estate night: full-bleed real photo under navy, thin capitals, Art Deco fan + diamond rule.
+// "Pre-Booking Open" and the 2026–2027 opening line are old claims → shown only when flags.investmentClaims.
+import Img from '../ui/Img.astro';
+import Icon from '../ui/Icon.astro';
+import Ornament from '../ui/Ornament.astro';
+import data from '../../data/pages/investment.json';
+import { flags } from '../../lib/flags.js';
+import { seoFor } from '../../lib/site.js';
+
+const { hero } = data;
+const claims = flags.investmentClaims;
+const [before, after] = hero.text.text.split(hero.text.accent);
+const summary = seoFor('/investment').summary;
+---
+<style is:inline>
+  .ivc { display: grid; gap: 18px; }
+  .ivc__accent { font-family: var(--f-serif); font-style: italic; font-weight: 300; color: var(--accent); text-transform: none; letter-spacing: -.01em; }
+  .deco .ivc__accent { font-size: .92em; }
+
+  .ivh { position: relative; min-height: 100vh; min-height: 100svh; display: grid; place-items: center; overflow: hidden; text-align: center; padding: calc(var(--header-h) + 40px) 0 110px; }
+  .ivh__bg { position: absolute; inset: 0; background: var(--navy-deep); }
+  .ivh__bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .5; }
+  .ivh__bg::after { content: ''; position: absolute; inset: 0; background:
+      radial-gradient(ellipse at 50% 45%, rgba(6, 26, 58, .25), rgba(6, 26, 58, .82) 70%),
+      linear-gradient(180deg, rgba(6, 26, 58, .55), rgba(6, 26, 58, .2) 45%, rgba(6, 26, 58, .95)); }
+  .ivh__grid { position: absolute; inset: 0; pointer-events: none; opacity: .5;
+    background-image: linear-gradient(rgba(207, 143, 125, .08) 1px, transparent 1px), linear-gradient(90deg, rgba(207, 143, 125, .08) 1px, transparent 1px);
+    background-size: 60px 60px; mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%); }
+  .ivh__orn { position: absolute; left: 50%; top: 0; width: 120%; height: 100%; transform: translateX(-50%); color: var(--copper); opacity: .12; pointer-events: none; }
+  .ivh__in { position: relative; display: grid; justify-items: center; gap: clamp(18px, 2.2vw, 30px); }
+  .ivh__badge { display: inline-flex; align-items: center; gap: 10px; height: 34px; padding: 0 16px; border-radius: 999px; border: 1px solid rgba(207, 143, 125, .55); color: var(--copper); background: rgba(6, 26, 58, .4); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .ivh__dot { position: relative; width: 7px; height: 7px; border-radius: 50%; background: var(--copper); }
+  .ivh__dot::after { content: ''; position: absolute; inset: -5px; border-radius: 50%; border: 1px solid var(--copper); animation: ivh-pulse 2.2s var(--ease-out) infinite; }
+  @keyframes ivh-pulse { from { transform: scale(.4); opacity: 1; } to { transform: scale(1.6); opacity: 0; } }
+  .ivh__title { color: #f4ede6; font-size: clamp(48px, 9.4vw, 176px); letter-spacing: .01em; line-height: .9; }
+  .ivh__rule { width: min(420px, 70vw); }
+  .ivh__text { max-width: 40ch; color: rgba(244, 237, 230, .88); }
+  .ivh__text em { font-family: var(--f-serif); font-style: italic; color: var(--copper); }
+  .ivh__ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 8px; }
+  .ivh__scroll { position: absolute; left: 50%; bottom: 30px; transform: translateX(-50%); display: grid; justify-items: center; gap: 10px; color: rgba(244, 237, 230, .7); }
+  .ivh__scroll span { width: 1px; height: 46px; background: linear-gradient(var(--copper), transparent); animation: ivh-drop 2.4s var(--ease-in-out) infinite; transform-origin: top; }
+  @keyframes ivh-drop { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+  @media (max-width: 860px) { .ivh { padding-bottom: 120px; } .ivh__title { font-size: clamp(44px, 13vw, 80px); } .ivh__scroll { display: none; } }
+</style>
+<section class="ivh t-night" data-header-tone="dark">
+  <div class="ivh__bg media">
+    <Img src={hero.backgroundImage} eager sizes="100vw" alt={hero.backgroundImage.alt} data-scale-in />
+  </div>
+  <div class="ivh__grid" aria-hidden="true"></div>
+  <Ornament variant="fan" class="ivh__orn" />
+  <div class="wrap ivh__in">
+    {claims && (
+      <p class="eyebrow ivh__badge" data-reveal="fade" data-reveal-intro><span class="ivh__dot" aria-hidden="true"></span>{hero.badge.text}</p>
+    )}
+    <p class="eyebrow eyebrow--accent" data-reveal="fade" data-reveal-intro data-reveal-delay="0.1">{hero.eyebrow}</p>
+    <h1 class="deco ivh__title" data-reveal="lines" data-reveal-intro data-reveal-delay="0.15"><span class="sr-only">Plot investment with </span>{hero.heading}</h1>
+    <div class="deco-rule ivh__rule" data-reveal="fade" data-reveal-intro data-reveal-delay="0.35"><Ornament variant="diamond" /></div>
+    {claims
+      ? <p class="lead ivh__text balance" data-reveal="fade" data-reveal-intro data-reveal-delay="0.45">{before}<em>{hero.text.accent}</em>{after}</p>
+      : <p class="lead ivh__text balance" data-reveal="fade" data-reveal-intro data-reveal-delay="0.45">{summary}</p>}
+    <div class="ivh__ctas" data-reveal="fade" data-reveal-intro data-reveal-delay="0.55">
+      <button class="btn btn--copper" type="button" data-enquire data-interest="Investment enquiry"><span>{hero.ctas[0].label}</span><Icon name="arrow-up-right" /></button>
+      <a class="btn" href="#opportunities" data-no-barba><span>Opportunities</span><Icon name="arrow-down" /></a>
+    </div>
+  </div>
+  <p class="eyebrow ivh__scroll" aria-hidden="true">{hero.scrollCue}<span></span></p>
+</section>

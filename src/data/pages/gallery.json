@@ -1,0 +1,1220 @@
+{
+  "_meta": {
+    "source": "assets/Gallery-CvRp5b4f.js (+ projects-BS1XfbWT.js and the per-photo gallery chunks), rendered https://defencegarden.com/gallery on 2026-10-12 (order verified: 100/100 identical).",
+    "path": "/gallery",
+    "seoRef": "site.json → seo.pages['/gallery']",
+    "sectionOrder": [
+      "hero",
+      "filterBar",
+      "grid",
+      "lightbox"
+    ]
+  },
+  "hero": {
+    "watermark": "Gallery",
+    "eyebrow": {
+      "text": "On-Site Photography",
+      "icon": "camera"
+    },
+    "heading": {
+      "text": "Inside our colonies.",
+      "accent": "colonies"
+    },
+    "text": "Real frames from our townships — gates, greens, roads, and homes, captured as ground becomes community."
+  },
+  "filterBar": {
+    "sticky": true,
+    "allLabel": "All Colonies",
+    "chips": [
+      {
+        "projectId": 1,
+        "label": "River Green Society · Shamli"
+      },
+      {
+        "projectId": 5,
+        "label": "Defence Garden Phase 2 · Shamli"
+      },
+      {
+        "projectId": 2,
+        "label": "Defence Garden · Budhana"
+      },
+      {
+        "projectId": 3,
+        "label": "Defence Garden · Meerut"
+      },
+      {
+        "projectId": 4,
+        "label": "Defence Garden Phase 1 · Shamli"
+      },
+      {
+        "projectId": 6,
+        "label": "Defence Kunj · Meerut"
+      },
+      {
+        "projectId": 7,
+        "label": "Ganpati Enclave · Meerut"
+      },
+      {
+        "projectId": 8,
+        "label": "Gayatri Enclave · Meerut"
+      },
+      {
+        "projectId": 9,
+        "label": "Basant Kunj · Meerut"
+      },
+      {
+        "projectId": 10,
+        "label": "Saipuram · Meerut"
+      }
+    ],
+    "chipNote": "Chip label = '{title} · {first part of location}'. Chips are in projects display order."
+  },
+  "grid": {
+    "allHeading": "All Colonies",
+    "allSubline": "Meerut · Budhana · Shamli",
+    "filteredHeading": "{project title}",
+    "filteredSubline": "{project location}",
+    "countTemplate": "{n} Photos",
+    "loadingCount": "…",
+    "sublineFormat": "{subline} · {count}",
+    "exploreButton": {
+      "label": "Explore Township",
+      "href": "/project/{id}",
+      "note": "Only shown when a single colony is selected."
+    },
+    "altTemplate": "{title} photo",
+    "hoverCaption": "{title}",
+    "layoutNote": "2 columns mobile / 3 desktop; every 7th tile (index 0, 7, 14, …) spans 2×2 (large). Tiles stagger in (0.045 s). Click opens the lightbox.",
+    "allColoniesOrderNote": "'All Colonies' interleaves the projects round-robin in display order (1st photo of each project, then 2nd of each, …).",
+    "allColoniesOrder": [
+      {
+        "projectId": 1,
+        "title": "River Green Society",
+        "oldUrl": "https://defencegarden.com/assets/IMG20260407115715-DxYpsb3M.webp",
+        "key": "projects.river-green-society.gallery-01",
+        "src": "src/assets/media/projects/river-green-society/gallery-01.webp",
+        "alt": "River Green Society entrance arch and sales office, with visitors walking along the paved approach",
+        "file": "IMG20260407115715.webp",
+        "index": 1,
+        "large": true
+      },
+      {
+        "projectId": 5,
+        "title": "Defence Garden Phase 2",
+        "oldUrl": "https://defencegarden.com/assets/1-BtQM12mD.webp",
+        "key": "projects.defence-garden-phase-2.gallery-01",
+        "src": "src/assets/media/projects/defence-garden-phase-2/gallery-01.webp",
+        "alt": "Green signage wall reading \"Defence Garden Phase 2 Welcomes You\"",
+        "file": "1.webp",
+        "index": 2,
+        "large": false
+      },
+      {
+        "projectId": 2,
+        "title": "Defence Garden",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0042-bnfNPYEr.webp",
+        "key": "projects.defence-garden-budhana.gallery-01",
+        "src": "src/assets/media/projects/defence-garden-budhana/gallery-01.webp",
+        "alt": "Defence Garden Budhana: white house with a dark slatted gate under a large shade tree",
+        "file": "DSC_0042.webp",
+        "index": 3,
+        "large": false
+      },
+      {
+        "projectId": 3,
+        "title": "Defence Garden",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0151-5vX8jm1p.webp",
+        "key": "projects.defence-garden-meerut.gallery-01",
+        "src": "src/assets/media/projects/defence-garden-meerut/gallery-01.webp",
+        "alt": "Defence Garden Meerut entrance with red gates and bilingual Defence Garden signage",
+        "file": "DSC_0151.webp",
+        "index": 4,
+        "large": false
+      },
+      {
+        "projectId": 4,
+        "title": "Defence Garden Phase 1",
+        "oldUrl": "https://defencegarden.com/assets/8-BCLTwlrZ.webp",
+        "key": "projects.defence-garden-phase-1.gallery-01",
+        "src": "src/assets/media/projects/defence-garden-phase-1/gallery-01.webp",
+        "alt": "Defence Garden Phase 1 logo on a white background",
+        "notPhoto": "logo-card",
+        "file": "8.webp",
+        "index": 5,
+        "large": false
+      },
+      {
+        "projectId": 6,
+        "title": "Defence Kunj",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0491-cxxvFu7T.webp",
+        "key": "projects.defence-kunj.gallery-01",
+        "src": "src/assets/media/projects/defence-kunj/gallery-01.webp",
+        "alt": "Defence Kunj entrance with red metal gates between yellow pillars",
+        "file": "DSC_0491.webp",
+        "index": 6,
+        "large": false
+      },
+      {
+        "projectId": 7,
+        "title": "Ganpati Enclave",
+        "oldUrl": "https://defencegarden.com/assets/DJI_0058-DwO_lPNL.webp",
+        "key": "projects.ganpati-enclave.gallery-01",
+        "src": "src/assets/media/projects/ganpati-enclave/gallery-01.webp",
+        "alt": "Ganpati Enclave: elevated view of a terrace of townhouses facing a landscaped park, a water tower beyond",
+        "file": "DJI_0058.webp",
+        "index": 7,
+        "large": false
+      },
+      {
+        "projectId": 8,
+        "title": "Gayatri Enclave",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0633-B91g6vHh.webp",
+        "key": "projects.gayatri-enclave.gallery-01",
+        "src": "src/assets/media/projects/gayatri-enclave/gallery-01.webp",
+        "alt": "Gayatri Enclave entrance with red gates and a guard cabin, a car parked outside",
+        "file": "DSC_0633.webp",
+        "index": 8,
+        "large": true
+      },
+      {
+        "projectId": 9,
+        "title": "Basant Kunj",
+        "oldUrl": "https://defencegarden.com/assets/basantkunj_img003-sKTh5-_7.webp",
+        "key": "projects.basant-kunj.gallery-01",
+        "src": "src/assets/media/projects/basant-kunj/gallery-01.webp",
+        "alt": "Basant Kunj: small brick-clad site office with two men standing outside",
+        "file": "basantkunj_img003.webp",
+        "index": 9,
+        "large": false
+      },
+      {
+        "projectId": 10,
+        "title": "Saipuram",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0338-BR-lKeDT.webp",
+        "key": "projects.saipuram.gallery-01",
+        "src": "src/assets/media/projects/saipuram/gallery-01.webp",
+        "alt": "Saipuram: tree-shaded entrance lane with open yellow gates and the colony signboard",
+        "file": "DSC_0338.webp",
+        "index": 10,
+        "large": false
+      },
+      {
+        "projectId": 1,
+        "title": "River Green Society",
+        "oldUrl": "https://defencegarden.com/assets/IMG20260407120132-BYfZXwll.webp",
+        "key": "projects.river-green-society.gallery-02",
+        "src": "src/assets/media/projects/river-green-society/gallery-02.webp",
+        "alt": "River Green Society: wide paved boulevard with a red centre stripe, clipped hedges and palms leading to the fountain",
+        "file": "IMG20260407120132.webp",
+        "index": 11,
+        "large": false
+      },
+      {
+        "projectId": 5,
+        "title": "Defence Garden Phase 2",
+        "oldUrl": "https://defencegarden.com/assets/2-BfXAi4uZ.webp",
+        "key": "projects.defence-garden-phase-2.gallery-02",
+        "src": "src/assets/media/projects/defence-garden-phase-2/gallery-02.webp",
+        "alt": "Defence Garden Phase 2 entrance and roadside billboard under a clear blue sky",
+        "file": "2.webp",
+        "index": 12,
+        "large": false
+      },
+      {
+        "projectId": 2,
+        "title": "Defence Garden",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0064-cS2y8tSr.webp",
+        "key": "projects.defence-garden-budhana.gallery-02",
+        "src": "src/assets/media/projects/defence-garden-budhana/gallery-02.webp",
+        "alt": "Defence Garden Budhana: lavender-painted house with an orange and teal front door",
+        "file": "DSC_0064.webp",
+        "index": 13,
+        "large": false
+      },
+      {
+        "projectId": 3,
+        "title": "Defence Garden",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0165-DSpOWQaQ.webp",
+        "key": "projects.defence-garden-meerut.gallery-02",
+        "src": "src/assets/media/projects/defence-garden-meerut/gallery-02.webp",
+        "alt": "Defence Garden Meerut: home entrance with a timber-clad boundary wall, trees and parked scooters",
+        "file": "DSC_0165.webp",
+        "index": 14,
+        "large": false
+      },
+      {
+        "projectId": 4,
+        "title": "Defence Garden Phase 1",
+        "oldUrl": "https://defencegarden.com/assets/26-BO2BU5Uc.webp",
+        "key": "projects.defence-garden-phase-1.gallery-02",
+        "src": "src/assets/media/projects/defence-garden-phase-1/gallery-02.webp",
+        "alt": "Collage of a landscaped park with topiary and play equipment above a lawn lined with hedges",
+        "notPhoto": "collage",
+        "file": "26.webp",
+        "index": 15,
+        "large": true
+      },
+      {
+        "projectId": 6,
+        "title": "Defence Kunj",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0509-BP5e5-F5.webp",
+        "key": "projects.defence-kunj.gallery-02",
+        "src": "src/assets/media/projects/defence-kunj/gallery-02.webp",
+        "alt": "Defence Kunj: two-storey home with a beige-and-orange facade and red doors",
+        "file": "DSC_0509.webp",
+        "index": 16,
+        "large": false
+      },
+      {
+        "projectId": 7,
+        "title": "Ganpati Enclave",
+        "oldUrl": "https://defencegarden.com/assets/WhatsApp%20Image%202024-06-20%20at%203.53.51%20PM%20(1)-BczRit9x.webp",
+        "key": "projects.ganpati-enclave.gallery-02",
+        "src": "src/assets/media/projects/ganpati-enclave/gallery-02.webp",
+        "alt": "Ganpati Enclave: cream two-storey villa with a red-tiled roof and a fan palm in front",
+        "file": "WhatsApp Image 2024-06-20 at 3.53.51 PM (1).webp",
+        "index": 17,
+        "large": false
+      },
+      {
+        "projectId": 8,
+        "title": "Gayatri Enclave",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0661-BZw9yU57.webp",
+        "key": "projects.gayatri-enclave.gallery-02",
+        "src": "src/assets/media/projects/gayatri-enclave/gallery-02.webp",
+        "alt": "Gayatri Enclave: two-storey house with yellow window frames awaiting its final finish",
+        "file": "DSC_0661.webp",
+        "index": 18,
+        "large": false
+      },
+      {
+        "projectId": 9,
+        "title": "Basant Kunj",
+        "oldUrl": "https://defencegarden.com/assets/basantkunj_img004-BAKZlOID.webp",
+        "key": "projects.basant-kunj.gallery-02",
+        "src": "src/assets/media/projects/basant-kunj/gallery-02.webp",
+        "alt": "Basant Kunj: modern white house beside a railed green park",
+        "file": "basantkunj_img004.webp",
+        "index": 19,
+        "large": false
+      },
+      {
+        "projectId": 10,
+        "title": "Saipuram",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0345-BDXfNcSh.webp",
+        "key": "projects.saipuram.gallery-02",
+        "src": "src/assets/media/projects/saipuram/gallery-02.webp",
+        "alt": "Saipuram: shaded lane beside a house with an ornate metal door",
+        "file": "DSC_0345.webp",
+        "index": 20,
+        "large": false
+      },
+      {
+        "projectId": 1,
+        "title": "River Green Society",
+        "oldUrl": "https://defencegarden.com/assets/IMG20260407120211-DDrxAX0-.webp",
+        "key": "projects.river-green-society.gallery-03",
+        "src": "src/assets/media/projects/river-green-society/gallery-03.webp",
+        "alt": "River Green Society: red-striped paving leading to the stone fountain, jets switched off",
+        "file": "IMG20260407120211.webp",
+        "index": 21,
+        "large": false
+      },
+      {
+        "projectId": 5,
+        "title": "Defence Garden Phase 2",
+        "oldUrl": "https://defencegarden.com/assets/3-DapSVAk-.webp",
+        "key": "projects.defence-garden-phase-2.gallery-03",
+        "src": "src/assets/media/projects/defence-garden-phase-2/gallery-03.webp",
+        "alt": "Defence Garden Phase 2 gatehouse and green welcome wall under a clear blue sky",
+        "file": "3.webp",
+        "index": 22,
+        "large": true
+      },
+      {
+        "projectId": 2,
+        "title": "Defence Garden",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0069-Dta3eNTe.webp",
+        "key": "projects.defence-garden-budhana.gallery-03",
+        "src": "src/assets/media/projects/defence-garden-budhana/gallery-03.webp",
+        "alt": "Defence Garden Budhana: lavender house on a paved street with neighbouring homes beyond",
+        "file": "DSC_0069.webp",
+        "index": 23,
+        "large": false
+      },
+      {
+        "projectId": 3,
+        "title": "Defence Garden",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0169-CMbNR7jY.webp",
+        "key": "projects.defence-garden-meerut.gallery-03",
+        "src": "src/assets/media/projects/defence-garden-meerut/gallery-03.webp",
+        "alt": "Defence Garden Meerut: two-storey white home with a green awning, garden trees and a white fence",
+        "file": "DSC_0169.webp",
+        "index": 24,
+        "large": false
+      },
+      {
+        "projectId": 4,
+        "title": "Defence Garden Phase 1",
+        "oldUrl": "https://defencegarden.com/assets/28-C673WPmY.webp",
+        "key": "projects.defence-garden-phase-1.gallery-03",
+        "src": "src/assets/media/projects/defence-garden-phase-1/gallery-03.webp",
+        "alt": "Two uniformed security guards standing at the Defence Garden Phase 1 gate",
+        "file": "28.webp",
+        "index": 25,
+        "large": false
+      },
+      {
+        "projectId": 6,
+        "title": "Defence Kunj",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0522-BkGFbGzy.webp",
+        "key": "projects.defence-kunj.gallery-03",
+        "src": "src/assets/media/projects/defence-kunj/gallery-03.webp",
+        "alt": "Defence Kunj: white two-storey home with a blue glass window and garden trees",
+        "file": "DSC_0522.webp",
+        "index": 26,
+        "large": false
+      },
+      {
+        "projectId": 7,
+        "title": "Ganpati Enclave",
+        "oldUrl": "https://defencegarden.com/assets/WhatsApp%20Image%202024-06-20%20at%203.53.52%20PM-CATcHuYb.webp",
+        "key": "projects.ganpati-enclave.gallery-03",
+        "src": "src/assets/media/projects/ganpati-enclave/gallery-03.webp",
+        "alt": "Ganpati Enclave: townhouse facades with balconies and timber screens",
+        "file": "WhatsApp Image 2024-06-20 at 3.53.52 PM.webp",
+        "index": 27,
+        "large": false
+      },
+      {
+        "projectId": 8,
+        "title": "Gayatri Enclave",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0688-5SOwAuYS.webp",
+        "key": "projects.gayatri-enclave.gallery-03",
+        "src": "src/assets/media/projects/gayatri-enclave/gallery-03.webp",
+        "alt": "Gayatri Enclave: red metal gate in a white boundary wall, sunlight flaring behind",
+        "file": "DSC_0688.webp",
+        "index": 28,
+        "large": false
+      },
+      {
+        "projectId": 9,
+        "title": "Basant Kunj",
+        "oldUrl": "https://defencegarden.com/assets/basantkunj_img005-ClmWRK7X.webp",
+        "key": "projects.basant-kunj.gallery-03",
+        "src": "src/assets/media/projects/basant-kunj/gallery-03.webp",
+        "alt": "Basant Kunj: open green park with brick boundary walls beyond a paved road",
+        "file": "basantkunj_img005.webp",
+        "index": 29,
+        "large": true
+      },
+      {
+        "projectId": 10,
+        "title": "Saipuram",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0363-L6ZIRkxx.webp",
+        "key": "projects.saipuram.gallery-03",
+        "src": "src/assets/media/projects/saipuram/gallery-03.webp",
+        "alt": "Saipuram: white house with maroon doors and a rooftop railing",
+        "file": "DSC_0363.webp",
+        "index": 30,
+        "large": false
+      },
+      {
+        "projectId": 1,
+        "title": "River Green Society",
+        "oldUrl": "https://defencegarden.com/assets/IMG20260407120220-BDCvcQiy.webp",
+        "key": "projects.river-green-society.gallery-04",
+        "src": "src/assets/media/projects/river-green-society/gallery-04.webp",
+        "alt": "River Green Society: plaza edge with steel railings and benches, a palm and a long hedge row",
+        "file": "IMG20260407120220.webp",
+        "index": 31,
+        "large": false
+      },
+      {
+        "projectId": 5,
+        "title": "Defence Garden Phase 2",
+        "oldUrl": "https://defencegarden.com/assets/4-BzyLso7i.webp",
+        "key": "projects.defence-garden-phase-2.gallery-04",
+        "src": "src/assets/media/projects/defence-garden-phase-2/gallery-04.webp",
+        "alt": "Defence Garden Phase 2 gatehouse seen from inside, with guard rooms, staircases and a parked car",
+        "file": "4.webp",
+        "index": 32,
+        "large": false
+      },
+      {
+        "projectId": 2,
+        "title": "Defence Garden",
+        "oldUrl": "https://defencegarden.com/assets/DSC_4370.JPG%20(1)-D7927XIe.webp",
+        "key": "projects.defence-garden-budhana.gallery-04",
+        "src": "src/assets/media/projects/defence-garden-budhana/gallery-04.webp",
+        "alt": "Defence Garden Budhana entrance arch with the saluting-soldier emblem, guardroom and sliding gate",
+        "file": "DSC_4370.JPG (1).webp",
+        "index": 33,
+        "large": false
+      },
+      {
+        "projectId": 3,
+        "title": "Defence Garden",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0172-Cwc9NfKu.webp",
+        "key": "projects.defence-garden-meerut.gallery-04",
+        "src": "src/assets/media/projects/defence-garden-meerut/gallery-04.webp",
+        "alt": "Defence Garden Meerut: small orange-and-white temple framed by flowering frangipani trees",
+        "file": "DSC_0172.webp",
+        "index": 34,
+        "large": false
+      },
+      {
+        "projectId": 4,
+        "title": "Defence Garden Phase 1",
+        "oldUrl": "https://defencegarden.com/assets/29-Cw3B9Mbw.webp",
+        "key": "projects.defence-garden-phase-1.gallery-04",
+        "src": "src/assets/media/projects/defence-garden-phase-1/gallery-04.webp",
+        "alt": "Gardener trimming a spiral topiary on a lawn at Defence Garden Phase 1",
+        "file": "29.webp",
+        "index": 35,
+        "large": false
+      },
+      {
+        "projectId": 6,
+        "title": "Defence Kunj",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0565-CEREFdS-.webp",
+        "key": "projects.defence-kunj.gallery-04",
+        "src": "src/assets/media/projects/defence-kunj/gallery-04.webp",
+        "alt": "Defence Kunj: narrow cream house with red decorative motifs and a balcony of potted plants",
+        "file": "DSC_0565.webp",
+        "index": 36,
+        "large": true
+      },
+      {
+        "projectId": 7,
+        "title": "Ganpati Enclave",
+        "oldUrl": "https://defencegarden.com/assets/WhatsApp%20Image%202024-06-20%20at%203.53.53%20PM%20(1)-C8MiIxJw.webp",
+        "key": "projects.ganpati-enclave.gallery-04",
+        "src": "src/assets/media/projects/ganpati-enclave/gallery-04.webp",
+        "alt": "Ganpati Enclave: corner villas with red-tiled roofs above a landscaped garden",
+        "file": "WhatsApp Image 2024-06-20 at 3.53.53 PM (1).webp",
+        "index": 37,
+        "large": false
+      },
+      {
+        "projectId": 8,
+        "title": "Gayatri Enclave",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0692-0292AMmp.webp",
+        "key": "projects.gayatri-enclave.gallery-04",
+        "src": "src/assets/media/projects/gayatri-enclave/gallery-04.webp",
+        "alt": "Gayatri Enclave: landscaped lawn with palms and hedges in late-afternoon light",
+        "file": "DSC_0692.webp",
+        "index": 38,
+        "large": false
+      },
+      {
+        "projectId": 9,
+        "title": "Basant Kunj",
+        "oldUrl": "https://defencegarden.com/assets/basantkunj_img008-DLJ1B-f3.webp",
+        "key": "projects.basant-kunj.gallery-04",
+        "src": "src/assets/media/projects/basant-kunj/gallery-04.webp",
+        "alt": "Basant Kunj: two-storey white corner building with balconies and a blue rolling shutter",
+        "file": "basantkunj_img008.webp",
+        "index": 39,
+        "large": false
+      },
+      {
+        "projectId": 10,
+        "title": "Saipuram",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0367-C4PKhYXX.webp",
+        "key": "projects.saipuram.gallery-04",
+        "src": "src/assets/media/projects/saipuram/gallery-04.webp",
+        "alt": "Saipuram: white house beside a neighbour with a wood-effect facade",
+        "file": "DSC_0367.webp",
+        "index": 40,
+        "large": false
+      },
+      {
+        "projectId": 1,
+        "title": "River Green Society",
+        "oldUrl": "https://defencegarden.com/assets/IMG20260407120232-DzsJ3yHl.webp",
+        "key": "projects.river-green-society.gallery-05",
+        "src": "src/assets/media/projects/river-green-society/gallery-05.webp",
+        "alt": "River Green Society: palms and tropical planting beside the curved steel railing of the plaza",
+        "file": "IMG20260407120232.webp",
+        "index": 41,
+        "large": false
+      },
+      {
+        "projectId": 5,
+        "title": "Defence Garden Phase 2",
+        "oldUrl": "https://defencegarden.com/assets/6-BTz-0ysr.webp",
+        "key": "projects.defence-garden-phase-2.gallery-05",
+        "src": "src/assets/media/projects/defence-garden-phase-2/gallery-05.webp",
+        "alt": "Defence Garden Phase 2: broad paved boulevard with a central lamp post under a blue sky",
+        "file": "6.webp",
+        "index": 42,
+        "large": false
+      },
+      {
+        "projectId": 2,
+        "title": "Defence Garden",
+        "oldUrl": "https://defencegarden.com/assets/DSC_4370.JPG%20(2)-BqxioXFk.webp",
+        "key": "projects.defence-garden-budhana.gallery-05",
+        "src": "src/assets/media/projects/defence-garden-budhana/gallery-05.webp",
+        "alt": "Defence Garden Budhana: two-storey white house with balcony railings and rolling shutters",
+        "file": "DSC_4370.JPG (2).webp",
+        "index": 43,
+        "large": true
+      },
+      {
+        "projectId": 3,
+        "title": "Defence Garden",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0190-BfWNk1h4.webp",
+        "key": "projects.defence-garden-meerut.gallery-05",
+        "src": "src/assets/media/projects/defence-garden-meerut/gallery-05.webp",
+        "alt": "Defence Garden Meerut: shaded internal street with mature trees, a lawn verge and a parked car",
+        "file": "DSC_0190.webp",
+        "index": 44,
+        "large": false
+      },
+      {
+        "projectId": 4,
+        "title": "Defence Garden Phase 1",
+        "oldUrl": "https://defencegarden.com/assets/DJI_0001-_gONQeGE.webp",
+        "key": "projects.defence-garden-phase-1.gallery-05",
+        "src": "src/assets/media/projects/defence-garden-phase-1/gallery-05.webp",
+        "alt": "Aerial view of a large white three-storey house with a walled lawn garden beside open fields",
+        "file": "DJI_0001.webp",
+        "index": 45,
+        "large": false
+      },
+      {
+        "projectId": 6,
+        "title": "Defence Kunj",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0571-LC_6n15T.webp",
+        "key": "projects.defence-kunj.gallery-05",
+        "src": "src/assets/media/projects/defence-kunj/gallery-05.webp",
+        "alt": "Defence Kunj: red-and-black modern house with a timber front door",
+        "file": "DSC_0571.webp",
+        "index": 46,
+        "large": false
+      },
+      {
+        "projectId": 7,
+        "title": "Ganpati Enclave",
+        "oldUrl": "https://defencegarden.com/assets/WhatsApp%20Image%202024-06-20%20at%203.53.53%20PM-0zOYfbUw.webp",
+        "key": "projects.ganpati-enclave.gallery-05",
+        "src": "src/assets/media/projects/ganpati-enclave/gallery-05.webp",
+        "alt": "Ganpati Enclave: terrace of townhouses along a paved lane lined with potted plants",
+        "file": "WhatsApp Image 2024-06-20 at 3.53.53 PM.webp",
+        "index": 47,
+        "large": false
+      },
+      {
+        "projectId": 8,
+        "title": "Gayatri Enclave",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0693-h9MstMpR.webp",
+        "key": "projects.gayatri-enclave.gallery-05",
+        "src": "src/assets/media/projects/gayatri-enclave/gallery-05.webp",
+        "alt": "Gayatri Enclave: open lawn with trees and palms in warm evening light",
+        "file": "DSC_0693.webp",
+        "index": 48,
+        "large": false
+      },
+      {
+        "projectId": 9,
+        "title": "Basant Kunj",
+        "oldUrl": "https://defencegarden.com/assets/basantkunj_img009-BERFZ7o-.webp",
+        "key": "projects.basant-kunj.gallery-05",
+        "src": "src/assets/media/projects/basant-kunj/gallery-05.webp",
+        "alt": "Basant Kunj: long lawn strip between two paved walkways under a clear sky",
+        "file": "basantkunj_img009.webp",
+        "index": 49,
+        "large": false
+      },
+      {
+        "projectId": 10,
+        "title": "Saipuram",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0382-DcflH7pR.webp",
+        "key": "projects.saipuram.gallery-05",
+        "src": "src/assets/media/projects/saipuram/gallery-05.webp",
+        "alt": "Saipuram entrance gate with the yellow Saipuram signboard and a tree-lined road",
+        "file": "DSC_0382.webp",
+        "index": 50,
+        "large": true
+      },
+      {
+        "projectId": 1,
+        "title": "River Green Society",
+        "oldUrl": "https://defencegarden.com/assets/IMG20260407120253-BKCXmJob.webp",
+        "key": "projects.river-green-society.gallery-06",
+        "src": "src/assets/media/projects/river-green-society/gallery-06.webp",
+        "alt": "River Green Society: lawn and curved steel bench railing beside a tall hedge and a palm",
+        "file": "IMG20260407120253.webp",
+        "index": 51,
+        "large": false
+      },
+      {
+        "projectId": 5,
+        "title": "Defence Garden Phase 2",
+        "oldUrl": "https://defencegarden.com/assets/7-B2a5NRIG.webp",
+        "key": "projects.defence-garden-phase-2.gallery-06",
+        "src": "src/assets/media/projects/defence-garden-phase-2/gallery-06.webp",
+        "alt": "Defence Garden Phase 2: road lined with ornate lamp posts, palms and a striped kerb median",
+        "file": "7.webp",
+        "index": 52,
+        "large": false
+      },
+      {
+        "projectId": 2,
+        "title": "Defence Garden",
+        "oldUrl": "https://defencegarden.com/assets/DSC_4370.JPG%20(4)-DcZrj2HK.webp",
+        "key": "projects.defence-garden-budhana.gallery-06",
+        "src": "src/assets/media/projects/defence-garden-budhana/gallery-06.webp",
+        "alt": "Defence Garden Budhana: white house and dark gate beside a shade tree",
+        "file": "DSC_4370.JPG (4).webp",
+        "index": 53,
+        "large": false
+      },
+      {
+        "projectId": 3,
+        "title": "Defence Garden",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0325-CMT7O1nZ.webp",
+        "key": "projects.defence-garden-meerut.gallery-06",
+        "src": "src/assets/media/projects/defence-garden-meerut/gallery-06.webp",
+        "alt": "Defence Garden Meerut: manicured front garden with topiary and a lush lawn before a timber-clad house",
+        "file": "DSC_0325.webp",
+        "index": 54,
+        "large": false
+      },
+      {
+        "projectId": 4,
+        "title": "Defence Garden Phase 1",
+        "oldUrl": "https://defencegarden.com/assets/DJI_0004-DbT4i8rY.webp",
+        "key": "projects.defence-garden-phase-1.gallery-06",
+        "src": "src/assets/media/projects/defence-garden-phase-1/gallery-06.webp",
+        "alt": "Aerial view of Defence Garden Phase 1, new houses along internal roads among fields under a hazy sky",
+        "file": "DJI_0004.webp",
+        "index": 55,
+        "large": false
+      },
+      {
+        "projectId": 6,
+        "title": "Defence Kunj",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0594-vH2S1TGG.webp",
+        "key": "projects.defence-kunj.gallery-06",
+        "src": "src/assets/media/projects/defence-kunj/gallery-06.webp",
+        "alt": "Defence Kunj: home with wood-effect and stone cladding, a scooter parked in front",
+        "file": "DSC_0594.webp",
+        "index": 56,
+        "large": false
+      },
+      {
+        "projectId": 7,
+        "title": "Ganpati Enclave",
+        "oldUrl": "https://defencegarden.com/assets/WhatsApp%20Image%202024-06-20%20at%203.53.54%20PM%20(1)-Ddk00WCc.webp",
+        "key": "projects.ganpati-enclave.gallery-06",
+        "src": "src/assets/media/projects/ganpati-enclave/gallery-06.webp",
+        "alt": "Ganpati Enclave: cream villas with red-tiled roofs and wrought-iron balconies",
+        "file": "WhatsApp Image 2024-06-20 at 3.53.54 PM (1).webp",
+        "index": 57,
+        "large": true
+      },
+      {
+        "projectId": 8,
+        "title": "Gayatri Enclave",
+        "oldUrl": "https://defencegarden.com/assets/wow-CXVuzG02.webp",
+        "key": "projects.gayatri-enclave.gallery-06",
+        "src": "src/assets/media/projects/gayatri-enclave/gallery-06.webp",
+        "alt": "Gayatri Enclave: narrow three-storey white home with a blue glass strip beside a large tree",
+        "coverTwin": true,
+        "file": "wow.webp",
+        "index": 58,
+        "large": false
+      },
+      {
+        "projectId": 9,
+        "title": "Basant Kunj",
+        "oldUrl": "https://defencegarden.com/assets/basantkunj_img0010-D1qahjL7.webp",
+        "key": "projects.basant-kunj.gallery-06",
+        "src": "src/assets/media/projects/basant-kunj/gallery-06.webp",
+        "alt": "Basant Kunj: white terraced homes with yellow trim",
+        "file": "basantkunj_img0010.webp",
+        "index": 59,
+        "large": false
+      },
+      {
+        "projectId": 10,
+        "title": "Saipuram",
+        "oldUrl": "https://defencegarden.com/assets/wow-D4pLN--c.webp",
+        "key": "projects.saipuram.gallery-06",
+        "src": "src/assets/media/projects/saipuram/gallery-06.webp",
+        "alt": "Saipuram: row of colourful homes with wood-panel and yellow facades across an open plot",
+        "coverTwin": true,
+        "file": "wow.webp",
+        "index": 60,
+        "large": false
+      },
+      {
+        "projectId": 1,
+        "title": "River Green Society",
+        "oldUrl": "https://defencegarden.com/assets/IMG20260407120345-sWmZI6ia.webp",
+        "key": "projects.river-green-society.gallery-07",
+        "src": "src/assets/media/projects/river-green-society/gallery-07.webp",
+        "alt": "River Green Society: fountain jets running in the paved central plaza, a parked car beyond",
+        "file": "IMG20260407120345.webp",
+        "index": 61,
+        "large": false
+      },
+      {
+        "projectId": 5,
+        "title": "Defence Garden Phase 2",
+        "oldUrl": "https://defencegarden.com/assets/10-BeJ6kG18.webp",
+        "key": "projects.defence-garden-phase-2.gallery-07",
+        "src": "src/assets/media/projects/defence-garden-phase-2/gallery-07.webp",
+        "alt": "Defence Garden Phase 2: green park lawn bordered by clipped hedges",
+        "file": "10.webp",
+        "index": 62,
+        "large": false
+      },
+      {
+        "projectId": 2,
+        "title": "Defence Garden",
+        "oldUrl": "https://defencegarden.com/assets/Map-Cne13WDf.webp",
+        "key": "projects.defence-garden-budhana.gallery-07",
+        "src": "src/assets/media/projects/defence-garden-budhana/gallery-07.webp",
+        "alt": "Defence Garden Budhana layout plan: plot blocks A to D and shops S-1 to S-22 along 25, 30 and 35 ft roads off Baraut Road, with a plot-area table",
+        "notPhoto": "layout-plan",
+        "file": "Map.webp",
+        "index": 63,
+        "large": false
+      },
+      {
+        "projectId": 3,
+        "title": "Defence Garden",
+        "oldUrl": "https://defencegarden.com/assets/wow-E1A5QnC1.webp",
+        "key": "projects.defence-garden-meerut.gallery-07",
+        "src": "src/assets/media/projects/defence-garden-meerut/gallery-07.webp",
+        "alt": "Defence Garden Meerut: three-storey white house with red trim, an arched window and balconies",
+        "coverTwin": true,
+        "file": "wow.webp",
+        "index": 64,
+        "large": true
+      },
+      {
+        "projectId": 4,
+        "title": "Defence Garden Phase 1",
+        "oldUrl": "https://defencegarden.com/assets/DJI_0008-C8OkM6jv.webp",
+        "key": "projects.defence-garden-phase-1.gallery-07",
+        "src": "src/assets/media/projects/defence-garden-phase-1/gallery-07.webp",
+        "alt": "Aerial view of the Defence Garden Phase 1 colony with a canal and the town beyond",
+        "file": "DJI_0008.webp",
+        "index": 65,
+        "large": false
+      },
+      {
+        "projectId": 6,
+        "title": "Defence Kunj",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0600-X3iv-fhX.webp",
+        "key": "projects.defence-kunj.gallery-07",
+        "src": "src/assets/media/projects/defence-kunj/gallery-07.webp",
+        "alt": "Defence Kunj: compact cream house with a glass-block window and timber doors",
+        "file": "DSC_0600.webp",
+        "index": 66,
+        "large": false
+      },
+      {
+        "projectId": 7,
+        "title": "Ganpati Enclave",
+        "oldUrl": "https://defencegarden.com/assets/WhatsApp%20Image%202024-06-20%20at%203.53.54%20PM-D0fq9nR2.webp",
+        "key": "projects.ganpati-enclave.gallery-07",
+        "src": "src/assets/media/projects/ganpati-enclave/gallery-07.webp",
+        "alt": "Ganpati Enclave direction signboard in English and Hindi",
+        "file": "WhatsApp Image 2024-06-20 at 3.53.54 PM.webp",
+        "index": 67,
+        "large": false
+      },
+      {
+        "projectId": 9,
+        "title": "Basant Kunj",
+        "oldUrl": "https://defencegarden.com/assets/wow-B4fNa2jA.webp",
+        "key": "projects.basant-kunj.gallery-07",
+        "src": "src/assets/media/projects/basant-kunj/gallery-07.webp",
+        "alt": "Basant Kunj: two-storey homes with orange trim and blue glass details under a clear sky",
+        "coverTwin": true,
+        "file": "wow.webp",
+        "index": 68,
+        "large": false
+      },
+      {
+        "projectId": 1,
+        "title": "River Green Society",
+        "oldUrl": "https://defencegarden.com/assets/IMG20260407120349-B7obDawC.webp",
+        "key": "projects.river-green-society.gallery-08",
+        "src": "src/assets/media/projects/river-green-society/gallery-08.webp",
+        "alt": "River Green Society: two royal palms above the plaza railing and benches",
+        "file": "IMG20260407120349.webp",
+        "index": 69,
+        "large": false
+      },
+      {
+        "projectId": 5,
+        "title": "Defence Garden Phase 2",
+        "oldUrl": "https://defencegarden.com/assets/13-DUGtmfc0.webp",
+        "key": "projects.defence-garden-phase-2.gallery-08",
+        "src": "src/assets/media/projects/defence-garden-phase-2/gallery-08.webp",
+        "alt": "Uniformed security guards standing in a row",
+        "rightsUnclear": true,
+        "file": "13.webp",
+        "index": 70,
+        "large": false
+      },
+      {
+        "projectId": 2,
+        "title": "Defence Garden",
+        "oldUrl": "https://defencegarden.com/assets/wow-DCIuDg6y.webp",
+        "key": "projects.defence-garden-budhana.gallery-08",
+        "src": "src/assets/media/projects/defence-garden-budhana/gallery-08.webp",
+        "alt": "Defence Garden Budhana: two-storey white house with balconies and young trees in warm evening light",
+        "coverTwin": true,
+        "file": "wow.webp",
+        "index": 71,
+        "large": true
+      },
+      {
+        "projectId": 4,
+        "title": "Defence Garden Phase 1",
+        "oldUrl": "https://defencegarden.com/assets/DSC_1104-Kq6Gbhe4.webp",
+        "key": "projects.defence-garden-phase-1.gallery-08",
+        "src": "src/assets/media/projects/defence-garden-phase-1/gallery-08.webp",
+        "alt": "Defence Garden Phase 1 park with outdoor gym equipment and swings on a green lawn",
+        "file": "DSC_1104.webp",
+        "index": 72,
+        "large": false
+      },
+      {
+        "projectId": 6,
+        "title": "Defence Kunj",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0616-Yy2Y9-C7.webp",
+        "key": "projects.defence-kunj.gallery-08",
+        "src": "src/assets/media/projects/defence-kunj/gallery-08.webp",
+        "alt": "Defence Kunj: row of pink two-storey homes with stone-clad ground floors",
+        "file": "DSC_0616.webp",
+        "index": 73,
+        "large": false
+      },
+      {
+        "projectId": 7,
+        "title": "Ganpati Enclave",
+        "oldUrl": "https://defencegarden.com/assets/WhatsApp%20Image%202024-06-20%20at%203.53.55%20PM%20(1)-DwAkS14Y.webp",
+        "key": "projects.ganpati-enclave.gallery-08",
+        "src": "src/assets/media/projects/ganpati-enclave/gallery-08.webp",
+        "alt": "Ganpati Enclave: terrace of townhouses with balconies along a paved lane",
+        "file": "WhatsApp Image 2024-06-20 at 3.53.55 PM (1).webp",
+        "index": 74,
+        "large": false
+      },
+      {
+        "projectId": 1,
+        "title": "River Green Society",
+        "oldUrl": "https://defencegarden.com/assets/IMG20260407120640-C3DsB1Tn.webp",
+        "key": "projects.river-green-society.gallery-09",
+        "src": "src/assets/media/projects/river-green-society/gallery-09.webp",
+        "alt": "River Green Society: red-striped walkway leading to the running fountain",
+        "file": "IMG20260407120640.webp",
+        "index": 75,
+        "large": false
+      },
+      {
+        "projectId": 5,
+        "title": "Defence Garden Phase 2",
+        "oldUrl": "https://defencegarden.com/assets/14-BmL2FPkO.webp",
+        "key": "projects.defence-garden-phase-2.gallery-09",
+        "src": "src/assets/media/projects/defence-garden-phase-2/gallery-09.webp",
+        "alt": "Defence Garden Phase 2: newly built two-storey white house beside a lamp post",
+        "file": "14.webp",
+        "index": 76,
+        "large": false
+      },
+      {
+        "projectId": 4,
+        "title": "Defence Garden Phase 1",
+        "oldUrl": "https://defencegarden.com/assets/DSC_1105-D6HqitUX.webp",
+        "key": "projects.defence-garden-phase-1.gallery-09",
+        "src": "src/assets/media/projects/defence-garden-phase-1/gallery-09.webp",
+        "alt": "Defence Garden Phase 1: temple building with arched openings and a spire beside a green lawn",
+        "file": "DSC_1105.webp",
+        "index": 77,
+        "large": false
+      },
+      {
+        "projectId": 6,
+        "title": "Defence Kunj",
+        "oldUrl": "https://defencegarden.com/assets/DSC_0619-CoZ0JtFr.webp",
+        "key": "projects.defence-kunj.gallery-09",
+        "src": "src/assets/media/projects/defence-kunj/gallery-09.webp",
+        "alt": "Defence Kunj: tall four-storey white home with blue windows and balconies",
+        "file": "DSC_0619.webp",
+        "index": 78,
+        "large": true
+      },
+      {
+        "projectId": 7,
+        "title": "Ganpati Enclave",
+        "oldUrl": "https://defencegarden.com/assets/WhatsApp%20Image%202024-06-20%20at%203.53.55%20PM%20(2)-CMrWjQn1.webp",
+        "key": "projects.ganpati-enclave.gallery-09",
+        "src": "src/assets/media/projects/ganpati-enclave/gallery-09.webp",
+        "alt": "Ganpati Enclave: townhouses behind a clipped hedge, cars parked in front",
+        "file": "WhatsApp Image 2024-06-20 at 3.53.55 PM (2).webp",
+        "index": 79,
+        "large": false
+      },
+      {
+        "projectId": 1,
+        "title": "River Green Society",
+        "oldUrl": "https://defencegarden.com/assets/IMG20260407120700-Du0v9gjf.webp",
+        "key": "projects.river-green-society.gallery-10",
+        "src": "src/assets/media/projects/river-green-society/gallery-10.webp",
+        "alt": "River Green Society: fountain jets with a tree rising behind the stone cone",
+        "file": "IMG20260407120700.webp",
+        "index": 80,
+        "large": false
+      },
+      {
+        "projectId": 5,
+        "title": "Defence Garden Phase 2",
+        "oldUrl": "https://defencegarden.com/assets/IMG_1775550287266%20(1)-aS_mgDNE.webp",
+        "key": "projects.defence-garden-phase-2.gallery-10",
+        "src": "src/assets/media/projects/defence-garden-phase-2/gallery-10.webp",
+        "alt": "Defence Garden Phase 2: hedged park lawn with shops and a guard post beyond",
+        "file": "IMG_1775550287266 (1).webp",
+        "index": 81,
+        "large": false
+      },
+      {
+        "projectId": 4,
+        "title": "Defence Garden Phase 1",
+        "oldUrl": "https://defencegarden.com/assets/DSC_4461-D3_ayVKg.webp",
+        "key": "projects.defence-garden-phase-1.gallery-10",
+        "src": "src/assets/media/projects/defence-garden-phase-1/gallery-10.webp",
+        "alt": "Defence Garden Phase 1 entrance arch with green lettering and sliding gates",
+        "file": "DSC_4461.webp",
+        "index": 82,
+        "large": false
+      },
+      {
+        "projectId": 6,
+        "title": "Defence Kunj",
+        "oldUrl": "https://defencegarden.com/assets/wow-G2hobIiK.webp",
+        "key": "projects.defence-kunj.gallery-10",
+        "src": "src/assets/media/projects/defence-kunj/gallery-10.webp",
+        "alt": "Defence Kunj: two adjoining two-storey homes, one pink and one white with blue trim, with arched windows",
+        "coverTwin": true,
+        "file": "wow.webp",
+        "index": 83,
+        "large": false
+      },
+      {
+        "projectId": 7,
+        "title": "Ganpati Enclave",
+        "oldUrl": "https://defencegarden.com/assets/WhatsApp%20Image%202024-06-20%20at%203.53.55%20PM--nDTrDIH.webp",
+        "key": "projects.ganpati-enclave.gallery-10",
+        "src": "src/assets/media/projects/ganpati-enclave/gallery-10.webp",
+        "alt": "Ganpati Enclave: cream villa with tall windows behind fan palms and shrubs",
+        "file": "WhatsApp Image 2024-06-20 at 3.53.55 PM.webp",
+        "index": 84,
+        "large": false
+      },
+      {
+        "projectId": 1,
+        "title": "River Green Society",
+        "oldUrl": "https://defencegarden.com/assets/wow-DuKc8KKy.webp",
+        "key": "projects.river-green-society.gallery-11",
+        "src": "src/assets/media/projects/river-green-society/gallery-11.webp",
+        "alt": "River Green Society: stone fountain with water jets in the paved central plaza",
+        "coverTwin": true,
+        "file": "wow.webp",
+        "index": 85,
+        "large": true
+      },
+      {
+        "projectId": 5,
+        "title": "Defence Garden Phase 2",
+        "oldUrl": "https://defencegarden.com/assets/IMG_1775550287266%20(3)-DIuhoduG.webp",
+        "key": "projects.defence-garden-phase-2.gallery-11",
+        "src": "src/assets/media/projects/defence-garden-phase-2/gallery-11.webp",
+        "alt": "Defence Garden Phase 2: road with ornate lamp posts, young palms and a striped kerb on a hazy day",
+        "file": "IMG_1775550287266 (3).webp",
+        "index": 86,
+        "large": false
+      },
+      {
+        "projectId": 4,
+        "title": "Defence Garden Phase 1",
+        "oldUrl": "https://defencegarden.com/assets/DSC_4482-hoXtGzBP.webp",
+        "key": "projects.defence-garden-phase-1.gallery-11",
+        "src": "src/assets/media/projects/defence-garden-phase-1/gallery-11.webp",
+        "alt": "Defence Garden Phase 1: paved internal road with a red centre stripe beside a new single-storey house",
+        "file": "DSC_4482.webp",
+        "index": 87,
+        "large": false
+      },
+      {
+        "projectId": 7,
+        "title": "Ganpati Enclave",
+        "oldUrl": "https://defencegarden.com/assets/WhatsApp%20Image%202024-06-20%20at%203.53.56%20PM%20(1)-CcVeweo0.webp",
+        "key": "projects.ganpati-enclave.gallery-11",
+        "src": "src/assets/media/projects/ganpati-enclave/gallery-11.webp",
+        "alt": "Ganpati Enclave: cream villa with a front lawn",
+        "file": "WhatsApp Image 2024-06-20 at 3.53.56 PM (1).webp",
+        "index": 88,
+        "large": false
+      },
+      {
+        "projectId": 5,
+        "title": "Defence Garden Phase 2",
+        "oldUrl": "https://defencegarden.com/assets/IMG_1775550287266%20(5)-CnJd433p.webp",
+        "key": "projects.defence-garden-phase-2.gallery-12",
+        "src": "src/assets/media/projects/defence-garden-phase-2/gallery-12.webp",
+        "alt": "Defence Garden Phase 2: paved service road along a row of shuttered shops",
+        "file": "IMG_1775550287266 (5).webp",
+        "index": 89,
+        "large": false
+      },
+      {
+        "projectId": 4,
+        "title": "Defence Garden Phase 1",
+        "oldUrl": "https://defencegarden.com/assets/DSC_4488-C1u7wktV.webp",
+        "key": "projects.defence-garden-phase-1.gallery-12",
+        "src": "src/assets/media/projects/defence-garden-phase-1/gallery-12.webp",
+        "alt": "Defence Garden Phase 1: white villa with balconies behind a slatted boundary fence and paved driveway",
+        "file": "DSC_4488.webp",
+        "index": 90,
+        "large": false
+      },
+      {
+        "projectId": 7,
+        "title": "Ganpati Enclave",
+        "oldUrl": "https://defencegarden.com/assets/WhatsApp%20Image%202024-06-20%20at%203.53.56%20PM-D4coQ5aA.webp",
+        "key": "projects.ganpati-enclave.gallery-12",
+        "src": "src/assets/media/projects/ganpati-enclave/gallery-12.webp",
+        "alt": "Ganpati Enclave: paved courtyard road with a parked car and scooter in front of townhouses",
+        "file": "WhatsApp Image 2024-06-20 at 3.53.56 PM.webp",
+        "index": 91,
+        "large": false
+      },
+      {
+        "projectId": 5,
+        "title": "Defence Garden Phase 2",
+        "oldUrl": "https://defencegarden.com/assets/IMG_1775550287266%20(7)-C8oKtS3c.webp",
+        "key": "projects.defence-garden-phase-2.gallery-13",
+        "src": "src/assets/media/projects/defence-garden-phase-2/gallery-13.webp",
+        "alt": "Green signage wall reading \"Defence Garden Phase 2 Welcomes You\"",
+        "file": "IMG_1775550287266 (7).webp",
+        "index": 92,
+        "large": true
+      },
+      {
+        "projectId": 4,
+        "title": "Defence Garden Phase 1",
+        "oldUrl": "https://defencegarden.com/assets/wow-DGkRxGyy.webp",
+        "key": "projects.defence-garden-phase-1.gallery-13",
+        "src": "src/assets/media/projects/defence-garden-phase-1/gallery-13.webp",
+        "alt": "Defence Garden Phase 1: blue-and-white three-storey villa with wide balconies behind lush planting",
+        "coverTwin": true,
+        "file": "wow.webp",
+        "index": 93,
+        "large": false
+      },
+      {
+        "projectId": 7,
+        "title": "Ganpati Enclave",
+        "oldUrl": "https://defencegarden.com/assets/WhatsApp%20Image%202024-06-20%20at%203.53.57%20PM%20(1)-BkgaMNjH.webp",
+        "key": "projects.ganpati-enclave.gallery-13",
+        "src": "src/assets/media/projects/ganpati-enclave/gallery-13.webp",
+        "alt": "Ganpati Enclave: townhouse facade with a balcony and carved timber screen",
+        "file": "WhatsApp Image 2024-06-20 at 3.53.57 PM (1).webp",
+        "index": 94,
+        "large": false
+      },
+      {
+        "projectId": 5,
+        "title": "Defence Garden Phase 2",
+        "oldUrl": "https://defencegarden.com/assets/IMG_1775550287266%20(8)-usugUVTh.webp",
+        "key": "projects.defence-garden-phase-2.gallery-14",
+        "src": "src/assets/media/projects/defence-garden-phase-2/gallery-14.webp",
+        "alt": "Defence Garden Phase 2 entrance gate and green welcome wall on an overcast day",
+        "file": "IMG_1775550287266 (8).webp",
+        "index": 95,
+        "large": false
+      },
+      {
+        "projectId": 7,
+        "title": "Ganpati Enclave",
+        "oldUrl": "https://defencegarden.com/assets/WhatsApp%20Image%202024-06-20%20at%203.53.57%20PM%20(2)-D6RcasBZ.webp",
+        "key": "projects.ganpati-enclave.gallery-14",
+        "src": "src/assets/media/projects/ganpati-enclave/gallery-14.webp",
+        "alt": "Ganpati Enclave: villa entrance with a carved timber door, residents and parked scooters",
+        "file": "WhatsApp Image 2024-06-20 at 3.53.57 PM (2).webp",
+        "index": 96,
+        "large": false
+      },
+      {
+        "projectId": 5,
+        "title": "Defence Garden Phase 2",
+        "oldUrl": "https://defencegarden.com/assets/IMG_1775550287266%20(9)-ikqQyd5S.webp",
+        "key": "projects.defence-garden-phase-2.gallery-15",
+        "src": "src/assets/media/projects/defence-garden-phase-2/gallery-15.webp",
+        "alt": "Defence Garden Phase 2 entrance seen from across the main road, with its tall roadside sign",
+        "file": "IMG_1775550287266 (9).webp",
+        "index": 97,
+        "large": false
+      },
+      {
+        "projectId": 7,
+        "title": "Ganpati Enclave",
+        "oldUrl": "https://defencegarden.com/assets/WhatsApp%20Image%202024-06-20%20at%203.53.57%20PM-B3OBb7yn.webp",
+        "key": "projects.ganpati-enclave.gallery-15",
+        "src": "src/assets/media/projects/ganpati-enclave/gallery-15.webp",
+        "alt": "Ganpati Enclave: cream villa with a balcony, nearing completion",
+        "file": "WhatsApp Image 2024-06-20 at 3.53.57 PM.webp",
+        "index": 98,
+        "large": false
+      },
+      {
+        "projectId": 5,
+        "title": "Defence Garden Phase 2",
+        "oldUrl": "https://defencegarden.com/assets/wow-sY8AIA8h.webp",
+        "key": "projects.defence-garden-phase-2.gallery-16",
+        "src": "src/assets/media/projects/defence-garden-phase-2/gallery-16.webp",
+        "alt": "Defence Garden Phase 2 entrance gate beside the green \"Welcomes You\" wall",
+        "coverTwin": true,
+        "file": "wow.webp",
+        "index": 99,
+        "large": true
+      },
+      {
+        "projectId": 7,
+        "title": "Ganpati Enclave",
+        "oldUrl": "https://defencegarden.com/assets/wow-B_-yKAvJ.webp",
+        "key": "projects.ganpati-enclave.gallery-16",
+        "src": "src/assets/media/projects/ganpati-enclave/gallery-16.webp",
+        "preferKey": "projects.ganpati-enclave.cover",
+        "preferSrc": "src/assets/media/projects/ganpati-enclave/cover.webp",
+        "alt": "Ganpati Enclave: row of cream villas with red-tiled roofs behind a landscaped hedge strip",
+        "coverTwin": true,
+        "file": "wow.webp",
+        "index": 100,
+        "large": false
+      }
+    ],
+    "perProjectOrder": "Each project's own list = projects.json → projects[].gallery (same order)."
+  },
+  "lightbox": {
+    "closeAria": "Close",
+    "prevAria": "Previous photo",
+    "nextAria": "Next photo",
+    "altTemplate": "{title} full view",
+    "counterTemplate": "{title} · {i} / {n}",
+    "keys": "Escape closes, ArrowLeft/ArrowRight navigate"
+  },
+  "noJsFallback": null,
+  "noJsFallbackNote": "No prerendered fallback HTML exists for /gallery (only SEO heading/summary in site.json).",
+  "imagesInOrderNote": "See grid.allColoniesOrder (100 photos)."
+}

@@ -1,0 +1,60 @@
+---
+// FAQ accordion (native <details>/<summary>, opens with a height transition where ::details-content is supported).
+// The matching FAQPage JSON-LD is emitted by Base for pages flagged `faq` in site.json (seo.faq).
+import Icon from '../ui/Icon.astro';
+import Ornament from '../ui/Ornament.astro';
+interface Item { number?: string; question: string; answer: string }
+interface Props { eyebrow?: string; heading: string; items: Item[]; class?: string; theme?: string; openFirst?: boolean }
+const { eyebrow, heading, items, class: cls = '', theme = 't-light', openFirst = true } = Astro.props;
+---
+<section class={`faq ${theme} section ${cls}`} data-header-tone={theme === 't-night' || theme === 't-green' ? 'dark' : 'light'} aria-labelledby="faq-title">
+  <div class="wrap faq__grid">
+    <header class="faq__head">
+      {eyebrow && <p class="eyebrow eyebrow--accent" data-reveal="fade">{eyebrow}</p>}
+      <h2 class="serif faq__title" id="faq-title" data-reveal="lines">{heading}</h2>
+      <Ornament variant="spire" class="faq__orn" />
+    </header>
+    <div class="faq__list">
+      {items.map((it, i) => (
+        <details class="faq__item" open={openFirst && i === 0} data-reveal="fade" data-reveal-delay={(i * 0.08).toFixed(2)}>
+          <summary class="faq__q">
+            <span class="deco deco--sm faq__n">{it.number ?? String(i + 1).padStart(2, '0')}</span>
+            <span class="faq__qt">{it.question}</span>
+            <span class="faq__ico" aria-hidden="true"><Icon name="plus" class="ico" /></span>
+          </summary>
+          <div class="faq__a"><p class="lead">{it.answer}</p></div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+<style>
+  .faq { interpolate-size: allow-keywords; }
+  .faq__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(36px, 6vw, 120px); align-items: start; }
+  .faq__head { display: grid; gap: 22px; position: sticky; top: calc(var(--header-h) + 24px); }
+  .faq__title { max-width: 12ch; }
+  .faq__orn { width: 64px; color: var(--accent); opacity: .8; margin-top: 10px; }
+  .faq__list { border-top: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); }
+  .faq__item { border-bottom: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); }
+  .faq__q { list-style: none; display: grid; grid-template-columns: 72px 1fr 44px; gap: 16px; align-items: center; padding-block: clamp(22px, 2.4vw, 34px); cursor: pointer; }
+  .faq__q::-webkit-details-marker { display: none; }
+  .faq__q::marker { content: ''; }
+  .faq__n { color: var(--accent); line-height: 1; }
+  .faq__qt { font-size: clamp(20px, 1.9vw, 32px); font-weight: 500; letter-spacing: -.025em; line-height: 1.15; transition: color .3s; }
+  .faq__q:hover .faq__qt { color: var(--accent); }
+  .faq__ico { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--fg) 25%, transparent); transition: transform .6s var(--ease-out), background .4s, color .4s, border-color .4s; }
+  .faq__ico :global(.ico) { width: 16px; height: 16px; }
+  .faq__item[open] .faq__ico { transform: rotate(45deg); background: var(--fg); color: var(--bg); border-color: var(--fg); }
+  .faq__a { padding: 0 60px clamp(26px, 2.6vw, 38px) 88px; }
+  .faq__a p { max-width: 52ch; color: color-mix(in srgb, var(--fg) 78%, transparent); }
+  .faq__item::details-content { block-size: 0; overflow: clip; transition: block-size .7s var(--ease-out), content-visibility .7s allow-discrete; }
+  .faq__item[open]::details-content { block-size: auto; }
+  @media (max-width: 860px) {
+    .faq__grid { grid-template-columns: 1fr; }
+    .faq__head { position: static; }
+    .faq__orn { display: none; }
+    .faq__q { grid-template-columns: 44px 1fr 40px; gap: 12px; }
+    .faq__ico { width: 40px; height: 40px; }
+    .faq__a { padding: 0 0 26px 56px; }
+  }
+</style>

@@ -1,0 +1,511 @@
+{
+  "_meta": {
+    "source": "assets/Home-CnRxT2CD.js (+ main-web-rHh87_Fk.js, defencekunj-CPiFvBMm.js), rendered https://defencegarden.com/ on 2026-10-12. Text verbatim; CSS uppercase is NOT applied in these strings (the old site rendered eyebrows/labels uppercase via CSS).",
+    "path": "/",
+    "seoRef": "site.json → seo.pages['/']",
+    "sectionOrder": [
+      "intro",
+      "hero",
+      "marqueeStats",
+      "developments",
+      "leadership",
+      "portfolio",
+      "philosophy"
+    ],
+    "chrome": "Navbar + footer CTA + footer from site.json (same on every page). A 2px gold scroll-progress bar is fixed at the top."
+  },
+  "intro": {
+    "type": "preloader",
+    "lines": [
+      "Unlock the true potential of your",
+      "multi-family real estate investment"
+    ],
+    "note": "Desktop only (skipped at ≤768px). Full-screen dark (#0C120F) mask with a keyhole-shaped cut-out at centre that scales 1→25 over 5 s; the two-line caption fades in/out over 4 s below it, followed by a small gold diamond-and-key line ornament. Caption copy is generic (not DG-specific) — keep or replace at the owner's discretion."
+  },
+  "hero": {
+    "type": "fullscreen-video",
+    "video": {
+      "oldUrl": "https://defencegarden.com/assets/main-web-Dh74r-VA.mp4",
+      "key": "video.main-web",
+      "src": "public/media/video/main-web.mp4",
+      "url": "/media/video/main-web.mp4",
+      "poster": "src/assets/media/posters/main-web-poster.webp",
+      "posterKey": "posters.main-web-poster",
+      "still": "src/assets/media/posters/main-web-still.webp",
+      "stillKey": "posters.main-web-still",
+      "startAt": 0.0,
+      "endAt": 24.07,
+      "hasAudio": false,
+      "alt": "Drone film of Defence Garden colonies: an entrance gate, villa rows, the highway and the Phase 2 entrance",
+      "autoplay": true,
+      "loop": true,
+      "muted": true,
+      "playsInline": true
+    },
+    "topBadges": [
+      {
+        "text": "Live · 4",
+        "style": "pill with green pulsing dot"
+      },
+      {
+        "text": "Shamli · Meerut · Western UP",
+        "mobileText": "Western UP",
+        "icon": "map-pin"
+      }
+    ],
+    "eyebrow": "Welcome to Defence Garden",
+    "heading": {
+      "lines": [
+        "Luxury Living at",
+        "Defence Garden"
+      ],
+      "text": "Luxury Living at Defence Garden",
+      "note": "Line 1 italic, smaller; line 2 large."
+    },
+    "text": "Premium residential plots surrounded by nature. Build your dream home in a peaceful, well-planned township.",
+    "ctas": [
+      {
+        "label": "View Available Plots",
+        "href": "/ourproject",
+        "style": "primary (gold) with arrow"
+      },
+      {
+        "label": "Watch Story",
+        "href": "/about",
+        "style": "secondary (outline) with play-circle icon"
+      }
+    ],
+    "statsBar": [
+      {
+        "value": "5,000+",
+        "label": "Plots Delivered"
+      },
+      {
+        "value": "20+",
+        "label": "Years of Trust"
+      },
+      {
+        "value": "11",
+        "label": "Townships"
+      },
+      {
+        "value": "4.8★",
+        "label": "Buyer Rating"
+      }
+    ],
+    "scrollCue": "Scroll"
+  },
+  "marqueeStats": {
+    "type": "scroll-marquee + stats",
+    "marqueeWords": [
+      "Defence Garden",
+      "Luxury Living",
+      "Green Spaces",
+      "Premium Plots",
+      "Heritage Trust",
+      "Modern Infrastructure"
+    ],
+    "separator": "◆",
+    "note": "Row 1 = words in order (white gradient), row 2 = same words reversed (italic, gold); both translate horizontally with scroll in opposite directions.",
+    "stats": [
+      {
+        "value": "1500+",
+        "label": "Premium Plots"
+      },
+      {
+        "value": "40ft",
+        "label": "Wide Roads"
+      },
+      {
+        "value": "24/7",
+        "label": "Gated Security"
+      },
+      {
+        "value": "100%",
+        "label": "Clear Title"
+      }
+    ]
+  },
+  "developments": {
+    "type": "intro-with-trees",
+    "decor": [
+      {
+        "role": "left tree (slides in from left, rotates to 25°)",
+        "oldUrl": "https://defencegarden.com/assets/lefttree-CVBQPmJo.png",
+        "key": "brand.palm-left",
+        "src": "src/assets/media/brand/palm-left.png",
+        "alt": "",
+        "decorative": true
+      },
+      {
+        "role": "right tree (slides in from right, rotates to -25°)",
+        "oldUrl": "https://defencegarden.com/assets/righttree-BWiwytKu.png",
+        "key": "brand.palm-right",
+        "src": "src/assets/media/brand/palm-right.png",
+        "alt": "",
+        "decorative": true
+      }
+    ],
+    "decorNote": "Palm-tree PNG cut-outs (local files src/assets/media/brand/palm-left.png and palm-right.png; see decor[].src). Compass icon in a ring above the eyebrow. The palms are an old-site motif, not part of the ERA look (scratchpad spec/README.md decision D36: not used as decor).",
+    "eyebrow": {
+      "parts": [
+        "Curated Portfolio",
+        "·",
+        "Est. 2006"
+      ],
+      "text": "Curated Portfolio · Est. 2006"
+    },
+    "heading": {
+      "lines": [
+        "Explore Our Premium",
+        "Developments"
+      ],
+      "text": "Explore Our Premium Developments",
+      "accent": "Developments"
+    },
+    "text": "A curated collection of plotted townships across Shamli, Meerut & Western UP — built with two decades of trust.",
+    "stats": [
+      {
+        "value": "10",
+        "label": "Townships",
+        "icon": "building-2"
+      },
+      {
+        "value": "03",
+        "label": "Cities",
+        "icon": "map-pin"
+      },
+      {
+        "value": "20+",
+        "label": "Years",
+        "icon": "calendar"
+      }
+    ],
+    "logo": {
+      "oldUrl": "https://defencegarden.com/assets/logo-BU3KV-m9.png",
+      "key": "brand.logo",
+      "src": "src/assets/media/brand/logo.png",
+      "alt": "Defence Garden"
+    },
+    "scrollCue": "Scroll"
+  },
+  "leadership": {
+    "type": "statement-band",
+    "watermark": "KT",
+    "eyebrow": "Our leadership",
+    "heading": {
+      "text": "Defence Garden is owned and led by Mr. Kuldeep Tomar.",
+      "accent": "Mr. Kuldeep Tomar."
+    },
+    "text": "Learn about the current ownership of Defence Garden and the official connection between its leadership, company and township developments.",
+    "cta": {
+      "label": "Meet our leadership",
+      "href": "/about/leadership"
+    }
+  },
+  "portfolio": {
+    "type": "featured + ledger",
+    "eyebrow": "Our Portfolio",
+    "heading": {
+      "text": "Projects that endure.",
+      "accent": "that endure."
+    },
+    "intro": "Six township developments, one shared standard of craft — planned around light, trees, and the rhythm of daily life.",
+    "featured": {
+      "badge": "Flagship Development",
+      "eyebrow": "Featured Project",
+      "title": "River Green",
+      "location": "Shamli, UP",
+      "image": {
+        "oldUrl": "https://defencegarden.com/assets/rivergreen-Cq_P65KN.webp",
+        "key": "projects.river-green-society.cover",
+        "src": "src/assets/media/projects/river-green-society/cover.webp",
+        "preferKey": "projects.river-green-society.gallery-11",
+        "preferSrc": "src/assets/media/projects/river-green-society/gallery-11.webp",
+        "alt": "River Green Society: stone fountain with water jets in the paved central plaza",
+        "oldAlt": "River Green flagship township"
+      },
+      "href": "/ourproject",
+      "projectId": 1
+    },
+    "nowBooking": {
+      "eyebrow": "Now Booking",
+      "title": "Defence Garden Phase 2",
+      "image": {
+        "oldUrl": "https://defencegarden.com/assets/dgphase2-CbdbB_LR.webp",
+        "key": "projects.defence-garden-phase-2.cover",
+        "src": "src/assets/media/projects/defence-garden-phase-2/cover.webp",
+        "preferKey": "projects.defence-garden-phase-2.gallery-16",
+        "preferSrc": "src/assets/media/projects/defence-garden-phase-2/gallery-16.webp",
+        "alt": "Defence Garden Phase 2 entrance gate beside the green \"Welcomes You\" wall"
+      },
+      "projectId": 5,
+      "note": "Card is not a link on the old site."
+    },
+    "trustCard": {
+      "value": "20+",
+      "label": "Years of trust",
+      "text": "Delivering legally-clear, thoughtfully-planned townships across North India."
+    },
+    "buildAround": {
+      "heading": "What we build around",
+      "items": [
+        {
+          "label": "Green Living",
+          "icon": "trees"
+        },
+        {
+          "label": "Gated Security",
+          "icon": "shield"
+        },
+        {
+          "label": "Wide Roads",
+          "icon": "route"
+        },
+        {
+          "label": "Smart Infra",
+          "icon": "building-2"
+        }
+      ]
+    },
+    "ledger": {
+      "label": "The ledger",
+      "status": "2026 — Active",
+      "items": [
+        {
+          "projectId": 1,
+          "number": "01",
+          "name": "River Green",
+          "tag": "Flagship · 2024",
+          "location": "Shamli, UP",
+          "href": "/project/1",
+          "hoverImage": {
+            "oldUrl": "https://defencegarden.com/assets/rivergreen-Cq_P65KN.webp",
+            "key": "projects.river-green-society.cover",
+            "src": "src/assets/media/projects/river-green-society/cover.webp",
+            "preferKey": "projects.river-green-society.gallery-11",
+            "preferSrc": "src/assets/media/projects/river-green-society/gallery-11.webp",
+            "alt": "River Green Society: stone fountain with water jets in the paved central plaza",
+            "oldAlt": "River Green"
+          }
+        },
+        {
+          "projectId": 5,
+          "number": "02",
+          "name": "Defence Garden Phase 2",
+          "tag": "Est. 2022",
+          "location": "Shamli, UP",
+          "href": "/project/5",
+          "hoverImage": {
+            "oldUrl": "https://defencegarden.com/assets/dgphase2-CbdbB_LR.webp",
+            "key": "projects.defence-garden-phase-2.cover",
+            "src": "src/assets/media/projects/defence-garden-phase-2/cover.webp",
+            "preferKey": "projects.defence-garden-phase-2.gallery-16",
+            "preferSrc": "src/assets/media/projects/defence-garden-phase-2/gallery-16.webp",
+            "alt": "Defence Garden Phase 2 entrance gate beside the green \"Welcomes You\" wall",
+            "oldAlt": "Defence Garden Phase 2"
+          }
+        },
+        {
+          "projectId": 4,
+          "number": "03",
+          "name": "Defence Garden Phase 1",
+          "tag": "Est. 2021",
+          "location": "Shamli, UP",
+          "href": "/project/4",
+          "hoverImage": {
+            "oldUrl": "https://defencegarden.com/assets/dgphase1-CvTPTaKA.webp",
+            "key": "projects.defence-garden-phase-1.cover",
+            "src": "src/assets/media/projects/defence-garden-phase-1/cover.webp",
+            "preferKey": "projects.defence-garden-phase-1.gallery-13",
+            "preferSrc": "src/assets/media/projects/defence-garden-phase-1/gallery-13.webp",
+            "alt": "Defence Garden Phase 1: blue-and-white three-storey villa with wide balconies behind lush planting",
+            "oldAlt": "Defence Garden Phase 1"
+          }
+        },
+        {
+          "projectId": 2,
+          "number": "04",
+          "name": "Defence Garden Budhana",
+          "tag": "Est. 2022",
+          "location": "Budhana, UP",
+          "href": "/project/2",
+          "hoverImage": {
+            "oldUrl": "https://defencegarden.com/assets/dgbudhana-CRvscpZX.webp",
+            "key": "projects.defence-garden-budhana.cover",
+            "src": "src/assets/media/projects/defence-garden-budhana/cover.webp",
+            "preferKey": "projects.defence-garden-budhana.gallery-08",
+            "preferSrc": "src/assets/media/projects/defence-garden-budhana/gallery-08.webp",
+            "alt": "Defence Garden Budhana: two-storey white house with balconies and young trees in warm evening light",
+            "oldAlt": "Defence Garden Budhana"
+          }
+        },
+        {
+          "projectId": 3,
+          "number": "05",
+          "name": "Defence Garden",
+          "tag": "Est. 2014",
+          "location": "Meerut, UP",
+          "href": "/project/3",
+          "hoverImage": {
+            "oldUrl": "https://defencegarden.com/assets/dgmeerut-D2pTsFbE.webp",
+            "key": "projects.defence-garden-meerut.cover",
+            "src": "src/assets/media/projects/defence-garden-meerut/cover.webp",
+            "preferKey": "projects.defence-garden-meerut.gallery-07",
+            "preferSrc": "src/assets/media/projects/defence-garden-meerut/gallery-07.webp",
+            "alt": "Defence Garden Meerut: three-storey white house with red trim, an arched window and balconies",
+            "oldAlt": "Defence Garden"
+          }
+        },
+        {
+          "projectId": 6,
+          "number": "06",
+          "name": "Defence Kunj",
+          "tag": "Est. 2016",
+          "location": "Meerut, UP",
+          "href": "/project/6",
+          "hoverImage": {
+            "oldUrl": "https://defencegarden.com/assets/defencekunj-oEND1hrC.webp",
+            "key": "projects.defence-kunj.cover",
+            "src": "src/assets/media/projects/defence-kunj/cover.webp",
+            "preferKey": "projects.defence-kunj.gallery-10",
+            "preferSrc": "src/assets/media/projects/defence-kunj/gallery-10.webp",
+            "alt": "Defence Kunj: two adjoining two-storey homes, one pink and one white with blue trim, with arched windows",
+            "oldAlt": "Defence Kunj"
+          }
+        }
+      ],
+      "note": "Only 6 of the 10 projects appear in the home ledger (Ganpati Enclave, Gayatri Enclave, Basant Kunj, Saipuram are omitted); the intro says 'Six township developments'."
+    },
+    "closing": {
+      "text": "Every plot is backed by clear title, transparent pricing, and on-ground project management.",
+      "cta": {
+        "label": "View All Projects",
+        "href": "/ourproject"
+      }
+    }
+  },
+  "philosophy": {
+    "type": "word-reveal statement",
+    "eyebrow": "— Our Philosophy —",
+    "text": "At Defence Garden, we believe a home is more than four walls. It is the rhythm of morning light across tree-lined avenues, the quiet of a colony built for generations, and the trust of land titles backed by clarity. Every plot is a promise.",
+    "note": "Words light up one by one (opacity 0.18 → 1) as the section scrolls from 85% to 15% of the viewport.",
+    "cta": {
+      "label": "Read Our Story",
+      "href": "/about"
+    }
+  },
+  "imagesInOrder": [
+    {
+      "oldUrl": "https://defencegarden.com/assets/main-web-Dh74r-VA.mp4",
+      "key": "video.main-web",
+      "src": "public/media/video/main-web.mp4",
+      "url": "/media/video/main-web.mp4",
+      "poster": "src/assets/media/posters/main-web-poster.webp",
+      "posterKey": "posters.main-web-poster",
+      "still": "src/assets/media/posters/main-web-still.webp",
+      "stillKey": "posters.main-web-still",
+      "startAt": 0.0,
+      "endAt": 24.07,
+      "hasAudio": false,
+      "alt": "Drone film of Defence Garden colonies: an entrance gate, villa rows, the highway and the Phase 2 entrance",
+      "kind": "video",
+      "section": "hero"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/lefttree-CVBQPmJo.png",
+      "key": "brand.palm-left",
+      "src": "src/assets/media/brand/palm-left.png",
+      "alt": "",
+      "decorative": true,
+      "kind": "image",
+      "section": "developments"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/righttree-BWiwytKu.png",
+      "key": "brand.palm-right",
+      "src": "src/assets/media/brand/palm-right.png",
+      "alt": "",
+      "decorative": true,
+      "kind": "image",
+      "section": "developments"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/logo-BU3KV-m9.png",
+      "key": "brand.logo",
+      "src": "src/assets/media/brand/logo.png",
+      "alt": "Defence Garden",
+      "kind": "image",
+      "section": "developments"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/rivergreen-Cq_P65KN.webp",
+      "key": "projects.river-green-society.cover",
+      "src": "src/assets/media/projects/river-green-society/cover.webp",
+      "preferKey": "projects.river-green-society.gallery-11",
+      "preferSrc": "src/assets/media/projects/river-green-society/gallery-11.webp",
+      "alt": "River Green Society: stone fountain with water jets in the paved central plaza",
+      "kind": "image",
+      "section": "portfolio.featured + ledger 01"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/dgphase2-CbdbB_LR.webp",
+      "key": "projects.defence-garden-phase-2.cover",
+      "src": "src/assets/media/projects/defence-garden-phase-2/cover.webp",
+      "preferKey": "projects.defence-garden-phase-2.gallery-16",
+      "preferSrc": "src/assets/media/projects/defence-garden-phase-2/gallery-16.webp",
+      "alt": "Defence Garden Phase 2 entrance gate beside the green \"Welcomes You\" wall",
+      "kind": "image",
+      "section": "portfolio.nowBooking + ledger 02"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/dgphase1-CvTPTaKA.webp",
+      "key": "projects.defence-garden-phase-1.cover",
+      "src": "src/assets/media/projects/defence-garden-phase-1/cover.webp",
+      "preferKey": "projects.defence-garden-phase-1.gallery-13",
+      "preferSrc": "src/assets/media/projects/defence-garden-phase-1/gallery-13.webp",
+      "alt": "Defence Garden Phase 1: blue-and-white three-storey villa with wide balconies behind lush planting",
+      "kind": "image",
+      "section": "ledger 03"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/dgbudhana-CRvscpZX.webp",
+      "key": "projects.defence-garden-budhana.cover",
+      "src": "src/assets/media/projects/defence-garden-budhana/cover.webp",
+      "preferKey": "projects.defence-garden-budhana.gallery-08",
+      "preferSrc": "src/assets/media/projects/defence-garden-budhana/gallery-08.webp",
+      "alt": "Defence Garden Budhana: two-storey white house with balconies and young trees in warm evening light",
+      "kind": "image",
+      "section": "ledger 04"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/dgmeerut-D2pTsFbE.webp",
+      "key": "projects.defence-garden-meerut.cover",
+      "src": "src/assets/media/projects/defence-garden-meerut/cover.webp",
+      "preferKey": "projects.defence-garden-meerut.gallery-07",
+      "preferSrc": "src/assets/media/projects/defence-garden-meerut/gallery-07.webp",
+      "alt": "Defence Garden Meerut: three-storey white house with red trim, an arched window and balconies",
+      "kind": "image",
+      "section": "ledger 05"
+    },
+    {
+      "oldUrl": "https://defencegarden.com/assets/defencekunj-oEND1hrC.webp",
+      "key": "projects.defence-kunj.cover",
+      "src": "src/assets/media/projects/defence-kunj/cover.webp",
+      "preferKey": "projects.defence-kunj.gallery-10",
+      "preferSrc": "src/assets/media/projects/defence-kunj/gallery-10.webp",
+      "alt": "Defence Kunj: two adjoining two-storey homes, one pink and one white with blue trim, with arched windows",
+      "kind": "image",
+      "section": "ledger 06"
+    }
+  ],
+  "noJsFallback": {
+    "eyebrow": "Official Defence Garden website",
+    "heading": "Premium plotted townships in Western Uttar Pradesh",
+    "text": "Defence Garden develops plotted residential communities across Shamli, Meerut and Budhana. Defence Garden is owned and led by Mr. Kuldeep Tomar.",
+    "link": {
+      "label": "Official profile of Mr. Kuldeep Tomar",
+      "href": "/about/kuldeep-tomar"
+    }
+  }
+}

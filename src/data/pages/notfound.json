@@ -1,0 +1,36 @@
+{
+  "_meta": {
+    "source": "assets/NotFound-oc-oY_br.js, rendered https://defencegarden.com/this-page-does-not-exist-404 on 2026-10-12 (SPA catch-all route; HTTP status is whatever the host returns for the SPA shell).",
+    "path": "*",
+    "seoRef": "site.json → seo.pages.fallback404 (home title/description, robots 'noindex, follow')",
+    "styleNote": "The old 404 used a generic blue/indigo Tailwind template unrelated to the brand; only the copy is reusable."
+  },
+  "icon": "circle-alert",
+  "code": "404",
+  "heading": "Page Not Found",
+  "text": "Oops! The page you're looking for doesn't exist or has been moved. Don't worry, you can always return home.",
+  "buttons": [
+    {
+      "label": "Back to Home",
+      "href": "/",
+      "icon": "arrow-left"
+    },
+    {
+      "label": "Go Back",
+      "action": "history.back()"
+    }
+  ],
+  "footnote": {
+    "text": "If you believe this is a mistake, please contact us.",
+    "linkText": "contact us",
+    "href": "/contact"
+  },
+  "projectNotFound": {
+    "heading": "Project Not Found",
+    "button": {
+      "label": "Return to Portfolio",
+      "href": "/ourproject"
+    },
+    "note": "Shown by /project/:id for unknown ids (dark page)."
+  }
+}

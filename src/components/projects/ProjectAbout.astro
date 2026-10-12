@@ -1,0 +1,60 @@
+---
+// Project page "About the Colony": the project's own paragraphs (verbatim) beside a framed photo collage.
+import Img from '../ui/Img.astro';
+import { sharedProjectData } from '../../lib/site.js';
+import { titleLines } from './util.js';
+
+interface Props { p: any; photos: any[] }
+const { p, photos = [] } = Astro.props;
+const heading = sharedProjectData?.detailPage?.about?.heading || 'About the Colony';
+const [l1, l2] = titleLines(p);
+const main = photos[0];
+const inset = photos[1];
+---
+<section class="pab t-ivory section" data-header-tone="light" aria-labelledby="pab-title">
+  <div class="wrap pab__grid">
+    <div class="pab__copy">
+      <p class="eyebrow eyebrow--accent" data-reveal="fade">{heading}</p>
+      <h2 class="serif pab__title" id="pab-title" data-reveal="lines">{l1}{l2 && <><br /><em>{l2}</em></>}</h2>
+      <div class="pab__text">
+        {(p.aboutParagraphs || []).map((t, i) => (
+          <p class={i === 0 ? 'lead' : 'body muted'} data-reveal="fade" data-reveal-delay={(i * 0.08).toFixed(2)}>{t}</p>
+        ))}
+      </div>
+      <p class="eyebrow muted pab__sign" data-reveal="fade"><span class="pab__rule" aria-hidden="true"></span>{p.listingEyebrow} · {p.location}</p>
+    </div>
+    <div class={`pab__media ${inset ? 'has-inset' : ''}`}>
+      {main && (
+        <figure class="media pab__main" data-reveal="clip">
+          <Img src={main} sizes="(min-width: 861px) 42vw, 92vw" widths={[480, 800, 1200, 1600]} alt={main.alt} data-parallax="0.08" />
+        </figure>
+      )}
+      {inset && (
+        <figure class="media pab__inset" data-reveal="clip" data-reveal-delay="0.2">
+          <Img src={inset} sizes="(min-width: 861px) 18vw, 44vw" widths={[320, 480, 800]} alt={inset.alt} />
+        </figure>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  .pab__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(36px, 7vw, 140px); align-items: center; }
+  .pab__copy { display: grid; gap: 28px; justify-items: start; }
+  .pab__title { max-width: 14ch; }
+  .pab__title em { font-style: italic; color: var(--accent); }
+  .pab__text { display: grid; gap: 20px; max-width: 54ch; }
+  .pab__sign { display: inline-flex; align-items: center; gap: 14px; }
+  .pab__rule { width: 40px; height: 1px; background: currentColor; }
+  .pab__media { position: relative; }
+  .pab__media.has-inset { padding-bottom: 14%; }
+  .pab__main { aspect-ratio: 4 / 5; width: 88%; margin-left: auto; }
+  .pab__main :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .pab__inset { position: absolute; left: 0; bottom: 0; width: 42%; aspect-ratio: 1; border: clamp(6px, .7vw, 12px) solid var(--ivory); box-sizing: content-box; }
+  .pab__inset :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  @media (max-width: 860px) {
+    .pab__grid { grid-template-columns: 1fr; }
+    .pab__main { width: 86%; }
+    .pab__inset { width: 46%; }
+  }
+</style>

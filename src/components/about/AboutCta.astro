@@ -1,0 +1,67 @@
+---
+// Closing CTA (about.json cta): full-bleed aerial of a real township, deco capitals, office contact row.
+import Img from '../ui/Img.astro';
+import Icon from '../ui/Icon.astro';
+import Ornament from '../ui/Ornament.astro';
+import about from '../../data/pages/about.json';
+import { phone, email, office } from '../../lib/site.js';
+
+const c = about.cta;
+const officeNo = phone('office');
+const row = [
+  { icon: 'phone', label: 'Office', text: officeNo.display, href: officeNo.tel },
+  { icon: 'mail', label: 'Email', text: email.address, href: email.href },
+  { icon: 'pin', label: office.label, text: office.short, href: office.mapsUrl, external: true },
+];
+const [a, b] = c.heading.lines;
+---
+<section class="acta t-night" data-header-tone="dark" aria-labelledby="acta-title">
+  <div class="acta__media media">
+    <Img src={c.backgroundImage.key} alt={c.backgroundImage.alt} sizes="100vw" widths={[800, 1200, 1600]} data-scale-in />
+  </div>
+  <div class="acta__shade" aria-hidden="true"></div>
+  <div class="wrap acta__in">
+    <Ornament variant="diamond" class="acta__orn" />
+    <p class="eyebrow eyebrow--accent" data-reveal="fade">{c.eyebrow}</p>
+    <h2 class="deco acta__title" id="acta-title" data-reveal="lines">{a}<br /><span class="acta__accent">{b}</span></h2>
+    <p class="lead acta__text balance" data-reveal="fade">{c.text}</p>
+    <div class="acta__ctas" data-reveal="fade">
+      <button class="btn btn--copper" type="button" data-enquire data-interest="Site visit"><Icon name="whatsapp" class="ico" /><span>{c.ctas[0].label}</span></button>
+      <a class="btn" href={c.ctas[1].href}><span>{c.ctas[1].label}</span><Icon name="arrow-right" class="ico" /></a>
+    </div>
+    <ul class="acta__row" data-reveal="fade">
+      {row.map((r) => (
+        <li>
+          <a class="acta__item" href={r.href} target={r.external ? '_blank' : undefined} rel={r.external ? 'noopener' : undefined}>
+            <span class="acta__ico"><Icon name={r.icon} class="ico" /></span>
+            <span class="acta__meta"><span class="eyebrow muted">{r.label}</span><span class="link-line">{r.text}</span></span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .acta { position: relative; min-height: 100vh; min-height: 100svh; display: grid; align-content: center; overflow: hidden; padding-block: clamp(110px, 12vw, 180px); }
+  .acta__media { position: absolute; inset: 0; background: var(--navy-deep); }
+  .acta__media :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .acta__shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,26,58,.8), rgba(6,26,58,.5) 45%, rgba(6,26,58,.88)); pointer-events: none; }
+  .acta__in { position: relative; display: grid; justify-items: center; text-align: center; gap: clamp(20px, 2.2vw, 30px); }
+  .acta__orn { width: 24px; color: var(--copper); }
+  .acta__title { color: #f7f1ea; font-size: clamp(42px, 7vw, 132px); }
+  .acta__accent { color: var(--copper-soft); }
+  .acta__text { max-width: 46ch; color: rgba(244,237,230,.88); }
+  .acta__ctas { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+  .acta__row { display: grid; grid-template-columns: repeat(3, auto); justify-content: center; margin-top: clamp(24px, 4vw, 60px); border-top: 1px solid rgba(244,237,230,.18); }
+  .acta__row li + li { border-left: 1px solid rgba(244,237,230,.18); }
+  .acta__item { display: flex; align-items: center; gap: 14px; padding: 22px clamp(18px, 2.6vw, 44px) 0; text-align: left; }
+  .acta__ico { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(207,143,125,.5); color: var(--copper); flex: none; }
+  .acta__ico :global(.ico) { width: 16px; height: 16px; }
+  .acta__meta { display: grid; gap: 4px; font-size: 15px; }
+  @media (max-width: 860px) {
+    .acta__row { grid-template-columns: 1fr; width: 100%; max-width: 360px; }
+    .acta__row li + li { border-left: 0; border-top: 1px solid rgba(244,237,230,.12); }
+    .acta__item { padding: 16px 0; }
+  }
+</style>

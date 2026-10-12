@@ -1,0 +1,65 @@
+---
+// Project page amenities: projects.json shared.amenities (label + desc, verbatim) as a numbered era.estate list
+// on the legacy green, beside a framed photograph of the colony.
+import Img from '../ui/Img.astro';
+import Ornament from '../ui/Ornament.astro';
+import { sharedProjectData, displayTitle } from '../../lib/site.js';
+
+interface Props { p: any; photo?: any }
+const { p, photo } = Astro.props;
+const items = sharedProjectData?.amenities || [];
+const heading = sharedProjectData?.detailPage?.amenitiesHeading || 'Amenities & Features';
+const [h1, h2] = heading.includes(' & ') ? [heading.split(' & ')[0], '& ' + heading.split(' & ').slice(1).join(' & ')] : [heading, ''];
+---
+{items.length > 0 && (
+  <section class="pam t-green section" data-header-tone="dark" aria-labelledby="pam-title">
+    <Ornament variant="fan" class="pam__fan" />
+    <div class="wrap pam__grid">
+      <div class="pam__side">
+        <div class="pam__head">
+          <p class="eyebrow eyebrow--accent" data-reveal="fade">{displayTitle(p)}</p>
+          <h2 class="deco pam__title" id="pam-title" data-reveal="lines">{h1}{h2 && <><br />{h2}</>}</h2>
+        </div>
+        {photo && (
+          <figure class="media pam__img hide-mob" data-reveal="clip">
+            <Img src={photo} sizes="(min-width: 861px) 30vw, 0px" widths={[480, 800, 1200]} alt={photo.alt} data-parallax="0.08" />
+          </figure>
+        )}
+      </div>
+      <ol class="pam__list">
+        {items.map((a, i) => (
+          <li class="pam__item" data-reveal="fade" data-reveal-delay={((i % 4) * 0.05).toFixed(2)}>
+            <span class="deco deco--sm pam__n">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="pam__label">{a.label}</h3>
+            <p class="body pam__desc">{a.desc}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+)}
+
+<style>
+  .pam { overflow: hidden; }
+  .pam__fan { position: absolute; right: -20%; top: 0; width: 90%; height: 100%; color: #d8c9a6; opacity: .07; pointer-events: none; }
+  .pam__grid { position: relative; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(36px, 6vw, 120px); align-items: start; }
+  .pam__side { position: sticky; top: calc(var(--header-h) + 24px); display: grid; gap: clamp(30px, 3.5vw, 56px); }
+  .pam__head { display: grid; gap: 22px; }
+  .pam__title { color: #f3f1ea; }
+  .pam__img { aspect-ratio: 4 / 3; max-width: 520px; }
+  .pam__img :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .pam__list { border-top: 1px solid rgba(243,241,234,.22); }
+  .pam__item { display: grid; grid-template-columns: clamp(56px, 6vw, 110px) minmax(0, 1fr) minmax(0, 1fr); gap: 8px var(--gutter); align-items: baseline; padding-block: clamp(20px, 2.4vw, 36px); border-bottom: 1px solid rgba(243,241,234,.22); }
+  .pam__n { color: var(--accent); }
+  .pam__label { font-size: clamp(22px, 2.2vw, 36px); font-weight: 500; letter-spacing: -.03em; line-height: 1.05; }
+  .pam__desc { color: rgba(243,241,234,.72); }
+  @media (max-width: 1100px) {
+    .pam__item { grid-template-columns: clamp(56px, 6vw, 110px) minmax(0, 1fr); }
+    .pam__desc { grid-column: 2; }
+  }
+  @media (max-width: 860px) {
+    .pam__grid { grid-template-columns: 1fr; }
+    .pam__side { position: static; }
+    .pam__item { grid-template-columns: 52px 1fr; }
+  }
+</style>

@@ -1,0 +1,71 @@
+{
+  "_meta": {
+    "source": "assets/Leadership-DKR4EXnt.js (+ FAQ constant and company constant in index-BpgzKryG.js), rendered https://defencegarden.com/about/leadership on 2026-10-12.",
+    "path": "/about/leadership",
+    "seoRef": "site.json → seo.pages['/about/leadership'] (+ FAQPage JSON-LD from site.json → seo.faq)",
+    "sectionOrder": ["hero", "owner", "faq", "explore"]
+  },
+
+  "hero": {
+    "breadcrumb": [
+      { "label": "Home", "href": "/" },
+      { "label": "About", "href": "/about" },
+      { "label": "Leadership", "current": true }
+    ],
+    "badge": { "text": "Official company information", "icon": "circle-check" },
+    "heading": { "lines": ["Ownership &", "Leadership."], "text": "Ownership & Leadership.", "accent": "Leadership." },
+    "text": "The current owner of Defence Garden is Mr. Kuldeep Tomar. He leads the organisation and its real-estate development operations."
+  },
+
+  "owner": {
+    "monogramCard": {
+      "monogram": "KT",
+      "eyebrow": "Current owner",
+      "name": "Mr. Kuldeep Tomar",
+      "roleLine": "Owner, Defence Garden"
+    },
+    "detailCard": {
+      "eyebrow": "Current entity relationship",
+      "heading": "Mr. Kuldeep Tomar",
+      "roleLine": "Owner, Defence Garden",
+      "text": "Defence Garden is currently owned and led by Mr. Kuldeep Tomar. This page records the company's present-day ownership and connects his official profile with Defence Garden's company and project information.",
+      "facts": [
+        { "label": "Organisation", "value": "Defence Garden" },
+        { "label": "Role", "value": "Owner" }
+      ],
+      "cta": { "label": "View official profile", "href": "/about/kuldeep-tomar" }
+    },
+    "photo": null,
+    "photoNote": "No owner photo exists; the old page shows a 'KT' monogram in concentric gold circles."
+  },
+
+  "faq": {
+    "eyebrow": "Clear answers",
+    "heading": "About Defence Garden",
+    "items": [
+      { "number": "01", "question": "Who is the owner of Defence Garden?", "answer": "The current owner of Defence Garden is Mr. Kuldeep Tomar." },
+      { "number": "02", "question": "What is Defence Garden?", "answer": "Defence Garden is a real-estate development organisation creating plotted residential townships in Western Uttar Pradesh." },
+      { "number": "03", "question": "Where does Defence Garden operate?", "answer": "Defence Garden has township developments across Shamli, Meerut and Budhana." }
+    ]
+  },
+
+  "explore": {
+    "ariaLabel": "Explore Defence Garden",
+    "links": [
+      { "label": "About the company", "href": "/about", "icon": "building-2" },
+      { "label": "Explore projects", "href": "/ourproject", "icon": "map-pin" },
+      { "label": "Contact our team", "href": "/contact", "icon": "user-round" }
+    ]
+  },
+
+  "imagesInOrder": [],
+  "imagesNote": "This page has no photos or videos on the old site (typography + monogram only).",
+
+  "noJsFallback": {
+    "eyebrow": "Official Defence Garden website",
+    "heading": "Ownership & Leadership at Defence Garden",
+    "text": "The current owner of Defence Garden is Mr. Kuldeep Tomar. He leads the organisation and its real-estate development operations.",
+    "link": { "label": "Official profile of Mr. Kuldeep Tomar", "href": "/about/kuldeep-tomar" },
+    "faqHeading": "Defence Garden ownership questions"
+  }
+}

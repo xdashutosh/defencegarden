@@ -1,0 +1,93 @@
+---
+// Chapter 03 · Calculator — era.estate night panel driven by the global [data-calc] behaviour
+// (inputs name=amount|years|rate → [data-calc-out=value|gain|multiple], [data-calc-show]).
+// Rendered only when flags.investmentClaims (checked by the page). Always carries the illustration-only note.
+import Icon from '../ui/Icon.astro';
+import Ornament from '../ui/Ornament.astro';
+import ChapterHead from './ChapterHead.astro';
+import data from '../../data/pages/investment.json';
+
+const { calculator: c } = data;
+const [amount, years, rate] = c.inputs;
+const inr = (n) => '₹' + Math.round(n).toLocaleString('en-IN');
+const v = amount.default * Math.pow(1 + rate.default / 100, years.default);
+const fields = [
+  { name: 'amount', input: amount, show: inr(amount.default), unit: '', minL: inr(amount.min), maxL: inr(amount.max) },
+  { name: 'years', input: years, show: String(years.default), unit: ' yrs', minL: `${years.min} yr`, maxL: `${years.max} yrs` },
+  { name: 'rate', input: rate, show: String(rate.default), unit: '%', minL: `${rate.min}%`, maxL: `${rate.max}%` },
+];
+const labels = { amount: amount.label, years: years.label, rate: rate.label };
+---
+<style is:inline>
+  .ivk { position: relative; overflow: clip; }
+  .ivk__orn { position: absolute; right: -10%; top: -10%; width: 70%; height: 120%; color: var(--copper); opacity: .06; pointer-events: none; }
+  .ivk__grid { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(36px, 6vw, 120px); align-items: start; }
+  .ivk__intro { display: grid; gap: 26px; position: sticky; top: calc(var(--header-h) + 30px); }
+  .ivk__intro .ivc__title { color: #f4ede6; font-size: clamp(40px, 5vw, 92px); }
+  .ivk__sub { max-width: 40ch; }
+  .ivk__note { display: grid; grid-template-columns: auto 1fr; gap: 14px; padding: 18px 20px; border: 1px solid rgba(207, 143, 125, .5); border-radius: 3px; background: rgba(207, 143, 125, .06); max-width: 52ch; }
+  .ivk__note-ico { width: 20px; color: var(--copper); margin-top: 2px; }
+  .ivk__note strong { display: block; margin-bottom: 4px; font-family: var(--f-wide); font-stretch: 125%; font-weight: 500; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--copper); }
+  .ivk__panel { border: 1px solid rgba(244, 237, 230, .16); border-radius: 4px; padding: clamp(22px, 3vw, 44px); background: linear-gradient(160deg, rgba(244, 237, 230, .05), rgba(244, 237, 230, 0)); display: grid; gap: clamp(26px, 3vw, 40px); }
+  .ivk__fields { display: grid; gap: 28px; }
+  .ivk__field { display: grid; gap: 12px; }
+  .ivk__row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .ivk__val { font-family: var(--f-sans); font-weight: 500; font-size: clamp(22px, 1.9vw, 30px); letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+  .ivk__range { -webkit-appearance: none; appearance: none; width: 100%; height: 24px; background: transparent; cursor: pointer; margin: 0; }
+  .ivk__range:focus-visible { outline: none; }
+  .ivk__range::-webkit-slider-runnable-track { height: 1px; background: rgba(244, 237, 230, .32); }
+  .ivk__range::-moz-range-track { height: 1px; background: rgba(244, 237, 230, .32); }
+  .ivk__range::-moz-range-progress { height: 2px; background: var(--copper); }
+  .ivk__range::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; margin-top: -10px; border-radius: 50%; background: var(--navy-deep); border: 1px solid var(--copper); box-shadow: 0 0 0 4px rgba(207, 143, 125, .14); transition: box-shadow .3s; }
+  .ivk__range::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--navy-deep); border: 1px solid var(--copper); box-shadow: 0 0 0 4px rgba(207, 143, 125, .14); }
+  .ivk__range:hover::-webkit-slider-thumb, .ivk__range:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 8px rgba(207, 143, 125, .25); }
+  .ivk__range:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 8px rgba(207, 143, 125, .25); }
+  .ivk__minmax { display: flex; justify-content: space-between; font-size: 11px; color: rgba(244, 237, 230, .5); font-variant-numeric: tabular-nums; }
+  .ivk__out { border-top: 1px solid rgba(244, 237, 230, .16); padding-top: clamp(22px, 2.6vw, 34px); display: grid; gap: 10px; }
+  .ivk__big { font-family: var(--f-sans); font-weight: 500; font-size: clamp(44px, 5.4vw, 96px); line-height: .95; letter-spacing: -.05em; color: var(--copper); font-variant-numeric: tabular-nums; word-break: break-word; }
+  .ivk__tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid rgba(244, 237, 230, .16); border-radius: 3px; margin-top: 10px; }
+  .ivk__tile { padding: 16px; display: grid; gap: 8px; min-width: 0; }
+  .ivk__tile + .ivk__tile { border-left: 1px solid rgba(244, 237, 230, .16); }
+  .ivk__tile b { font-family: var(--f-sans); font-weight: 500; font-size: clamp(16px, 1.4vw, 22px); letter-spacing: -.02em; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+  .ivk__fine { font-size: 12px; line-height: 1.5; color: rgba(244, 237, 230, .6); }
+  @media (max-width: 960px) { .ivk__grid { grid-template-columns: 1fr; } .ivk__intro { position: static; } }
+  @media (max-width: 520px) { .ivk__tiles { grid-template-columns: 1fr; } .ivk__tile + .ivk__tile { border-left: 0; border-top: 1px solid rgba(244, 237, 230, .16); } .ivk__tile { grid-template-columns: 1fr auto; align-items: baseline; } }
+</style>
+<section class="ivk t-night section" data-header-tone="dark" aria-labelledby="ivk-title">
+  <Ornament variant="fan" class="ivk__orn" />
+  <div class="wrap ivk__grid">
+    <div class="ivk__intro">
+      <ChapterHead eyebrow={c.eyebrow} title={c.heading.title} accent={c.heading.accent} kind="deco" id="ivk-title" />
+      <p class="lead muted ivk__sub" data-reveal="fade">{c.sub}</p>
+      <div class="ivk__note" role="note" data-reveal="fade">
+        <Ornament variant="diamond" class="ivk__note-ico" />
+        <p class="small"><strong>Illustration only</strong>This calculator applies simple compound growth at the rate you choose. It is not a forecast, a valuation or an offer, and it is not a promise of returns — actual results depend on the specific plot, the market and the signed agreement. Please read the project documents and take independent advice before investing.</p>
+      </div>
+    </div>
+
+    <form class="ivk__panel" data-calc aria-label="Investment illustration calculator" data-reveal="fade">
+      <div class="ivk__fields">
+        {fields.map((f) => (
+          <label class="ivk__field">
+            <span class="ivk__row">
+              <span class="eyebrow">{labels[f.name]}</span>
+              <span class="ivk__val"><span data-calc-show={f.name}>{f.show}</span>{f.unit}</span>
+            </span>
+            <input class="ivk__range" type="range" name={f.name} min={f.input.min} max={f.input.max} step={f.input.step} value={f.input.default} />
+            <span class="ivk__minmax" aria-hidden="true"><span>{f.minL}</span><span>{f.maxL}</span></span>
+          </label>
+        ))}
+      </div>
+      <div class="ivk__out" aria-live="polite">
+        <p class="eyebrow muted">{c.output.eyebrow} · <span data-calc-show="years">{years.default}</span> yrs at <span data-calc-show="rate">{rate.default}</span>% a year</p>
+        <p class="ivk__big" data-calc-out="value">{inr(v)}</p>
+        <div class="ivk__tiles">
+          <p class="ivk__tile"><span class="eyebrow muted">{c.output.tiles[0].label}</span><b data-calc-show="amount">{inr(amount.default)}</b></p>
+          <p class="ivk__tile"><span class="eyebrow muted">{c.output.tiles[1].label}</span><b data-calc-out="gain">{inr(v - amount.default)}</b></p>
+          <p class="ivk__tile"><span class="eyebrow muted">Multiple</span><b data-calc-out="multiple">{(v / amount.default).toFixed(2)}×</b></p>
+        </div>
+        <p class="ivk__fine">Illustration only — not a promise of returns.</p>
+      </div>
+    </form>
+  </div>
+</section>

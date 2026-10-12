@@ -1,0 +1,21 @@
+---
+// Realevate quote layout: a small framed image above a big serif statement (Defence Garden's own philosophy).
+import Img from '../ui/Img.astro';
+import Ornament from '../ui/Ornament.astro';
+---
+<section class="phl t-ivory section" data-header-tone="light">
+  <div class="wrap phl__in">
+    <figure class="media phl__img" data-reveal="clip"><Img src="projects.defence-garden-meerut.gallery-06" sizes="200px" widths={[320, 480]} /></figure>
+    <blockquote class="serif serif--sm phl__q balance" data-reveal="lines">“At Defence Garden, we believe a home is more than four walls. It is the rhythm of morning light across tree-lined avenues, the quiet of a colony built for generations, and the trust of land titles backed by clarity.”</blockquote>
+    <Ornament variant="diamond" class="phl__orn" />
+    <p class="deco deco--sm accent" data-reveal="fade">Every plot is a promise.</p>
+    <p class="eyebrow muted">— Our philosophy</p>
+  </div>
+</section>
+<style>
+  .phl__in { display: grid; justify-items: center; text-align: center; gap: 28px; }
+  .phl__img { width: clamp(110px, 10vw, 170px); aspect-ratio: 1; }
+  .phl__img :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .phl__q { max-width: 26ch; font-size: clamp(30px, 3.6vw, 64px); }
+  .phl__orn { width: 22px; color: var(--accent); }
+</style>

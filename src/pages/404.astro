@@ -1,0 +1,57 @@
+---
+// 404 — realevate frame idea: the "0" of the giant 404 is a framed photograph of a real colony entrance lane.
+import Base from '../layouts/Base.astro';
+import Img from '../components/ui/Img.astro';
+import Icon from '../components/ui/Icon.astro';
+import Ornament from '../components/ui/Ornament.astro';
+import nf from '../data/pages/notfound.json';
+
+const [home, back] = nf.buttons;
+const fn = nf.footnote;
+const [fnBefore] = fn.text.split(fn.linkText);
+---
+<Base path="/404" namespace="notfound" tone="light" noindex>
+  <section class="nf t-ivory" data-header-tone="light" aria-labelledby="nf-title">
+    <Ornament variant="fan" class="nf__orn" />
+    <div class="wrap nf__in">
+      <div class="nf__code" aria-hidden="true" data-reveal="fade" data-reveal-intro>
+        <span class="nf__digit">4</span>
+        <figure class="nf__zero media">
+          <Img src="projects.saipuram.gallery-01" eager sizes="(min-width: 861px) 22vw, 40vw" widths={[480, 800, 1200]} data-parallax="0.06" alt="" />
+        </figure>
+        <span class="nf__digit">4</span>
+      </div>
+      <p class="eyebrow eyebrow--accent" data-reveal="fade" data-reveal-intro data-reveal-delay="0.1">Error {nf.code}</p>
+      <h1 class="serif nf__title" id="nf-title" data-reveal="lines" data-reveal-intro>{nf.heading}</h1>
+      <p class="lead nf__text balance" data-reveal="fade" data-reveal-intro data-reveal-delay="0.2">{nf.text}</p>
+      <div class="nf__ctas" data-reveal="fade" data-reveal-intro data-reveal-delay="0.3">
+        <a class="btn btn--solid" href={home.href}><Icon name="arrow-left" class="ico" /><span>{home.label}</span></a>
+        <a class="btn" href="/ourproject"><span>Our colonies</span><Icon name="grid" class="ico" /></a>
+        <a class="btn" href="/contact"><span>Contact</span><Icon name="arrow-right" class="ico" /></a>
+        <button class="btn nf__back" type="button" onclick="history.back()"><span>{back.label}</span></button>
+      </div>
+      <p class="small muted nf__foot" data-reveal="fade" data-reveal-intro data-reveal-delay="0.4">{fnBefore}<a class="link-line accent" href={fn.href}>{fn.linkText}</a>.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf { position: relative; min-height: 100vh; min-height: 100svh; display: grid; overflow: hidden; }
+  .nf__orn { position: absolute; left: 50%; bottom: -12%; width: 130%; height: 115%; transform: translateX(-50%); color: var(--copper-deep); opacity: .13; pointer-events: none; }
+  .nf__in { position: relative; display: grid; justify-items: center; align-content: center; text-align: center; gap: clamp(16px, 1.8vw, 24px); padding-top: calc(var(--header-h) + 24px); padding-bottom: clamp(80px, 10vh, 120px); }
+  .nf__code { display: flex; align-items: center; justify-content: center; gap: clamp(8px, 1.4vw, 24px); font-family: var(--f-deco); font-weight: 200; font-size: clamp(150px, 26vw, 400px); line-height: .8; color: var(--navy); margin-bottom: clamp(6px, 1.4vw, 20px); }
+  .nf__digit { display: block; letter-spacing: -.02em; }
+  .nf__zero { position: relative; width: .56em; height: .8em; border-radius: 999px; outline: 1px solid color-mix(in srgb, var(--copper-deep) 55%, transparent); outline-offset: .05em; }
+  .nf__zero :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .nf__title { font-size: clamp(36px, 4.4vw, 76px); }
+  .nf__text { max-width: 44ch; color: color-mix(in srgb, var(--fg) 78%, transparent); }
+  .nf__ctas { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 8px; }
+  .nf__back { border-style: dashed; }
+  .nf__foot a { text-decoration: none; }
+  @media (max-width: 640px) {
+    .nf__code { font-size: 38vw; }
+    .nf__ctas { display: grid; grid-template-columns: 1fr 1fr; width: 100%; max-width: 360px; }
+    .nf__ctas .btn { justify-content: center; }
+    .nf__ctas .btn--solid, .nf__ctas .nf__back { grid-column: 1 / -1; }
+  }
+</style>

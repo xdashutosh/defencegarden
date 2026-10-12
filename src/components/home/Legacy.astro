@@ -1,0 +1,48 @@
+---
+// Proof of the past: real figures from the data (Est. 2006 · 10 townships · 3 cities · 20+ years) + the story line.
+import Img from '../ui/Img.astro';
+import Icon from '../ui/Icon.astro';
+const stats = [
+  { n: 2006, label: 'Established in Meerut', pre: 'Est.' },
+  { n: 10, label: 'Plotted townships', pad: 2 },
+  { n: 3, label: 'Cities · Shamli · Meerut · Budhana', pad: 2 },
+  { n: 20, label: 'Years of trust', suf: '+' },
+];
+---
+<section class="lgc t-ivory section" data-header-tone="light">
+  <div class="wrap lgc__grid">
+    <div class="lgc__copy">
+      <p class="eyebrow eyebrow--accent" data-reveal="fade">Our story</p>
+      <h2 class="serif lgc__title" data-reveal="lines">Our story began in Meerut with a quiet conviction — that land, carefully shaped, becomes a legacy.</h2>
+      <p class="body muted lgc__text" data-reveal="fade">What started as a single layout in Meerut became a philosophy — plan with patience, build infrastructure first, leave the ground better than we found it. Today that philosophy shapes townships across Meerut, Budhana, and Shamli.</p>
+      <a class="btn" href="/about" data-reveal="fade"><span>Our journey</span><Icon name="arrow-right" /></a>
+    </div>
+    <figure class="lgc__img media" data-reveal="clip">
+      <Img src="about.r2" sizes="(min-width: 861px) 40vw, 92vw" data-parallax="0.08" />
+    </figure>
+  </div>
+  <div class="wrap">
+    <ul class="lgc__stats">
+      {stats.map((s) => (
+        <li class="lgc__stat" data-reveal="fade">
+          <p class="display lgc__num">{s.pre && <span class="lgc__pre">{s.pre}</span>}<span data-counter={s.n} data-counter-from={s.n > 1000 ? 1990 : 0} data-counter-pad={s.pad}>{s.n}</span>{s.suf}</p>
+          <p class="eyebrow muted">{s.label}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+<style>
+  .lgc__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 6vw, 120px); align-items: center; }
+  .lgc__copy { display: grid; gap: 26px; justify-items: start; }
+  .lgc__title { max-width: 18ch; }
+  .lgc__text { max-width: 52ch; }
+  .lgc__img { aspect-ratio: 4 / 5; }
+  .lgc__img :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .lgc__stats { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: clamp(60px, 9vw, 150px); border-top: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); }
+  .lgc__stat { padding: 28px 18px 0 0; display: grid; gap: 10px; }
+  .lgc__stat + .lgc__stat { padding-left: 18px; border-left: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); }
+  .lgc__num { font-size: clamp(48px, 6vw, 108px); }
+  .lgc__pre { font-family: var(--f-deco); font-weight: 300; font-size: .32em; letter-spacing: .04em; text-transform: uppercase; margin-right: .3em; vertical-align: .9em; color: var(--accent); }
+  @media (max-width: 860px) { .lgc__grid { grid-template-columns: 1fr; } .lgc__stats { grid-template-columns: 1fr 1fr; } .lgc__stat:nth-child(3) { padding-left: 0; border-left: 0; } }
+</style>

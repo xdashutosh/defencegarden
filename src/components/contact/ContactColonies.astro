@@ -1,0 +1,69 @@
+---
+// "Visit any colony" (contact.json siteLocations): split chips — the name opens the colony page, the pin its location.
+import Icon from '../ui/Icon.astro';
+import contact from '../../data/pages/contact.json';
+import { getProject, projectUrl } from '../../lib/site.js';
+
+const s = contact.siteLocations;
+const chips = s.chips.map((c) => ({ ...c, project: getProject(c.projectId) })).filter((c) => c.project);
+---
+<section class="ccl t-light section" data-header-tone="light" aria-labelledby="ccl-title">
+  <div class="wrap ccl__grid">
+    <div class="ccl__head">
+      <p class="eyebrow eyebrow--accent" data-reveal="fade">{s.eyebrow}</p>
+      <h2 class="display ccl__title" id="ccl-title" data-reveal="lines">{s.heading}</h2>
+      <p class="lead muted ccl__text" data-reveal="fade">{s.text}</p>
+      <p class="eyebrow muted ccl__legend" data-reveal="fade"><span class="ccl__key"><Icon name="arrow-up-right" class="ico" /></span> Colony page <span class="ccl__key"><Icon name="pin" class="ico" /></span> Location</p>
+    </div>
+    <ul class="ccl__chips">
+      {chips.map((c, i) => {
+        const [name, city] = c.label.split(' · ');
+        return (
+          <li class="ccl__chip" data-reveal="fade" data-reveal-delay={(i * 0.04).toFixed(2)}>
+            <a class="ccl__main" href={projectUrl(c.project)}>
+              <span class="ccl__n">{String(i + 1).padStart(2, '0')}</span>
+              <span class="ccl__txt"><span class="ccl__name">{name}</span><span class="ccl__city eyebrow">{city}</span></span>
+              <Icon name="arrow-up-right" class="ico ccl__go" />
+            </a>
+            <a class="ccl__pin" href={c.href} target="_blank" rel="noopener" aria-label={`${c.label} — open location in Google Maps`}><Icon name="pin" class="ico" /></a>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .ccl__grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(36px, 6vw, 120px); align-items: start; }
+  .ccl__head { display: grid; gap: 20px; position: sticky; top: calc(var(--header-h) + 24px); }
+  .ccl__title { font-size: clamp(44px, 5.6vw, 100px); }
+  .ccl__text { max-width: 34ch; }
+  .ccl__legend { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .ccl__key { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--fg) 25%, transparent); }
+  .ccl__key + * { margin-right: 10px; }
+  .ccl__key :global(.ico) { width: 11px; height: 11px; }
+  .ccl__chips { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .ccl__chip { display: flex; align-items: stretch; min-height: 64px; border: 1px solid color-mix(in srgb, var(--fg) 22%, transparent); border-radius: 999px; overflow: hidden; transition: border-color .35s, box-shadow .5s var(--ease-out); }
+  .ccl__chip:hover { border-color: var(--fg); box-shadow: 0 18px 40px -26px rgba(6,26,58,.45); }
+  .ccl__main { flex: 1; min-width: 0; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; padding: 0 16px 0 22px; transition: background .35s, color .35s; }
+  .ccl__txt { min-width: 0; display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  .ccl__main:hover { background: var(--fg); color: var(--bg); }
+  .ccl__n { font-family: var(--f-deco); font-weight: 300; font-size: 15px; color: var(--accent); }
+  .ccl__main:hover .ccl__n { color: var(--copper); }
+  .ccl__name { font-size: 17px; font-weight: 500; letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ccl__city { opacity: .6; white-space: nowrap; }
+  .ccl__go { width: 14px; height: 14px; opacity: .5; }
+  .ccl__pin { flex: none; display: grid; place-items: center; width: 60px; border-left: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); color: var(--accent); transition: background .35s, color .35s; }
+  .ccl__pin:hover { background: var(--copper); color: var(--navy-deep); }
+  .ccl__pin :global(.ico) { width: 18px; height: 18px; }
+  @media (max-width: 1180px) { .ccl__chips { grid-template-columns: 1fr; } }
+  @media (max-width: 860px) {
+    .ccl__grid { grid-template-columns: 1fr; }
+    .ccl__head { position: static; }
+    .ccl__chip { min-height: 58px; }
+    .ccl__main { padding-left: 18px; gap: 10px; }
+    .ccl__name { font-size: 16px; white-space: normal; line-height: 1.2; }
+    .ccl__txt { flex-direction: column; align-items: start; gap: 3px; padding-block: 10px; }
+    .ccl__pin { width: 54px; }
+  }
+</style>

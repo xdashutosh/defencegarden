@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+import FrameHero from '../components/sections/FrameHero.astro';
+import Statement from '../components/home/Statement.astro';
+import Legacy from '../components/home/Legacy.astro';
+import Journey from '../components/home/Journey.astro';
+import Collections from '../components/home/Collections.astro';
+import VisionBand from '../components/home/VisionBand.astro';
+import Principles from '../components/home/Principles.astro';
+import NowBooking from '../components/home/NowBooking.astro';
+import Philosophy from '../components/home/Philosophy.astro';
+import NightCta from '../components/home/NightCta.astro';
+import { visionVideo } from '../lib/vision.js';
+
+const film = visionVideo('hero-film') ? 'hero-film' : undefined;
+---
+<Base
+  path="/"
+  namespace="home"
+  tone="light"
+  preloader
+  title="Defence Garden — From Colonies to Skylines | Township Developer, Shamli · Meerut · Budhana"
+  description="Since 2006 Defence Garden has developed ten gated plotted townships across Shamli, Meerut and Budhana. Now the same principles are rising into residential high-rise communities in urban India."
+>
+  <FrameHero
+    words="From Colonies to Skylines —"
+    theme="t-light"
+    tone="light"
+    eyebrow="Defence Garden® · Est. 2006"
+    sub="Ten townships across Western Uttar Pradesh. The next chapter rises in India’s cities."
+    note="Shamli · Meerut · Budhana → Urban India"
+    visionVideo={film}
+    vision="skyline-dusk"
+    image="about.r3"
+    overlayEyebrow="Defence Garden · The next chapter"
+    overlayTitle="Built on land.<br/>Rising to the sky."
+    overlayText="Two decades of planned, gated colonies — now becoming residential high-rise communities."
+    alt="Aerial view of a city skyline at dusk"
+  />
+  <Statement />
+  <Legacy />
+  <Journey />
+  <Collections />
+  <VisionBand />
+  <Principles />
+  <NowBooking />
+  <Philosophy />
+  <NightCta />
+</Base>

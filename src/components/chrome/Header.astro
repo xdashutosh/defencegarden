@@ -1,0 +1,67 @@
+---
+import Logo from './Logo.astro';
+import Icon from '../ui/Icon.astro';
+---
+<header class="hdr" data-hdr data-tone="dark">
+  <div class="hdr__bar">
+    <div class="hdr__left">
+      <button class="hdr__menu" type="button" data-menu-open aria-expanded="false" aria-controls="site-menu">
+        <span class="hdr__burger" aria-hidden="true"><i></i><i></i></span>
+        <span class="hdr__menu-label">Menu</span>
+      </button>
+      <nav class="hdr__nav hide-mob" aria-label="Primary">
+        <a class="link-line" href="/about" data-nav="/about">About</a>
+      </nav>
+    </div>
+    <a class="hdr__logo" href="/" aria-label="Defence Garden — home"><Logo /></a>
+    <div class="hdr__right">
+      <a class="link-line hide-mob" href="/contact" data-nav="/contact">Contact</a>
+      <button class="btn hdr__cta" type="button" data-enquire>Enquire</button>
+    </div>
+  </div>
+</header>
+
+<div class="dock" data-dock>
+  <a class="btn dock__btn" href="/ourproject"><span>Our Colonies</span><Icon name="grid" /></a>
+  <button class="btn-square dock__sq" type="button" data-enquire aria-label="Enquire on WhatsApp"><Icon name="whatsapp" /></button>
+</div>
+
+<style>
+  .hdr { position: fixed; inset: 0 0 auto 0; z-index: 60; color: var(--hdr-fg, #f4ede6); pointer-events: none; transition: color .5s ease; }
+  .hdr[data-tone='light'] { --hdr-fg: var(--navy); }
+  .hdr__bar { height: var(--header-h); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding-inline: var(--gutter); }
+  .hdr__bar > * { pointer-events: auto; }
+  .hdr__left, .hdr__right { display: flex; align-items: center; gap: clamp(16px, 2vw, 34px); font-size: 14px; font-weight: 500; }
+  .hdr__right { justify-content: flex-end; }
+  .hdr__nav { display: flex; gap: clamp(16px, 2vw, 30px); }
+  .hdr__menu { display: inline-flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 500; }
+  .hdr__burger { position: relative; width: 26px; height: 10px; }
+  .hdr__burger i { position: absolute; left: 0; right: 0; height: 1.5px; background: currentColor; transition: transform .6s var(--ease-out), width .6s var(--ease-out); }
+  .hdr__burger i:first-child { top: 0; }
+  .hdr__burger i:last-child { bottom: 0; width: 64%; }
+  .hdr__menu:hover .hdr__burger i:last-child { width: 100%; }
+  .hdr__logo { color: inherit; }
+  .hdr__cta { height: 38px; padding: 0 18px; font-size: 13px; }
+  .hdr__cta::before { background: currentColor; }
+  .hdr__cta:hover { color: var(--hdr-bg, var(--navy-deep)); }
+  .hdr[data-tone='light'] .hdr__cta:hover { color: #fff; }
+  .hdr.is-hidden .hdr__bar { transform: translateY(-110%); }
+  .hdr__bar { transition: transform .7s var(--ease-out); }
+  html.menu-open .hdr { --hdr-fg: #f4ede6; }
+  html.menu-open .hdr__burger i:first-child { transform: translateY(4.25px) rotate(20deg); }
+  html.menu-open .hdr__burger i:last-child { width: 100%; transform: translateY(-4.25px) rotate(-20deg); }
+
+  .dock { position: fixed; right: var(--gutter); bottom: var(--gutter); z-index: 55; display: flex; gap: 8px; color: var(--navy); transition: opacity .5s, transform .6s var(--ease-out); }
+  .dock__btn { --fg: var(--navy); --bg: #fff; background: rgba(255,255,255,.88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-color: rgba(31,43,94,.2); height: 44px; font-size: 13px; }
+  .dock__btn::before { background: var(--navy); }
+  .dock__sq { --fg: var(--navy); --bg: #fff; }
+  .dock.is-hidden { opacity: 0; transform: translateY(20px); pointer-events: none; }
+  html.menu-open .dock { opacity: 0; pointer-events: none; }
+  @media (max-width: 860px) {
+    .hdr__bar { grid-template-columns: auto 1fr auto; }
+    .hdr__logo { justify-self: center; }
+    .hdr__menu-label { display: none; }
+    .dock__btn span { display: none; }
+    .dock__btn { width: 44px; padding: 0; justify-content: center; }
+  }
+</style>

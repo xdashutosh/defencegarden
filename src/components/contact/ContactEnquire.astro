@@ -1,0 +1,67 @@
+---
+// Enquiry CTA: every topic opens the global WhatsApp enquiry modal with the right interest pre-selected.
+import Img from '../ui/Img.astro';
+import Icon from '../ui/Icon.astro';
+import contact from '../../data/pages/contact.json';
+import { phone } from '../../lib/site.js';
+
+const f = contact.form;
+const sales = phone('sales');
+// The enquiry modal's own interest options (src/components/chrome/EnquiryModal.astro).
+const topics = [
+  'Site visit',
+  'A plot in an existing colony',
+  'Investment enquiry',
+  'Upcoming high-rise residences',
+  'Land partnership / joint development',
+];
+---
+<section class="cen t-green section" data-header-tone="dark" aria-labelledby="cen-title">
+  <div class="wrap cen__grid">
+    <figure class="cen__img media" data-reveal="clip">
+      <Img src="projects.defence-garden-phase-2.gallery-06" sizes="(min-width: 861px) 40vw, 92vw" widths={[480, 800, 1200, 1600]} data-parallax="0.08" />
+    </figure>
+    <div class="cen__copy">
+      <p class="eyebrow eyebrow--accent" data-reveal="fade">{f.eyebrow}</p>
+      <h2 class="deco cen__title" id="cen-title" data-reveal="lines">{f.heading}</h2>
+      <p class="body cen__note" data-reveal="fade">{f.submitNote}</p>
+      <ul class="cen__topics" aria-label="Choose a topic">
+        {topics.map((t, i) => (
+          <li data-reveal="fade" data-reveal-delay={(i * 0.05).toFixed(2)}>
+            <button class="cen__topic" type="button" data-enquire data-interest={t}>
+              <span class="cen__n">{String(i + 1).padStart(2, '0')}</span>
+              <span class="cen__t">{t}</span>
+              <Icon name="whatsapp" class="ico cen__wa" />
+            </button>
+          </li>
+        ))}
+      </ul>
+      <div class="cen__ctas" data-reveal="fade">
+        <button class="btn btn--copper" type="button" data-enquire data-interest="Site visit"><Icon name="whatsapp" class="ico" /><span>{f.submit.label}</span></button>
+        <a class="btn" href={sales.tel}><Icon name="phone" class="ico" /><span>{sales.display}</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cen__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(36px, 7vw, 140px); align-items: center; }
+  .cen__img { aspect-ratio: 4 / 5; }
+  .cen__img :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .cen__copy { display: grid; gap: clamp(18px, 2vw, 28px); justify-items: start; }
+  .cen__title { font-size: clamp(38px, 4.8vw, 88px); color: #f6f3ea; max-width: 12ch; }
+  .cen__note { max-width: 42ch; opacity: .85; }
+  .cen__topics { width: 100%; border-top: 1px solid rgba(243,241,234,.22); margin-top: 8px; }
+  .cen__topics li { border-bottom: 1px solid rgba(243,241,234,.22); }
+  .cen__topic { width: 100%; display: grid; grid-template-columns: 44px 1fr auto; align-items: center; gap: 14px; padding: 18px 6px; text-align: left; transition: padding .5s var(--ease-out), color .3s; }
+  .cen__topic:hover, .cen__topic:focus-visible { padding-left: 16px; color: var(--accent); }
+  .cen__n { font-family: var(--f-deco); font-weight: 300; font-size: 16px; color: var(--accent); }
+  .cen__t { font-size: clamp(18px, 1.5vw, 24px); font-weight: 500; letter-spacing: -.015em; }
+  .cen__wa { width: 18px; height: 18px; opacity: .55; transition: opacity .3s, transform .5s var(--ease-out); }
+  .cen__topic:hover .cen__wa { opacity: 1; transform: scale(1.12); }
+  .cen__ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+  @media (max-width: 860px) {
+    .cen__grid { grid-template-columns: 1fr; }
+    .cen__img { aspect-ratio: 4 / 3; }
+  }
+</style>
