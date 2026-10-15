@@ -27,8 +27,8 @@ const cards = [
             <h3 class="col__title">{c.title}</h3>
             <p class="small col__text">{c.text}</p>
           </div>
-          <div class="col__img media">
-            <Img src={c.src} vision={c.vision} sizes="(min-width: 861px) 24vw, 46vw" widths={[480, 800, 1200]} />
+          <div class="col__img media inset-line">
+            <Img src={c.src} vision={c.vision} sizes="(min-width: 861px) 24vw, 46vw" widths={[480, 800, 1200]} data-parallax="0.06" />
             {c.concept && <span class="concept-tag">Concept</span>}
           </div>
         </a>
@@ -49,8 +49,8 @@ const cards = [
   .col__title { writing-mode: vertical-rl; transform: rotate(180deg); justify-self: end; align-self: end; font-family: var(--f-sans); font-weight: 500; font-size: clamp(30px, 2.8vw, 50px); letter-spacing: -.035em; line-height: 1; }
   .col__text { max-width: 22ch; opacity: .85; }
   .col__img { aspect-ratio: 5 / 4; }
-  .col__img :global(img) { width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s var(--ease-out); }
-  .col__card:hover .col__img :global(img) { transform: scale(1.06); }
+  .col__img :global(img) { width: 100%; height: 100%; object-fit: cover; transition: scale 1.4s var(--ease-out); }
+  .col__card:hover .col__img :global(img) { scale: 1.06; }
   @media (max-width: 1100px) { .col__grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 520px) { .col__grid { grid-template-columns: 1fr; } .col__panel { min-height: 240px; } }
 </style>

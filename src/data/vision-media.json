@@ -340,9 +340,9 @@
       "file": "public/media/sky/sky.mp4",
       "poster": null,
       "width": 1600,
-      "height": 700,
+      "height": 900,
       "duration": 24.0,
-      "bytes": 1682723,
+      "bytes": 1905620,
       "source": "Pexels",
       "sourceUrl": "https://www.pexels.com/video/time-lapse-of-fluffy-clouds-on-a-blue-sky-12463541/",
       "author": "Matthias Groeneveld",
@@ -350,13 +350,13 @@
       "license": "Pexels License",
       "licenseUrl": "https://www.pexels.com/license/",
       "attribution": null,
-      "description": "Real time-lapse of fluffy cumulus clouds on a blue sky — the sky band at the top of every page (src/components/chrome/Sky.astro). Cropped to a wide desktop band and a phone portrait, lightly lifted, looped seamlessly with a 4 s cross-dissolve; posters are the exact first frames (public/media/sky/).",
+      "description": "Real time-lapse of fluffy cumulus clouds on a blue sky — the sky behind the whole website (src/components/chrome/Sky.astro, fixed layer; light sections are a translucent wash over it). Full frame for desktop, a centred 9:16 crop for phones, lightly lifted, looped seamlessly with a 4 s cross-dissolve; posters are the exact first frames (public/media/sky/).",
       "alt": "Time-lapse of white cumulus clouds drifting across a blue sky",
       "location": null,
-      "focus": "50% 0%",
+      "focus": "50% 30%",
       "fileMobile": "public/media/sky/sky-m.mp4",
-      "widthMobile": 600,
-      "heightMobile": 780
+      "widthMobile": 540,
+      "heightMobile": 960
     }
   ]
 }

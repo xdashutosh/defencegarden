@@ -74,6 +74,6 @@ const digits = Array.from({ length: 10 }, (_, i) => i);
   .pre__digit { width: .62em; height: var(--d); overflow: hidden; font-family: var(--f-sans); font-weight: 500; font-size: var(--d); line-height: 1; font-variant-numeric: tabular-nums; }
   .pre__inner { display: flex; flex-direction: column; }
   .pre__inner span { display: flex; align-items: center; justify-content: center; height: var(--d); flex: 0 0 var(--d); }
-  @media (max-width: 860px) { .pre { --pre-w: 40vw; } .pre__counter { --d: 5.5vw; bottom: max(8vh, 2rem); } }
+  @media (max-width: 860px) { .pre { --pre-w: min(40vw, calc(84svh - 2 * var(--header-h) - 16px)); } .pre__counter { --d: 5.5vw; bottom: max(8vh, 2rem); } }
   @media (prefers-reduced-motion: reduce) { .pre { display: none !important; } }
 </style>

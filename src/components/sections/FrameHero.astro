@@ -159,7 +159,8 @@ const style = [frameW && `--fh-w:${frameW}`, frameH && `--fh-h:${frameH}`, `--fh
   .fh__otitle { max-width: 14ch; text-shadow: 0 2px 30px rgba(6,26,58,.35); }
   .fh__otext { max-width: 44ch; opacity: .92; }
   @media (max-width: 860px) {
-    .fh { height: var(--fh-len-m, 220vh); --fh-w: 40vw; --fh-h: 40vw; --fh-y: 42%; }
+    /* capped by the height left below the header, so on landscape phones the frame stays clear of it */
+    .fh { height: var(--fh-len-m, 220vh); --fh-w: min(40vw, calc(84svh - 2 * var(--header-h) - 16px)); --fh-h: var(--fh-w); --fh-y: 42%; }
     .fh__zone { top: var(--fh-zone-m, 45%); }
     .fh__center { top: 66%; }
     .fh__sub { font-size: 17px; }

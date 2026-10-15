@@ -22,7 +22,7 @@ const items = [
             <h3 class="prn__t">{it.t}</h3>
             <p class="body muted">{it.d}</p>
           </div>
-          <figure class="media prn__img"><Img src={it.src} sizes="(min-width: 861px) 22vw, 90vw" widths={[480, 800, 1200]} /></figure>
+          <div class="frame prn__frame" data-tilt="4"><span class="frame__corners" aria-hidden="true"></span><figure class="media prn__img"><Img src={it.src} sizes="(min-width: 861px) 22vw, 90vw" widths={[480, 800, 1200]} data-parallax="0.07" /><span class="frame__sheen" aria-hidden="true"></span></figure></div>
         </li>
       ))}
     </ol>
@@ -36,7 +36,8 @@ const items = [
   .prn__copy { display: grid; gap: 10px; max-width: 60ch; }
   .prn__t { font-size: clamp(24px, 2.4vw, 40px); font-weight: 500; letter-spacing: -.03em; line-height: 1.05; }
   .prn__img { aspect-ratio: 16 / 10; }
-  .prn__img :global(img) { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease-out); }
-  .prn__item:hover .prn__img :global(img) { transform: scale(1.06); }
-  @media (max-width: 860px) { .prn__item { grid-template-columns: 56px 1fr; } .prn__img { grid-column: 1 / -1; } }
+  .prn__frame { --fr-gap: 9px; --fr-len: 22px; margin: 9px; }
+  .prn__img :global(img) { width: 100%; height: 100%; object-fit: cover; transition: scale 1.2s var(--ease-out); }
+  .prn__item:hover .prn__img :global(img) { scale: 1.06; }
+  @media (max-width: 860px) { .prn__item { grid-template-columns: 56px 1fr; } .prn__frame { grid-column: 1 / -1; } }
 </style>

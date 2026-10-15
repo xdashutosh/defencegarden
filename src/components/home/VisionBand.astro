@@ -34,7 +34,7 @@ const slides = [
   <ul class="strip__track vbd__track" data-strip-track>
     {slides.map((s, i) => (
       <li class={`vbd__slide ${i % 3 === 1 ? 'is-tall' : ''}`}>
-        <figure class="media vbd__img"><Img vision={s.vision} src={s.fb} sizes="(min-width: 861px) 34vw, 80vw" widths={[480, 800, 1200, 1600]} /><span class="concept-tag">Concept</span></figure>
+        <div class="frame vbd__frame"><span class="frame__line" data-drift="28" aria-hidden="true"></span><figure class="media vbd__img"><Img vision={s.vision} src={s.fb} sizes="(min-width: 861px) 34vw, 80vw" widths={[480, 800, 1200, 1600]} /><span class="concept-tag">Concept</span></figure></div>
         <figcaption class="eyebrow vbd__cap"><span class="accent">{String(i + 1).padStart(2, '0')}</span> {s.cap}</figcaption>
       </li>
     ))}
@@ -47,7 +47,8 @@ const slides = [
   .vbd__copy { display: grid; gap: 28px; }
   .vbd__nav { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
   .vbd__track { padding-inline: var(--gutter); align-items: end; }
-  .vbd__slide { width: clamp(260px, 32vw, 560px); display: grid; gap: 12px; }
+  .vbd__slide { width: clamp(260px, 32vw, 560px); display: grid; gap: 30px; }
+  .vbd__frame { --fr-x: 14px; --fr-y: 14px; }
   .vbd__img { aspect-ratio: 4 / 3; }
   .vbd__slide.is-tall .vbd__img { aspect-ratio: 4 / 5; }
   .vbd__img :global(img) { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }

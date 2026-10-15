@@ -18,9 +18,13 @@ const featured = [1, 5].map((id) => getProject(id)).filter(Boolean);
     <div class="nbk__grid">
       {featured.map((p, i) => (
         <a class="nbk__card" href={projectUrl(p)} data-reveal="fade" data-reveal-delay={(i * 0.1).toFixed(1)}>
-          <div class="media nbk__media">
-            {p.video ? <Vid src={p.video} class="nbk__fill" /> : <Img src={p.cover} class="nbk__fill" sizes="(min-width: 861px) 48vw, 92vw" />}
-            <span class="nbk__badge eyebrow">{p.status}</span>
+          <div class="frame nbk__frame" data-tilt="3">
+            <span class="frame__line" data-drift="34" aria-hidden="true"></span>
+            <div class="media nbk__media">
+              {p.video ? <Vid src={p.video} class="nbk__fill" /> : <Img src={p.cover} class="nbk__fill" sizes="(min-width: 861px) 48vw, 92vw" data-parallax="0.06" />}
+              <span class="nbk__badge eyebrow">{p.status}</span>
+              <span class="frame__sheen" aria-hidden="true"></span>
+            </div>
           </div>
           <div class="nbk__meta">
             <div>
@@ -40,8 +44,9 @@ const featured = [1, 5].map((id) => getProject(id)).filter(Boolean);
   .nbk__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gutter); }
   .nbk__card { display: grid; gap: 16px; }
   .nbk__media { aspect-ratio: 16 / 11; }
-  .nbk__media :global(.nbk__fill) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s var(--ease-out); }
-  .nbk__card:hover .nbk__media :global(.nbk__fill) { transform: scale(1.04); }
+  .nbk__frame { --fr-x: 16px; --fr-y: 16px; margin: 0 16px 16px 0; }
+  .nbk__media :global(.nbk__fill) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: scale 1.4s var(--ease-out); }
+  .nbk__card:hover .nbk__media :global(.nbk__fill) { scale: 1.04; }
   .nbk__badge { position: absolute; left: 14px; top: 14px; padding: 6px 10px; background: rgba(255,255,255,.9); color: var(--navy); }
   .nbk__meta { display: flex; justify-content: space-between; align-items: end; gap: 16px; }
   .nbk__title { font-size: clamp(26px, 2.4vw, 42px); font-weight: 500; letter-spacing: -.035em; line-height: 1; margin-bottom: 8px; }

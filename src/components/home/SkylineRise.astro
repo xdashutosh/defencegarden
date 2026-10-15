@@ -1,0 +1,85 @@
+---
+// "From colonies to skylines" scroll scene (home, right after the navy statement). Real photo cut-outs layered over
+// the live sky (Sky.astro shows through: this section has no background). In front, Defence Garden's own homes,
+// cut from their project photos (Saipuram, Ganpati Enclave, Basant Kunj); behind them, concept residential towers
+// (licensed stock, credited on /credits: vision "towers-modern" and a frame of the hero drone film) that rise into
+// the sky as the visitor scrolls. A navy "dawn" at the top continues the statement above. Cut-outs were made with
+// Apple Vision subject lifting. Script: src/scripts/modules/skylineRise.js. Reduced motion: the finished skyline.
+// Layer attributes: data-y0/y1 = vertical offset (vh) at the start/end of the scroll, data-s0/s1 = scale,
+// data-depth = weight of the pointer parallax.
+import { Image } from 'astro:assets';
+import towersModern from '../../assets/parallax/towers-modern.webp';
+import towersDrone from '../../assets/parallax/towers-drone.webp';
+import rowGanpati from '../../assets/parallax/houses-ganpati-row.webp';
+import rowSaipuram from '../../assets/parallax/houses-saipuram-row.webp';
+import houseBasant from '../../assets/parallax/house-basant-kunj.webp';
+
+const towerWidths = [640, 960, 1280, 1600, 2000];
+const homeWidths = [480, 720, 960, 1280];
+---
+<section class="rise" data-skyline data-header-tone="light">
+  <div class="rise__dawn" data-header-tone="dark" aria-hidden="true"></div>
+  <div class="rise__stage" role="img" aria-label="Defence Garden's plotted-colony homes in front, with concept residential towers rising behind them into the sky">
+    <div class="rise__l rise__tw rise__t-drone" data-y0="44" data-y1="2" data-s0=".96" data-depth=".3">
+      <Image src={towersDrone} widths={towerWidths} sizes="(min-width: 861px) 44vw, 84vw" alt="" loading="lazy" decoding="async" />
+    </div>
+    <div class="rise__l rise__tw rise__t-modern" data-y0="56" data-y1="-2" data-s0=".95" data-depth=".45">
+      <Image src={towersModern} widths={towerWidths} sizes="(min-width: 861px) 40vw, 80vw" alt="" loading="lazy" decoding="async" />
+    </div>
+    <div class="rise__mist" aria-hidden="true"></div>
+    <div class="rise__l rise__hm rise__h-saipuram" data-y0="0" data-y1="5" data-s1="1.03" data-depth=".65">
+      <Image src={rowSaipuram} widths={homeWidths} sizes="(min-width: 861px) 33vw, 66vw" alt="" loading="lazy" decoding="async" />
+    </div>
+    <div class="rise__l rise__hm rise__h-ganpati" data-y0="0" data-y1="7" data-s1="1.05" data-depth=".85">
+      <Image src={rowGanpati} widths={homeWidths} sizes="(min-width: 861px) 42vw, 84vw" alt="" loading="lazy" decoding="async" />
+    </div>
+    <div class="rise__l rise__hm rise__h-basant" data-y0="0" data-y1="9" data-s1="1.06" data-depth="1">
+      <Image src={houseBasant} widths={homeWidths} sizes="(min-width: 861px) 40vw, 72vw" alt="" loading="lazy" decoding="async" />
+    </div>
+    <div class="rise__ground" aria-hidden="true"></div>
+    <p class="eyebrow rise__cap rise__cap--a" data-skyline-cap="a">Where we began · Plotted townships</p>
+    <p class="eyebrow rise__cap rise__cap--b" data-skyline-cap="b">Where we are going · Urban high-rise <span class="rise__tag">Concept</span></p>
+  </div>
+</section>
+
+<style>
+  .rise { position: relative; height: 250vh; }
+  /* navy dawn continuing the statement above, opening onto the sky */
+  .rise__dawn { position: absolute; top: 0; left: 0; right: 0; height: 50vh; pointer-events: none; background: linear-gradient(180deg, var(--navy-deep) 0%, rgba(6, 26, 58, .55) 42%, rgba(6, 26, 58, 0) 100%); }
+  .rise__stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+  .rise__l { position: absolute; will-change: transform; }
+  .rise__l :global(img) { display: block; width: 100%; height: auto; }
+  /* towers: bases dissolve into mist behind the homes */
+  .rise__tw { -webkit-mask-image: linear-gradient(180deg, #000 62%, transparent 96%); mask-image: linear-gradient(180deg, #000 62%, transparent 96%); }
+  .rise__t-drone { left: 6%; width: 44vw; bottom: 25%; filter: saturate(.82) brightness(1.04) contrast(.95); }
+  .rise__t-modern { left: 47%; width: 40vw; bottom: 24%; }
+  .rise__mist { position: absolute; left: 0; right: 0; bottom: 16%; height: 26%; pointer-events: none; background: radial-gradient(120% 100% at 50% 100%, rgba(244, 247, 251, .92) 0%, rgba(244, 247, 251, .55) 45%, rgba(244, 247, 251, 0) 75%); }
+  /* homes: soft bases into the ground, which meets the translucent ivory of the next section */
+  .rise__hm { -webkit-mask-image: linear-gradient(180deg, #000 80%, transparent 100%); mask-image: linear-gradient(180deg, #000 80%, transparent 100%); }
+  .rise__h-saipuram { left: -3%; width: 33vw; bottom: 5%; }
+  .rise__h-ganpati { left: 25%; width: 42vw; bottom: -2%; }
+  .rise__h-basant { left: 63%; width: 40vw; bottom: 0; }
+  .rise__ground { position: absolute; left: 0; right: 0; bottom: 0; height: 14%; pointer-events: none; background: linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--ivory) 82%, transparent) 72%); }
+  .rise__cap { position: absolute; margin: 0; color: var(--navy); font-size: 12px; text-shadow: 0 0 14px rgba(255, 255, 255, .95), 0 0 4px rgba(255, 255, 255, .9); }
+  .rise__cap--a { left: var(--gutter); bottom: 21%; }
+  .rise__cap--b { right: var(--gutter); top: 16%; display: inline-flex; align-items: center; gap: 10px; }
+  .rise__tag { padding: 3px 8px; border: 1px solid currentColor; font-size: 9px; letter-spacing: .14em; }
+  @media (max-width: 860px) {
+    .rise { height: 220vh; }
+    .rise__t-drone { left: -22%; width: 86vw; bottom: 30%; }
+    .rise__t-modern { left: 28%; width: 80vw; bottom: 28%; }
+    .rise__mist { bottom: 18%; height: 24%; }
+    .rise__h-saipuram { left: -26%; width: 66vw; bottom: 9%; }
+    .rise__h-ganpati { left: 8%; width: 84vw; bottom: 1%; }
+    .rise__h-basant { left: 48%; width: 72vw; bottom: 4%; }
+    .rise__cap--a { bottom: 26%; }
+    .rise__cap--b { top: 13%; }
+  }
+  /* reduced motion: the finished skyline, no long scroll */
+  @media (prefers-reduced-motion: reduce) {
+    .rise { height: auto; }
+    .rise__stage { position: relative; }
+    .rise__t-drone { transform: translateY(2vh); }
+    .rise__t-modern { transform: translateY(-2vh); }
+  }
+</style>

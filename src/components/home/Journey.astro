@@ -25,7 +25,7 @@ const colonies = [...projects].sort((a, b) => a.year - b.year || a.id - b.id);
       {colonies.map((p) => (
         <li class="jrn__card">
           <a class="jrn__link" href={projectUrl(p)}>
-            <div class="jrn__img media"><Img src={p.cover} sizes="(min-width: 861px) 26vw, 74vw" widths={[480, 800, 1200]} /></div>
+            <div class="frame jrn__frame" data-tilt="5"><span class="frame__corners" aria-hidden="true"></span><div class="jrn__img media"><Img src={p.cover} sizes="(min-width: 861px) 26vw, 74vw" widths={[480, 800, 1200]} /><span class="frame__sheen" aria-hidden="true"></span></div></div>
             <div class="jrn__meta">
               <p class="deco deco--sm jrn__y">{p.year}</p>
               <p class="eyebrow muted">{p.city} · {p.status}</p>
@@ -36,7 +36,7 @@ const colonies = [...projects].sort((a, b) => a.year - b.year || a.id - b.id);
       ))}
       <li class="jrn__card jrn__card--next t-night">
         <a class="jrn__link" href="/vision">
-          <div class="jrn__img media"><Img vision="towers-portrait" src="projects.river-green-society.gallery-09" sizes="(min-width: 861px) 26vw, 74vw" widths={[480, 800, 1200]} /><span class="concept-tag">Concept</span></div>
+          <div class="frame jrn__frame" data-tilt="5"><span class="frame__corners" aria-hidden="true"></span><div class="jrn__img media"><Img vision="towers-portrait" src="projects.river-green-society.gallery-09" sizes="(min-width: 861px) 26vw, 74vw" widths={[480, 800, 1200]} /><span class="concept-tag">Concept</span><span class="frame__sheen" aria-hidden="true"></span></div></div>
           <div class="jrn__meta"><p class="deco deco--sm jrn__y accent">Next</p><p class="eyebrow muted">Urban India · High-rise</p></div>
           <p class="jrn__name">The vertical chapter <Icon name="arrow-up-right" class="ico jrn__go" /></p>
         </a>
@@ -57,6 +57,7 @@ const colonies = [...projects].sort((a, b) => a.year - b.year || a.id - b.id);
   .jrn__card--start { align-content: center; padding-right: 3vw; gap: 18px; }
   .jrn__card--next { padding: 16px; border-radius: 4px; }
   .jrn__link { display: grid; gap: 14px; }
+  .jrn__frame { --fr-gap: 10px; --fr-len: 26px; margin: 10px; }
   .jrn__img { aspect-ratio: 4 / 5; }
   .jrn__img :global(img) { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease-out); }
   .jrn__link:hover .jrn__img :global(img) { transform: scale(1.05); }

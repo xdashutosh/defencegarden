@@ -101,9 +101,10 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-stopped { overflow: clip; }
 
 /* ---------------------------------------------------------------- themes */
-.t-light { --bg: var(--paper); --fg: var(--navy); --accent: var(--copper-deep); background: var(--bg); color: var(--fg); }
-.t-ivory { --bg: var(--ivory); --fg: var(--navy); --accent: var(--copper-deep); background: var(--bg); color: var(--fg); }
-.t-mist  { --bg: var(--mist); --fg: var(--navy); --accent: var(--copper-deep); background: var(--bg); color: var(--fg); }
+/* Light themes are a translucent wash over the real sky behind the site (Sky.astro): soft clouds drift behind them. */
+.t-light { --bg: var(--paper); --fg: var(--navy); --accent: var(--copper-deep); background: color-mix(in srgb, var(--bg) var(--wash, 82%), transparent); color: var(--fg); }
+.t-ivory { --bg: var(--ivory); --fg: var(--navy); --accent: var(--copper-deep); background: color-mix(in srgb, var(--bg) var(--wash, 82%), transparent); color: var(--fg); }
+.t-mist  { --bg: var(--mist); --fg: var(--navy); --accent: var(--copper-deep); background: color-mix(in srgb, var(--bg) var(--wash, 82%), transparent); color: var(--fg); }
 .t-night { --bg: var(--navy-deep); --fg: #f4ede6; --accent: var(--copper); background: var(--bg); color: var(--fg); }
 .t-green { --bg: var(--green); --fg: #f3f1ea; --accent: #d8c9a6; background: var(--bg); color: var(--fg); }
 .t-aubergine { --bg: var(--aubergine); --fg: #f4ede6; --accent: var(--copper); background: var(--bg); color: var(--fg); }
@@ -111,6 +112,10 @@ html.lenis, html.lenis body { height: auto; }
 /* Logo on dark surfaces (Logo.astro): the dark-green "Garden" and black "Since 2006" turn ivory; the greens stay. */
 .t-night, .t-green, .t-aubergine, .t-ink { --lg-garden: #f4ede6; --lg-since: #f4ede6; }
 .t-light, .t-ivory, .t-mist { --lg-garden: #005E3B; --lg-since: #000; }
+/* The first section of a page opens onto the full sky: clear at the top, the wash from ~3/4 of a screen down;
+   a dark first section shows the sky faintly (moonlit) at the top and is solid below. */
+main > section:first-of-type:is(.t-light, .t-ivory, .t-mist) { background: linear-gradient(180deg, transparent 0, transparent 14vh, color-mix(in srgb, var(--bg) var(--wash, 82%), transparent) 76vh); }
+main > section:first-of-type:is(.t-night, .t-green, .t-aubergine, .t-ink) { background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 72%, transparent) 0, var(--bg) 74vh); }
 .t-green { --lg-defence: #f4ede6; } /* green "Defence" would sink into the green surface */
 
 /* ---------------------------------------------------------------- layout */
@@ -301,3 +306,52 @@ html.js [data-reveal='lines']:not(.is-split) { visibility: hidden; }
 /* icons default to 1em; concept tags only show over licensed concept media (never over Defence Garden photos) */
 .ico { width: 1em; height: 1em; flex: none; }
 .media:not(:has([data-concept])) > .concept-tag { display: none; }
+
+/* ---------- Photo frames (home page) ----------
+   A .frame wraps a .media box (which keeps overflow:hidden for the photo's own motion); the frame's lines live
+   outside the photo. Lines draw in when the frame enters the viewport (.is-drawn, src/scripts/modules/frames.js).
+   .frame__line     thin copper outline offset behind the photo; with data-drift it moves at its own pace (depth)
+   .frame__corners  architectural corner brackets
+   .frame--arch     arched top (era.estate)        .frame--ring  round photo with a slowly turning ring of text
+   .inset-line      fine light line inside a photo  .frame__sheen soft light that follows the pointer ([data-tilt]) */
+@property --fr-l { syntax: '<length>'; inherits: true; initial-value: 0px; }
+.frame { position: relative; isolation: isolate; --fr-c: var(--accent, #b9785f); }
+.frame > .media { z-index: 1; }
+.frame__line {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  border: 1px solid color-mix(in srgb, var(--fr-c) 80%, transparent);
+  translate: var(--fr-x, 18px) var(--fr-y, 18px);
+  clip-path: inset(0 100% 100% 0); transition: clip-path 1.6s var(--ease-in-out);
+}
+.frame.is-drawn .frame__line { clip-path: inset(0 0 0 0); }
+.frame__corners {
+  position: absolute; inset: calc(var(--fr-gap, 12px) * -1); z-index: 2; pointer-events: none;
+  --w: 1px; --c: var(--fr-c);
+  background:
+    linear-gradient(var(--c), var(--c)) top left / var(--fr-l) var(--w) no-repeat,
+    linear-gradient(var(--c), var(--c)) top left / var(--w) var(--fr-l) no-repeat,
+    linear-gradient(var(--c), var(--c)) top right / var(--fr-l) var(--w) no-repeat,
+    linear-gradient(var(--c), var(--c)) top right / var(--w) var(--fr-l) no-repeat,
+    linear-gradient(var(--c), var(--c)) bottom left / var(--fr-l) var(--w) no-repeat,
+    linear-gradient(var(--c), var(--c)) bottom left / var(--w) var(--fr-l) no-repeat,
+    linear-gradient(var(--c), var(--c)) bottom right / var(--fr-l) var(--w) no-repeat,
+    linear-gradient(var(--c), var(--c)) bottom right / var(--w) var(--fr-l) no-repeat;
+  transition: --fr-l 1.3s var(--ease-out);
+}
+.frame.is-drawn .frame__corners { --fr-l: var(--fr-len, 30px); }
+.frame--arch > .media, .frame--arch > .frame__line { border-radius: 999px 999px 0 0; }
+.frame--ring > .media { border-radius: 50%; }
+.frame__ring { position: absolute; inset: -36%; z-index: 2; pointer-events: none; color: var(--fr-c); animation: fr-spin 40s linear infinite; }
+.frame__ring text { font: 600 10.5px/1 var(--f-wide); font-stretch: 125%; letter-spacing: .26em; text-transform: uppercase; fill: currentColor; }
+@keyframes fr-spin { to { rotate: 360deg; } }
+.inset-line::after { content: ''; position: absolute; inset: 10px; z-index: 2; pointer-events: none; border: 1px solid rgba(255, 255, 255, .55); }
+.frame__sheen {
+  position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0; transition: opacity .5s ease;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 30%), rgba(255, 255, 255, .34), rgba(255, 255, 255, 0) 48%);
+}
+[data-tilt]:hover .frame__sheen { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .frame__line { clip-path: none; transition: none; }
+  .frame__corners { --fr-l: var(--fr-len, 30px); transition: none; }
+  .frame__ring { animation: none; }
+}

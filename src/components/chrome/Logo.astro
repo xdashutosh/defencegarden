@@ -26,6 +26,8 @@ const a11y = label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': 'tr
   .lg-l { fill: var(--lg-leaf, #A8CF46); }
   .logo :global(.lg-s) { fill: var(--lg-since, #000); }
   .logo g, .logo :global(g) { transition: fill .5s ease; }
-  /* Windows High Contrast: follow the system text colour (fixed fills could vanish on the forced background) */
-  @media (forced-colors: active) { .logo g, .logo :global(g) { fill: CanvasText; } }
+  /* Windows High Contrast: every part follows the system text colour (fixed fills could vanish on the forced canvas) */
+  @media (forced-colors: active) { .logo { --lg-defence: CanvasText; --lg-garden: CanvasText; --lg-leaf: CanvasText; --lg-since: CanvasText; filter: none !important; } }
+  /* print: always the original colours (paper is white even where the screen shows a dark surface) */
+  @media print { .logo { --lg-defence: #01A859; --lg-garden: #005E3B; --lg-leaf: #A8CF46; --lg-since: #000; filter: none !important; } .logo g, .logo :global(g) { transition: none; } }
 </style>

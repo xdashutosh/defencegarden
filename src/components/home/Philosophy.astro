@@ -5,7 +5,13 @@ import Ornament from '../ui/Ornament.astro';
 ---
 <section class="phl t-ivory section" data-header-tone="light">
   <div class="wrap phl__in">
-    <figure class="media phl__img" data-reveal="clip"><Img src="projects.defence-garden-meerut.gallery-06" sizes="200px" widths={[320, 480]} /></figure>
+    <div class="frame frame--ring phl__frame">
+      <svg class="frame__ring" viewBox="0 0 200 200" aria-hidden="true">
+        <defs><path id="phl-ring" d="M100,100 m-84,0 a84,84 0 1,1 168,0 a84,84 0 1,1 -168,0" /></defs>
+        <text><textPath href="#phl-ring" textLength="524" lengthAdjust="spacing">Defence Garden · Since 2006 · Every plot is a promise ·</textPath></text>
+      </svg>
+      <figure class="media phl__img" data-reveal="clip"><Img src="projects.defence-garden-meerut.gallery-06" sizes="200px" widths={[320, 480]} /></figure>
+    </div>
     <blockquote class="serif serif--sm phl__q balance" data-reveal="lines">“At Defence Garden, we believe a home is more than four walls. It is the rhythm of morning light across tree-lined avenues, the quiet of a colony built for generations, and the trust of land titles backed by clarity.”</blockquote>
     <Ornament variant="diamond" class="phl__orn" />
     <p class="deco deco--sm accent" data-reveal="fade">Every plot is a promise.</p>
@@ -14,6 +20,7 @@ import Ornament from '../ui/Ornament.astro';
 </section>
 <style>
   .phl__in { display: grid; justify-items: center; text-align: center; gap: 28px; }
+  .phl__frame { margin-block: clamp(30px, 3vw, 54px) clamp(22px, 2.4vw, 40px); }
   .phl__img { width: clamp(110px, 10vw, 170px); aspect-ratio: 1; }
   .phl__img :global(img) { width: 100%; height: 100%; object-fit: cover; }
   .phl__q { max-width: 26ch; font-size: clamp(30px, 3.6vw, 64px); }

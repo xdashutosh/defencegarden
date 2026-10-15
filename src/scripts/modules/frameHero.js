@@ -13,6 +13,7 @@
 import { gsap, SplitText, reduced } from '../core/gsap.js';
 import { register } from '../core/page.js';
 import { whenIntro } from '../core/intro.js';
+import { lockTone, unlockTone } from './headerTone.js';
 
 /** clip-path inset() that shows only `probe`'s rectangle of `media` */
 export function probeInset(media, probe) {
@@ -45,7 +46,25 @@ register({
     const handedOver = document.documentElement.classList.contains('pre-run') && sec === document.querySelector('[data-frame-hero]');
 
     // scroll: frame → full screen, shade + overlay in, UI out
+    // header colours follow the film's actual top edge (it lags the scroll by the scrub, so a fixed zone flipped too
+    // early going down and too late going up): dark/ivory once the film covers the logo's mid-line. The static zone
+    // stays for reduced motion only.
+    const zone = sec.querySelector('.fh__zone');
+    zone?.removeAttribute('data-header-tone');
+    let covered = null;
+    const syncHeader = () => {
+      const m = (media.style.clipPath || '').match(/inset\(\s*(-?[\d.]+)px/);
+      const top = m ? parseFloat(m[1]) : Infinity;
+      const hb = document.querySelector('.hdr__bar');
+      const now = top <= (hb ? hb.offsetHeight : 80) * 0.55;
+      if (now === covered) return;
+      covered = now;
+      if (now) lockTone('dark', 'media');
+      else unlockTone();
+    };
+
     const tl = gsap.timeline({
+      onUpdate: syncHeader,
       scrollTrigger: { trigger: sec, start: 'top top', end: 'bottom bottom', scrub: 0.7, invalidateOnRefresh: true },
       defaults: { ease: 'none' },
     });
@@ -64,6 +83,9 @@ register({
       tl.fromTo(b, { autoAlpha: 0, y: 48 }, { autoAlpha: 1, y: 0, duration: io, ease: 'power2.out' }, a);
       if (z < 0.999) tl.fromTo(b, { autoAlpha: 1, y: 0 }, { autoAlpha: 0, y: -48, duration: io, ease: 'power2.in', immediateRender: false }, z - io);
     });
+
+    // the header-tone module mounts after this one and picks the section's zone tone: re-apply ours next frame
+    requestAnimationFrame(() => { covered = null; syncHeader(); });
 
     // intro (realevate order): marquee rises, subtitle lines unmask, label box draws, small labels fade
     let split = null;
@@ -94,6 +116,6 @@ register({
       if (window.scrollY > 10) { intro.progress(1); return; }
       document.fonts.ready.then(() => intro.play());
     });
-    return () => { intro.kill(); split?.revert(); };
+    return () => { intro.kill(); split?.revert(); unlockTone(); };
   },
 });

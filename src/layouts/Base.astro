@@ -47,13 +47,13 @@ const favicons = site.brand.favicons || [];
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    <Sky />
     {preloader && <Preloader />}
     <Header tone={tone} />
     <Menu />
     <div data-barba="wrapper">
       <main id="main" data-barba="container" data-barba-namespace={namespace} data-tone={tone} tabindex="-1">
         <script type="application/json" data-head set:html={safeJson(head)} />
-        <Sky />
         <slot />
         {footer && <Footer />}
       </main>
