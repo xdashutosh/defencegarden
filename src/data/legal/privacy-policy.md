@@ -6,7 +6,7 @@ seoTitle: "Privacy Policy | Defence Garden"
 runtimeTitle: "Privacy Policy | Defence Garden"
 description: "Read the Defence Garden privacy policy for its website and mobile application."
 icon: "shield-check"
-source: "Old site assets/Legal-DeVFtU1e.js (verbatim; interpolations resolved: company name, email, sales phone +91 99276 69955, office address + \", India\"). Rendered page checked 2026-10-12."
+source: "Old site assets/Legal-DeVFtU1e.js (verbatim; interpolations resolved: company name, email, phone, office address + \", India\"; contact details updated to the owner's current number and email on 2026-10-15). Rendered page checked 2026-10-12."
 ---
 
 # Privacy Policy
@@ -57,7 +57,7 @@ We use reasonable technical and organisational safeguards — including encrypte
 
 You may request a copy of the personal information we hold about you, ask us to correct inaccurate information, or ask us to delete your information (see our Data Deletion page for the exact steps).
 
-To exercise any of these rights, contact us at defencegarden009@gmail.com or +91 99276 69955. We respond to verified requests within 30 days.
+To exercise any of these rights, contact us at info@defencegarden.com or +91 95210 18879. We respond to verified requests within 30 days.
 
 ## 7. Children's Privacy
 
@@ -73,8 +73,8 @@ We may update this Privacy Policy from time to time. The "Effective date" at the
 
 Defence Garden · VADHEH, Shamli Rd, Shamli, Mundetkalan, Uttar Pradesh 247776, India
 
-- [defencegarden009@gmail.com](mailto:defencegarden009@gmail.com)
-- [+91 99276 69955](tel:+919927669955)
+- [info@defencegarden.com](mailto:info@defencegarden.com)
+- [+91 95210 18879](tel:+919521018879)
 
 <!-- Links to the other policies (shown as chips at the bottom of the old page) -->
 - [Terms & Conditions](/terms)

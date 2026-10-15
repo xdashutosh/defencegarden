@@ -54,10 +54,15 @@ export function vision(key) {
 export function visionVideo(key) {
   const i = find(key);
   if (!i || i.kind !== 'video') return null;
-  const url = norm(i.file).replace(/^\/public\//, '/');
+  const pub = (f) => (f ? norm(f).replace(/^\/public\//, '/') : null);
+  const url = pub(i.file);
   const poster = i.poster ? IMAGES[norm(i.poster)] || null : null;
   return {
     kind: 'video', key: i.key, url, poster, width: i.width || null, height: i.height || null,
+    // optional native 9:16 phone variant (scroll-scrub films) and its exact first-frame poster
+    urlMobile: pub(i.fileMobile),
+    posterMobile: i.posterMobile ? IMAGES[norm(i.posterMobile)] || null : null,
+    duration: i.duration || null,
     alt: i.alt || i.description || '', focus: i.focus || '50% 50%', credit: credit(i),
   };
 }

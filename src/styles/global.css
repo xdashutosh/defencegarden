@@ -108,6 +108,10 @@ html.lenis, html.lenis body { height: auto; }
 .t-green { --bg: var(--green); --fg: #f3f1ea; --accent: #d8c9a6; background: var(--bg); color: var(--fg); }
 .t-aubergine { --bg: var(--aubergine); --fg: #f4ede6; --accent: var(--copper); background: var(--bg); color: var(--fg); }
 .t-ink { --bg: var(--rare); --fg: #f4ede6; --accent: var(--copper); background: var(--bg); color: var(--fg); }
+/* Logo on dark surfaces (Logo.astro): the dark-green "Garden" and black "Since 2006" turn ivory; the greens stay. */
+.t-night, .t-green, .t-aubergine, .t-ink { --lg-garden: #f4ede6; --lg-since: #f4ede6; }
+.t-light, .t-ivory, .t-mist { --lg-garden: #005E3B; --lg-since: #000; }
+.t-green { --lg-defence: #f4ede6; } /* green "Defence" would sink into the green surface */
 
 /* ---------------------------------------------------------------- layout */
 .wrap { width: 100%; max-width: var(--max); margin-inline: auto; padding-inline: var(--gutter); }

@@ -6,7 +6,7 @@ seoTitle: "Terms & Conditions | Defence Garden"
 runtimeTitle: "Terms & Conditions | Defence Garden"
 description: "Read the terms and conditions for the Defence Garden website and mobile application."
 icon: "file-text"
-source: "Old site assets/Legal-DeVFtU1e.js (verbatim; interpolations resolved: company name, email, sales phone +91 99276 69955, office address + \", India\"). Rendered page checked 2026-10-12."
+source: "Old site assets/Legal-DeVFtU1e.js (verbatim; interpolations resolved: company name, email, phone, office address + \", India\"; contact details updated to the owner's current number and email on 2026-10-15). Rendered page checked 2026-10-12."
 ---
 
 # Terms & Conditions
@@ -53,7 +53,7 @@ These Terms are governed by the laws of India. Any dispute arising from the Serv
 
 ## 7. Contact
 
-Questions about these Terms can be sent to defencegarden009@gmail.com or +91 99276 69955, or to our office at VADHEH, Shamli Rd, Shamli, Mundetkalan, Uttar Pradesh 247776, India.
+Questions about these Terms can be sent to info@defencegarden.com or +91 95210 18879, or to our office at VADHEH, Shamli Rd, Shamli, Mundetkalan, Uttar Pradesh 247776, India.
 
 ---
 
@@ -61,8 +61,8 @@ Questions about these Terms can be sent to defencegarden009@gmail.com or +91 992
 
 Defence Garden · VADHEH, Shamli Rd, Shamli, Mundetkalan, Uttar Pradesh 247776, India
 
-- [defencegarden009@gmail.com](mailto:defencegarden009@gmail.com)
-- [+91 99276 69955](tel:+919927669955)
+- [info@defencegarden.com](mailto:info@defencegarden.com)
+- [+91 95210 18879](tel:+919521018879)
 
 <!-- Links to the other policies (shown as chips at the bottom of the old page) -->
 - [Privacy Policy](/privacy-policy)

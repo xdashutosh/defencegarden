@@ -408,13 +408,13 @@
     ],
     "contactRow": [
       {
-        "text": "+91 99276 69955",
-        "href": "tel:+919927669955",
+        "text": "+91 95210 18879",
+        "href": "tel:+919521018879",
         "icon": "phone"
       },
       {
-        "text": "defencegarden009@gmail.com",
-        "href": "mailto:defencegarden009@gmail.com",
+        "text": "info@defencegarden.com",
+        "href": "mailto:info@defencegarden.com",
         "icon": "mail"
       }
     ]

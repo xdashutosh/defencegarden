@@ -40,7 +40,8 @@ if (entry) {
   const natural = (a: string, b: string) => a.localeCompare(b, 'en', { numeric: true, sensitivity: 'base' });
   const labels = [...new Set((data.plots || []).map((pl: any) => String(pl.label || pl.id)))].sort(natural as any) as string[];
   const example = (data.plots || []).map((pl: any) => pl.id).find((id: string) => /^[A-Z]-\d{2}$/.test(id)) || labels[0];
-  const api = (import.meta.env.PUBLIC_DG_API_BASE || bm.api || 'https://rivergreenbackend.onrender.com/api').replace(/\/+$/, '');
+  // Same-origin proxy (vercel.json rewrites /api-proxy/* to bm.api, the real backend); PUBLIC_DG_API_BASE overrides.
+  const api = (import.meta.env.PUBLIC_DG_API_BASE || '/api-proxy').replace(/\/+$/, '');
   const mapStrings = sharedProjectData?.detailPage?.map || {};
   view = {
     id: data.id,

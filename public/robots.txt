@@ -2,6 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /api/
+Disallow: /api-proxy/
 Disallow: /auth/
 Disallow: /verify-receipt
 Disallow: /booking/
@@ -11,6 +12,7 @@ User-agent: Googlebot
 Allow: /
 Disallow: /admin/
 Disallow: /api/
+Disallow: /api-proxy/
 Disallow: /auth/
 Disallow: /verify-receipt
 Disallow: /booking/
@@ -19,6 +21,7 @@ User-agent: Bingbot
 Allow: /
 Disallow: /admin/
 Disallow: /api/
+Disallow: /api-proxy/
 Disallow: /auth/
 Disallow: /verify-receipt
 Disallow: /booking/
@@ -27,6 +30,7 @@ User-agent: OAI-SearchBot
 Allow: /
 Disallow: /admin/
 Disallow: /api/
+Disallow: /api-proxy/
 Disallow: /auth/
 Disallow: /verify-receipt
 Disallow: /booking/

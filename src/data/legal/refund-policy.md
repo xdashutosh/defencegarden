@@ -6,7 +6,7 @@ seoTitle: "Refund Policy | Defence Garden"
 runtimeTitle: "Refund & Cancellation Policy | Defence Garden"
 description: "Read the Defence Garden refund and cancellation policy."
 icon: "receipt-text"
-source: "Old site assets/Legal-DeVFtU1e.js (verbatim; interpolations resolved: company name, email, sales phone +91 99276 69955, office address + \", India\"). Rendered page checked 2026-10-12."
+source: "Old site assets/Legal-DeVFtU1e.js (verbatim; interpolations resolved: company name, email, phone, office address + \", India\"; contact details updated to the owner's current number and email on 2026-10-15). Rendered page checked 2026-10-12."
 ---
 
 # Refund & Cancellation Policy
@@ -35,7 +35,7 @@ Free site visits can be rescheduled or cancelled at any time by calling or messa
 
 ## 4. Contact for Refunds
 
-For any refund or cancellation query, contact defencegarden009@gmail.com or +91 99276 69955, or visit our office at VADHEH, Shamli Rd, Shamli, Mundetkalan, Uttar Pradesh 247776, India.
+For any refund or cancellation query, contact info@defencegarden.com or +91 95210 18879, or visit our office at VADHEH, Shamli Rd, Shamli, Mundetkalan, Uttar Pradesh 247776, India.
 
 ---
 
@@ -43,8 +43,8 @@ For any refund or cancellation query, contact defencegarden009@gmail.com or +91 
 
 Defence Garden · VADHEH, Shamli Rd, Shamli, Mundetkalan, Uttar Pradesh 247776, India
 
-- [defencegarden009@gmail.com](mailto:defencegarden009@gmail.com)
-- [+91 99276 69955](tel:+919927669955)
+- [info@defencegarden.com](mailto:info@defencegarden.com)
+- [+91 95210 18879](tel:+919521018879)
 
 <!-- Links to the other policies (shown as chips at the bottom of the old page) -->
 - [Privacy Policy](/privacy-policy)

@@ -5,6 +5,9 @@
 //   [data-fh-media]   full-screen media layer clipped to the probe rect (contains <img>/<video>), [data-fh-shade] inside
 //   [data-fh-ui]      wrapper faded out on scroll; [data-fh-line] marquee words, [data-fh-sub], [data-fh-note], [data-fh-fade]
 //   [data-fh-overlay] title shown once the frame is full screen
+//   [data-fh-beat="a,b"] (instead of the overlay) story beats over a scroll-scrubbed film, each visible between
+//                     fractions a and b of the section's scroll; [data-fh-expand] = fraction used to grow the frame
+//   [data-fh-inner]   optional wrapper scaled 1.3 → 1 (poster + scrubbed <video>, see scrubVideo.js)
 // First visit: the preloader (src/scripts/chrome/preloader.js) morphs its last image onto the probe rect and hands
 // over, so the intro here does not reopen the frame. Barba arrivals open the frame from its centre instead.
 import { gsap, SplitText, reduced } from '../core/gsap.js';
@@ -24,7 +27,9 @@ register({
   init(sec) {
     const media = sec.querySelector('[data-fh-media]');
     const probe = sec.querySelector('[data-fh-probe]');
-    const inner = media?.querySelector('img, video');
+    const inner = media?.querySelector('[data-fh-inner]') || media?.querySelector('img, video');
+    const beats = [...sec.querySelectorAll('[data-fh-beat]')];
+    const exp = Math.min(1, Math.max(0.05, parseFloat(sec.dataset.fhExpand || '1') || 1));
     const shade = sec.querySelector('[data-fh-shade]');
     const ui = sec.querySelector('[data-fh-ui]');
     const overlay = sec.querySelector('[data-fh-overlay]');
@@ -44,11 +49,21 @@ register({
       scrollTrigger: { trigger: sec, start: 'top top', end: 'bottom bottom', scrub: 0.7, invalidateOnRefresh: true },
       defaults: { ease: 'none' },
     });
-    tl.fromTo(media, { clipPath: () => frameInset() }, { clipPath: 'inset(0px 0px 0px 0px)', duration: 1 }, 0);
-    if (inner) tl.fromTo(inner, { scale: 1.3 }, { scale: 1, duration: 1 }, 0);
-    if (shade) tl.fromTo(shade, { opacity: 0 }, { opacity: 1, duration: 0.5 }, 0.3);
-    if (ui) tl.fromTo(ui, { autoAlpha: 1 }, { autoAlpha: 0, duration: 0.3 }, 0.05);
-    if (overlay) tl.fromTo(overlay, { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.3 }, 0.7);
+    // timeline length is 1 = the whole section; the frame grows over the first `exp` of it
+    tl.to({}, { duration: 1 }, 0);
+    tl.fromTo(media, { clipPath: () => frameInset() }, { clipPath: 'inset(0px 0px 0px 0px)', duration: exp }, 0);
+    if (inner) tl.fromTo(inner, { scale: 1.3 }, { scale: 1, duration: exp }, 0);
+    if (shade) tl.fromTo(shade, { opacity: 0 }, { opacity: 1, duration: 0.5 * exp }, 0.3 * exp);
+    if (ui) tl.fromTo(ui, { autoAlpha: 1 }, { autoAlpha: 0, duration: 0.3 * exp }, 0.05 * exp);
+    if (overlay) tl.fromTo(overlay, { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.3 * exp }, 0.7 * exp);
+    // story beats: rise in at a, drift out by b (a beat ending at 1 stays up to the end)
+    beats.forEach((b) => {
+      const [a, z] = (b.dataset.fhBeat || '0,1').split(',').map(Number);
+      const span = Math.max(0.04, z - a), io = Math.min(0.07, span * 0.3);
+      gsap.set(b, { autoAlpha: 0 });
+      tl.fromTo(b, { autoAlpha: 0, y: 48 }, { autoAlpha: 1, y: 0, duration: io, ease: 'power2.out' }, a);
+      if (z < 0.999) tl.fromTo(b, { autoAlpha: 1, y: 0 }, { autoAlpha: 0, y: -48, duration: io, ease: 'power2.in', immediateRender: false }, z - io);
+    });
 
     // intro (realevate order): marquee rises, subtitle lines unmask, label box draws, small labels fade
     let split = null;

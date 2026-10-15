@@ -1,0 +1,8 @@
+# Files the Vercel CLI (`npx vercel`) must not upload. The build runs on Vercel (npm ci + npm run build),
+# so local build output, caches, env files and the Hostinger fallback are never needed there.
+# (node_modules, .vercel, .git and .DS_Store are already skipped by Vercel's default ignore list.)
+/dist
+/.astro
+/deploy
+.env
+.env.*

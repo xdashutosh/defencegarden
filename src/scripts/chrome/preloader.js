@@ -14,7 +14,6 @@ const T = { imageDelay: 0.5, reveal: 1.5, counterEnter: 0.85, counterTick: 0.6, 
 const STEPS = [27, 42, 68, 92, 99];
 
 const rectInset = (r) => `inset(${r.top}px ${innerWidth - r.right}px ${innerHeight - r.bottom}px ${r.left}px)`;
-const pointInset = (r) => { const cx = r.left + r.width / 2, cy = r.top + r.height / 2; return `inset(${cy}px ${innerWidth - cx}px ${innerHeight - cy}px ${cx}px)`; };
 
 function loaded(imgs, timeout = 6000) {
   return Promise.race([
@@ -72,8 +71,22 @@ export function runPreloader() {
           .fromTo(f.querySelector('img'), { scale: 1.5 }, { scale: 1, duration: T.reveal, ease: 'power4.out' }, at);
         if (i > 0) tl.call(() => setCount(STEPS[Math.min(i, STEPS.length - 1)]), null, at);
       });
-      // final frame: full-screen layer clipped to the square, opening from its centre like the others
-      tl.fromTo(final, { clipPath: pointInset(square) }, { clipPath: rectInset(square), duration: T.reveal, ease: 'power4.out' }, R)
+      // final frame: full-screen layer clipped to the square, opening from its centre like the others, then gliding
+      // onto the hero frame. The glide starts while the opening is still easing out, so both drive ONE clip rect
+      // (two clipPath tweens would fight: the opening, which ends later, snapped the frame back to the square).
+      const clip = { open: 0, glide: 0 };
+      let target = null;
+      const drawFinal = () => {
+        const hw = (square.width / 2) * clip.open, hh = (square.height / 2) * clip.open;
+        const cx = square.left + square.width / 2, cy = square.top + square.height / 2;
+        let l = cx - hw, t = cy - hh, r = cx + hw, b = cy + hh;
+        if (target && clip.glide > 0) {
+          const g = clip.glide;
+          l += (target.left - l) * g; t += (target.top - t) * g; r += (target.right - r) * g; b += (target.bottom - b) * g;
+        }
+        final.style.clipPath = rectInset({ left: l, top: t, right: r, bottom: b }); // explicit 4 values, see below
+      };
+      tl.fromTo(clip, { open: 0 }, { open: 1, duration: T.reveal, ease: 'power4.out', onUpdate: drawFinal }, R)
         .fromTo(finalImg, { scale: 1.3 * 1.5 }, { scale: 1.3, duration: T.reveal, ease: 'power4.out' }, R)
         .call(() => setCount(STEPS[STEPS.length - 1]), null, R)
         .to(digits, { yPercent: -100, duration: T.counterExit, ease: 'power3.in' }, R)
@@ -82,8 +95,13 @@ export function runPreloader() {
         .fromTo(bg, { clipPath: 'inset(0% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 100% 0%)', duration: T.wipe, ease: wipeEase, immediateRender: false }, A)
         .call(() => resolve(), null, A)
         .set(box, { autoAlpha: 0 }, K);
-      // explicit 4-value start: the browser normalises a symmetric inset() to 2 values, which breaks interpolation
-      if (probe) tl.fromTo(final, { clipPath: rectInset(square) }, { clipPath: () => rectInset(probe.getBoundingClientRect()), duration: T.morph, ease: 'power2.inOut', immediateRender: false }, K);
+      // glide: blends the (still opening) square toward the hero frame's rect, read when the glide starts
+      if (probe) {
+        tl.fromTo(clip, { glide: 0 }, {
+          glide: 1, duration: T.morph, ease: 'power2.inOut', immediateRender: false,
+          onStart: () => { target = probe.getBoundingClientRect(); }, onUpdate: drawFinal,
+        }, K);
+      }
       if (hdr) tl.fromTo(hdr, { yPercent: -120, visibility: 'visible' }, { yPercent: 0, duration: 1, ease: 'power3.out', clearProps: 'transform' }, A + 0.45);
       if (dock) tl.fromTo(dock, { y: 30, autoAlpha: 0, visibility: 'visible' }, { y: 0, autoAlpha: 1, duration: 0.9, ease: 'power3.out', clearProps: 'transform,opacity,visibility' }, A + 0.5);
     });

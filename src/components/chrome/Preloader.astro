@@ -6,7 +6,7 @@
 //  · the last image is the hero film's first frame on a full-screen layer clipped to the square; the counter rolls
 //    away, the navy wipes off bottom-to-top and the frame glides onto the hero's frame — one continuous image.
 // Script: src/scripts/chrome/preloader.js. Skipped for reduced motion.
-import { Image } from 'astro:assets';
+import { getImage } from 'astro:assets';
 import Img from '../ui/Img.astro';
 import { visionVideo } from '../../lib/vision.js';
 import { media } from '../../lib/media.js';
@@ -21,6 +21,9 @@ const frames = [
 const film = visionVideo('hero-film');
 const finalImage = film?.poster || media('about.r3').image;
 const finalWidth = Math.min(1920, Number(film?.width) || 1600);
+// same files and portrait rule as the hero's scrub poster, so the hand-over lands on identical pixels
+const finalDesk = await getImage({ src: finalImage, width: finalWidth, format: 'webp', quality: film?.poster ? 80 : 78 });
+const finalPortrait = film?.posterMobile ? await getImage({ src: film.posterMobile, width: 720, format: 'webp', quality: 80 }) : null;
 const digits = Array.from({ length: 10 }, (_, i) => i);
 ---
 <div class="pre" data-preloader aria-hidden="true">
@@ -33,7 +36,10 @@ const digits = Array.from({ length: 10 }, (_, i) => i);
     ))}
   </div>
   <div class="pre__final" data-pre-final>
-    <Image src={finalImage} alt="" widths={[960, 1440, finalWidth]} sizes="100vw" loading="eager" fetchpriority="high" format="webp" quality={78} />
+    <picture>
+      {finalPortrait && <source media="(orientation: portrait)" srcset={finalPortrait.src} />}
+      <img src={finalDesk.src} alt="" loading="eager" fetchpriority="high" decoding="async" />
+    </picture>
   </div>
   <div class="pre__counter" aria-hidden="true">
     <div class="pre__mask" data-pre-mask>

@@ -1,0 +1,14 @@
+# Dependencies and build output (recreated by `npm ci` and `npm run build`)
+node_modules/
+dist/
+.astro/
+
+# Vercel CLI link / local build output
+.vercel/
+
+# Environment files (set PUBLIC_DG_API_BASE etc. in Vercel → Settings → Environment Variables)
+.env
+.env.*
+
+# macOS
+.DS_Store

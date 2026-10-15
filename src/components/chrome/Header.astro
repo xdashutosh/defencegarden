@@ -1,8 +1,12 @@
 ---
 import Logo from './Logo.astro';
 import Icon from '../ui/Icon.astro';
+
+interface Props { tone?: 'light' | 'dark' }
+// the page's initial tone, so the first paint already has the right logo colours (headerTone.js takes over on scroll)
+const { tone = 'dark' } = Astro.props;
 ---
-<header class="hdr" data-hdr data-tone="dark">
+<header class="hdr" data-hdr data-tone={tone}>
   <div class="hdr__bar">
     <div class="hdr__left">
       <button class="hdr__menu" type="button" data-menu-open aria-expanded="false" aria-controls="site-menu">
@@ -27,8 +31,8 @@ import Icon from '../ui/Icon.astro';
 </div>
 
 <style>
-  .hdr { position: fixed; inset: 0 0 auto 0; z-index: 60; color: var(--hdr-fg, #f4ede6); pointer-events: none; transition: color .5s ease; }
-  .hdr[data-tone='light'] { --hdr-fg: var(--navy); }
+  .hdr { position: fixed; inset: 0 0 auto 0; z-index: 60; color: var(--hdr-fg, #f4ede6); pointer-events: none; transition: color .5s ease; --lg-garden: #f4ede6; --lg-since: #f4ede6; }
+  .hdr[data-tone='light'] { --hdr-fg: var(--navy); --lg-garden: #005E3B; --lg-since: #000; }
   .hdr__bar { height: var(--header-h); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding-inline: var(--gutter); }
   .hdr__bar > * { pointer-events: auto; }
   .hdr__left, .hdr__right { display: flex; align-items: center; gap: clamp(16px, 2vw, 34px); font-size: 14px; font-weight: 500; }
@@ -40,14 +44,18 @@ import Icon from '../ui/Icon.astro';
   .hdr__burger i:first-child { top: 0; }
   .hdr__burger i:last-child { bottom: 0; width: 64%; }
   .hdr__menu:hover .hdr__burger i:last-child { width: 100%; }
-  .hdr__logo { color: inherit; }
+  .hdr__logo { color: inherit; display: block; --logo-h: clamp(36px, 3.1vw, 46px); }
+  /* over photos and film the reversed logo gets a soft shadow; it disappears on solid navy */
+  .hdr__logo :global(.logo) { transition: filter .5s ease; filter: drop-shadow(0 1px 10px rgba(6, 26, 58, .4)); }
+  .hdr[data-tone='light'] .hdr__logo :global(.logo) { filter: none; }
   .hdr__cta { height: 38px; padding: 0 18px; font-size: 13px; }
   .hdr__cta::before { background: currentColor; }
   .hdr__cta:hover { color: var(--hdr-bg, var(--navy-deep)); }
   .hdr[data-tone='light'] .hdr__cta:hover { color: #fff; }
   .hdr.is-hidden .hdr__bar { transform: translateY(-110%); }
   .hdr__bar { transition: transform .7s var(--ease-out); }
-  html.menu-open .hdr { --hdr-fg: #f4ede6; }
+  .hdr[data-surface='green'], .hdr[data-surface='media'] { --lg-defence: #f4ede6; }
+  html.menu-open .hdr { --hdr-fg: #f4ede6; --lg-garden: #f4ede6; --lg-since: #f4ede6; --lg-defence: #01A859; }
   html.menu-open .hdr__burger i:first-child { transform: translateY(4.25px) rotate(20deg); }
   html.menu-open .hdr__burger i:last-child { width: 100%; transform: translateY(-4.25px) rotate(-20deg); }
 
@@ -59,9 +67,13 @@ import Icon from '../ui/Icon.astro';
   html.menu-open .dock { opacity: 0; pointer-events: none; }
   @media (max-width: 860px) {
     .hdr__bar { grid-template-columns: auto 1fr auto; }
-    .hdr__logo { justify-self: center; }
+    .hdr__logo { justify-self: center; --logo-h: 32px; }
     .hdr__menu-label { display: none; }
     .dock__btn span { display: none; }
     .dock__btn { width: 44px; padding: 0; justify-content: center; }
+  }
+  /* phones ≥380px: the logo centred on the screen (the side columns still clear the burger and the Enquire pill) */
+  @media (min-width: 380px) and (max-width: 860px) {
+    .hdr__bar { grid-template-columns: 1fr auto 1fr; }
   }
 </style>

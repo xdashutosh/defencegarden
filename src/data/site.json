@@ -16,41 +16,43 @@
       "Western Uttar Pradesh"
     ],
     "logo": {
-      "oldUrl": "https://defencegarden.com/assets/logo-BU3KV-m9.png",
-      "key": "brand.logo",
-      "src": "src/assets/media/brand/logo.png",
+      "legacyKey": "brand.logo",
+      "src": "public/brand/defence-garden-logo.svg",
+      "url": "/brand/defence-garden-logo.svg",
+      "png": "/brand/defence-garden-logo.png",
+      "reverse": "/brand/defence-garden-logo-reverse.svg",
+      "mark": "/brand/defence-garden-mark.svg",
       "alt": "Defence Garden",
-      "note": "Green 'Defence Garden' script wordmark with a leaf over the G (PNG, transparent, 1280x268). Local file: src/assets/media/brand/logo.png (see src). For plum/navy backgrounds make a cream monochrome version with CSS mask-image, do not recolour the file."
+      "colors": {
+        "defence": "#01A859",
+        "garden": "#005E3B",
+        "leaf": "#A8CF46",
+        "since": "#000000"
+      },
+      "note": "Owner's master artwork (CorelDRAW PDF '12.10.25 3rd Untitled-1.pdf', supplied 2026-10-15), converted to exact vectors. Rendered inline by src/components/chrome/Logo.astro (part colours via CSS variables: dark surfaces turn 'Garden' and 'Since 2006' ivory); standalone files in public/brand/ (colour + reverse SVG, 1600px PNG, leaf mark). The old site's raster logo (src/assets/media/brand/logo.png) is kept for reference only."
     },
     "favicons": [
       {
         "rel": "icon",
-        "type": "image/png",
-        "sizes": "64x64",
-        "oldUrl": "https://defencegarden.com/favicon-64.png",
-        "key": "public.favicon-64",
-        "src": "public/favicon-64.png",
-        "url": "/favicon-64.png"
+        "sizes": "32x32",
+        "url": "/favicon.ico"
       },
       {
         "rel": "icon",
-        "type": "image/png",
-        "sizes": "192x192",
-        "oldUrl": "https://defencegarden.com/favicon-192.png",
-        "key": "public.favicon-192",
-        "src": "public/favicon-192.png",
-        "url": "/favicon-192.png"
+        "type": "image/svg+xml",
+        "url": "/favicon.svg"
       },
       {
         "rel": "apple-touch-icon",
         "sizes": "180x180",
-        "oldUrl": "https://defencegarden.com/apple-touch-icon.png",
-        "key": "public.apple-touch-icon",
-        "src": "public/apple-touch-icon.png",
         "url": "/apple-touch-icon.png"
+      },
+      {
+        "rel": "manifest",
+        "url": "/site.webmanifest"
       }
     ],
-    "faviconNote": "Favicons — Defence Garden leaf emblem",
+    "faviconNote": "Favicons — the logo's leaf on a dark-green tile, generated from the vector logo (2026-10-15): favicon.ico (16/32/48), favicon.svg, apple-touch-icon (180, opaque), site.webmanifest icons (192, 512, maskable 512). favicon-32/64/192.png stay for old links.",
     "themeColor": "#0b0906",
     "socialImage": {
       "oldUrl": "https://defencegarden.com/og-image.jpg",
@@ -169,20 +171,20 @@
     "phones": [
       {
         "id": "office",
-        "display": "+91 9389925497",
-        "tel": "tel:+919389925497",
-        "e164": "+919389925497",
+        "display": "+91 95210 18879",
+        "tel": "tel:+919521018879",
+        "e164": "+919521018879",
         "usedIn": [
-          "Footer 'Call Us' card",
-          "About page closing CTA row",
+          "Contact lists (footer, menu, Contact page, About CTA) — merged with 'sales' while the numbers are equal",
           "JSON-LD Organization.telephone"
-        ]
+        ],
+        "note": "Owner's contact number (instruction 2026-10-15): +91 9521018879 for office, sales and WhatsApp. It replaces the old site's separate office and sales numbers."
       },
       {
         "id": "sales",
-        "display": "+91 99276 69955",
-        "tel": "tel:+919927669955",
-        "e164": "+919927669955",
+        "display": "+91 95210 18879",
+        "tel": "tel:+919521018879",
+        "e164": "+919521018879",
         "usedIn": [
           "Contact page 'Call Us' card",
           "Project detail 'Interested in this property?' card",
@@ -192,19 +194,19 @@
       }
     ],
     "whatsapp": {
-      "number": "919927669955",
-      "display": "+91 99276 69955",
-      "url": "https://wa.me/919927669955",
+      "number": "919521018879",
+      "display": "+91 95210 18879",
+      "url": "https://wa.me/919521018879",
       "chatAriaLabel": "Chat on WhatsApp",
       "enquiryMessage": {
         "template": "*New Inquiry — Defence Garden*\n\n*Name:* {name}\n*Phone:* {phone}\n*Message:* {message}",
-        "urlPattern": "https://wa.me/919927669955?text=*New Inquiry — Defence Garden*%0A%0A*Name:* {encodeURIComponent(name)}%0A*Phone:* {encodeURIComponent(phone)}%0A*Message:* {encodeURIComponent(message)}",
+        "urlPattern": "https://wa.me/919521018879?text=*New Inquiry — Defence Garden*%0A%0A*Name:* {encodeURIComponent(name)}%0A*Phone:* {encodeURIComponent(phone)}%0A*Message:* {encodeURIComponent(message)}",
         "note": "Contact form does not POST anywhere: on submit it opens this wa.me URL in a new tab, shows 'Opening WhatsApp…' for 4 s."
       }
     },
     "email": {
-      "address": "defencegarden009@gmail.com",
-      "href": "mailto:defencegarden009@gmail.com"
+      "address": "info@defencegarden.com",
+      "href": "mailto:info@defencegarden.com"
     },
     "hours": {
       "label": "Working Hours",
@@ -457,14 +459,14 @@
     "contactCards": [
       {
         "label": "Call Us",
-        "value": "+91 9389925497",
-        "href": "tel:+919389925497",
+        "value": "+91 95210 18879",
+        "href": "tel:+919521018879",
         "icon": "phone"
       },
       {
         "label": "Email Us",
-        "value": "defencegarden009@gmail.com",
-        "href": "mailto:defencegarden009@gmail.com",
+        "value": "info@defencegarden.com",
+        "href": "mailto:info@defencegarden.com",
         "icon": "mail"
       },
       {
@@ -644,7 +646,7 @@
       "purpose": "Link to the company's separate sales web app (hosted on Vercel; 'rg' = RiverGreen). The site gives no further description; it is a staff/agent tool rather than visitor content."
     },
     {
-      "url": "https://wa.me/919927669955",
+      "url": "https://wa.me/919521018879",
       "where": "Contact page (form submit + green WhatsApp button)",
       "labels": [
         "Chat on WhatsApp",
@@ -855,11 +857,11 @@
         "@id": "https://defencegarden.com/#organization",
         "name": "Defence Garden",
         "url": "https://defencegarden.com/",
-        "logo": "https://defencegarden.com/favicon-192.png",
+        "logo": "https://defencegarden.com/brand/defence-garden-logo.png",
         "image": "https://defencegarden.com/og-image.jpg",
         "description": "Defence Garden develops premium plotted residential townships across Shamli, Meerut and Budhana in Western Uttar Pradesh.",
-        "telephone": "+91 9389925497",
-        "email": "defencegarden009@gmail.com",
+        "telephone": "+91 95210 18879",
+        "email": "info@defencegarden.com",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "VADHEH, Shamli Rd, Mundetkalan",

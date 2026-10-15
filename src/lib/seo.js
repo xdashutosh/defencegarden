@@ -15,7 +15,7 @@
 // Barba container as <script type="application/json" data-head>; src/lib/head-sync.js swaps them on navigation.
 // =============================================================================
 
-import { site, absoluteUrl, breadcrumbsFor } from './site.js';
+import { site, absoluteUrl, breadcrumbsFor, phone, email } from './site.js';
 
 const LD = site.seo.jsonLd;
 
@@ -31,7 +31,8 @@ function clean(node) {
   return out;
 }
 
-const ORG = clean(LD.organization);
+// telephone/email always follow site.contact (the copies in site.json seo.jsonLd are only a fallback)
+const ORG = clean({ ...LD.organization, telephone: phone('office').display, email: email.address });
 const PERSON = clean(LD.person);
 const WEBSITE = clean(LD.website);
 

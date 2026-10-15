@@ -1,14 +1,18 @@
 ---
-// /booking/track/<id> — ONE static page for every booking id (public/.htaccess rule 4 rewrites
-// /booking/track/<id> here; the dev server does the same). The id is read from location.pathname by
+// /booking/track/<id> — ONE static page for every booking id (the vercel.json rewrite
+// /booking/track/:id → /booking/track/index.html serves it while the URL keeps the id; `npm run dev` and
+// `npm run preview` do the same, see astro.config.mjs). The id is read from location.pathname by
 // src/scripts/booking/track.js (mounted on [data-booking-track] via src/scripts/modules/plotmap.js).
-// Private utility: noindex, nofollow, referrer no-referrer (src/lib/seo.js adds it for utility paths).
+// Private utility: noindex, nofollow, referrer no-referrer (src/lib/seo.js adds it for utility paths; vercel.json
+// also sends X-Robots-Tag and Referrer-Policy headers for /booking/*).
 import Base from '../../../layouts/Base.astro';
 import Icon from '../../../components/ui/Icon.astro';
 import Ornament from '../../../components/ui/Ornament.astro';
-import { getProject, whatsappNumber, phone, telHref, site } from '../../../lib/site.js';
+import { whatsappNumber, phone, telHref, site } from '../../../lib/site.js';
 
-const api = (import.meta.env.PUBLIC_DG_API_BASE || getProject(1)?.bookingMap?.api || 'https://rivergreenbackend.onrender.com/api').replace(/\/+$/, '');
+// API base: the same-origin proxy '/api-proxy' (vercel.json rewrites /api-proxy/bookings/track/* to the backend;
+// astro.config.mjs proxies it in dev/preview). PUBLIC_DG_API_BASE overrides it at build time.
+const api = (import.meta.env.PUBLIC_DG_API_BASE || '/api-proxy').replace(/\/+$/, '');
 const sales = phone('sales');
 const signatory = 'RiverGreen Sales';
 const steps = [

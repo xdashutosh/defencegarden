@@ -4,18 +4,24 @@ import Img from '../ui/Img.astro';
 import Icon from '../ui/Icon.astro';
 import Ornament from '../ui/Ornament.astro';
 import contact from '../../data/pages/contact.json';
-import { phone, whatsappUrl, email, office, hours, site } from '../../lib/site.js';
+import { contactPhones, whatsappUrl, email, office, hours, site } from '../../lib/site.js';
 
 const h = contact.hero;
 const accent = h.heading.accent; // 'forever address'
 const [pre, post] = h.heading.text.split(accent);
-const sales = phone('sales');
-const officeNo = phone('office');
 const wa = site.contact.whatsapp;
+const digits = (n) => String(n).replace(/\D/g, '');
+const calls = contactPhones();
+const waOnCall = calls.some((p) => digits(p.e164) === digits(wa.number));
 const blocks = [
-  { label: 'Call us · Sales', value: sales.display, href: sales.tel, icon: 'phone' },
-  { label: 'Office', value: officeNo.display, href: officeNo.tel, icon: 'phone' },
-  { label: 'WhatsApp', value: wa.display, href: whatsappUrl(), icon: 'whatsapp', external: true, aria: wa.chatAriaLabel },
+  ...calls.map((p) => {
+    const label = p.label === 'Call' ? 'Call us' : `Call us · ${p.label}`;
+    // the WhatsApp number is this one: a single block with a WhatsApp action instead of a second block
+    return waOnCall && digits(p.e164) === digits(wa.number)
+      ? { label: `${label} / WhatsApp`, value: p.display, href: p.tel, icon: 'phone', cta: wa.chatAriaLabel || 'Chat on WhatsApp', ctaHref: whatsappUrl() }
+      : { label, value: p.display, href: p.tel, icon: 'phone' };
+  }),
+  ...(waOnCall ? [] : [{ label: 'WhatsApp', value: wa.display, href: whatsappUrl(), icon: 'whatsapp', external: true, aria: wa.chatAriaLabel }]),
   { label: 'Email us', value: email.address, href: email.href, icon: 'mail' },
   { label: office.label, value: office.display, href: office.mapsUrl, icon: 'pin', external: true, cta: office.mapsLinkLabel },
   { label: hours.label, value: hours.display, icon: 'clock' },
@@ -39,7 +45,7 @@ const blocks = [
             {b.href
               ? <a class="chr__value" href={b.href} target={b.external ? '_blank' : undefined} rel={b.external ? 'noopener' : undefined} aria-label={b.aria}><span class="link-line">{b.value}</span>{b.cta ? '' : <Icon name="arrow-up-right" class="ico chr__go" />}</a>
               : <p class="chr__value">{b.value}</p>}
-            {b.cta && <a class="eyebrow link-line accent chr__cta" href={b.href} target="_blank" rel="noopener"><span>{b.cta}</span><Icon name="arrow-up-right" class="ico" /></a>}
+            {b.cta && <a class="eyebrow link-line accent chr__cta" href={b.ctaHref || b.href} target="_blank" rel="noopener"><span>{b.cta}</span><Icon name="arrow-up-right" class="ico" /></a>}
           </li>
         ))}
       </ul>
@@ -66,6 +72,7 @@ const blocks = [
   .chr__blocks { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); }
   .chr__block { display: grid; gap: 12px; align-content: start; padding: clamp(20px, 2.2vw, 32px) clamp(16px, 2vw, 28px) clamp(22px, 2.4vw, 34px) 0; border-bottom: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); }
   .chr__block:nth-child(even) { padding-left: clamp(16px, 2vw, 28px); border-left: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); }
+  .chr__block:last-child:nth-child(odd) { grid-column: 1 / -1; }
   .chr__label { display: inline-flex; align-items: center; gap: 10px; }
   .chr__ico { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent); color: var(--accent); }
   .chr__ico :global(.ico) { width: 13px; height: 13px; }

@@ -3,6 +3,7 @@
 // only <main data-barba="container"> is swapped. Page <head> data is mirrored inside the container
 // (<script type="application/json" data-head>) so src/lib/head-sync.js can update <head> on navigation.
 import '../styles/global.css';
+import Sky from '../components/chrome/Sky.astro';
 import Header from '../components/chrome/Header.astro';
 import Menu from '../components/chrome/Menu.astro';
 import Footer from '../components/chrome/Footer.astro';
@@ -47,11 +48,12 @@ const favicons = site.brand.favicons || [];
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     {preloader && <Preloader />}
-    <Header />
+    <Header tone={tone} />
     <Menu />
     <div data-barba="wrapper">
       <main id="main" data-barba="container" data-barba-namespace={namespace} data-tone={tone} tabindex="-1">
         <script type="application/json" data-head set:html={safeJson(head)} />
+        <Sky />
         <slot />
         {footer && <Footer />}
       </main>

@@ -2,7 +2,7 @@
 import Img from '../ui/Img.astro';
 import Icon from '../ui/Icon.astro';
 import Ornament from '../ui/Ornament.astro';
-import { site, phone, telHref, email, office, hours } from '../../lib/site.js';
+import { site, contactPhones, email, office, hours } from '../../lib/site.js';
 
 const links = [
   { n: '01', label: 'Home', href: '/', src: 'projects.river-green-society.gallery-11' },
@@ -13,8 +13,6 @@ const links = [
   { n: '06', label: 'Investment', href: '/investment', src: 'about.r4' },
   { n: '07', label: 'Contact', href: '/contact', src: 'projects.defence-garden-phase-2.gallery-03' },
 ];
-const sales = phone('sales');
-const officeNo = phone('office');
 ---
 <div class="menu t-night" id="site-menu" data-menu aria-hidden="true" role="dialog" aria-modal="true" aria-label="Site menu">
   <Ornament variant="fan" class="menu__orn" />
@@ -39,14 +37,12 @@ const officeNo = phone('office');
       ))}
     </div>
     <div class="menu__foot">
-      <div>
-        <p class="eyebrow eyebrow--accent">Sales</p>
-        <a class="menu__contact" href={telHref('sales')}>{sales.display}</a>
-      </div>
-      <div>
-        <p class="eyebrow eyebrow--accent">Office</p>
-        <a class="menu__contact" href={telHref('office')}>{officeNo.display}</a>
-      </div>
+      {contactPhones().map((p) => (
+        <div>
+          <p class="eyebrow eyebrow--accent">{p.label}</p>
+          <a class="menu__contact" href={p.tel}>{p.display}</a>
+        </div>
+      ))}
       <div>
         <p class="eyebrow eyebrow--accent">Write</p>
         <a class="menu__contact" href={email.href}>{email.address}</a>

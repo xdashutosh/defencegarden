@@ -11,7 +11,7 @@ const h = about.hero;
 const intro = h.text.split(' — ')[0].replace(/,?\s*$/, '') + '.';
 const [line1, line2] = h.heading.lines;
 ---
-<section class="ahr t-night" data-header-tone="dark" aria-labelledby="ahr-title">
+<section class="ahr t-night" data-header-tone="dark" data-header-surface="media" aria-labelledby="ahr-title">
   <div class="ahr__media media">
     <Img src={about.leadership.image.key} eager sizes="100vw" widths={[800, 1200, 1600]} alt={about.leadership.image.alt} data-parallax="0.08" />
   </div>

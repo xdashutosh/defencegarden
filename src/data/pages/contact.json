@@ -23,7 +23,7 @@
     ],
     "submit": { "label": "Send via WhatsApp", "busyLabel": "Opening WhatsApp…", "icon": "send" },
     "submitNote": "Opens WhatsApp with your message pre-filled — no forms lost in inboxes.",
-    "behaviour": "No backend. On submit: window.open('https://wa.me/919927669955?text=' + message template from site.json → contact.whatsapp.enquiryMessage), button shows the busy label for 4 s."
+    "behaviour": "No backend. On submit: window.open('https://wa.me/919521018879?text=' + message template from site.json → contact.whatsapp.enquiryMessage), button shows the busy label for 4 s."
   },
 
   "infoCards": [
@@ -36,14 +36,14 @@
       "target": "_blank",
       "icon": "map-pin"
     },
-    { "id": "call", "eyebrow": "Call Us", "text": "+91 99276 69955", "href": "tel:+919927669955", "icon": "phone" },
-    { "id": "email", "eyebrow": "Email Us", "text": "defencegarden009@gmail.com", "href": "mailto:defencegarden009@gmail.com", "icon": "mail" },
+    { "id": "call", "eyebrow": "Call Us", "text": "+91 95210 18879", "href": "tel:+919521018879", "icon": "phone" },
+    { "id": "email", "eyebrow": "Email Us", "text": "info@defencegarden.com", "href": "mailto:info@defencegarden.com", "icon": "mail" },
     {
       "id": "hours",
       "eyebrow": "Working Hours",
       "text": "Mon – Sat · 9 AM – 8 PM",
       "icon": "clock",
-      "whatsappButton": { "href": "https://wa.me/919927669955", "target": "_blank", "ariaLabel": "Chat on WhatsApp", "icon": "message-circle", "color": "#25D366" }
+      "whatsappButton": { "href": "https://wa.me/919521018879", "target": "_blank", "ariaLabel": "Chat on WhatsApp", "icon": "message-circle", "color": "#25D366" }
     }
   ],
 

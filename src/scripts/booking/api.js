@@ -8,11 +8,16 @@
 // is a CORS "simple" GET (no preflight). 15 s timeout, one retry after 2 s on network errors only.
 // Errors are normalised to ApiError { kind: 'network'|'timeout'|'http'|'parse'|'aborted', status, message, body }.
 //
-// CORS (§2.4): today the backend only allows http://localhost:5173, so from defencegarden.com every call
-// fails as a 'network' error. Callers must degrade gracefully.
+// Base URL (§2.4): the backend (https://rivergreenbackend.onrender.com/api) only allows CORS from
+// http://localhost:5173, so the site calls it through the SAME-ORIGIN proxy '/api-proxy': vercel.json rewrites
+// the four read-only paths below to the backend, and astro.config.mjs's vite server/preview proxy does the
+// same for `npm run dev` / `npm run preview`. The base may also be absolute (PUBLIC_DG_API_BASE), e.g. the
+// direct backend URL once it allows CORS. Callers must still degrade gracefully (backend asleep or down).
+// Paths used: /colony-maps/public/site-plots/:site, /bookings/track/:id, /bookings/track/:id/receipt-token,
+// /payments/verify-receipt — keep vercel.json "rewrites" and astro.config.mjs API_PROXY_PATHS in sync.
 // =============================================================================
 
-export const DEFAULT_API = 'https://rivergreenbackend.onrender.com/api';
+export const DEFAULT_API = '/api-proxy';
 
 export class ApiError extends Error {
   constructor(kind, status = 0, message = '', body = null) {
@@ -29,7 +34,7 @@ const sleep = (ms, signal) => new Promise((resolve, reject) => {
   signal?.addEventListener('abort', () => { clearTimeout(t); reject(new ApiError('aborted')); }, { once: true });
 });
 
-/** Base URL from a [data-api] attribute (falls back to the production backend). */
+/** Base URL from a [data-api] attribute (falls back to the same-origin proxy '/api-proxy'). */
 export function apiBase(el) {
   const v = el?.closest?.('[data-api]')?.dataset.api || el?.dataset?.api || DEFAULT_API;
   return String(v).replace(/\/+$/, '');
@@ -67,12 +72,15 @@ async function once(url, { signal, timeout }) {
 
 /**
  * GET {base}{path}?{query} → parsed JSON object.
- * @param {string} base  API base, e.g. https://rivergreenbackend.onrender.com/api
+ * @param {string} base  API base: '/api-proxy' (same-origin, resolved against the page URL) or absolute,
+ *                       e.g. https://rivergreenbackend.onrender.com/api
  * @param {string} path  e.g. /colony-maps/public/site-plots/1
  * @param {{ query?: Record<string,string>, signal?: AbortSignal, timeout?: number, retry?: number }} [opts]
  */
 export async function getJSON(base, path, { query, signal, timeout = 15000, retry = 1 } = {}) {
-  const url = new URL(String(base).replace(/\/+$/, '') + path);
+  // The second argument makes a relative base work (new URL('/api-proxy/…') alone throws); it is ignored when
+  // the base is absolute.
+  const url = new URL(String(base).replace(/\/+$/, '') + path, globalThis.location?.href);
   if (query) for (const [k, v] of Object.entries(query)) if (v != null && v !== '') url.searchParams.set(k, String(v));
   for (let attempt = 0; ; attempt++) {
     try {

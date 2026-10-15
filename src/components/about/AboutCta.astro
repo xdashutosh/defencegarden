@@ -1,15 +1,14 @@
 ---
-// Closing CTA (about.json cta): full-bleed aerial of a real township, deco capitals, office contact row.
+// Closing CTA (about.json cta): full-bleed aerial of a real township, deco capitals, contact row.
 import Img from '../ui/Img.astro';
 import Icon from '../ui/Icon.astro';
 import Ornament from '../ui/Ornament.astro';
 import about from '../../data/pages/about.json';
-import { phone, email, office } from '../../lib/site.js';
+import { contactPhones, email, office } from '../../lib/site.js';
 
 const c = about.cta;
-const officeNo = phone('office');
 const row = [
-  { icon: 'phone', label: 'Office', text: officeNo.display, href: officeNo.tel },
+  ...contactPhones().map((p) => ({ icon: 'phone', label: p.label, text: p.display, href: p.tel })),
   { icon: 'mail', label: 'Email', text: email.address, href: email.href },
   { icon: 'pin', label: office.label, text: office.short, href: office.mapsUrl, external: true },
 ];
@@ -29,7 +28,7 @@ const [a, b] = c.heading.lines;
       <button class="btn btn--copper" type="button" data-enquire data-interest="Site visit"><Icon name="whatsapp" class="ico" /><span>{c.ctas[0].label}</span></button>
       <a class="btn" href={c.ctas[1].href}><span>{c.ctas[1].label}</span><Icon name="arrow-right" class="ico" /></a>
     </div>
-    <ul class="acta__row" data-reveal="fade">
+    <ul class="acta__row" data-reveal="fade" style={`--n:${row.length}`}>
       {row.map((r) => (
         <li>
           <a class="acta__item" href={r.href} target={r.external ? '_blank' : undefined} rel={r.external ? 'noopener' : undefined}>
@@ -53,7 +52,7 @@ const [a, b] = c.heading.lines;
   .acta__accent { color: var(--copper-soft); }
   .acta__text { max-width: 46ch; color: rgba(244,237,230,.88); }
   .acta__ctas { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
-  .acta__row { display: grid; grid-template-columns: repeat(3, auto); justify-content: center; margin-top: clamp(24px, 4vw, 60px); border-top: 1px solid rgba(244,237,230,.18); }
+  .acta__row { display: grid; grid-template-columns: repeat(var(--n, 3), auto); justify-content: center; margin-top: clamp(24px, 4vw, 60px); border-top: 1px solid rgba(244,237,230,.18); }
   .acta__row li + li { border-left: 1px solid rgba(244,237,230,.18); }
   .acta__item { display: flex; align-items: center; gap: 14px; padding: 22px clamp(18px, 2.6vw, 44px) 0; text-align: left; }
   .acta__ico { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(207,143,125,.5); color: var(--copper); flex: none; }

@@ -12,11 +12,12 @@
 //   displayTitle(p)                              unique title: 'Defence Garden, Budhana' / 'Defence Garden, Meerut',
 //                                                plain title otherwise (other-pages §16.2)
 //   projectNumber(p)                             '01' … '10' (zero-padded id, card "№01")
-//   phones.office / phones.sales, phone(which)   { id, display, tel, e164, spaced }   (D26: office in the footer,
-//                                                sales on Contact / CTA modal / WhatsApp)
-//   formatPhone(idOrNumber, { spaced=true })     '+91 93899 25497' (spaced) | '+91 9389925497'
-//   telHref(idOrNumber)                          'tel:+919389925497'
-//   whatsappNumber, whatsappUrl(message?)        SALES WhatsApp, wa.me deep link with ?text= (D26)
+//   phones.office / phones.sales, phone(which)   { id, display, tel, e164, spaced }   (both are the owner's single
+//                                                number since 2026-10-15; the two ids stay so either can change alone)
+//   contactPhones()                              distinct numbers for contact lists ('Call' when office = sales)
+//   formatPhone(idOrNumber, { spaced=true })     '+91 95210 18879' (spaced) | '+91 9521018879'
+//   telHref(idOrNumber)                          'tel:+919521018879'
+//   whatsappNumber, whatsappUrl(message?)        WhatsApp number, wa.me deep link with ?text= (D26)
 //   email, office (main office address), hours
 //   nav                                          desktop (D09), mobile (D10), footer link lists
 //   normalizePath(p), isCurrentPath(href, path), absoluteUrl(p), canonicalFor(p)
@@ -90,7 +91,7 @@ function phoneRecord(p) {
   return { id: p.id, display: p.display, tel: p.tel, e164: p.e164, spaced: spacedIndian(p.e164) };
 }
 
-/** phones.office = +91 9389925497 (footer, About CTA, JSON-LD); phones.sales = +91 99276 69955 (Contact, modal, WhatsApp, legal). */
+/** phones.office (About CTA, contact lists) and phones.sales (calls from CTAs, modal, legal) — both +91 95210 18879. */
 export const phones = Object.freeze(Object.fromEntries(site.contact.phones.map((p) => [p.id, phoneRecord(p)])));
 
 /** phone('office' | 'sales') → { id, display (verbatim site.json), tel, e164, spaced } */
@@ -100,7 +101,23 @@ export function phone(which = 'sales') {
   return p;
 }
 
-/** formatPhone('office') → '+91 93899 25497'; formatPhone('+919927669955', { spaced: false }) → '+91 9927669955' */
+/**
+ * Phone numbers for contact lists, one entry per distinct number: [{ ...record, label }] with label 'Sales' /
+ * 'Office', or a single 'Call' entry while both ids hold the same number (avoids listing it twice).
+ */
+export function contactPhones() {
+  const list = [];
+  for (const [id, label] of [['sales', 'Sales'], ['office', 'Office']]) {
+    const p = phones[id];
+    if (!p) continue;
+    const same = list.find((q) => q.e164.replace(/\D/g, '') === p.e164.replace(/\D/g, ''));
+    if (same) same.label = 'Call';
+    else list.push({ ...p, label });
+  }
+  return list;
+}
+
+/** formatPhone('office') → '+91 95210 18879'; formatPhone('+919521018879', { spaced: false }) → '+91 9521018879' */
 export function formatPhone(idOrNumber, { spaced = true } = {}) {
   const e164 = phones[idOrNumber]?.e164 ?? String(idOrNumber);
   if (spaced) return spacedIndian(e164);
@@ -108,17 +125,17 @@ export function formatPhone(idOrNumber, { spaced = true } = {}) {
   return d.length === 12 && d.startsWith('91') ? `+91 ${d.slice(2)}` : e164;
 }
 
-/** telHref('sales') → 'tel:+919927669955' */
+/** telHref('sales') → 'tel:+919521018879' */
 export function telHref(idOrNumber) {
   if (phones[idOrNumber]) return phones[idOrNumber].tel;
   const d = String(idOrNumber).replace(/[^\d+]/g, '');
   return `tel:${d.startsWith('+') ? d : d.length === 10 ? '+91' + d : '+' + d}`;
 }
 
-/** Sales WhatsApp (D26). */
-export const whatsappNumber = site.contact.whatsapp.number; // '919927669955'
+/** WhatsApp number (D26). */
+export const whatsappNumber = site.contact.whatsapp.number; // '919521018879'
 
-/** https://wa.me/919927669955 (+ ?text=<encoded message>) */
+/** https://wa.me/919521018879 (+ ?text=<encoded message>) */
 export function whatsappUrl(message) {
   const base = `https://wa.me/${whatsappNumber}`;
   return message ? `${base}?text=${encodeURIComponent(String(message))}` : base;

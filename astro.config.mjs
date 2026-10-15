@@ -2,9 +2,12 @@
 // =============================================================================
 // Defence Garden — Astro config (foundation-base).
 //
-// Hosting: Hostinger, static build uploaded from dist/ (functional §12). build.format 'directory' +
-// trailingSlash 'ignore' (functional §12.5); canonical URLs have NO trailing slash and public/.htaccess
-// 301s '/about/' → '/about'. The old /sitemap.xml URL is 301'd to /sitemap-index.xml by public/.htaccess.
+// Hosting: Vercel, plain static output (no adapter): Framework Preset "Astro", `npm ci` + `npm run build` → dist/
+// (functional §12). Routing lives in vercel.json: build.format 'directory' + trailingSlash 'ignore' here and
+// "trailingSlash": false there, which 308s '/about/' → '/about' (canonical URLs have NO trailing slash, functional
+// §12.5) and serves dist/about/index.html at '/about'. vercel.json also 301s www → apex, /sitemap.xml →
+// /sitemap-index.xml and the old SPA URLs, rewrites /booking/track/<id>, proxies /api-proxy/* and sets headers.
+// Fallback host: deploy/hostinger/ (.htaccess files, see README).
 //
 // DEV/TEST PAGES (src/pages/dev/**) NEVER SHIP — integration `dg:dev-pages`:
 //   1. build only: a Vite `load` hook replaces every src/pages/dev/**.astro with an empty page (dynamic
@@ -19,7 +22,9 @@
 // the un-optimised originals that src/lib/media.js's eager glob makes Vite emit but no page references
 // (DG_KEEP_ORIGINALS=1 keeps them).
 //
-// DEV SERVER: `dg:hosting-parity` serves /booking/track/<id> with the tracker page, like .htaccess rule 4.
+// DEV / PREVIEW = VERCEL: `npm run dev` and `npm run preview` proxy the read-only booking API paths under
+// /api-proxy/ to the backend exactly like the vercel.json rewrites (API_PROXY_PATHS below — keep them in sync),
+// and serve /booking/track/<id> with the tracker page (`dg:hosting-parity` in dev, vite.preview.proxy in preview).
 // =============================================================================
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
@@ -42,6 +47,43 @@ const canonical = (url) => {
   if (u.pathname.length > 1) u.pathname = u.pathname.replace(/\/+$/, '');
   return u.href;
 };
+
+/**
+ * Booking API proxy for `astro dev` / `astro preview`, with the same contract as the vercel.json "rewrites":
+ * '/api-proxy/<path>?<query>' → https://rivergreenbackend.onrender.com/api/<path>?<query> for the four read-only
+ * paths the site calls (src/scripts/booking/*.js); anything else under /api-proxy/ gets a 404 without reaching
+ * the backend. Same-origin because the backend only allows CORS from http://localhost:5173.
+ */
+const API_ORIGIN = 'https://rivergreenbackend.onrender.com';
+const API_PROXY_PATHS = [
+  /^\/api-proxy\/colony-maps\/public\/site-plots\/\d+$/, // booking/map.js — plot statuses (?colony_name=…)
+  /^\/api-proxy\/bookings\/track\/[A-Za-z0-9_-]+$/, // booking/track.js
+  /^\/api-proxy\/bookings\/track\/[A-Za-z0-9_-]+\/receipt-token$/, // booking/receipt-pdf.js
+  /^\/api-proxy\/payments\/verify-receipt$/, // booking/verify.js (?token=…)
+];
+/** @returns {Record<string, import('vite').ProxyOptions>} */
+const apiProxy = () => ({
+  '/api-proxy/': {
+    target: API_ORIGIN,
+    changeOrigin: true,
+    rewrite: (url) => url.replace(/^\/api-proxy\//, '/api/'),
+    // Vite: returning false answers 404 locally; undefined lets the request through. Read-only: GET/HEAD only.
+    bypass: (req) => {
+      const path = String(req.url || '').split('?')[0];
+      const allowed = (req.method === 'GET' || req.method === 'HEAD') && API_PROXY_PATHS.some((re) => re.test(path));
+      return allowed ? undefined : false;
+    },
+  },
+});
+/**
+ * `astro preview` runs no integration middleware (and drops Vite plugins), so the vercel.json rewrite
+ * /booking/track/:id → /booking/track/index.html is reproduced with a proxy `bypass`, which only rewrites the
+ * URL of the request and lets the static server answer it (nothing is proxied).
+ * @returns {Record<string, import('vite').ProxyOptions>}
+ */
+const previewTracker = () => ({
+  '^/booking/track/[A-Za-z0-9_-]+/?(?:\\?|$)': { bypass: () => '/booking/track/index.html' },
+});
 
 /** @returns {import('astro').AstroIntegration} */
 function devPages() {
@@ -126,8 +168,9 @@ function pruneUnusedOriginals() {
 }
 
 /**
- * Dev-server parity with public/.htaccess rule 4: /booking/track/<id> is served by the ONE static tracker
- * page (src/pages/booking/track/index.astro) while the URL keeps the id (read from location.pathname).
+ * Dev-server parity with the vercel.json rewrite /booking/track/:id → /booking/track/index.html: every
+ * /booking/track/<id> is served by the ONE static tracker page (src/pages/booking/track/index.astro) while the
+ * URL keeps the id (read from location.pathname). `astro preview` gets the same through previewTracker().
  * @returns {import('astro').AstroIntegration}
  */
 function hostingParity() {
@@ -161,6 +204,11 @@ export default defineConfig({
         jpeg: { quality: 82, mozjpeg: true },
       },
     },
+  },
+  // Same-origin booking API proxy (and the tracker rewrite in preview), mirroring vercel.json — see above.
+  vite: {
+    server: { proxy: apiProxy() },
+    preview: { proxy: { ...apiProxy(), ...previewTracker() } },
   },
   integrations: [
     devPages(),

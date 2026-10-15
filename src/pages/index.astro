@@ -35,7 +35,16 @@ const film = visionVideo('hero-film') ? 'hero-film' : undefined;
     overlayEyebrow="Defence Garden · The next chapter"
     overlayTitle="Built on land.<br/>Rising to the sky."
     overlayText="Two decades of planned, gated colonies — now becoming residential high-rise communities."
-    alt="Aerial view of a city skyline at dusk"
+    alt="Drone flight past modern residential high-rise towers under a deep blue sky"
+    scrub
+    length={500}
+    lengthMobile={420}
+    expand={0.24}
+    beats={[
+      { at: [0.28, 0.5], eyebrow: 'Defence Garden · Since 2006', title: 'Built<br/>on land.', text: 'Ten gated, green, clearly-titled townships across Meerut, Shamli and Budhana.' },
+      { at: [0.54, 0.75], eyebrow: 'The next chapter', title: 'Rising to<br/>the sky.', text: 'The same principles — plan with patience, build infrastructure first — carried upward into residential towers.' },
+      { at: [0.79, 1], eyebrow: 'Urban India · High-rise', title: 'Skylines for<br/>growing cities.', text: 'Residential high-rise communities from a name families already trust.', cta: { label: 'Explore the vision', href: '/vision' } },
+    ]}
   />
   <Statement />
   <Legacy />

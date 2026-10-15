@@ -1,0 +1,91 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "astro",
+  "installCommand": "npm ci",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path(.*)",
+      "has": [{ "type": "host", "value": "www\\.defencegarden\\.com" }],
+      "destination": "https://defencegarden.com/:path",
+      "statusCode": 301
+    },
+    { "source": "/projects", "destination": "/ourproject", "statusCode": 301 },
+    { "source": "/courses", "destination": "/ourproject", "statusCode": 301 },
+    { "source": "/project", "destination": "/ourproject", "statusCode": 301 },
+    { "source": "/sitemap.xml", "destination": "/sitemap-index.xml", "statusCode": 301 }
+  ],
+  "rewrites": [
+    {
+      "source": "/booking/track/:id([A-Za-z0-9_-]+)",
+      "destination": "/booking/track/index.html"
+    },
+    {
+      "source": "/api-proxy/colony-maps/public/site-plots/:site(\\d+)",
+      "destination": "https://rivergreenbackend.onrender.com/api/colony-maps/public/site-plots/:site"
+    },
+    {
+      "source": "/api-proxy/bookings/track/:id([A-Za-z0-9_-]+)",
+      "destination": "https://rivergreenbackend.onrender.com/api/bookings/track/:id"
+    },
+    {
+      "source": "/api-proxy/bookings/track/:id([A-Za-z0-9_-]+)/receipt-token",
+      "destination": "https://rivergreenbackend.onrender.com/api/bookings/track/:id/receipt-token"
+    },
+    {
+      "source": "/api-proxy/payments/verify-receipt",
+      "destination": "https://rivergreenbackend.onrender.com/api/payments/verify-receipt"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
+        {
+          "key": "Content-Security-Policy-Report-Only",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; media-src 'self' blob:; connect-src 'self' https://rivergreenbackend.onrender.com; frame-src https://www.google.com https://maps.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'"
+        }
+      ]
+    },
+    {
+      "source": "/_astro/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/fonts/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000" }]
+    },
+    {
+      "source": "/media/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }]
+    },
+    {
+      "source": "/booking/(.*)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
+        { "key": "Referrer-Policy", "value": "no-referrer" }
+      ]
+    },
+    {
+      "source": "/verify-receipt",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
+        { "key": "Referrer-Policy", "value": "no-referrer" }
+      ]
+    },
+    {
+      "source": "/api-proxy/(.*)",
+      "headers": [
+        { "key": "x-vercel-enable-rewrite-caching", "value": "0" },
+        { "key": "Cache-Control", "value": "no-store" },
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+      ]
+    }
+  ]
+}

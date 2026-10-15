@@ -12,6 +12,8 @@ import './modules/headerTone.js';
 import './modules/hscroll.js';
 import './modules/strip.js';
 import './modules/video.js';
+import './modules/scrubVideo.js';
+import './modules/sky.js';
 import './modules/lightbox.js';
 import './modules/filter.js';
 import './modules/calc.js';

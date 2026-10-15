@@ -2,10 +2,9 @@
 import Logo from './Logo.astro';
 import Icon from '../ui/Icon.astro';
 import Ornament from '../ui/Ornament.astro';
-import { site, phone, telHref, email, office, hours, copyright, whatsappUrl } from '../../lib/site.js';
+import { site, phone, telHref, contactPhones, email, office, hours, copyright, whatsappUrl } from '../../lib/site.js';
 
 const sales = phone('sales');
-const officeNo = phone('office');
 // Owner instruction: copyright and "Developed by" are Defence Garden only.
 const credit = 'Developed by Defence Garden';
 const explore = [
@@ -39,7 +38,7 @@ const legal = site.footer.legalLinks || [];
 
   <div class="wrap ftr__grid">
     <div class="ftr__brand">
-      <Logo />
+      <Logo label="Defence Garden, since 2006" />
       <p class="small muted ftr__blurb">Plotted townships across Shamli, Meerut and Budhana since 2006 — now taking the same promise vertical in urban India.</p>
     </div>
     <nav aria-label="Footer">
@@ -49,8 +48,7 @@ const legal = site.footer.legalLinks || [];
     <div>
       <p class="eyebrow eyebrow--accent">Contact</p>
       <ul class="ftr__list">
-        <li><a class="link-line" href={telHref('office')}>Office {officeNo.display}</a></li>
-        <li><a class="link-line" href={telHref('sales')}>Sales {sales.display}</a></li>
+        {contactPhones().map((p) => <li><a class="link-line" href={p.tel}>{p.label} {p.display}</a></li>)}
         <li><a class="link-line" href={whatsappUrl()} target="_blank" rel="noopener">WhatsApp</a></li>
         <li><a class="link-line" href={email.href}>{email.address}</a></li>
       </ul>
@@ -82,6 +80,7 @@ const legal = site.footer.legalLinks || [];
   .ftr__marquee { overflow: hidden; margin-top: clamp(60px, 9vw, 150px); color: color-mix(in srgb, #f4ede6 9%, transparent); }
   .ftr__track { display: flex; width: max-content; }
   .ftr__grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px var(--gutter); padding-block: clamp(48px, 6vw, 90px) 48px; border-top: 1px solid rgba(244,237,230,.14); }
+  .ftr__brand { --logo-h: clamp(46px, 4vw, 60px); }
   .ftr__blurb { max-width: 34ch; margin-top: 22px; }
   .ftr__list { display: grid; gap: 10px; margin-top: 16px; font-size: 15px; }
   .ftr__addr { margin-top: 16px; max-width: 28ch; }

@@ -3,10 +3,10 @@ import Logo from './Logo.astro';
 ---
 <div class="curtain t-night" data-curtain aria-hidden="true">
   <div class="curtain__line"></div>
-  <div class="curtain__logo"><Logo compact /></div>
+  <div class="curtain__logo"><Logo /></div>
 </div>
 <style>
   .curtain { position: fixed; inset: 0; z-index: 95; pointer-events: none; visibility: hidden; display: grid; place-items: center; }
   .curtain__line { position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--copper); }
-  .curtain__logo { color: var(--copper); opacity: 0; }
+  .curtain__logo { opacity: 0; --logo-h: clamp(40px, 4vw, 58px); }
 </style>

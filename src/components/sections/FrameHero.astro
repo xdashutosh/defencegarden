@@ -5,6 +5,7 @@ import Img from '../ui/Img.astro';
 import Vid from '../ui/Vid.astro';
 import Icon from '../ui/Icon.astro';
 import Ornament from '../ui/Ornament.astro';
+import { getImage } from 'astro:assets';
 import { vision as getVision, visionVideo as getVisionVideo } from '../../lib/vision.js';
 
 interface Cta { label: string; href?: string; enquire?: boolean; interest?: string; colony?: string; solid?: boolean }
@@ -27,17 +28,35 @@ interface Props {
   frameW?: string;               // frame size (CSS length) — default responsive
   frameH?: string;
   alt?: string;
+  scrub?: boolean;               // scroll drives the film's time (scrubVideo module) instead of autoplay
+  beats?: Beat[];                // story beats over the full-screen film, each visible over a scroll range
+  length?: number;               // section height in vh (desktop); scroll distance = length − 100
+  lengthMobile?: number;
+  expand?: number;               // fraction (0..1) of the section's scroll used to grow the frame to full screen
 }
+interface Beat { eyebrow?: string; title: string; text?: string; cta?: { label: string; href: string }; at: [number, number] }
 const {
   words, theme = 't-light', tone = 'light', eyebrow, sub, note, ctas = [], image, vision, video, visionVideo,
   concept = false, overlayEyebrow, overlayTitle, overlayText, frameW, frameH, alt,
+  scrub = false, beats = [], length, lengthMobile, expand,
 } = Astro.props;
+
+// scroll-scrub film: poster (exact first frame; native 9:16 one on portrait screens — same rule as scrubVideo.js)
+// under a scrubbed <video>
+const scrubFilm = scrub && visionVideo ? getVisionVideo(visionVideo) : null;
+let scrubPoster = null, scrubPosterMobile = null;
+if (scrubFilm?.poster) scrubPoster = await getImage({ src: scrubFilm.poster, width: Math.min(1920, Number(scrubFilm.width) || 1920), format: 'webp', quality: 80 });
+if (scrubFilm?.posterMobile) scrubPosterMobile = await getImage({ src: scrubFilm.posterMobile, width: 720, format: 'webp', quality: 80 });
+const len = length || 260, lenM = lengthMobile || Math.round(len * 0.85);
+const exp = expand ?? 1;
+// header turns light-on-dark once the growing frame has reached it (~96 % grown): that scroll point inside the section
+const zoneTop = (pct) => `${((0.96 * exp * (pct - 100)) / pct * 100).toFixed(2)}%`;
 // The concept tag appears only when licensed concept media is actually rendered (never on DG's own photos).
 const usingConcept = Boolean((visionVideo && getVisionVideo(visionVideo)) || (!visionVideo && !video && vision && getVision(vision)) || (visionVideo && !getVisionVideo(visionVideo) && !video && vision && getVision(vision)));
-const style = [frameW && `--fh-w:${frameW}`, frameH && `--fh-h:${frameH}`].filter(Boolean).join(';');
+const style = [frameW && `--fh-w:${frameW}`, frameH && `--fh-h:${frameH}`, `--fh-len:${len}vh`, `--fh-len-m:${lenM}vh`, `--fh-zone:${zoneTop(len)}`, `--fh-zone-m:${zoneTop(lenM)}`].filter(Boolean).join(';');
 ---
-<section class={`fh ${theme}`} data-frame-hero data-header-tone={tone} style={style || undefined}>
-  <div class="fh__zone" data-header-tone="dark" aria-hidden="true"></div>
+<section class={`fh ${theme}`} data-frame-hero data-scrub-root data-fh-expand={exp} data-header-tone={tone} style={style || undefined}>
+  <div class="fh__zone" data-header-tone="dark" data-header-surface="media" aria-hidden="true"></div>
   <div class="fh__sticky">
     <div class="fh__probe" data-fh-probe aria-hidden="true"></div>
     <div class="fh__ui" data-fh-ui>
@@ -63,28 +82,50 @@ const style = [frameW && `--fh-w:${frameW}`, frameH && `--fh-h:${frameH}`].filte
       </div>
     </div>
     <div class="fh__media" data-fh-media>
-      {visionVideo || video
+      {scrubFilm ? (
+        <div class="fh__inner" data-fh-inner>
+          <picture>
+            {scrubPosterMobile && <source media="(orientation: portrait)" srcset={scrubPosterMobile.src} />}
+            <img class="fh__fill" src={scrubPoster?.src} alt={alt || scrubFilm.alt} loading="eager" fetchpriority="high" decoding="async" />
+          </picture>
+          <video class="fh__fill fh__scrub" data-scrub data-src={scrubFilm.url} data-src-mobile={scrubFilm.urlMobile || undefined} muted playsinline preload="none" aria-hidden="true"></video>
+        </div>
+      ) : visionVideo || video
         ? <Vid vision={visionVideo} src={video} class="fh__fill" eager label={alt} />
         : <Img vision={vision} src={image} class="fh__fill" eager sizes="100vw" alt={alt} />}
       <div class="fh__shade" data-fh-shade aria-hidden="true"></div>
       {(concept || usingConcept) && usingConcept && <span class="concept-tag">Concept visualisation</span>}
     </div>
-    {(overlayTitle || overlayText) && (
-      <div class="fh__overlay t-night" data-fh-overlay>
-        <Ornament variant="diamond" class="fh__orn" />
-        {overlayEyebrow && <p class="eyebrow eyebrow--accent">{overlayEyebrow}</p>}
-        {overlayTitle && <p class="deco fh__otitle" set:html={overlayTitle} />}
-        {overlayText && <p class="lead fh__otext balance">{overlayText}</p>}
-      </div>
-    )}
   </div>
+  {(beats.length > 0 || overlayTitle || overlayText) && (
+    <div class="fh__over">
+      <div class="fh__overpin">
+        {beats.length > 0 ? beats.map((b, i) => (
+          <div class="fh__overlay fh__beat t-night" data-fh-beat={`${b.at[0]},${b.at[1]}`}>
+            {i === 0 && <Ornament variant="diamond" class="fh__orn" />}
+            {b.eyebrow && <p class="eyebrow eyebrow--accent">{b.eyebrow}</p>}
+            <p class="deco fh__otitle" set:html={b.title} />
+            {b.text && <p class="lead fh__otext balance">{b.text}</p>}
+            {b.cta && <a class="btn btn--copper fh__bcta" href={b.cta.href}><span>{b.cta.label}</span><Icon name="arrow-right" /></a>}
+          </div>
+        )) : (
+          <div class="fh__overlay t-night" data-fh-overlay>
+            <Ornament variant="diamond" class="fh__orn" />
+            {overlayEyebrow && <p class="eyebrow eyebrow--accent">{overlayEyebrow}</p>}
+            {overlayTitle && <p class="deco fh__otitle" set:html={overlayTitle} />}
+            {overlayText && <p class="lead fh__otext balance">{overlayText}</p>}
+          </div>
+        )}
+      </div>
+    </div>
+  )}
 </section>
 
 <style>
   /* realevate composition: the frame and its marquee line sit at --fh-y (41% of the viewport), subtitle and boxed
      label below, small eyebrow bottom-left; actions live in the global dock (bottom-right). */
-  .fh { position: relative; height: 260vh; --fh-w: clamp(170px, 19vw, 380px); --fh-h: clamp(170px, 19vw, 380px); --fh-y: 41%; }
-  .fh__zone { position: absolute; left: 0; right: 0; top: 45%; bottom: 0; pointer-events: none; }
+  .fh { position: relative; height: var(--fh-len, 260vh); --fh-w: clamp(170px, 19vw, 380px); --fh-h: clamp(170px, 19vw, 380px); --fh-y: 41%; }
+  .fh__zone { position: absolute; left: 0; right: 0; top: var(--fh-zone, 45%); bottom: 0; pointer-events: none; }
   .fh__sticky { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
   .fh__probe { position: absolute; left: 50%; top: var(--fh-y); width: var(--fh-w); height: var(--fh-h); transform: translate(-50%, -50%); visibility: hidden; pointer-events: none; }
   .fh__ui { position: absolute; inset: 0; }
@@ -100,14 +141,26 @@ const style = [frameW && `--fh-w:${frameW}`, frameH && `--fh-h:${frameH}`].filte
   .fh__ctas { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; margin-bottom: 56px; }
   .fh__ctas:empty { display: none; }
   .fh__media { position: absolute; inset: 0; z-index: 2; clip-path: inset(calc(var(--fh-y) - var(--fh-h) / 2) calc(50% - var(--fh-w) / 2) calc(100% - var(--fh-y) - var(--fh-h) / 2)); }
+  .fh__inner { position: absolute; inset: 0; }
+  .fh__scrub { opacity: 0; transition: opacity .35s ease; }
+  .fh__scrub:global(.is-painted) { opacity: 1; }
+  /* beats sit on moving footage: a wider, deeper scrim than the static overlay, and lit text */
+  .fh__beat { pointer-events: none; background: radial-gradient(ellipse 64% 60% at 50% 52%, rgba(6,26,58,.62), rgba(6,26,58,.3) 62%, rgba(6,26,58,.12)); }
+  .fh__beat .eyebrow { color: var(--copper-soft); text-shadow: 0 1px 12px rgba(6,26,58,.7); }
+  .fh__beat .fh__otext { opacity: 1; text-shadow: 0 1px 16px rgba(6,26,58,.75); }
+  .fh__bcta { pointer-events: auto; margin-top: 6px; }
   .fh__media :global(.fh__fill) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
   .fh__shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,26,58,.35), rgba(6,26,58,.05) 40%, rgba(6,26,58,.55)); pointer-events: none; opacity: 0; }
-  .fh__overlay { position: absolute; inset: 0; z-index: 3; background: radial-gradient(ellipse 58% 52% at 50% 50%, rgba(6,26,58,.55), rgba(6,26,58,.18) 70%, transparent); display: grid; place-content: center; justify-items: center; text-align: center; gap: 22px; padding: var(--gutter); opacity: 0; visibility: hidden; color: #f4ede6; }
+  /* beats/overlay: their own pinned layer over the sticky stage, so with reduced motion they flow below the hero */
+  .fh__over { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+  .fh__overpin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+  .fh__overlay { position: absolute; inset: 0; background: radial-gradient(ellipse 58% 52% at 50% 50%, rgba(6,26,58,.55), rgba(6,26,58,.18) 70%, transparent); display: grid; place-content: center; justify-items: center; text-align: center; gap: 22px; padding: var(--gutter); opacity: 0; visibility: hidden; color: #f4ede6; }
   .fh__orn { width: 26px; color: var(--copper); }
   .fh__otitle { max-width: 14ch; text-shadow: 0 2px 30px rgba(6,26,58,.35); }
   .fh__otext { max-width: 44ch; opacity: .92; }
   @media (max-width: 860px) {
-    .fh { height: 220vh; --fh-w: 40vw; --fh-h: 40vw; --fh-y: 42%; }
+    .fh { height: var(--fh-len-m, 220vh); --fh-w: 40vw; --fh-h: 40vw; --fh-y: 42%; }
+    .fh__zone { top: var(--fh-zone-m, 45%); }
     .fh__center { top: 66%; }
     .fh__sub { font-size: 17px; }
     .fh__eyebrow { display: none; }
@@ -116,6 +169,9 @@ const style = [frameW && `--fh-w:${frameW}`, frameH && `--fh-h:${frameH}`].filte
   @media (prefers-reduced-motion: reduce) {
     .fh { height: auto; }
     .fh__sticky { position: relative; height: auto; min-height: 100svh; }
+    .fh__zone { top: 100svh; }
+    .fh__over, .fh__overpin { position: relative; inset: auto; height: auto; overflow: visible; }
     .fh__overlay { position: relative; opacity: 1; visibility: visible; background: var(--navy-deep); padding-block: 80px; }
+    .fh__scrub { display: none; }
   }
 </style>

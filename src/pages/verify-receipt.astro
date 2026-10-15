@@ -6,9 +6,10 @@
 import Base from '../layouts/Base.astro';
 import Icon from '../components/ui/Icon.astro';
 import Ornament from '../components/ui/Ornament.astro';
-import { getProject } from '../lib/site.js';
 
-const api = (import.meta.env.PUBLIC_DG_API_BASE || getProject(1)?.bookingMap?.api || 'https://rivergreenbackend.onrender.com/api').replace(/\/+$/, '');
+// API base: the same-origin proxy '/api-proxy' (vercel.json rewrites /api-proxy/payments/verify-receipt to the
+// backend; astro.config.mjs proxies it in dev/preview). PUBLIC_DG_API_BASE overrides it at build time.
+const api = (import.meta.env.PUBLIC_DG_API_BASE || '/api-proxy').replace(/\/+$/, '');
 const ring = '★ DIGITALLY VERIFIED · DEFENCE GARDEN · AUTHENTIC RECEIPT · ';
 ---
 <Base path="/verify-receipt" namespace="utility" tone="light" noindex title="Defence Garden Payment Verification System">

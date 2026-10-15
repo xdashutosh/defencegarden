@@ -19,7 +19,7 @@ const cards = [
       </div>
       <a class="btn" href="/ourproject" data-reveal="fade"><span>All colonies</span><Icon name="grid" /></a>
     </div>
-    <div class="col__grid">
+    <div class="col__grid" data-header-tone="dark">
       {cards.map((c, i) => (
         <a class={`col__card col__card--${c.k}`} href={c.href} data-reveal="fade" data-reveal-delay={(i * 0.08).toFixed(2)}>
           <div class="col__panel">

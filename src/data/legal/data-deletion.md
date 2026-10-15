@@ -6,7 +6,7 @@ seoTitle: "Data Deletion | Defence Garden"
 runtimeTitle: "Account & Data Deletion | Defence Garden"
 description: "Learn how to request deletion of personal data held by Defence Garden."
 icon: "trash-2"
-source: "Old site assets/Legal-DeVFtU1e.js (verbatim; interpolations resolved: company name, email, sales phone +91 99276 69955, office address + \", India\"). Rendered page checked 2026-10-12."
+source: "Old site assets/Legal-DeVFtU1e.js (verbatim; interpolations resolved: company name, email, phone, office address + \", India\"; contact details updated to the owner's current number and email on 2026-10-15). Rendered page checked 2026-10-12."
 ---
 
 # Account & Data Deletion
@@ -23,9 +23,9 @@ Deletion of personal information linked to you — your name, phone number, emai
 
 ## 2. How to Request Deletion
 
-Email us at defencegarden009@gmail.com with the subject line "Data Deletion Request", from the email address (or mentioning the phone number) you used with our Services.
+Email us at info@defencegarden.com with the subject line "Data Deletion Request", from the email address (or mentioning the phone number) you used with our Services.
 
-Or call / WhatsApp us at +91 99276 69955 and ask for your data to be deleted.
+Or call / WhatsApp us at +91 95210 18879 and ask for your data to be deleted.
 
 We will verify the request belongs to you, then delete the data. Verified requests are completed within 30 days, and we will confirm once done.
 
@@ -45,8 +45,8 @@ Uninstalling the app stops all data collection by the app but does not by itself
 
 Defence Garden · VADHEH, Shamli Rd, Shamli, Mundetkalan, Uttar Pradesh 247776, India
 
-- [defencegarden009@gmail.com](mailto:defencegarden009@gmail.com)
-- [+91 99276 69955](tel:+919927669955)
+- [info@defencegarden.com](mailto:info@defencegarden.com)
+- [+91 95210 18879](tel:+919521018879)
 
 <!-- Links to the other policies (shown as chips at the bottom of the old page) -->
 - [Privacy Policy](/privacy-policy)
