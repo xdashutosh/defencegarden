@@ -10,7 +10,7 @@
 //   [data-fh-inner]   optional wrapper scaled 1.3 → 1 (poster + scrubbed <video>, see scrubVideo.js)
 // First visit: the preloader (src/scripts/chrome/preloader.js) morphs its last image onto the probe rect and hands
 // over, so the intro here does not reopen the frame. Barba arrivals open the frame from its centre instead.
-import { gsap, SplitText, reduced } from '../core/gsap.js';
+import { gsap, ScrollTrigger, SplitText, reduced } from '../core/gsap.js';
 import { register } from '../core/page.js';
 import { whenIntro } from '../core/intro.js';
 import { lockTone, unlockTone } from './headerTone.js';
@@ -53,6 +53,9 @@ register({
     zone?.removeAttribute('data-header-tone');
     let covered = null;
     const syncHeader = () => {
+      // only while the hero spans the header line (scrub catch-up can still render after a jump past it)
+      const r = sec.getBoundingClientRect();
+      if (r.top > 46 || r.bottom <= 46) { if (covered !== null) { covered = null; unlockTone(); } return; }
       const m = (media.style.clipPath || '').match(/inset\(\s*(-?[\d.]+)px/);
       const top = m ? parseFloat(m[1]) : Infinity;
       const hb = document.querySelector('.hdr__bar');
@@ -86,6 +89,10 @@ register({
 
     // the header-tone module mounts after this one and picks the section's zone tone: re-apply ours next frame
     requestAnimationFrame(() => { covered = null; syncHeader(); });
+    // release the lock once the hero has fully left the header (its bottom passes the header line), and re-take it
+    // when scrolling back into the hero; past that point the page's own zones decide again
+    const release = () => { covered = null; unlockTone(); };
+    const lockSt = ScrollTrigger.create({ trigger: sec, start: 'top top', end: 'bottom 46px', onLeave: release, onLeaveBack: release, onEnterBack: () => { covered = null; syncHeader(); } });
 
     // intro (realevate order): marquee rises, subtitle lines unmask, label box draws, small labels fade
     let split = null;
@@ -116,6 +123,6 @@ register({
       if (window.scrollY > 10) { intro.progress(1); return; }
       document.fonts.ready.then(() => intro.play());
     });
-    return () => { intro.kill(); split?.revert(); unlockTone(); };
+    return () => { intro.kill(); split?.revert(); lockSt.kill(); unlockTone(); };
   },
 });
