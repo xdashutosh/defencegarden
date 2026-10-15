@@ -99,7 +99,13 @@ export function runPreloader() {
       if (probe) {
         tl.fromTo(clip, { glide: 0 }, {
           glide: 1, duration: T.morph, ease: 'power2.inOut', immediateRender: false,
-          onStart: () => { target = probe.getBoundingClientRect(); }, onUpdate: drawFinal,
+          onStart: () => {
+            const r = probe.getBoundingClientRect();
+            const dot = probe.closest('[data-frame-hero]')?.dataset.fhStart === 'point';
+            const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+            target = dot ? { left: cx - 6, right: cx + 6, top: cy - 6, bottom: cy + 6 } : r; // dot = frameHero.js DOT
+          },
+          onUpdate: drawFinal,
         }, K);
       }
       if (hdr) tl.fromTo(hdr, { yPercent: -120, visibility: 'visible' }, { yPercent: 0, duration: 1, ease: 'power3.out', clearProps: 'transform' }, A + 0.45);

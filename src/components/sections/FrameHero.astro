@@ -33,12 +33,13 @@ interface Props {
   length?: number;               // section height in vh (desktop); scroll distance = length − 100
   lengthMobile?: number;
   expand?: number;               // fraction (0..1) of the section's scroll used to grow the frame to full screen
+  start?: 'frame' | 'point';     // 'point': the media starts as a small round dot and grows from it on scroll
 }
 interface Beat { eyebrow?: string; title: string; text?: string; cta?: { label: string; href: string }; at: [number, number] }
 const {
   words, theme = 't-light', tone = 'light', eyebrow, sub, note, ctas = [], image, vision, video, visionVideo,
   concept = false, overlayEyebrow, overlayTitle, overlayText, frameW, frameH, alt,
-  scrub = false, beats = [], length, lengthMobile, expand,
+  scrub = false, beats = [], length, lengthMobile, expand, start = 'frame',
 } = Astro.props;
 
 // scroll-scrub film: poster (exact first frame; native 9:16 one on portrait screens — same rule as scrubVideo.js)
@@ -55,7 +56,7 @@ const zoneTop = (pct) => `${((0.96 * exp * (pct - 100)) / pct * 100).toFixed(2)}
 const usingConcept = Boolean((visionVideo && getVisionVideo(visionVideo)) || (!visionVideo && !video && vision && getVision(vision)) || (visionVideo && !getVisionVideo(visionVideo) && !video && vision && getVision(vision)));
 const style = [frameW && `--fh-w:${frameW}`, frameH && `--fh-h:${frameH}`, `--fh-len:${len}vh`, `--fh-len-m:${lenM}vh`, `--fh-zone:${zoneTop(len)}`, `--fh-zone-m:${zoneTop(lenM)}`].filter(Boolean).join(';');
 ---
-<section class={`fh ${theme}`} data-frame-hero data-scrub-root data-fh-expand={exp} data-header-tone={tone} style={style || undefined}>
+<section class={`fh ${theme}`} data-frame-hero data-scrub-root data-fh-expand={exp} data-fh-start={start} data-header-tone={tone} style={style || undefined}>
   <div class="fh__zone" data-header-tone="dark" data-header-surface="media" aria-hidden="true"></div>
   <div class="fh__sticky">
     <div class="fh__probe" data-fh-probe aria-hidden="true"></div>
@@ -128,7 +129,7 @@ const style = [frameW && `--fh-w:${frameW}`, frameH && `--fh-h:${frameH}`, `--fh
   .fh__zone { position: absolute; left: 0; right: 0; top: var(--fh-zone, 45%); bottom: 0; pointer-events: none; }
   .fh__sticky { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
   .fh__probe { position: absolute; left: 50%; top: var(--fh-y); width: var(--fh-w); height: var(--fh-h); transform: translate(-50%, -50%); visibility: hidden; pointer-events: none; }
-  .fh__ui { position: absolute; inset: 0; }
+  .fh__ui { position: absolute; inset: 0; will-change: opacity; }
   .fh__marquee { position: absolute; left: 0; right: 0; top: var(--fh-y); transform: translateY(-50%); overflow: hidden; padding-block: .04em; }
   .fh__row { display: flex; width: max-content; }
   .fh__word { display: inline-block; padding-right: .18em; }
@@ -140,8 +141,10 @@ const style = [frameW && `--fh-w:${frameW}`, frameH && `--fh-h:${frameH}`, `--fh
   .fh__eyebrow { font-size: 10px; }
   .fh__ctas { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; margin-bottom: 56px; }
   .fh__ctas:empty { display: none; }
-  .fh__media { position: absolute; inset: 0; z-index: 2; clip-path: inset(calc(var(--fh-y) - var(--fh-h) / 2) calc(50% - var(--fh-w) / 2) calc(100% - var(--fh-y) - var(--fh-h) / 2)); }
-  .fh__inner { position: absolute; inset: 0; }
+  .fh__media { position: absolute; inset: 0; z-index: 2; will-change: clip-path; clip-path: inset(calc(var(--fh-y) - var(--fh-h) / 2) calc(50% - var(--fh-w) / 2) calc(100% - var(--fh-y) - var(--fh-h) / 2)); }
+  .fh[data-fh-start='point'] .fh__media { clip-path: inset(calc(var(--fh-y) - 6px) calc(50% - 6px) calc(100% - var(--fh-y) - 6px) round 6px); }
+  /* layers the scroll animates are prepared up front, so the first scroll does not stall while they are created */
+  .fh__inner { position: absolute; inset: 0; will-change: transform; }
   .fh__scrub { opacity: 0; transition: opacity .35s ease; }
   .fh__scrub:global(.is-painted) { opacity: 1; }
   /* beats sit on moving footage: a wider, deeper scrim than the static overlay, and lit text */

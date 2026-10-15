@@ -35,8 +35,8 @@ initHeader();
 markCurrentNav();
 
 resetIntro(false);
+initSky(); // before the first mount: the page's sky-visibility module needs the video
 const container = document.querySelector('[data-barba="container"]');
 if (container) mountPage(container);
 runPreloader().then(() => releaseIntro());
-initSky();
 initTransitions();

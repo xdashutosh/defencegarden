@@ -68,6 +68,8 @@ const { tone = 'dark' } = Astro.props;
   .dock__btn::before { background: var(--navy); }
   .dock__sq { --fg: var(--navy); --bg: #fff; }
   .dock.is-hidden { opacity: 0; transform: translateY(20px); pointer-events: none; }
+  /* touch devices: no live blur behind the floating buttons (re-blurring every scrolled frame is costly on phones) */
+  @media (hover: none) { .dock__btn { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(255, 255, 255, .96); } }
   html.menu-open .dock { opacity: 0; pointer-events: none; }
   @media (max-width: 860px) {
     .hdr__bar { grid-template-columns: auto 1fr auto; }

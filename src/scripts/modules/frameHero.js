@@ -14,6 +14,7 @@ import { gsap, ScrollTrigger, SplitText, reduced } from '../core/gsap.js';
 import { register } from '../core/page.js';
 import { whenIntro } from '../core/intro.js';
 import { lockTone, unlockTone } from './headerTone.js';
+import { holdSky } from '../chrome/sky.js';
 
 /** clip-path inset() that shows only `probe`'s rectangle of `media` */
 export function probeInset(media, probe) {
@@ -40,8 +41,17 @@ register({
     const fade = sec.querySelectorAll('[data-fh-fade]');
     if (!media || !probe) return;
     const frameInset = () => probeInset(media, probe);
+    // data-fh-start="point": the film starts as a small round dot at the frame's centre instead of the framed image
+    const pointStart = sec.dataset.fhStart === 'point';
+    const DOT = 12;
+    const dotInset = () => {
+      const r = frameInset().match(/-?[\d.]+/g).map(Number); // top right bottom left
+      const cy = r[0] + (media.clientHeight - r[0] - r[2]) / 2, cx = r[3] + (media.clientWidth - r[1] - r[3]) / 2, h = DOT / 2;
+      return `inset(${cy - h}px ${media.clientWidth - cx - h}px ${media.clientHeight - cy - h}px ${cx - h}px round ${h}px)`;
+    };
+    const startInset = () => (pointStart ? dotInset() : frameInset());
 
-    if (reduced()) { gsap.set(media, { clipPath: frameInset() }); return; }
+    if (reduced()) { gsap.set(media, { clipPath: frameInset() }); return; } // reduced motion keeps the framed image
 
     const handedOver = document.documentElement.classList.contains('pre-run') && sec === document.querySelector('[data-frame-hero]');
 
@@ -52,12 +62,17 @@ register({
     const zone = sec.querySelector('.fh__zone');
     zone?.removeAttribute('data-header-tone');
     let covered = null;
+    let lockSt = null; // ScrollTrigger spanning 'top top' → 'bottom 46px' (the hero is under the header), set below
     const syncHeader = () => {
       // only while the hero spans the header line (scrub catch-up can still render after a jump past it)
-      const r = sec.getBoundingClientRect();
-      if (r.top > 46 || r.bottom <= 46) { if (covered !== null) { covered = null; unlockTone(); } return; }
+      if (lockSt ? !lockSt.isActive : (() => { const r = sec.getBoundingClientRect(); return r.top > 46 || r.bottom <= 46; })()) {
+        if (covered !== null) { covered = null; unlockTone(); }
+        holdSky('hero', false);
+        return;
+      }
       const m = (media.style.clipPath || '').match(/inset\(\s*(-?[\d.]+)px/);
       const top = m ? parseFloat(m[1]) : Infinity;
+      holdSky('hero', top <= 0.5); // the film fills the screen: the sky behind it cannot be seen
       const hb = document.querySelector('.hdr__bar');
       const now = top <= (hb ? hb.offsetHeight : 80) * 0.55;
       if (now === covered) return;
@@ -73,7 +88,7 @@ register({
     });
     // timeline length is 1 = the whole section; the frame grows over the first `exp` of it
     tl.to({}, { duration: 1 }, 0);
-    tl.fromTo(media, { clipPath: () => frameInset() }, { clipPath: 'inset(0px 0px 0px 0px)', duration: exp }, 0);
+    tl.fromTo(media, { clipPath: () => startInset() }, { clipPath: pointStart ? 'inset(0px 0px 0px 0px round 0px)' : 'inset(0px 0px 0px 0px)', duration: exp }, 0);
     if (inner) tl.fromTo(inner, { scale: 1.3 }, { scale: 1, duration: exp }, 0);
     if (shade) tl.fromTo(shade, { opacity: 0 }, { opacity: 1, duration: 0.5 * exp }, 0.3 * exp);
     if (ui) tl.fromTo(ui, { autoAlpha: 1 }, { autoAlpha: 0, duration: 0.3 * exp }, 0.05 * exp);
@@ -91,14 +106,14 @@ register({
     requestAnimationFrame(() => { covered = null; syncHeader(); });
     // release the lock once the hero has fully left the header (its bottom passes the header line), and re-take it
     // when scrolling back into the hero; past that point the page's own zones decide again
-    const release = () => { covered = null; unlockTone(); };
-    const lockSt = ScrollTrigger.create({ trigger: sec, start: 'top top', end: 'bottom 46px', onLeave: release, onLeaveBack: release, onEnterBack: () => { covered = null; syncHeader(); } });
+    const release = () => { covered = null; unlockTone(); holdSky('hero', false); };
+    lockSt = ScrollTrigger.create({ trigger: sec, start: 'top top', end: 'bottom 46px', onLeave: release, onLeaveBack: release, onEnterBack: () => { covered = null; syncHeader(); } });
 
     // intro (realevate order): marquee rises, subtitle lines unmask, label box draws, small labels fade
     let split = null;
     const intro = gsap.timeline({ paused: true });
     const t0 = handedOver ? 0.55 : 0.35;
-    if (!handedOver) {
+    if (!handedOver && !pointStart) {
       // explicit 4-value ends: browsers shorten symmetric inset() values, which breaks string interpolation
       const pointInset = () => {
         const r = frameInset().match(/-?[\d.]+/g).map(Number); // top right bottom left
@@ -123,6 +138,6 @@ register({
       if (window.scrollY > 10) { intro.progress(1); return; }
       document.fonts.ready.then(() => intro.play());
     });
-    return () => { intro.kill(); split?.revert(); lockSt.kill(); unlockTone(); };
+    return () => { intro.kill(); split?.revert(); lockSt.kill(); unlockTone(); holdSky('hero', false); };
   },
 });
