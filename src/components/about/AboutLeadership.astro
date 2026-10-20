@@ -38,7 +38,7 @@ const before = l.heading.text.slice(0, l.heading.text.indexOf(name));
 
 <style>
   .ald { overflow: hidden; padding-top: clamp(50px, 6vw, 110px); }
-  .ald__marquee { overflow: hidden; margin-bottom: clamp(50px, 7vw, 130px); color: var(--navy); }
+  .ald__marquee { overflow-x: clip; overflow-y: visible; margin-bottom: clamp(50px, 7vw, 130px); color: var(--navy); }   /* clips the moving row sideways only: descenders (y, g) stay whole */
   .ald__row { display: flex; width: max-content; }
   .ald__word { display: inline-block; }
   .ald__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(36px, 7vw, 140px); align-items: center; }
@@ -47,7 +47,7 @@ const before = l.heading.text.slice(0, l.heading.text.indexOf(name));
   .ald__mono :global(.ald__kt) { width: min(100%, 340px); --kt-ink: #f4ede6; }
   .ald__copy { display: grid; gap: clamp(20px, 2.2vw, 30px); justify-items: start; }
   .ald__title { font-size: clamp(34px, 4vw, 72px); max-width: 17ch; }
-  .ald__title em { font-style: italic; color: var(--accent); }
+  .ald__title em { font-style: normal; color: var(--accent); }
   .ald__text { max-width: 46ch; }
   .ald__ctas { display: flex; flex-wrap: wrap; gap: 10px; }
   .ald__facts { display: grid; grid-template-columns: repeat(2, minmax(0, 220px)); width: 100%; border-top: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); margin: 6px 0 0; }

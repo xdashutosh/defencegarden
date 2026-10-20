@@ -30,8 +30,10 @@
 //   - alt   = manifest alt, or '' when the entry is decorative (description keeps the text)
 //   - focus = CSS object-position ('x% y%'), default '50% 50%'
 //
-// Video record: { kind:'video', key, src, url, width, height, duration, alt, hasAudio, startAt, endAt,
-//   poster, posterKey, posterMedia, still, stillKey, stillMedia, summary, entry }
+// Video record: { kind:'video', key, src, url, urlPortrait, urlSmall, width, height, duration, alt, hasAudio, startAt,
+//   endAt, poster, posterKey, posterMedia, still, stillKey, stillMedia, summary, entry }
+//   - urlPortrait = 9:16 crop for portrait boxes (manifest portraitLocalPath), urlSmall = light landscape encode for
+//     small boxes (smallLocalPath); both null when the film has no variants (Vid.astro / video.js choose per box)
 //   - poster/still = ImageMetadata | null (poster = first fully exposed frame → seamless autoplay;
 //     still = representative frame → reduced motion / Save-Data / cards); *Media = full image records.
 //   - Always render videos `muted playsinline`; loop between startAt and endAt (never native `loop`
@@ -237,6 +239,8 @@ export function video(keyOrSrc) {
     key: entry.key,
     src: entry.localPath,
     url: entry.publicUrl ?? '/' + entry.localPath.replace(/^public\//, ''),
+    urlPortrait: entry.portraitLocalPath ? '/' + entry.portraitLocalPath.replace(/^public\//, '') : null,
+    urlSmall: entry.smallLocalPath ? '/' + entry.smallLocalPath.replace(/^public\//, '') : null,
     width: Number(entry.width) || 0,
     height: Number(entry.height) || 0,
     duration: entry.duration ?? null,

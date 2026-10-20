@@ -14,7 +14,7 @@
       { "label": "Mr. Kuldeep Tomar", "current": true }
     ],
     "eyebrow": "Official owner profile",
-    "heading": { "lines": ["Mr. Kuldeep Tomar", "Owner of Defence Garden."], "text": "Mr. Kuldeep Tomar Owner of Defence Garden.", "accent": "Owner of Defence Garden." },
+    "heading": { "lines": ["Mr. Kuldeep Tomar", "Owner of Defence\u00a0Garden."], "text": "Mr. Kuldeep Tomar Owner of Defence\u00a0Garden.", "accent": "Owner of Defence\u00a0Garden." },
     "text": "The current owner of Defence Garden is Mr. Kuldeep Tomar. He leads the organisation and its real-estate development operations.",
     "profileCard": {
       "ariaLabel": "Profile details",

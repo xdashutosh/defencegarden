@@ -8,7 +8,8 @@ import page from '../../data/pages/ourproject.json';
 
 const b = page.banner;
 const lines = b.heading?.lines?.length ? b.heading.lines : [b.heading?.text || ''];
-const toTitle = (s) => s.toLowerCase().replace(/^./, (m) => m.toUpperCase());
+// the source copy is in capitals; headings are sentence case: "Masterpieces / of architecture"
+const toTitle = (s, i) => (i ? s.toLowerCase() : s.toLowerCase().replace(/^./, (m) => m.toUpperCase()));
 ---
 <section class="flb t-night" data-header-tone="dark" aria-labelledby="flb-title">
   <div class="flb__media">

@@ -4,11 +4,13 @@ import Img from '../ui/Img.astro';
 import Icon from '../ui/Icon.astro';
 import Logo from '../chrome/Logo.astro';
 const cards = [
-  { k: 'green', title: 'Legacy Townships', text: 'Ten gated, plotted colonies across Shamli, Meerut & Budhana.', href: '/ourproject', src: 'projects.river-green-society.gallery-02' },
+  { k: 'green', title: 'Legacy Townships', text: 'Ten gated, plotted colonies across Shamli, Meerut & Budhana.', href: '/ourproject', src: 'projects.defence-garden-phase-2.aerial-05' },
   { k: 'navy', title: 'Urban High-Rise', text: 'Our vision for residential towers in India’s growing cities.', href: '/vision', vision: 'towers-modern', src: 'about.r3', concept: true },
   { k: 'aubergine', title: 'Invest With Us', text: 'Land-backed value, planned infrastructure, long horizons.', href: '/investment', src: 'about.r4' },
   { k: 'ink', title: 'Life in Colonies', text: 'Real photographs from our townships, unfiltered.', href: '/gallery', src: 'projects.defence-garden-phase-2.gallery-06' },
 ];
+// image sizes: 4 / 2 / 1 columns (CSS below); a 16:9 photo covering the 5:4 box is ~1.42× the box wide, ×1.12 parallax
+const sizes = '(min-width: 1101px) 38vw, (min-width: 521px) 74vw, 146vw';
 ---
 <section class="col t-mist section" data-header-tone="light">
   <div class="wrap">
@@ -28,7 +30,7 @@ const cards = [
             <p class="small col__text">{c.text}</p>
           </div>
           <div class="col__img media inset-line">
-            <Img src={c.src} vision={c.vision} sizes="(min-width: 861px) 24vw, 46vw" widths={[480, 800, 1200]} data-parallax="0.06" />
+            <Img src={c.src} vision={c.vision} sizes={sizes} widths={[480, 800, 1200, 1600, 2000]} data-parallax="0.06" />
             {c.concept && <span class="concept-tag">Concept</span>}
           </div>
         </a>

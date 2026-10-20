@@ -1,10 +1,10 @@
 ---
 // Every full load of the home page: realevate's opening, rebuilt.
-//  · navy screen; a square frame (the hero frame's size) at the centre where four images open one after another
+//  · black screen; a square frame (the hero frame's size) at the centre where four images open one after another
 //    from their centre (clip 50% → 0, image 1.5 → 1, every 0.5 s);
 //  · a two-digit odometer counter at the bottom rolls 27 → 42 → 68 → 92 → 99;
 //  · the last image is the hero film's first frame on a full-screen layer clipped to the square; the counter rolls
-//    away, the navy wipes off bottom-to-top and the frame glides onto the hero's frame — one continuous image.
+//    away, the black screen wipes off bottom-to-top and the frame glides onto the hero's frame — one continuous image.
 // Script: src/scripts/chrome/preloader.js. Skipped for reduced motion.
 import { getImage } from 'astro:assets';
 import Img from '../ui/Img.astro';
@@ -12,10 +12,10 @@ import { visionVideo } from '../../lib/vision.js';
 import { media } from '../../lib/media.js';
 
 const frames = [
-  { src: 'projects.river-green-society.gallery-02' },
+  { src: 'projects.river-green-society.aerial-01' },
   { vision: 'towers-modern', src: 'about.r3' },
-  { src: 'about.r4' },
-  { src: 'projects.defence-garden-phase-2.gallery-06' },
+  { src: 'projects.river-green-society.aerial-02' },
+  { src: 'projects.defence-garden-phase-2.aerial-02' },
 ];
 // the hero's first frame: concept film poster, else Defence Garden's own aerial (same fallback as the hero)
 const film = visionVideo('hero-film');
@@ -62,7 +62,7 @@ const digits = Array.from({ length: 10 }, (_, i) => i);
   html:not(.pre-run) .pre { display: none; }
   html.pre-run body { overflow: hidden; }
   html.pre-run .hdr__bar, html.pre-run .dock { visibility: hidden; }
-  .pre__bg { position: absolute; inset: 0; background: var(--navy); clip-path: inset(0 0 0 0); }
+  .pre__bg { position: absolute; inset: 0; background: #000; clip-path: inset(0 0 0 0); }
   .pre__frames { position: absolute; left: 50%; top: 50%; width: var(--pre-w); height: var(--pre-w); transform: translate(-50%, -50%); overflow: hidden; }
   .pre__frame { position: absolute; inset: 0; overflow: hidden; clip-path: inset(50% 50% 50% 50%); }
   .pre__frame :global(img) { display: block; width: 100%; height: 100%; object-fit: cover; transform-origin: center; }

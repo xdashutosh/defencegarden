@@ -1,5 +1,6 @@
 ---
 // /project/1 … /project/10 — one Defence Garden colony (real data and media only; URLs kept from the old site).
+import { getImage } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import FrameHero from '../../components/sections/FrameHero.astro';
 import ProjectFacts from '../../components/projects/ProjectFacts.astro';
@@ -9,7 +10,8 @@ import ProjectGallery from '../../components/projects/ProjectGallery.astro';
 import ProjectEnquiry from '../../components/projects/ProjectEnquiry.astro';
 import OtherColonies from '../../components/projects/OtherColonies.astro';
 import BookingMap from '../../components/booking/BookingMap.astro';
-import { projectsData, getProject, displayTitle } from '../../lib/site.js';
+import { projectsData, getProject, displayTitle, site } from '../../lib/site.js';
+import { preferred } from '../../lib/media.js';
 import { galleryFor, titleLines, rankPhotos } from '../../components/projects/util.js';
 
 export function getStaticPaths() {
@@ -21,15 +23,25 @@ const title = displayTitle(p);
 const hasFilm = Boolean(p.video);
 // The cover is on screen only when there is no film for the hero; then its twin is dropped from the gallery.
 const photos = galleryFor(p, { coverShown: !hasFilm });
-// distinct, best-suited photos for About (main + inset), Amenities and the enquiry backdrop
+// distinct, best-suited photos for About (main + inset), Amenities and the enquiry backdrop. Varied when the colony has
+// drone aerials: aerial About photo and backdrop, ground-level inset and Amenities. The backdrop also avoids signage
+// (gate / logo lettering would sit behind its white text). A pick with no candidate falls back to the best photo left,
+// so a colony without aerials (or with only aerials) gets the plain ranking order.
 const ranked = rankPhotos(photos);
 const used = new Set();
 const take = (pred = () => true) => { const r = ranked.find((x) => !used.has(x.i) && pred(x)); if (!r) return undefined; used.add(r.i); return r.g; };
-const aboutPhotos = [take(), take()].filter(Boolean);
-const amenityPhoto = take() || aboutPhotos[0];
-const enquiryPhoto = take((x) => x.bleed) || take() || p.cover;
+const aerial = (x) => x.aerial;
+const ground = (x) => !x.aerial;
+const aboutPhotos = [take(aerial) || take(), take(ground) || take()].filter(Boolean);
+const amenityPhoto = take(ground) || take() || aboutPhotos[0];
+const enquiryPhoto = take((x) => x.aerial && x.bleed && !x.signage) || take((x) => x.bleed && !x.signage)
+  || take((x) => x.aerial && x.bleed) || take((x) => x.bleed) || take() || p.cover;
+// Social preview (og:image / twitter:image): this colony's cover cropped to the site's OG size, not the site-wide
+// public/og-image.jpg; seoFor() labels a project page's ogImage with that size and the cover's alt.
+const { ogImageWidth = 1200, ogImageHeight = 630 } = site.seo.defaults;
+const og = await getImage({ src: preferred(p.cover).image, width: ogImageWidth, height: ogImageHeight, fit: 'cover', format: 'jpg', quality: 82 });
 ---
-<Base path={`/project/${p.id}`} namespace="project" tone="light">
+<Base path={`/project/${p.id}`} namespace="project" tone="light" ogImage={og.src}>
   <FrameHero
     words={`${title} —`}
     theme="t-light"

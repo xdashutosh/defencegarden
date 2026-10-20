@@ -2,11 +2,13 @@
 // What carries over from land to towers — DG's own guiding principles + amenity facts, with real photos.
 import Img from '../ui/Img.astro';
 const items = [
-  { n: '01', t: 'Trust & Transparency', d: 'Legal clarity, ethical delivery, and open communication behind every plot we hand over.', src: 'projects.defence-garden-phase-2.gallery-03' },
+  { n: '01', t: 'Trust & Transparency', d: 'Legal clarity, ethical delivery, and open communication behind every plot we hand over.', src: 'projects.ganpati-enclave.gallery-01' },
   { n: '02', t: 'Future-Ready Planning', d: 'Wide roads, clear zoning, and practical amenities that create value today and confidence tomorrow.', src: 'projects.river-green-society.gallery-02' },
   { n: '03', t: 'Sustainable Living', d: 'Neighborhoods designed around trees, airflow, and open greens — so each community breathes naturally.', src: 'projects.defence-garden-phase-1.gallery-08' },
-  { n: '04', t: 'Security by Design', d: 'Gated communities with 24/7 security, boundary walls and planned, well-lit streets.', src: 'projects.defence-garden-phase-2.gallery-06' },
+  { n: '04', t: 'Security by Design', d: 'Gated communities with 24/7 security, boundary walls and planned, well-lit streets.', src: 'projects.defence-garden-meerut.gallery-01' },
 ];
+// image sizes: the 16:10 box is ~26% of the row (the full row ≤860px); these 3:2 / 4:3 photos fill its width, ×1.14 parallax
+const sizes = '(min-width: 861px) 27vw, 100vw';
 ---
 <section class="prn t-light section" data-header-tone="light">
   <div class="wrap">
@@ -22,7 +24,7 @@ const items = [
             <h3 class="prn__t">{it.t}</h3>
             <p class="body muted">{it.d}</p>
           </div>
-          <div class="frame prn__frame" data-tilt="4"><span class="frame__corners" aria-hidden="true"></span><figure class="media prn__img"><Img src={it.src} sizes="(min-width: 861px) 22vw, 90vw" widths={[480, 800, 1200]} data-parallax="0.07" /><span class="frame__sheen" aria-hidden="true"></span></figure></div>
+          <div class="frame prn__frame" data-tilt="4"><span class="frame__corners" aria-hidden="true"></span><figure class="media prn__img"><Img src={it.src} sizes={sizes} widths={[480, 800, 1200]} data-parallax="0.07" /><span class="frame__sheen" aria-hidden="true"></span></figure></div>
         </li>
       ))}
     </ol>

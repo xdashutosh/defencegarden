@@ -7,16 +7,16 @@
   },
   "icon": "circle-alert",
   "code": "404",
-  "heading": "Page Not Found",
+  "heading": "Page not found",
   "text": "Oops! The page you're looking for doesn't exist or has been moved. Don't worry, you can always return home.",
   "buttons": [
     {
-      "label": "Back to Home",
+      "label": "Back to home",
       "href": "/",
       "icon": "arrow-left"
     },
     {
-      "label": "Go Back",
+      "label": "Go back",
       "action": "history.back()"
     }
   ],

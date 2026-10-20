@@ -3,8 +3,17 @@
 import Img from '../ui/Img.astro';
 import Icon from '../ui/Icon.astro';
 import { projects, displayTitle, projectUrl } from '../../lib/site.js';
+import { preferred } from '../../lib/media.js';
 
 const colonies = [...projects].sort((a, b) => a.year - b.year || a.id - b.id);
+// A cover is cover-cropped into its 4:5 frame (the card less 20px of margin): a photo wider than 4:5 is drawn
+// aspect / 0.8 × the frame's width (3:2 → 1.875 ×), so sizes asks for that. Frame widths from the card's
+// clamp(250px, 24vw, 420px) (74vw ≤860px): 400px from 1750px, ≤ 24vw from 1042px, 230px ≤ 27vw, then ≤ 72vw.
+const FRAME: [number, number, string][] = [[1750, 400, 'px'], [1042, 24, 'vw'], [861, 27, 'vw'], [0, 72, 'vw']];
+const coverSizes = (cover: unknown) => {
+  const k = Math.max(1, (preferred(cover).aspect || 1) / 0.8);
+  return FRAME.map(([min, n, unit]) => `${min ? `(min-width: ${min}px) ` : ''}${Math.round(n * k)}${unit}`).join(', ');
+};
 ---
 <section class="jrn t-light" data-hscroll data-header-tone="light" aria-labelledby="jrn-title">
   <div data-hscroll-sticky>
@@ -25,7 +34,7 @@ const colonies = [...projects].sort((a, b) => a.year - b.year || a.id - b.id);
       {colonies.map((p) => (
         <li class="jrn__card">
           <a class="jrn__link" href={projectUrl(p)}>
-            <div class="frame jrn__frame" data-tilt="5"><span class="frame__corners" aria-hidden="true"></span><div class="jrn__img media"><Img src={p.cover} sizes="(min-width: 861px) 26vw, 74vw" widths={[480, 800, 1200]} /><span class="frame__sheen" aria-hidden="true"></span></div></div>
+            <div class="frame jrn__frame" data-tilt="5"><span class="frame__corners" aria-hidden="true"></span><div class="jrn__img media"><Img src={p.cover} sizes={coverSizes(p.cover)} widths={[480, 800, 1200, 1600]} /><span class="frame__sheen" aria-hidden="true"></span></div></div>
             <div class="jrn__meta">
               <p class="deco deco--sm jrn__y">{p.year}</p>
               <p class="eyebrow muted">{p.city} · {p.status}</p>

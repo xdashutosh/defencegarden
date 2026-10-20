@@ -11,6 +11,9 @@ const cta = sharedProjectData?.detailPage?.cta || {};
 const title = displayTitle(p);
 const sales = phone('sales');
 const wa = whatsappUrl(`Hello Defence Garden, I am interested in ${title} (${p.location}).`);
+// headline: "Defence Garden" and a short last word with its "?" ("Phase 2?") never break apart; odd parts go in a
+// .nowrap span (a U+00A0 would not survive SplitText)
+const headline = `${title}?`.split(/(Defence Garden|\S+ \S{1,2}\?$)/);
 ---
 <section class="pen t-night" data-header-tone="dark" aria-labelledby="pen-title">
   <div class="pen__media" aria-hidden="true">
@@ -19,7 +22,7 @@ const wa = whatsappUrl(`Hello Defence Garden, I am interested in ${title} (${p.l
   <div class="wrap pen__in">
     <Ornament variant="diamond" class="pen__orn" />
     <p class="eyebrow eyebrow--accent" data-reveal="fade">{cta.eyebrow || 'Get In Touch'}</p>
-    <h2 class="deco pen__title balance" id="pen-title" data-reveal="lines">Interested in<br />{title}?</h2>
+    <h2 class="deco pen__title balance" id="pen-title" data-reveal="lines">Interested in<br />{headline.map((s, i) => (i % 2 ? <span class="nowrap">{s}</span> : s))}</h2>
     {cta.text && <p class="lead pen__text balance" data-reveal="fade">{cta.text}</p>}
     <div class="pen__actions" data-reveal="fade">
       <button class="btn btn--copper" type="button" data-enquire data-interest="A plot in an existing colony" data-colony={title}><span>Enquire now</span><Icon name="arrow-right" /></button>

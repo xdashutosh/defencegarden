@@ -33,7 +33,7 @@
       "playsInline": true
     },
     "badge": {
-      "text": "A Story of Land & Legacy",
+      "text": "A story of land & legacy",
       "icon": "sparkles"
     },
     "heading": {
@@ -62,11 +62,10 @@
   "story": {
     "watermark": "Story",
     "image": {
-      "oldUrl": "https://defencegarden.com/assets/r2-DE7o04th.webp",
-      "key": "about.r2",
-      "src": "src/assets/media/about/r2.webp",
-      "alt": "Paved walkway lined with ornate street lamps, young palms and clipped hedges under a clear blue sky",
-      "oldAlt": "River Green beginnings"
+      "oldUrl": null,
+      "key": "projects.river-green-society.aerial-03",
+      "src": "src/assets/media/projects/river-green-society/aerial-03.webp",
+      "alt": "River Green Society: the red-striped central boulevard leading to the fountain roundabout, with plots and young trees on either side"
     },
     "imageCaption": "\"A quiet mission in Meerut, 2006.\"",
     "badge": {
@@ -106,11 +105,10 @@
   "leadership": {
     "watermark": "Leadership",
     "image": {
-      "oldUrl": "https://defencegarden.com/assets/r3-CMSWksVP.webp",
-      "key": "about.r3",
-      "src": "src/assets/media/about/r3.webp",
-      "alt": "Aerial view of the Defence Garden Phase 2 entrance on the main road, with its green welcome wall, gatehouse and Defence Plaza billboards",
-      "oldAlt": "Defence Garden Phase 2 plotted township"
+      "oldUrl": null,
+      "key": "projects.defence-garden-phase-2.aerial-01",
+      "src": "src/assets/media/projects/defence-garden-phase-2/aerial-01.webp",
+      "alt": "Defence Garden Phase 2: the gatehouse and green \"Welcomes You\" wall, with the plotted streets and new homes beyond"
     },
     "imageCaption": {
       "eyebrow": "Defence Garden",

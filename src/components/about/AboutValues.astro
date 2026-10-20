@@ -10,6 +10,9 @@ const photos = {
   'Future-Ready Planning': 'projects.defence-garden-phase-1.gallery-06',
   'Trust & Transparency': 'projects.defence-garden-phase-1.gallery-10',
 };
+// The 3:4 arch shows about half the gate photo's width, less than its "Defence Garden" lettering spans: frame the
+// leaf logo and "Garden" whole rather than cutting both words.
+const focus = { 'Trust & Transparency': '82% 50%' };
 const [t1, t2] = v.heading.text.split(' guiding ');
 ---
 <section class="avl t-ivory section" data-header-tone="light" aria-labelledby="avl-title">
@@ -30,7 +33,7 @@ const [t1, t2] = v.heading.text.split(' guiding ');
           </div>
           <div class="avl__arch">
             <div class="avl__photo media">
-              <Img src={photos[it.title]} sizes="(min-width: 861px) 22vw, 70vw" widths={[480, 800, 1200]} />
+              <Img src={photos[it.title]} focus={focus[it.title]} sizes="(min-width: 861px) 22vw, 70vw" widths={[480, 800, 1200]} />
             </div>
           </div>
           <p class="body avl__desc">{it.desc}</p>

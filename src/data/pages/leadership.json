@@ -13,7 +13,7 @@
       { "label": "Leadership", "current": true }
     ],
     "badge": { "text": "Official company information", "icon": "circle-check" },
-    "heading": { "lines": ["Ownership &", "Leadership."], "text": "Ownership & Leadership.", "accent": "Leadership." },
+    "heading": { "lines": ["Ownership &", "leadership."], "text": "Ownership & leadership.", "accent": "leadership." },
     "text": "The current owner of Defence Garden is Mr. Kuldeep Tomar. He leads the organisation and its real-estate development operations."
   },
 

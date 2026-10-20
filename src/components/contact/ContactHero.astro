@@ -1,5 +1,5 @@
 ---
-// era.estate contacts page: breadcrumb, big thin-capitals title, then a ledger of contact blocks beside a framed photo.
+// era.estate contacts page: breadcrumb, big sentence-case title, then a ledger of contact blocks beside a framed photo.
 import Img from '../ui/Img.astro';
 import Icon from '../ui/Icon.astro';
 import Ornament from '../ui/Ornament.astro';
@@ -51,7 +51,8 @@ const blocks = [
       </ul>
       <figure class="chr__fig" data-reveal="clip" data-reveal-intro data-reveal-delay="0.2">
         <div class="chr__img media">
-          <Img src="projects.defence-garden-phase-2.gallery-03" eager sizes="(min-width: 861px) 34vw, 92vw" widths={[480, 800, 1200, 1600]} data-parallax="0.07" />
+          {/* the desktop 4:5 crop (scaled 1.14 by the parallax) keeps the whole welcome sign, with the gatehouse beside it */}
+          <Img src="projects.defence-garden-phase-2.gallery-03" focus="4% 50%" eager sizes="(min-width: 861px) 34vw, 92vw" widths={[480, 800, 1200, 1600]} data-parallax="0.07" />
         </div>
         <figcaption class="eyebrow muted chr__cap">Defence Garden Phase 2 · Shamli</figcaption>
       </figure>

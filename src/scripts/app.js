@@ -14,7 +14,7 @@ import './modules/hscroll.js';
 import './modules/strip.js';
 import './modules/video.js';
 import './modules/scrubVideo.js';
-import './modules/skylineRise.js';
+import './modules/aerialTour.js';
 import './modules/lightbox.js';
 import './modules/filter.js';
 import './modules/calc.js';

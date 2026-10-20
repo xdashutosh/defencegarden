@@ -6,12 +6,14 @@ import Ornament from '../ui/Ornament.astro';
 interface Item { number?: string; question: string; answer: string }
 interface Props { eyebrow?: string; heading: string; items: Item[]; class?: string; theme?: string; openFirst?: boolean }
 const { eyebrow, heading, items, class: cls = '', theme = 't-light', openFirst = true } = Astro.props;
+// "Defence Garden" never breaks over two lines: odd parts go in a .nowrap span (a U+00A0 would not survive SplitText)
+const title = heading.split(/(Defence Garden)/);
 ---
 <section class={`faq ${theme} section ${cls}`} data-header-tone={theme === 't-night' || theme === 't-green' ? 'dark' : 'light'} aria-labelledby="faq-title">
   <div class="wrap faq__grid">
     <header class="faq__head">
       {eyebrow && <p class="eyebrow eyebrow--accent" data-reveal="fade">{eyebrow}</p>}
-      <h2 class="serif faq__title" id="faq-title" data-reveal="lines">{heading}</h2>
+      <h2 class="serif faq__title" id="faq-title" data-reveal="lines">{title.map((s, i) => (i % 2 ? <span class="nowrap">{s}</span> : s))}</h2>
       <Ornament variant="spire" class="faq__orn" />
     </header>
     <div class="faq__list">
@@ -32,7 +34,7 @@ const { eyebrow, heading, items, class: cls = '', theme = 't-light', openFirst =
   .faq { interpolate-size: allow-keywords; }
   .faq__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(36px, 6vw, 120px); align-items: start; }
   .faq__head { display: grid; gap: 22px; position: sticky; top: calc(var(--header-h) + 24px); }
-  .faq__title { max-width: 12ch; }
+  .faq__title { max-width: 14ch; }
   .faq__orn { width: 64px; color: var(--accent); opacity: .8; margin-top: 10px; }
   .faq__list { border-top: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); }
   .faq__item { border-bottom: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); }

@@ -13,7 +13,7 @@ const chips = s.chips.map((c) => ({ ...c, project: getProject(c.projectId) })).f
       <p class="eyebrow eyebrow--accent" data-reveal="fade">{s.eyebrow}</p>
       <h2 class="display ccl__title" id="ccl-title" data-reveal="lines">{s.heading}</h2>
       <p class="lead muted ccl__text" data-reveal="fade">{s.text}</p>
-      <p class="eyebrow muted ccl__legend" data-reveal="fade"><span class="ccl__key"><Icon name="arrow-up-right" class="ico" /></span> Colony page <span class="ccl__key"><Icon name="pin" class="ico" /></span> Location</p>
+      <p class="eyebrow muted ccl__legend" data-reveal="fade"><span class="ccl__key"><Icon name="arrow-up-right" class="ico" /></span> <span>Colony page</span> <span class="ccl__key"><Icon name="pin" class="ico" /></span> <span>Location</span></p>
     </div>
     <ul class="ccl__chips">
       {chips.map((c, i) => {
@@ -40,17 +40,18 @@ const chips = s.chips.map((c) => ({ ...c, project: getProject(c.projectId) })).f
   .ccl__text { max-width: 34ch; }
   .ccl__legend { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
   .ccl__key { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--fg) 25%, transparent); }
-  .ccl__key + * { margin-right: 10px; }
+  .ccl__key + * { margin-right: 10px; }   /* each icon's label span: extra room before the next icon/label pair */
   .ccl__key :global(.ico) { width: 11px; height: 11px; }
   .ccl__chips { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .ccl__chip { display: flex; align-items: stretch; min-height: 64px; border: 1px solid color-mix(in srgb, var(--fg) 22%, transparent); border-radius: 999px; overflow: hidden; transition: border-color .35s, box-shadow .5s var(--ease-out); }
   .ccl__chip:hover { border-color: var(--fg); box-shadow: 0 18px 40px -26px rgba(6,26,58,.45); }
   .ccl__main { flex: 1; min-width: 0; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; padding: 0 16px 0 22px; transition: background .35s, color .35s; }
-  .ccl__txt { min-width: 0; display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  /* name over city at every width: side by side, the two-column grid cut names to "Defence Garden Phas…" */
+  .ccl__txt { min-width: 0; display: flex; flex-direction: column; align-items: start; gap: 3px; padding-block: 10px; }
   .ccl__main:hover { background: var(--fg); color: var(--bg); }
-  .ccl__n { font-family: var(--f-deco); font-weight: 300; font-size: 15px; color: var(--accent); }
+  .ccl__n { font-weight: 400; font-size: 15px; color: var(--accent); }
   .ccl__main:hover .ccl__n { color: var(--copper); }
-  .ccl__name { font-size: 17px; font-weight: 500; letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ccl__name { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.2; }
   .ccl__city { opacity: .6; white-space: nowrap; }
   .ccl__go { width: 14px; height: 14px; opacity: .5; }
   .ccl__pin { flex: none; display: grid; place-items: center; width: 60px; border-left: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); color: var(--accent); transition: background .35s, color .35s; }
@@ -62,8 +63,7 @@ const chips = s.chips.map((c) => ({ ...c, project: getProject(c.projectId) })).f
     .ccl__head { position: static; }
     .ccl__chip { min-height: 58px; }
     .ccl__main { padding-left: 18px; gap: 10px; }
-    .ccl__name { font-size: 16px; white-space: normal; line-height: 1.2; }
-    .ccl__txt { flex-direction: column; align-items: start; gap: 3px; padding-block: 10px; }
+    .ccl__name { font-size: 16px; }
     .ccl__pin { width: 54px; }
   }
 </style>

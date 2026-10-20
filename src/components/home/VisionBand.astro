@@ -1,5 +1,5 @@
 ---
-// era.estate navy band: thin capitals title + draggable strip of concept photographs (licensed, realistic).
+// era.estate navy band: big sentence-case title + draggable strip of concept photographs (licensed, realistic).
 import Img from '../ui/Img.astro';
 import Icon from '../ui/Icon.astro';
 const slides = [
@@ -46,7 +46,7 @@ const slides = [
   .vbd__head .deco { color: #f4ede6; }
   .vbd__copy { display: grid; gap: 28px; }
   .vbd__nav { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
-  .vbd__track { padding-inline: var(--gutter); align-items: end; }
+  .vbd__track { padding-inline: var(--gutter); scroll-padding-inline: var(--gutter); align-items: end; }   /* slide 1 snaps in line with the heading (Prev disabled) */
   .vbd__slide { width: clamp(260px, 32vw, 560px); display: grid; gap: 30px; }
   .vbd__frame { --fr-x: 14px; --fr-y: 14px; }
   .vbd__img { aspect-ratio: 4 / 3; }

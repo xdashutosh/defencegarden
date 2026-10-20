@@ -6,13 +6,15 @@ interface Link { label: string; href: string; img: string }
 interface Props { links: Link[]; ariaLabel: string; eyebrow?: string; heading?: string; theme?: string; class?: string }
 const { links, ariaLabel, eyebrow, heading, theme = 't-ivory', class: cls = '' } = Astro.props;
 const dark = theme === 't-night' || theme === 't-green';
+// "Defence Garden" never breaks over two lines: odd parts go in a .nowrap span (a U+00A0 would not survive SplitText)
+const title = heading ? heading.split(/(Defence Garden)/) : [];
 ---
 <nav class={`exl ${theme} section section--tight ${cls}`} data-header-tone={dark ? 'dark' : 'light'} aria-label={ariaLabel}>
   <div class="wrap">
     {(eyebrow || heading) && (
       <div class="exl__head">
         {eyebrow && <p class="eyebrow eyebrow--accent" data-reveal="fade">{eyebrow}</p>}
-        {heading && <p class="display exl__title" data-reveal="lines">{heading}</p>}
+        {heading && <p class="display exl__title" data-reveal="lines">{title.map((s, i) => (i % 2 ? <span class="nowrap">{s}</span> : s))}</p>}
       </div>
     )}
     <ul class="exl__grid">

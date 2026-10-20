@@ -10,6 +10,8 @@ const { pillars: p } = data;
 const claims = flags.investmentClaims;
 const items = claims ? p.items : p.items.filter((it) => it.number !== '01' && it.number !== '03');
 const title = claims ? p.heading.title : 'Pillars of';
+// photo: a 3:2 drone view covering the 5:4 box (~5/12 of the row, the full row ≤960px) → 1.2× the box wide, ×1.12 parallax
+const sizes = '(min-width: 961px) 50vw, 124vw';
 ---
 <style is:inline>
   .ivp__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(36px, 6vw, 120px); align-items: start; }
@@ -21,7 +23,7 @@ const title = claims ? p.heading.title : 'Pillars of';
   .ivp__item { position: relative; display: grid; align-content: space-between; gap: clamp(50px, 7vw, 130px); padding: clamp(22px, 2.4vw, 38px); border-right: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); border-bottom: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); min-height: clamp(240px, 24vw, 400px); transition: background .6s var(--ease-out); }
   .ivp__item:hover { background: color-mix(in srgb, var(--fg) 4%, transparent); }
   .ivp__top { display: flex; justify-content: space-between; align-items: start; gap: 12px; }
-  .ivp__n { font-family: var(--f-deco); font-weight: 300; font-size: clamp(44px, 4.6vw, 84px); line-height: .9; color: var(--accent); }
+  .ivp__n { font-family: var(--f-sans); font-weight: 400; font-size: clamp(44px, 4.6vw, 84px); line-height: .9; letter-spacing: -.04em; color: var(--accent); }
   .ivp__arch { width: 34px; height: 46px; border: 1px solid color-mix(in srgb, var(--accent) 70%, transparent); border-bottom: 0; border-radius: 17px 17px 0 0; }
   .ivp__t { font-size: clamp(22px, 2vw, 34px); font-weight: 500; letter-spacing: -.03em; line-height: 1.05; margin-bottom: 10px; }
   @media (max-width: 960px) { .ivp__grid { grid-template-columns: 1fr; } .ivp__side { position: static; } }
@@ -32,7 +34,7 @@ const title = claims ? p.heading.title : 'Pillars of';
     <div class="ivp__side">
       <ChapterHead eyebrow={p.eyebrow} title={title} accent={p.heading.accent} />
       <figure class="ivp__img media" data-reveal="clip">
-        <Img src="about.r2" sizes="(min-width: 961px) 38vw, 92vw" widths={[480, 800, 1200, 1600]} data-parallax="0.06" />
+        <Img src="projects.river-green-society.aerial-04" sizes={sizes} widths={[480, 800, 1200, 1600]} data-parallax="0.06" />
       </figure>
     </div>
     <ol class="ivp__list">

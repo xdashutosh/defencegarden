@@ -1,0 +1,232 @@
+---
+// "From the air": the best drone photographs of River Green Society and Defence Garden Phase 2 (the owner's own
+// footage, 13 Oct 2026), each with an explanation and its highlights. Numbered pins on the photo match the numbered
+// highlights beside it (x / y = the feature's position in % of the whole photo; dir = side of the pin label).
+// Desktop: photo and text side by side, the photo stays in view while its text scrolls. Phones: photo, then text;
+// the pins keep their numbers and the labels live in the list. Script: src/scripts/modules/aerialTour.js.
+// Copy states only what the photos show or the project data says (plot sizes / road widths: projects.json shared).
+import Img from '../ui/Img.astro';
+import Icon from '../ui/Icon.astro';
+import { media } from '../../lib/media.js';
+import { getProject, displayTitle, projectUrl, sharedProjectData } from '../../lib/site.js';
+
+const fact = (label) => sharedProjectData?.keyDetails?.find((d) => d.label === label)?.value;
+const plotSizes = fact('Plot Sizes'), roadWidth = fact('Road Width');
+const rg = getProject(1), dg2 = getProject(5);
+
+const steps = [
+  {
+    p: rg, key: 'projects.river-green-society.aerial-01', where: 'The whole township',
+    title: 'One plan, from the gate to the last plot',
+    text: 'From high above, River Green Society reads like a drawing: a walled site carved out of farmland, a single gated entrance, a straight central boulevard and a grid of paved streets that meet at a fountain roundabout.',
+    pins: [
+      { x: 52.5, y: 51, dir: 'l', label: 'Gated entrance', detail: 'The only way in, on Shamli Road, with the sales office and shops beside it.' },
+      { x: 51.5, y: 66, dir: 'r', label: 'Fountain roundabout', detail: 'The landscaped heart of the colony, where the main roads cross.' },
+      { x: 50.8, y: 80, dir: 'r', label: 'Central boulevard', detail: 'One straight axis from the gate to the back of the colony.' },
+      { x: 16, y: 80, dir: 'r', label: 'Boundary wall', detail: 'A wall runs around the whole site.' },
+      { x: 88, y: 40, dir: 'l', label: 'Fields all around', detail: 'Open farmland on every side, the town on the horizon.' },
+    ],
+  },
+  {
+    p: rg, key: 'projects.river-green-society.aerial-02', where: 'Entrance and boulevard',
+    title: 'Through the arch, straight down the boulevard',
+    text: 'The River Green arch opens onto a wide paved boulevard with a red centre stripe that runs straight to the fountain. Cross streets branch off at right angles, lined with lamp posts and young trees.',
+    pins: [
+      { x: 43, y: 72, dir: 'l', label: 'River Green arch', detail: 'The colony’s name in green letters, lit up after dark.' },
+      { x: 26, y: 89, dir: 'r', label: 'Sales office', detail: 'Layout plans and site visits, right at the gate.' },
+      { x: 52, y: 40, dir: 'l', label: 'Central boulevard', detail: 'Paved, with a red centre stripe and lamp posts.' },
+      { x: 88, y: 29, dir: 'l', label: 'Cross streets', detail: 'Paved and edged in red, at right angles to the boulevard.' },
+      { x: 51, y: 17, dir: 'r', label: 'Fountain ahead', detail: 'The boulevard ends at the fountain roundabout.' },
+    ],
+    facts: roadWidth ? [{ label: `${roadWidth} roads`, detail: 'Planned road widths in our colonies.' }] : [],
+  },
+  {
+    p: rg, key: 'projects.river-green-society.aerial-04', where: 'The fountain roundabout',
+    title: 'A landscaped heart for the colony',
+    text: 'Where the main roads meet, a stone fountain stands in a wide paved circle, framed by clipped hedges, palms and corner gardens: a place to stroll and meet the neighbours.',
+    pins: [
+      { x: 50, y: 44, dir: 'r', label: 'Stone fountain', detail: 'At the centre of the circle, lit in colour after dark.' },
+      { x: 64, y: 52, dir: 'r', label: 'Palms and lamp posts', detail: 'Planted along the roads around the circle.' },
+      { x: 61, y: 67, dir: 'r', label: 'Corner gardens', detail: 'Lawns inside clipped hedges on the corners of the circle.' },
+      { x: 26, y: 72, dir: 'r', label: 'Paved roads', detail: 'Paver blocks with red edging.' },
+      { x: 35, y: 16, dir: 'r', label: 'First homes', detail: 'Owners are already building on their plots.' },
+    ],
+  },
+  {
+    p: rg, key: 'projects.river-green-society.aerial-05', where: 'Straight down',
+    title: 'Every plot faces a paved street',
+    text: 'Seen from directly above, the planning is easy to read: plots are marked out in neat rows, each one opens onto a paved street, and the roundabout ties the grid together.',
+    pins: [
+      { x: 52.5, y: 52, dir: 'r', label: 'Roundabout', detail: 'Four streets meet at the fountain.' },
+      { x: 30, y: 67, dir: 'r', label: 'Marked plots', detail: 'Plot boundaries set out on the ground, ready to build.' },
+      { x: 19.5, y: 84, dir: 'r', label: 'Paved streets', detail: 'A red-edged street between every row of plots.' },
+      { x: 13, y: 12, dir: 'r', label: 'Boundary wall', detail: 'Farmland starts just outside the wall.' },
+      { x: 29, y: 27, dir: 'r', label: 'A new home', detail: 'One of the first houses on the grid.' },
+    ],
+    facts: [
+      ...(plotSizes ? [{ label: `Plots of ${plotSizes}`, detail: 'Sizes across our colonies.' }] : []),
+      ...(rg?.hasMap ? [{ label: 'Live plot-booking map', detail: 'See which plots are free on the colony page.' }] : []),
+    ],
+    cta: true,
+  },
+  {
+    p: dg2, key: 'projects.defence-garden-phase-2.aerial-02', where: 'On the main road',
+    title: 'Phase 2 opens straight off the main road',
+    text: 'A red-roofed gatehouse and the green “Welcomes You” wall mark the entrance to Defence Garden Phase 2, with a row of shops beside it and homes already standing on the streets behind.',
+    pins: [
+      { x: 50, y: 45, dir: 'r', label: 'Gatehouse', detail: 'The red-roofed entrance and its paved forecourt.' },
+      { x: 41, y: 56, dir: 'l', label: '“Welcomes You” wall', detail: 'The green signage wall beside the gate.' },
+      { x: 31, y: 47, dir: 'l', label: 'Shops', detail: 'A row of shops at the entrance.' },
+      { x: 63, y: 86, dir: 'r', label: 'Main road', detail: 'A divided main road with a planted median.' },
+      { x: 23, y: 33, dir: 'r', label: 'Homes built', detail: 'Owners are already living and building here.' },
+      { x: 90, y: 50, dir: 'l', label: 'Next streets', detail: 'New roads being paved in October 2026.' },
+    ],
+  },
+  {
+    p: dg2, key: 'projects.defence-garden-phase-2.aerial-03', where: 'Streets and homes',
+    title: 'Streets laid, homes rising',
+    text: 'Behind the gate the internal roads are laid and lit, and new homes are going up plot by plot. When this photograph was taken, the next boulevard was being paved.',
+    pins: [
+      { x: 23.5, y: 51, dir: 'r', label: 'Gate and “Welcomes You” wall', detail: 'The entrance on the main road.' },
+      { x: 66, y: 40, dir: 'r', label: 'Lit internal roads', detail: 'Street lights along the roads.' },
+      { x: 53, y: 34, dir: 'l', label: 'New homes', detail: 'Built and under construction.' },
+      { x: 55, y: 69, dir: 'r', label: 'Boulevard being paved', detail: 'Work in progress in October 2026.' },
+      { x: 13, y: 72, dir: 'r', label: 'Main road', detail: 'Direct access from the main road.' },
+    ],
+    facts: dg2?.hasMap ? [{ label: 'Live plot-booking map', detail: 'See which plots are free on the colony page.' }] : [],
+    cta: true,
+  },
+].filter((s) => s.p);
+
+const pad2 = (n) => String(n).padStart(2, '0');
+const total = pad2(steps.length);
+const items = steps.map((s) => {
+  const rec = media(s.key);
+  return { ...s, rec, name: displayTitle(s.p), href: projectUrl(s.p), ratio: `${rec.width} / ${rec.height}` };
+});
+---
+<section class="atr t-light section" data-header-tone="light" data-atr aria-labelledby="atr-title">
+  <div class="wrap">
+    <header class="atr__head">
+      <div class="sec-head">
+        <p class="eyebrow eyebrow--accent" data-reveal="fade">From the air · Shamli</p>
+        <h2 class="display atr__title" id="atr-title" data-reveal="lines">Our colonies,<br />seen from above</h2>
+      </div>
+      <div class="atr__intro">
+        <p class="lead muted" data-reveal="fade">Real drone photographs of River Green Society and Defence Garden Phase 2, taken in October 2026. Not renders: every road, park and gate you see is already built.</p>
+        <ul class="atr__meta" data-reveal="fade">
+          <li><b>{total}</b><span class="eyebrow muted">Aerial views</span></li>
+          <li><b>02</b><span class="eyebrow muted">Colonies</span></li>
+          <li><b>Oct 2026</b><span class="eyebrow muted">Photographed</span></li>
+        </ul>
+      </div>
+    </header>
+
+    <ol class="atr__steps">
+      {items.map((s, i) => (
+        <li class={`atr__step ${i % 2 ? 'is-flip' : ''}`} data-atr-step>
+          <figure class="atr__photo">
+            <div class="atr__img media" style={`aspect-ratio:${s.ratio}`} data-reveal="clip">
+              <Img src={s.key} sizes="(min-width: 1100px) 58vw, 100vw" widths={[640, 960, 1280, 1600, 1920, 2400]} />
+              <div class="atr__pins" aria-hidden="true">
+                {s.pins.map((pin, k) => (
+                  <span class={`atr__pin is-${pin.dir}`} style={`left:${pin.x}%;top:${pin.y}%;--d:${(0.15 + k * 0.09).toFixed(2)}s`} data-atr-pin={k}>
+                    <b>{k + 1}</b><span class="atr__label">{pin.label}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+            <figcaption class="atr__cap eyebrow muted"><span>{pad2(i + 1)} / {total}</span> Drone photograph · {s.name} · 13 Oct 2026</figcaption>
+          </figure>
+          <div class="atr__copy">
+            <p class="eyebrow eyebrow--accent" data-reveal="fade">{s.name} · {s.where}</p>
+            <h3 class="atr__t" data-reveal="fade">{s.title}</h3>
+            <p class="body muted" data-reveal="fade">{s.text}</p>
+            <ul class="atr__hl" data-reveal="fade">
+              {s.pins.map((pin, k) => (
+                <li data-atr-hl={k}><span class="atr__num">{k + 1}</span><div><p class="atr__hlt">{pin.label}</p><p class="small muted">{pin.detail}</p></div></li>
+              ))}
+              {(s.facts || []).map((f) => (
+                <li class="is-fact"><span class="atr__num" aria-hidden="true"></span><div><p class="atr__hlt">{f.label}</p><p class="small muted">{f.detail}</p></div></li>
+              ))}
+            </ul>
+            {s.cta && <a class="btn atr__go" href={s.href} data-reveal="fade"><span>Explore {s.name}</span><Icon name="arrow-right" /></a>}
+          </div>
+        </li>
+      ))}
+    </ol>
+
+    <div class="atr__end" data-reveal="fade">
+      <p class="atr__endt">See it for yourself: we arrange site visits to both colonies.</p>
+      <div class="atr__actions">
+        <button class="btn btn--solid" type="button" data-enquire data-interest="Site visit"><span>Plan a site visit</span><Icon name="arrow-right" /></button>
+        <a class="btn" href="/ourproject"><span>All colonies</span><Icon name="grid" /></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .atr__head { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: var(--gutter); align-items: end; margin-bottom: clamp(56px, 7vw, 120px); }
+  .atr__intro { display: grid; gap: 26px; max-width: 52ch; justify-self: end; }
+  .atr__meta { display: flex; flex-wrap: wrap; gap: clamp(22px, 3vw, 44px); padding-top: 22px; border-top: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); }
+  .atr__meta li { display: grid; gap: 6px; }
+  .atr__meta b { font-size: clamp(24px, 2.2vw, 36px); font-weight: 500; letter-spacing: -.03em; line-height: 1; }
+
+  .atr__steps { display: grid; gap: clamp(96px, 11vw, 190px); }
+  .atr__step { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(28px, 4.5vw, 84px); align-items: start; }
+  .atr__step.is-flip { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); }
+  .atr__step.is-flip .atr__photo { order: 2; }
+  .atr__photo { position: sticky; top: calc(var(--header-h) + 2vh); display: grid; gap: 12px; }
+  .atr__img { border-radius: 4px; }
+  .atr__img :global(img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .atr__cap { display: flex; gap: 14px; flex-wrap: wrap; }
+  .atr__cap span { color: var(--accent); }
+
+  /* pins: a zero-size anchor at the feature, the numbered dot centred on it, the label beside it */
+  .atr__pins { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+  .atr__pin { position: absolute; width: 0; height: 0; pointer-events: auto; }
+  .atr__pin b { position: absolute; left: -14px; top: -14px; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: #fff; color: var(--navy); font-size: 12px; font-weight: 600; box-shadow: 0 0 0 3px rgba(207, 143, 125, .55), 0 6px 16px rgba(6, 26, 58, .35); transition: background .3s, color .3s, transform .4s var(--ease-out); }
+  .atr__pin b::after { content: ''; position: absolute; inset: -3px; border-radius: 50%; border: 1.5px solid rgba(255, 255, 255, .85); opacity: 0; }
+  .atr__label { position: absolute; top: -13px; left: 22px; padding: 5px 11px; border-radius: 999px; white-space: nowrap; background: rgba(6, 26, 58, .82); color: #fff; font-size: 12.5px; font-weight: 500; line-height: 16px; box-shadow: 0 6px 16px rgba(6, 26, 58, .25); transition: background .3s; }
+  .atr__pin.is-l .atr__label { left: auto; right: 22px; }
+  .atr__pin.is-hot b { background: var(--copper); color: #fff; transform: scale(1.15); }
+  .atr__pin.is-hot .atr__label { background: var(--copper-deep); }
+  html.js .atr__pin { opacity: 0; transform: scale(.6); transition: opacity .5s var(--ease-out) var(--d, 0s), transform .7s var(--ease-out) var(--d, 0s); }
+  html.js .atr__step.is-seen .atr__pin { opacity: 1; transform: none; }
+  .atr__step.is-on .atr__pin b::after { animation: atr-pulse 2.8s var(--ease-out) var(--d, 0s) infinite; }
+  @keyframes atr-pulse { 0% { opacity: .9; transform: scale(1); } 80%, 100% { opacity: 0; transform: scale(1.9); } }
+
+  .atr__copy { display: grid; gap: 18px; align-content: start; justify-items: start; padding-top: clamp(0px, 1.5vw, 24px); }
+  .atr__t { font-size: clamp(28px, 2.6vw, 44px); font-weight: 500; letter-spacing: -.03em; line-height: 1.06; max-width: 18ch; }
+  .atr__hl { width: 100%; margin-top: 4px; border-top: 1px solid color-mix(in srgb, var(--fg) 14%, transparent); }
+  .atr__hl li { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 14px; align-items: start; padding: 13px 0; border-bottom: 1px solid color-mix(in srgb, var(--fg) 14%, transparent); }
+  .atr__num { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--navy); color: #fff; font-size: 12px; font-weight: 600; transition: background .3s, transform .4s var(--ease-out); }
+  .atr__hl li.is-fact .atr__num { background: transparent; border: 1px solid var(--accent); }
+  .atr__hl li.is-fact .atr__num::after { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .atr__hl li.is-hot .atr__num { background: var(--copper-deep); transform: scale(1.1); }
+  .atr__hlt { font-size: 16px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3; margin-bottom: 2px; }
+  .atr__go { margin-top: 8px; }
+
+  .atr__end { display: flex; justify-content: space-between; align-items: center; gap: 22px 40px; flex-wrap: wrap; margin-top: clamp(80px, 9vw, 150px); padding-top: clamp(28px, 3vw, 44px); border-top: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); }
+  .atr__endt { font-size: clamp(22px, 2vw, 32px); font-weight: 500; letter-spacing: -.025em; line-height: 1.15; max-width: 30ch; }
+  .atr__actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  @media (max-width: 1099px) {
+    .atr__head { grid-template-columns: 1fr; align-items: start; }
+    .atr__intro { justify-self: start; }
+    .atr__step, .atr__step.is-flip { grid-template-columns: 1fr; gap: 26px; }
+    .atr__step.is-flip .atr__photo { order: 0; }
+    .atr__photo { position: relative; top: auto; }
+    .atr__label { display: none; }
+    .atr__pin b { left: -11px; top: -11px; width: 22px; height: 22px; font-size: 10.5px; box-shadow: 0 0 0 2px rgba(207, 143, 125, .55), 0 4px 10px rgba(6, 26, 58, .35); }
+  }
+  /* phones: the photo runs edge to edge (bigger, so the pins have room) */
+  @media (max-width: 640px) {
+    .atr__img { margin-inline: calc(var(--gutter) * -1); border-radius: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html.js .atr__pin { opacity: 1; transform: none; transition: none; }
+    .atr__step.is-on .atr__pin b::after { animation: none; }
+  }
+</style>

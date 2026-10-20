@@ -34,8 +34,8 @@ export const sharedProjectData = projectsJson.shared;
 
 export const SITE_URL = String(site.brand.officialDomain || 'https://defencegarden.com').replace(/\/+$/, '');
 export const BRAND = site.brand.name; // 'Defence Garden'
-/** <meta name="theme-color">: the plum brand surface (preloader, footer, menu). site.json still has the old #0b0906. */
-export const THEME_COLOR = '#061a3a';
+/** <meta name="theme-color">: black, like the first screen on a fresh load (home preloader). site.json still has the old #0b0906. */
+export const THEME_COLOR = '#000000';
 
 // ---------------------------------------------------------------------------------------------- projects
 const ORDER = projectsJson.displayOrder || projectsJson.projects.map((p) => p.id);
@@ -240,7 +240,8 @@ const isUtilityPath = (p) => p === '/verify-receipt' || p === '/booking' || p.st
  * '/booking/*' → privateUtility (noindex, nofollow, no canonical), '/404' → 'Page Not Found | Defence Garden'
  * (noindex, follow, no canonical), '/dev/*' → noindex, nofollow.
  * overrides: { title, description, robots, noindex, canonical (string|false), ogType, ogImage, ogImageWidth,
- *   ogImageHeight, ogImageAlt, schemaType, heading }
+ *   ogImageHeight, ogImageAlt, schemaType, heading }. On '/project/:id' an ogImage is the colony's cover rendered at
+ *   the default OG size (src/pages/project/[id].astro): it gets that width/height and the cover's alt.
  */
 export function seoFor(pathname = '/', overrides = {}) {
   const path = normalizePath(pathname);
@@ -280,6 +281,7 @@ export function seoFor(pathname = '/', overrides = {}) {
   const noindex = /noindex/i.test(robots);
 
   const social = site.brand.socialImage || {};
+  const cover = kind === 'project' && o.ogImage ? project.cover : null; // see overrides above
   return {
     path,
     kind,
@@ -295,9 +297,9 @@ export function seoFor(pathname = '/', overrides = {}) {
     ogType: o.ogType || page.ogType || D.ogType || 'website',
     ogLocale: D.ogLocale || 'en_IN',
     ogImage: absoluteUrl(o.ogImage || D.ogImage || social.url || '/og-image.jpg'),
-    ogImageWidth: o.ogImageWidth ?? (o.ogImage ? null : D.ogImageWidth ?? social.width ?? null),
-    ogImageHeight: o.ogImageHeight ?? (o.ogImage ? null : D.ogImageHeight ?? social.height ?? null),
-    ogImageAlt: o.ogImageAlt || (o.ogImage ? '' : social.alt || ''),
+    ogImageWidth: o.ogImageWidth ?? (o.ogImage && !cover ? null : D.ogImageWidth ?? social.width ?? null),
+    ogImageHeight: o.ogImageHeight ?? (o.ogImage && !cover ? null : D.ogImageHeight ?? social.height ?? null),
+    ogImageAlt: o.ogImageAlt || (cover ? cover.alt || '' : o.ogImage ? '' : social.alt || ''),
     twitterCard: D.twitterCard || 'summary_large_image',
     themeColor: THEME_COLOR,
     schemaType: o.schemaType || page.schemaType || 'WebPage',

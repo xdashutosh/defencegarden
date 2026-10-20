@@ -31,7 +31,9 @@ const isConcept = hasFilm || Boolean(vision('skyline-night'));
   .nct__media { position: absolute; inset: 0; }
   .nct__media :global(.nct__fill) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .nct__media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,26,58,.55), rgba(6,26,58,.15) 40%, rgba(6,26,58,.92)); }
-  .nct__marquee { position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-60%); overflow: hidden; color: rgba(244,237,230,.92); mix-blend-mode: overlay; }
+  /* clipped sideways only (overflow-x: clip leaves y visible): the descenders (g) hanging below the .92 line box stay
+     whole, and the box keeps its size, so the line does not move */
+  .nct__marquee { position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-60%); overflow-x: clip; color: rgba(244,237,230,.92); mix-blend-mode: overlay; }
   .nct__row { display: flex; width: max-content; }
   .nct__in { position: relative; display: grid; justify-items: center; text-align: center; gap: 24px; }
   .nct__title { max-width: 22ch; color: #f4ede6; }

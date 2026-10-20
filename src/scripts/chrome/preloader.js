@@ -4,7 +4,7 @@
 //                  counter rolls to 42 / 68 / 92 (odometer digits, 0.6 s expo.out)
 //   t = R = 2.0    final frame (the hero film's first frame on a full-screen layer) opens the same way; counter → 99
 //                  and rolls out (0.95 s power3.in)
-//   t = A = R+0.5  navy wipes off bottom-to-top (clip, 1.2 s, cubic-bezier .73,.15,.15,.99); page intro starts
+//   t = A = R+0.5  the black screen wipes off bottom-to-top (clip, 1.2 s, cubic-bezier .73,.15,.15,.99); page intro starts
 //   t = A+0.1      the final frame glides onto the hero frame (0.8 s power2.inOut); header and dock drop in
 // Resolves when the page may play its intro (at A).
 import { gsap, CustomEase } from '../core/gsap.js';
@@ -91,7 +91,7 @@ export function runPreloader() {
         .call(() => setCount(STEPS[STEPS.length - 1]), null, R)
         .to(digits, { yPercent: -100, duration: T.counterExit, ease: 'power3.in' }, R)
         .fromTo(mask, { clipPath: 'inset(0% 0% 0% 0%)' }, { clipPath: 'inset(100% 0% 0% 0%)', duration: T.counterExit, ease: 'power3.in' }, R)
-        // exit: navy wipes away bottom-to-top, page intro starts, frame glides onto the hero frame
+        // exit: the black screen wipes away bottom-to-top, page intro starts, frame glides onto the hero frame
         .fromTo(bg, { clipPath: 'inset(0% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 100% 0%)', duration: T.wipe, ease: wipeEase, immediateRender: false }, A)
         .call(() => resolve(), null, A)
         .set(box, { autoAlpha: 0 }, K);

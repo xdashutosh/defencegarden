@@ -19,32 +19,16 @@ const films = credits.length - images;
 const sources = [...new Set(credits.map((c) => c.source).filter(Boolean))];
 
 const OFL = 'https://openfontlicense.org';
+// the website uses one type family (src/styles/global.css --f-sans)
 const fonts = [
   {
-    name: 'Google Sans', role: 'Headlines, navigation and body text', css: 'var(--f-sans)', sample: 'From colonies to skylines',
+    name: 'Google Sans', role: 'Headlines, labels, navigation and body text', css: 'var(--f-sans)', sample: 'From colonies to skylines',
     copyright: 'Copyright 2017 Google, Inc. All Rights Reserved.',
     via: { label: '@fontsource-variable/google-sans', href: 'https://fontsource.org/fonts/google-sans' },
     file: { label: 'Licence file (OFL-GoogleSans.txt)', href: '/fonts/OFL-GoogleSans.txt' },
   },
-  {
-    name: 'Fraunces', role: 'Serif headlines and quotations', css: 'var(--f-serif)', sample: 'Every plot is a promise',
-    copyright: 'Copyright 2020 The Fraunces Project Authors (github.com/undercasetype/Fraunces)',
-    via: { label: '@fontsource-variable/fraunces', href: 'https://fontsource.org/fonts/fraunces' },
-    file: { label: 'Licence file (OFL-Fraunces.txt)', href: '/fonts/OFL-Fraunces.txt' },
-  },
-  {
-    name: 'Jost', role: 'Thin geometric capitals', css: 'var(--f-deco)', sample: 'RISING HIGHER', deco: true,
-    copyright: 'Copyright 2020 The Jost Project Authors (https://github.com/indestructible-type/Jost)',
-    via: { label: '@fontsource-variable/jost', href: 'https://fontsource.org/fonts/jost' },
-    file: { label: 'Licence file (OFL-Jost.txt)', href: '/fonts/OFL-Jost.txt' },
-  },
-  {
-    name: 'Mona Sans', role: 'Wide labels and eyebrows', css: 'var(--f-wide)', sample: 'DEFENCE GARDEN · EST. 2006', wide: true,
-    copyright: 'Copyright 2022 The Mona Sans Project Authors (https://github.com/github/mona-sans), with Reserved Font Name "Mona"',
-    via: { label: 'github.com/github/mona-sans', href: 'https://github.com/github/mona-sans' },
-    file: { label: 'Licence file (OFL-MonaSans.txt)', href: '/fonts/OFL-MonaSans.txt' },
-  },
 ];
+const typefaces = fonts.length === 1 ? 'Typeface' : 'Typefaces';
 ---
 <Base
   path="/credits"
@@ -59,7 +43,7 @@ const fonts = [
     .crd-hero__title { font-size: clamp(48px, 7.6vw, 140px); }
     .crd-hero__aside { display: grid; gap: 20px; }
     .crd-hero__stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); }
-    .crd-hero__stats li { display: grid; gap: 6px; padding: 18px 12px 0 0; }
+    .crd-hero__stats li { display: grid; gap: 6px; align-content: start; padding: 18px 12px 0 0; }
     .crd-hero__stats li + li { padding-left: 14px; border-left: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); }
     .crd-hero__stats b { font-family: var(--f-sans); font-weight: 500; font-size: clamp(34px, 3.4vw, 60px); letter-spacing: -.045em; line-height: .95; }
 
@@ -67,34 +51,33 @@ const fonts = [
     .crd-own__orn { position: absolute; left: 50%; top: 0; width: 130%; height: 100%; transform: translateX(-50%); color: var(--copper); opacity: .07; pointer-events: none; }
     .crd-own__grid { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(30px, 5vw, 90px); }
     .crd-own__item { display: grid; gap: 18px; align-content: start; padding-top: 24px; border-top: 1px solid rgba(244, 237, 230, .2); }
-    .crd-own__item h2 { font-family: var(--f-deco); font-weight: 300; text-transform: uppercase; font-size: clamp(28px, 2.8vw, 48px); line-height: 1.02; color: #f4ede6; }
+    .crd-own__item h2 { font-family: var(--f-sans); font-weight: 400; font-size: clamp(28px, 2.8vw, 48px); line-height: 1.06; letter-spacing: -.03em; color: #f4ede6; }
     .crd-own__tag { justify-self: start; padding: 6px 10px; border: 1px solid currentColor; }
     .crd-own__tag--dg { color: var(--copper); }
 
     .crd-list__head { display: flex; justify-content: space-between; align-items: end; gap: var(--gutter); flex-wrap: wrap; margin-bottom: clamp(30px, 4vw, 60px); }
     .crd-list__rows { border-top: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); }
     .crd-row { display: grid; grid-template-columns: 44px 132px minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr); gap: clamp(14px, 2vw, 30px); align-items: center; padding: 18px 0; border-bottom: 1px solid color-mix(in srgb, var(--fg) 12%, transparent); }
-    .crd-row__n { font-family: var(--f-wide); font-stretch: 125%; font-size: 10px; letter-spacing: .12em; color: var(--accent); }
+    .crd-row__n { font-size: 10px; letter-spacing: .12em; color: var(--accent); }
     .crd-row__thumb { position: relative; aspect-ratio: 4 / 3; border-radius: 2px; }
     .crd-row__thumb img { width: 100%; height: 100%; object-fit: cover; }
     .crd-row__thumb .concept-tag { right: 6px; bottom: 5px; font-size: 7px; }
     .crd-row__kind { position: absolute; left: 6px; top: 5px; z-index: 2; display: inline-flex; align-items: center; gap: 4px; color: #fff; font-size: 9px; text-shadow: 0 1px 4px rgba(0, 0, 0, .6); }
     .crd-row__kind .ico { width: 10px; height: 10px; fill: currentColor; }
     .crd-row__desc { font-size: 15px; line-height: 1.45; }
-    .crd-row__key { margin-top: 6px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; }
+    .crd-row__key { margin-top: 6px; font-family: var(--f-sans); font-size: 11px; font-variant-numeric: tabular-nums; letter-spacing: .02em; }
     .crd-row__k { display: block; margin-bottom: 4px; }
     .crd-row a { color: var(--fg); text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--accent) 70%, transparent); text-underline-offset: 3px; text-decoration-thickness: 1px; }
     .crd-row a:hover { color: var(--accent); }
     .crd-row__attr { display: block; margin-top: 6px; font-size: 12px; }
     .crd-empty { display: grid; gap: 10px; padding: 30px 0; border-bottom: 1px solid color-mix(in srgb, var(--fg) 12%, transparent); }
 
-    .crd-fonts__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(10px, 1.2vw, 20px); }
+    .crd-fonts__grid { display: grid; gap: clamp(10px, 1.2vw, 20px); }   /* one full-width card per typeface */
     .crd-font { display: grid; gap: 18px; align-content: start; padding: clamp(22px, 2.6vw, 40px); border: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); border-radius: 4px; background: var(--paper); }
+    .crd-font__specimen, .crd-font__info { display: grid; gap: 18px; align-content: start; }
     .crd-font__top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
     .crd-font__name { font-size: clamp(24px, 2.2vw, 36px); font-weight: 500; letter-spacing: -.03em; line-height: 1; }
     .crd-font__sample { font-size: clamp(30px, 3.4vw, 58px); line-height: 1.02; letter-spacing: -.03em; padding-block: 6px 14px; border-bottom: 1px solid color-mix(in srgb, var(--fg) 12%, transparent); overflow-wrap: anywhere; }
-    .crd-font__sample.is-deco { font-weight: 300; letter-spacing: 0; }
-    .crd-font__sample.is-wide { font-stretch: 125%; font-weight: 500; font-size: clamp(18px, 1.8vw, 28px); letter-spacing: .1em; }
     .crd-font__meta { display: grid; gap: 10px; font-size: 14px; line-height: 1.5; }
     .crd-font__links { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; }
     .crd-font__links a { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); }
@@ -106,8 +89,13 @@ const fonts = [
       .crd-row { grid-template-columns: 34px 112px minmax(0, 1fr); align-items: start; }
       .crd-row__src, .crd-row__lic { grid-column: 3; }
     }
+    @media (min-width: 861px) {
+      /* desktop: name and specimen on the left, licence details on the right */
+      .crd-font { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); column-gap: clamp(30px, 5vw, 90px); }
+      .crd-font__info { align-content: space-between; }
+    }
     @media (max-width: 860px) {
-      .crd-hero__in, .crd-own__grid, .crd-fonts__grid { grid-template-columns: 1fr; }
+      .crd-hero__in, .crd-own__grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 520px) {
       .crd-row { grid-template-columns: 96px minmax(0, 1fr); gap: 6px 14px; }
@@ -128,7 +116,7 @@ const fonts = [
         <ul class="crd-hero__stats">
           <li><b>{pad(images)}</b><span class="eyebrow muted">Concept images</span></li>
           <li><b>{pad(films)}</b><span class="eyebrow muted">Concept films</span></li>
-          <li><b>{pad(fonts.length)}</b><span class="eyebrow muted">Typefaces</span></li>
+          <li><b>{pad(fonts.length)}</b><span class="eyebrow muted">{typefaces}</span></li>
         </ul>
       </div>
     </div>
@@ -199,7 +187,7 @@ const fonts = [
     <div class="wrap">
       <div class="crd-list__head">
         <div class="sec-head">
-          <p class="eyebrow eyebrow--accent" data-reveal="fade">Typefaces · SIL Open Font License 1.1</p>
+          <p class="eyebrow eyebrow--accent" data-reveal="fade">{typefaces} · SIL Open Font License 1.1</p>
           <h2 class="serif serif--sm" id="crd-fonts-h" data-reveal="lines">Font licences</h2>
         </div>
         <a class="btn" href={OFL} target="_blank" rel="noopener"><span>Read the OFL 1.1</span><Icon name="arrow-up-right" /></a>
@@ -207,19 +195,23 @@ const fonts = [
       <div class="crd-fonts__grid">
         {fonts.map((f, i) => (
           <article class="crd-font" data-reveal="fade" data-reveal-delay={(i * 0.06).toFixed(2)}>
-            <div class="crd-font__top">
-              <h3 class="crd-font__name">{f.name}</h3>
-              <p class="eyebrow muted">{f.role}</p>
+            <div class="crd-font__specimen">
+              <div class="crd-font__top">
+                <h3 class="crd-font__name">{f.name}</h3>
+                <p class="eyebrow muted">{f.role}</p>
+              </div>
+              <p class="crd-font__sample" style={`font-family:${f.css}`} aria-hidden="true">{f.sample}</p>
             </div>
-            <p class={`crd-font__sample ${f.deco ? 'is-deco' : ''} ${f.wide ? 'is-wide' : ''}`} style={`font-family:${f.css}`} aria-hidden="true">{f.sample}</p>
-            <div class="crd-font__meta">
-              <p>{f.copyright}</p>
-              <p class="muted">Licensed under the SIL Open Font License, Version 1.1.</p>
-            </div>
-            <div class="crd-font__links">
-              <a href={OFL} target="_blank" rel="noopener">SIL OFL 1.1 <Icon name="arrow-up-right" /></a>
-              <a href={f.via.href} target="_blank" rel="noopener">{f.via.label} <Icon name="arrow-up-right" /></a>
-              {f.file && <a href={f.file.href} data-no-barba>{f.file.label} <Icon name="download" /></a>}
+            <div class="crd-font__info">
+              <div class="crd-font__meta">
+                <p>{f.copyright}</p>
+                <p class="muted">Licensed under the SIL Open Font License, Version 1.1.</p>
+              </div>
+              <div class="crd-font__links">
+                <a href={OFL} target="_blank" rel="noopener">SIL OFL 1.1 <Icon name="arrow-up-right" /></a>
+                <a href={f.via.href} target="_blank" rel="noopener">{f.via.label} <Icon name="arrow-up-right" /></a>
+                {f.file && <a href={f.file.href} data-no-barba>{f.file.label} <Icon name="download" /></a>}
+              </div>
             </div>
           </article>
         ))}

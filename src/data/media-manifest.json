@@ -532,9 +532,8 @@
     "sameImageAs": "projects.river-green-society.gallery-11",
     "preferKey": "projects.river-green-society.gallery-11",
     "usedOn": [
-      "home (portfolio/ledger)",
-      "ourproject card",
-      "project/1 hero"
+      "about/leadership: explore card (Explore projects)",
+      "about/kuldeep-tomar: link card (Explore projects)"
     ]
   },
   {
@@ -559,7 +558,7 @@
     "quality": "high",
     "alt": "River Green Society entrance arch and sales office, with visitors walking along the paved approach",
     "role": "gallery",
-    "galleryIndex": 1,
+    "galleryIndex": 9,
     "originalName": "IMG20260407115715.webp",
     "oldSourcePath": "src/assets/compressed/gallery/rivergreen/IMG20260407115715.webp",
     "amenities": [
@@ -572,7 +571,7 @@
     "dominantColor": "#979a95",
     "topColor": "#d4dee5",
     "usedOn": [
-      "project/1 gallery #1",
+      "project/1 gallery #9",
       "gallery page"
     ]
   },
@@ -597,7 +596,7 @@
     "quality": "high",
     "alt": "River Green Society: wide paved boulevard with a red centre stripe, clipped hedges and palms leading to the fountain",
     "role": "gallery",
-    "galleryIndex": 2,
+    "galleryIndex": 10,
     "originalName": "IMG20260407120132.webp",
     "oldSourcePath": "src/assets/compressed/gallery/rivergreen/IMG20260407120132.webp",
     "amenities": [
@@ -611,7 +610,7 @@
     "dominantColor": "#9e988b",
     "topColor": "#a9b4bd",
     "usedOn": [
-      "project/1 gallery #2",
+      "project/1 gallery #10",
       "gallery page"
     ]
   },
@@ -635,7 +634,7 @@
     "quality": "high",
     "alt": "River Green Society: red-striped paving leading to the stone fountain, jets switched off",
     "role": "gallery",
-    "galleryIndex": 3,
+    "galleryIndex": 11,
     "originalName": "IMG20260407120211.webp",
     "oldSourcePath": "src/assets/compressed/gallery/rivergreen/IMG20260407120211.webp",
     "amenities": [
@@ -648,7 +647,7 @@
     "dominantColor": "#9d988f",
     "topColor": "#cdd9df",
     "usedOn": [
-      "project/1 gallery #3",
+      "project/1 gallery #11",
       "gallery page"
     ]
   },
@@ -673,7 +672,7 @@
     "quality": "high",
     "alt": "River Green Society: plaza edge with steel railings and benches, a palm and a long hedge row",
     "role": "gallery",
-    "galleryIndex": 4,
+    "galleryIndex": 12,
     "originalName": "IMG20260407120220.webp",
     "oldSourcePath": "src/assets/compressed/gallery/rivergreen/IMG20260407120220.webp",
     "amenities": [
@@ -686,7 +685,7 @@
     "dominantColor": "#a0a39b",
     "topColor": "#dbe1e7",
     "usedOn": [
-      "project/1 gallery #4",
+      "project/1 gallery #12",
       "gallery page"
     ]
   },
@@ -710,7 +709,7 @@
     "quality": "high",
     "alt": "River Green Society: palms and tropical planting beside the curved steel railing of the plaza",
     "role": "gallery",
-    "galleryIndex": 5,
+    "galleryIndex": 13,
     "originalName": "IMG20260407120232.webp",
     "oldSourcePath": "src/assets/compressed/gallery/rivergreen/IMG20260407120232.webp",
     "amenities": [
@@ -722,7 +721,7 @@
     "dominantColor": "#8b8d74",
     "topColor": "#bcc0c3",
     "usedOn": [
-      "project/1 gallery #5",
+      "project/1 gallery #13",
       "gallery page"
     ]
   },
@@ -747,7 +746,7 @@
     "quality": "high",
     "alt": "River Green Society: lawn and curved steel bench railing beside a tall hedge and a palm",
     "role": "gallery",
-    "galleryIndex": 6,
+    "galleryIndex": 14,
     "originalName": "IMG20260407120253.webp",
     "oldSourcePath": "src/assets/compressed/gallery/rivergreen/IMG20260407120253.webp",
     "amenities": [
@@ -760,7 +759,7 @@
     "dominantColor": "#90957a",
     "topColor": "#c9cfd4",
     "usedOn": [
-      "project/1 gallery #6",
+      "project/1 gallery #14",
       "gallery page"
     ]
   },
@@ -783,7 +782,7 @@
     "quality": "high",
     "alt": "River Green Society: fountain jets running in the paved central plaza, a parked car beyond",
     "role": "gallery",
-    "galleryIndex": 7,
+    "galleryIndex": 15,
     "originalName": "IMG20260407120345.webp",
     "oldSourcePath": "src/assets/compressed/gallery/rivergreen/IMG20260407120345.webp",
     "amenities": [
@@ -795,7 +794,7 @@
     "dominantColor": "#8d8d88",
     "topColor": "#a8b0b7",
     "usedOn": [
-      "project/1 gallery #7",
+      "project/1 gallery #15",
       "gallery page"
     ]
   },
@@ -820,7 +819,7 @@
     "quality": "high",
     "alt": "River Green Society: two royal palms above the plaza railing and benches",
     "role": "gallery",
-    "galleryIndex": 8,
+    "galleryIndex": 16,
     "originalName": "IMG20260407120349.webp",
     "oldSourcePath": "src/assets/compressed/gallery/rivergreen/IMG20260407120349.webp",
     "amenities": [
@@ -833,7 +832,7 @@
     "dominantColor": "#909388",
     "topColor": "#b3bac4",
     "usedOn": [
-      "project/1 gallery #8",
+      "project/1 gallery #16",
       "gallery page"
     ]
   },
@@ -857,7 +856,7 @@
     "quality": "high",
     "alt": "River Green Society: red-striped walkway leading to the running fountain",
     "role": "gallery",
-    "galleryIndex": 9,
+    "galleryIndex": 17,
     "originalName": "IMG20260407120640.webp",
     "oldSourcePath": "src/assets/compressed/gallery/rivergreen/IMG20260407120640.webp",
     "amenities": [
@@ -870,7 +869,7 @@
     "dominantColor": "#a29a92",
     "topColor": "#ced8df",
     "usedOn": [
-      "project/1 gallery #9",
+      "project/1 gallery #17",
       "gallery page"
     ]
   },
@@ -894,7 +893,7 @@
     "quality": "high",
     "alt": "River Green Society: fountain jets with a tree rising behind the stone cone",
     "role": "gallery",
-    "galleryIndex": 10,
+    "galleryIndex": 18,
     "originalName": "IMG20260407120700.webp",
     "oldSourcePath": "src/assets/compressed/gallery/rivergreen/IMG20260407120700.webp",
     "amenities": [
@@ -906,7 +905,7 @@
     "dominantColor": "#9ca3a0",
     "topColor": "#d1dce5",
     "usedOn": [
-      "project/1 gallery #10",
+      "project/1 gallery #18",
       "gallery page"
     ]
   },
@@ -930,7 +929,7 @@
     "quality": "high",
     "alt": "River Green Society: stone fountain with water jets in the paved central plaza",
     "role": "gallery",
-    "galleryIndex": 11,
+    "galleryIndex": 19,
     "originalName": "wow.webp",
     "oldSourcePath": "src/assets/compressed/gallery/rivergreen/wow.webp",
     "amenities": [
@@ -944,7 +943,343 @@
     "sameImageAs": "projects.river-green-society.cover",
     "preferKey": "projects.river-green-society.gallery-11",
     "usedOn": [
-      "project/1 gallery #11",
+      "project/1 gallery #19",
+      "gallery page"
+    ]
+  },
+  {
+    "key": "projects.river-green-society.aerial-01",
+    "oldUrl": null,
+    "localPath": "src/assets/media/projects/river-green-society/aerial-01.webp",
+    "kind": "image",
+    "format": "webp",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 269586,
+    "orientation": "landscape",
+    "projectId": 1,
+    "group": "projects",
+    "tags": [
+      "aerial",
+      "drone",
+      "road",
+      "park",
+      "greenery",
+      "sky"
+    ],
+    "quality": "high",
+    "alt": "Aerial view of River Green Society: the walled grid of plotted streets, the fountain roundabout and the entrance, set among green fields with the town beyond",
+    "role": "gallery",
+    "galleryIndex": 1,
+    "originalName": "DJI_0031.MP4",
+    "amenities": [
+      "road",
+      "landscaping",
+      "fountain",
+      "boundary-wall"
+    ],
+    "focus": "50% 62%",
+    "fullBleed": true,
+    "hasAlpha": false,
+    "dominantColor": "#5a6872",
+    "topColor": "#9ebee0",
+    "source": "Frame of the owner's drone clip DJI_0031.MP4 (13 Oct 2026, Drive preview frame), Google Drive folder 1djl_x1FlDjI5aCqc_i-tAm84QPlLQpyT",
+    "usedOn": [
+      "project/1 gallery #1",
+      "project/1 About (main photo)",
+      "ourproject hero",
+      "home From the air #1",
+      "home preloader",
+      "gallery page"
+    ]
+  },
+  {
+    "key": "projects.river-green-society.aerial-02",
+    "oldUrl": null,
+    "localPath": "src/assets/media/projects/river-green-society/aerial-02.webp",
+    "kind": "image",
+    "format": "webp",
+    "width": 2400,
+    "height": 1600,
+    "bytes": 1070884,
+    "orientation": "landscape",
+    "projectId": 1,
+    "group": "projects",
+    "tags": [
+      "aerial",
+      "drone",
+      "gate",
+      "entrance",
+      "road",
+      "commercial"
+    ],
+    "quality": "high",
+    "alt": "River Green Society from above the entrance arch and sales office, looking down the central boulevard to the fountain roundabout",
+    "role": "gallery",
+    "galleryIndex": 2,
+    "originalName": "DJI_0043.JPG",
+    "amenities": [
+      "road",
+      "landscaping",
+      "street-lights"
+    ],
+    "focus": "55% 55%",
+    "fullBleed": true,
+    "hasAlpha": false,
+    "dominantColor": "#6f7571",
+    "topColor": "#59675c",
+    "source": "Owner's drone photograph DJI_0043.JPG (DJI Air 2S, 13 Oct 2026), Google Drive folder 1djl_x1FlDjI5aCqc_i-tAm84QPlLQpyT",
+    "usedOn": [
+      "project/1 gallery #2",
+      "home From the air #2",
+      "home preloader",
+      "gallery page"
+    ]
+  },
+  {
+    "key": "projects.river-green-society.aerial-03",
+    "oldUrl": null,
+    "localPath": "src/assets/media/projects/river-green-society/aerial-03.webp",
+    "kind": "image",
+    "format": "webp",
+    "width": 2400,
+    "height": 1600,
+    "bytes": 1159604,
+    "orientation": "landscape",
+    "projectId": 1,
+    "group": "projects",
+    "tags": [
+      "aerial",
+      "drone",
+      "road",
+      "fountain",
+      "greenery"
+    ],
+    "quality": "high",
+    "alt": "River Green Society: the red-striped central boulevard leading to the fountain roundabout, with plots and young trees on either side",
+    "role": "gallery",
+    "galleryIndex": 3,
+    "originalName": "DJI_0041.JPG",
+    "amenities": [
+      "road",
+      "fountain",
+      "landscaping",
+      "street-lights"
+    ],
+    "focus": "50% 50%",
+    "fullBleed": true,
+    "hasAlpha": false,
+    "dominantColor": "#6b7068",
+    "topColor": "#5f716a",
+    "source": "Owner's drone photograph DJI_0041.JPG (DJI Air 2S, 13 Oct 2026), Google Drive folder 1djl_x1FlDjI5aCqc_i-tAm84QPlLQpyT",
+    "usedOn": [
+      "project/1 gallery #3",
+      "project/1 enquiry backdrop",
+      "home Legacy (Our story)",
+      "about: Our Story image",
+      "about/leadership: explore card (About the company)",
+      "about/kuldeep-tomar: link card (About Defence Garden)",
+      "gallery page"
+    ]
+  },
+  {
+    "key": "projects.river-green-society.aerial-04",
+    "oldUrl": null,
+    "localPath": "src/assets/media/projects/river-green-society/aerial-04.webp",
+    "kind": "image",
+    "format": "webp",
+    "width": 2400,
+    "height": 1600,
+    "bytes": 1368224,
+    "orientation": "landscape",
+    "projectId": 1,
+    "group": "projects",
+    "tags": [
+      "aerial",
+      "drone",
+      "fountain",
+      "road",
+      "park"
+    ],
+    "quality": "high",
+    "alt": "River Green Society: the landscaped fountain roundabout where the internal roads meet, framed by clipped hedges",
+    "role": "gallery",
+    "galleryIndex": 4,
+    "originalName": "DJI_0038.JPG",
+    "amenities": [
+      "fountain",
+      "road",
+      "landscaping"
+    ],
+    "focus": "45% 45%",
+    "fullBleed": true,
+    "hasAlpha": false,
+    "dominantColor": "#6a7168",
+    "topColor": "#5d7364",
+    "source": "Owner's drone photograph DJI_0038.JPG (DJI Air 2S, 13 Oct 2026), Google Drive folder 1djl_x1FlDjI5aCqc_i-tAm84QPlLQpyT",
+    "usedOn": [
+      "project/1 gallery #4",
+      "home From the air #3",
+      "investment: pillars image (Why it works)",
+      "gallery page"
+    ]
+  },
+  {
+    "key": "projects.river-green-society.aerial-05",
+    "oldUrl": null,
+    "localPath": "src/assets/media/projects/river-green-society/aerial-05.webp",
+    "kind": "image",
+    "format": "webp",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 382248,
+    "orientation": "landscape",
+    "projectId": 1,
+    "group": "projects",
+    "tags": [
+      "aerial",
+      "drone",
+      "road",
+      "fountain"
+    ],
+    "quality": "high",
+    "alt": "River Green Society seen straight from above: the fountain roundabout and the grid of paved streets between the plots",
+    "role": "gallery",
+    "galleryIndex": 5,
+    "originalName": "DJI_0036.MP4",
+    "amenities": [
+      "road",
+      "fountain"
+    ],
+    "focus": "50% 50%",
+    "fullBleed": true,
+    "hasAlpha": false,
+    "dominantColor": "#535a5b",
+    "topColor": "#4c5452",
+    "source": "Frame of the owner's drone clip DJI_0036.MP4 (13 Oct 2026, Drive preview frame), Google Drive folder 1djl_x1FlDjI5aCqc_i-tAm84QPlLQpyT",
+    "usedOn": [
+      "project/1 gallery #5",
+      "home From the air #4",
+      "gallery page"
+    ]
+  },
+  {
+    "key": "projects.river-green-society.aerial-06",
+    "oldUrl": null,
+    "localPath": "src/assets/media/projects/river-green-society/aerial-06.webp",
+    "kind": "image",
+    "format": "webp",
+    "width": 2400,
+    "height": 1600,
+    "bytes": 613390,
+    "orientation": "landscape",
+    "projectId": 1,
+    "group": "projects",
+    "tags": [
+      "gate",
+      "entrance",
+      "logo",
+      "road",
+      "sky"
+    ],
+    "quality": "high",
+    "alt": "River Green lettering on the entrance arch at sunset, with the boulevard running into the colony",
+    "role": "gallery",
+    "galleryIndex": 6,
+    "originalName": "DJI_0050.JPG",
+    "amenities": [
+      "road",
+      "landscaping"
+    ],
+    "focus": "54% 40%",
+    "fullBleed": true,
+    "hasAlpha": false,
+    "dominantColor": "#737a7c",
+    "topColor": "#e6e7e5",
+    "source": "Owner's drone photograph DJI_0050.JPG (DJI Air 2S, 13 Oct 2026), Google Drive folder 1djl_x1FlDjI5aCqc_i-tAm84QPlLQpyT",
+    "usedOn": [
+      "project/1 gallery #6",
+      "project/1 About (inset photo)",
+      "gallery page"
+    ]
+  },
+  {
+    "key": "projects.river-green-society.aerial-07",
+    "oldUrl": null,
+    "localPath": "src/assets/media/projects/river-green-society/aerial-07.webp",
+    "kind": "image",
+    "format": "webp",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 301570,
+    "orientation": "landscape",
+    "projectId": 1,
+    "group": "projects",
+    "tags": [
+      "aerial",
+      "drone",
+      "commercial",
+      "road",
+      "greenery"
+    ],
+    "quality": "high",
+    "alt": "Evening aerial over River Green Society: the shopping arcade, tree-lined streets and plots stretching to the fields",
+    "role": "gallery",
+    "galleryIndex": 7,
+    "originalName": "DJI_0029.MP4",
+    "amenities": [
+      "road",
+      "landscaping",
+      "shops"
+    ],
+    "focus": "50% 55%",
+    "fullBleed": true,
+    "hasAlpha": false,
+    "dominantColor": "#868887",
+    "topColor": "#efecec",
+    "source": "Frame of the owner's drone clip DJI_0029.MP4 (13 Oct 2026, Drive preview frame), Google Drive folder 1djl_x1FlDjI5aCqc_i-tAm84QPlLQpyT",
+    "usedOn": [
+      "project/1 cover: ourproject card, home & about Journey, other-colony cards",
+      "project/1 og:image / twitter:image 1200x630",
+      "project/1 gallery #7",
+      "gallery page"
+    ]
+  },
+  {
+    "key": "projects.river-green-society.aerial-08",
+    "oldUrl": null,
+    "localPath": "src/assets/media/projects/river-green-society/aerial-08.webp",
+    "kind": "image",
+    "format": "webp",
+    "width": 2400,
+    "height": 1600,
+    "bytes": 903924,
+    "orientation": "landscape",
+    "projectId": 1,
+    "group": "projects",
+    "tags": [
+      "gate",
+      "entrance",
+      "commercial",
+      "people"
+    ],
+    "quality": "high",
+    "alt": "Visitors at the River Green Society sales office beneath the entrance arch",
+    "role": "gallery",
+    "galleryIndex": 8,
+    "originalName": "DJI_0045.JPG",
+    "amenities": [
+      "road",
+      "landscaping"
+    ],
+    "focus": "50% 55%",
+    "fullBleed": true,
+    "hasAlpha": false,
+    "dominantColor": "#6e7273",
+    "topColor": "#b7b4b0",
+    "source": "Owner's drone photograph DJI_0045.JPG (DJI Air 2S, 13 Oct 2026), Google Drive folder 1djl_x1FlDjI5aCqc_i-tAm84QPlLQpyT",
+    "usedOn": [
+      "project/1 gallery #8",
       "gallery page"
     ]
   },
@@ -2066,11 +2401,7 @@
     "topColor": "#cbd6e7",
     "sameImageAs": "projects.defence-garden-phase-2.gallery-16",
     "preferKey": "projects.defence-garden-phase-2.gallery-16",
-    "usedOn": [
-      "home (portfolio/ledger)",
-      "ourproject card",
-      "project/5 hero"
-    ],
+    "usedOn": [],
     "notes": "Overcast; strong wide-angle distortion."
   },
   {
@@ -2094,7 +2425,7 @@
     "quality": "high",
     "alt": "Green signage wall reading \"Defence Garden Phase 2 Welcomes You\"",
     "role": "gallery",
-    "galleryIndex": 1,
+    "galleryIndex": 6,
     "originalName": "1.webp",
     "oldSourcePath": "src/assets/compressed/gallery/dgphase2/1.webp",
     "amenities": [
@@ -2106,7 +2437,7 @@
     "dominantColor": "#435763",
     "topColor": "#243b41",
     "usedOn": [
-      "project/5 gallery #1",
+      "project/5 gallery #6",
       "gallery page"
     ]
   },
@@ -2131,7 +2462,7 @@
     "quality": "medium",
     "alt": "Defence Garden Phase 2 entrance and roadside billboard under a clear blue sky",
     "role": "gallery",
-    "galleryIndex": 2,
+    "galleryIndex": 7,
     "originalName": "2.webp",
     "oldSourcePath": "src/assets/compressed/gallery/dgphase2/2.webp",
     "amenities": [
@@ -2144,7 +2475,7 @@
     "dominantColor": "#7db1e7",
     "topColor": "#64a9fe",
     "usedOn": [
-      "project/5 gallery #2",
+      "project/5 gallery #7",
       "gallery page"
     ],
     "notes": "Subject small in frame; the big empty sky is useful behind text."
@@ -2171,7 +2502,7 @@
     "quality": "high",
     "alt": "Defence Garden Phase 2 gatehouse and green welcome wall under a clear blue sky",
     "role": "gallery",
-    "galleryIndex": 3,
+    "galleryIndex": 8,
     "originalName": "3.webp",
     "oldSourcePath": "src/assets/compressed/gallery/dgphase2/3.webp",
     "amenities": [
@@ -2184,7 +2515,7 @@
     "dominantColor": "#8da7c2",
     "topColor": "#6db0fe",
     "usedOn": [
-      "project/5 gallery #3",
+      "project/5 gallery #8",
       "gallery page"
     ]
   },
@@ -2209,7 +2540,7 @@
     "quality": "high",
     "alt": "Defence Garden Phase 2 gatehouse seen from inside, with guard rooms, staircases and a parked car",
     "role": "gallery",
-    "galleryIndex": 4,
+    "galleryIndex": 9,
     "originalName": "4.webp",
     "oldSourcePath": "src/assets/compressed/gallery/dgphase2/4.webp",
     "amenities": [
@@ -2222,7 +2553,7 @@
     "dominantColor": "#8b9dae",
     "topColor": "#8ec9f6",
     "usedOn": [
-      "project/5 gallery #4",
+      "project/5 gallery #9",
       "gallery page"
     ]
   },
@@ -2245,7 +2576,7 @@
     "quality": "medium",
     "alt": "Defence Garden Phase 2: broad paved boulevard with a central lamp post under a blue sky",
     "role": "gallery",
-    "galleryIndex": 5,
+    "galleryIndex": 10,
     "originalName": "6.webp",
     "oldSourcePath": "src/assets/compressed/gallery/dgphase2/6.webp",
     "amenities": [
@@ -2258,7 +2589,7 @@
     "dominantColor": "#a0b8d0",
     "topColor": "#70b3fd",
     "usedOn": [
-      "project/5 gallery #5",
+      "project/5 gallery #10",
       "gallery page"
     ],
     "notes": "Large empty foreground; slightly soft."
@@ -2284,7 +2615,7 @@
     "quality": "high",
     "alt": "Defence Garden Phase 2: road lined with ornate lamp posts, palms and a striped kerb median",
     "role": "gallery",
-    "galleryIndex": 6,
+    "galleryIndex": 11,
     "originalName": "7.webp",
     "oldSourcePath": "src/assets/compressed/gallery/dgphase2/7.webp",
     "amenities": [
@@ -2298,7 +2629,7 @@
     "dominantColor": "#80acd7",
     "topColor": "#6daefa",
     "usedOn": [
-      "project/5 gallery #6",
+      "project/5 gallery #11",
       "gallery page"
     ]
   },
@@ -2322,7 +2653,7 @@
     "quality": "high",
     "alt": "Defence Garden Phase 2: green park lawn bordered by clipped hedges",
     "role": "gallery",
-    "galleryIndex": 7,
+    "galleryIndex": 12,
     "originalName": "10.webp",
     "oldSourcePath": "src/assets/compressed/gallery/dgphase2/10.webp",
     "amenities": [
@@ -2335,7 +2666,7 @@
     "dominantColor": "#7ca5a2",
     "topColor": "#a4dcfe",
     "usedOn": [
-      "project/5 gallery #7",
+      "project/5 gallery #12",
       "gallery page"
     ]
   },
@@ -2358,7 +2689,7 @@
     "quality": "low",
     "alt": "Uniformed security guards standing in a row",
     "role": "gallery",
-    "galleryIndex": 8,
+    "galleryIndex": 13,
     "originalName": "13.webp",
     "oldSourcePath": "src/assets/compressed/gallery/dgphase2/13.webp",
     "amenities": [
@@ -2370,7 +2701,7 @@
     "dominantColor": "#95908e",
     "topColor": "#cccabf",
     "usedOn": [
-      "project/5 gallery #8",
+      "project/5 gallery #13",
       "gallery page"
     ],
     "notes": "Generic stock-style photo, AI-upscaled with smoothing artefacts; not an on-site Defence Garden photo. Check usage rights before using. Prefer defence-garden-phase-1.gallery-03 (real on-site guards)."
@@ -2395,7 +2726,7 @@
     "quality": "high",
     "alt": "Defence Garden Phase 2: newly built two-storey white house beside a lamp post",
     "role": "gallery",
-    "galleryIndex": 9,
+    "galleryIndex": 14,
     "originalName": "14.webp",
     "oldSourcePath": "src/assets/compressed/gallery/dgphase2/14.webp",
     "focus": "45% 50%",
@@ -2404,7 +2735,7 @@
     "dominantColor": "#8faecd",
     "topColor": "#75a6e5",
     "usedOn": [
-      "project/5 gallery #9",
+      "project/5 gallery #14",
       "gallery page"
     ]
   },
@@ -2428,7 +2759,7 @@
     "quality": "medium",
     "alt": "Defence Garden Phase 2: hedged park lawn with shops and a guard post beyond",
     "role": "gallery",
-    "galleryIndex": 10,
+    "galleryIndex": 15,
     "originalName": "IMG_1775550287266 (1).webp",
     "oldSourcePath": "src/assets/compressed/gallery/dgphase2/IMG_1775550287266 (1).webp",
     "amenities": [
@@ -2440,7 +2771,7 @@
     "dominantColor": "#878a77",
     "topColor": "#a1a9b7",
     "usedOn": [
-      "project/5 gallery #10",
+      "project/5 gallery #15",
       "gallery page"
     ],
     "notes": "Hazy, flat light."
@@ -2465,7 +2796,7 @@
     "quality": "medium",
     "alt": "Defence Garden Phase 2: road with ornate lamp posts, young palms and a striped kerb on a hazy day",
     "role": "gallery",
-    "galleryIndex": 11,
+    "galleryIndex": 16,
     "originalName": "IMG_1775550287266 (3).webp",
     "oldSourcePath": "src/assets/compressed/gallery/dgphase2/IMG_1775550287266 (3).webp",
     "amenities": [
@@ -2478,7 +2809,7 @@
     "dominantColor": "#979594",
     "topColor": "#d4d7e3",
     "usedOn": [
-      "project/5 gallery #11",
+      "project/5 gallery #16",
       "gallery page"
     ],
     "notes": "Grey, hazy sky."
@@ -2502,7 +2833,7 @@
     "quality": "medium",
     "alt": "Defence Garden Phase 2: paved service road along a row of shuttered shops",
     "role": "gallery",
-    "galleryIndex": 12,
+    "galleryIndex": 17,
     "originalName": "IMG_1775550287266 (5).webp",
     "oldSourcePath": "src/assets/compressed/gallery/dgphase2/IMG_1775550287266 (5).webp",
     "amenities": [
@@ -2515,7 +2846,7 @@
     "dominantColor": "#b29d8e",
     "topColor": "#a5a4aa",
     "usedOn": [
-      "project/5 gallery #12",
+      "project/5 gallery #17",
       "gallery page"
     ],
     "notes": "Hazy."
@@ -2541,7 +2872,7 @@
     "quality": "high",
     "alt": "Green signage wall reading \"Defence Garden Phase 2 Welcomes You\"",
     "role": "gallery",
-    "galleryIndex": 13,
+    "galleryIndex": 18,
     "originalName": "IMG_1775550287266 (7).webp",
     "oldSourcePath": "src/assets/compressed/gallery/dgphase2/IMG_1775550287266 (7).webp",
     "amenities": [
@@ -2553,7 +2884,7 @@
     "dominantColor": "#6f7758",
     "topColor": "#576d42",
     "usedOn": [
-      "project/5 gallery #13",
+      "project/5 gallery #18",
       "gallery page"
     ]
   },
@@ -2578,7 +2909,7 @@
     "quality": "medium",
     "alt": "Defence Garden Phase 2 entrance gate and green welcome wall on an overcast day",
     "role": "gallery",
-    "galleryIndex": 14,
+    "galleryIndex": 19,
     "originalName": "IMG_1775550287266 (8).webp",
     "oldSourcePath": "src/assets/compressed/gallery/dgphase2/IMG_1775550287266 (8).webp",
     "amenities": [
@@ -2591,7 +2922,7 @@
     "dominantColor": "#928e89",
     "topColor": "#cbd6e8",
     "usedOn": [
-      "project/5 gallery #14",
+      "project/5 gallery #19",
       "gallery page"
     ],
     "notes": "Overcast; wide-angle distortion."
@@ -2617,7 +2948,7 @@
     "quality": "medium",
     "alt": "Defence Garden Phase 2 entrance seen from across the main road, with its tall roadside sign",
     "role": "gallery",
-    "galleryIndex": 15,
+    "galleryIndex": 20,
     "originalName": "IMG_1775550287266 (9).webp",
     "oldSourcePath": "src/assets/compressed/gallery/dgphase2/IMG_1775550287266 (9).webp",
     "amenities": [
@@ -2630,7 +2961,7 @@
     "dominantColor": "#959090",
     "topColor": "#d3d4dd",
     "usedOn": [
-      "project/5 gallery #15",
+      "project/5 gallery #20",
       "gallery page"
     ],
     "notes": "Hazy; subject small."
@@ -2656,7 +2987,7 @@
     "quality": "medium",
     "alt": "Defence Garden Phase 2 entrance gate beside the green \"Welcomes You\" wall",
     "role": "gallery",
-    "galleryIndex": 16,
+    "galleryIndex": 21,
     "originalName": "wow.webp",
     "oldSourcePath": "src/assets/compressed/gallery/dgphase2/wow.webp",
     "amenities": [
@@ -2671,10 +3002,213 @@
     "sameImageAs": "projects.defence-garden-phase-2.cover",
     "preferKey": "projects.defence-garden-phase-2.gallery-16",
     "usedOn": [
-      "project/5 gallery #16",
+      "project/5 gallery #21",
       "gallery page"
     ],
     "notes": "Overcast; strong wide-angle distortion."
+  },
+  {
+    "key": "projects.defence-garden-phase-2.aerial-01",
+    "oldUrl": null,
+    "localPath": "src/assets/media/projects/defence-garden-phase-2/aerial-01.webp",
+    "kind": "image",
+    "format": "webp",
+    "width": 2400,
+    "height": 1600,
+    "bytes": 814554,
+    "orientation": "landscape",
+    "projectId": 5,
+    "group": "projects",
+    "tags": [
+      "aerial",
+      "drone",
+      "gate",
+      "entrance",
+      "houses",
+      "sky"
+    ],
+    "quality": "high",
+    "alt": "Defence Garden Phase 2: the gatehouse and green \"Welcomes You\" wall, with the plotted streets and new homes beyond",
+    "role": "gallery",
+    "galleryIndex": 1,
+    "originalName": "DJI_0014.JPG",
+    "amenities": [
+      "road",
+      "landscaping",
+      "street-lights"
+    ],
+    "focus": "58% 55%",
+    "fullBleed": true,
+    "hasAlpha": false,
+    "dominantColor": "#84847b",
+    "topColor": "#d4e5f3",
+    "source": "Owner's drone photograph DJI_0014.JPG (DJI Air 2S, 13 Oct 2026), Google Drive folder 1djl_x1FlDjI5aCqc_i-tAm84QPlLQpyT",
+    "usedOn": [
+      "project/5 gallery #1",
+      "project/5 cover: ourproject card, home & about Journey, other-colony cards",
+      "project/5 og:image / twitter:image 1200x630",
+      "project/5 About (main photo)",
+      "about: hero (full-bleed)",
+      "gallery page"
+    ]
+  },
+  {
+    "key": "projects.defence-garden-phase-2.aerial-02",
+    "oldUrl": null,
+    "localPath": "src/assets/media/projects/defence-garden-phase-2/aerial-02.webp",
+    "kind": "image",
+    "format": "webp",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 327086,
+    "orientation": "landscape",
+    "projectId": 5,
+    "group": "projects",
+    "tags": [
+      "aerial",
+      "drone",
+      "gate",
+      "road",
+      "houses"
+    ],
+    "quality": "high",
+    "alt": "Aerial view of the Defence Garden Phase 2 entrance on the main road, with the shopping block and plotted streets behind it",
+    "role": "gallery",
+    "galleryIndex": 2,
+    "originalName": "DJI_0001.MP4",
+    "amenities": [
+      "road",
+      "landscaping"
+    ],
+    "focus": "45% 55%",
+    "fullBleed": true,
+    "hasAlpha": false,
+    "dominantColor": "#858a89",
+    "topColor": "#bdd3ec",
+    "source": "Frame of the owner's drone clip DJI_0001.MP4 (13 Oct 2026, Drive preview frame), Google Drive folder 1djl_x1FlDjI5aCqc_i-tAm84QPlLQpyT",
+    "usedOn": [
+      "project/5 gallery #2",
+      "home From the air #5",
+      "home preloader",
+      "gallery page"
+    ]
+  },
+  {
+    "key": "projects.defence-garden-phase-2.aerial-03",
+    "oldUrl": null,
+    "localPath": "src/assets/media/projects/defence-garden-phase-2/aerial-03.webp",
+    "kind": "image",
+    "format": "webp",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 338998,
+    "orientation": "landscape",
+    "projectId": 5,
+    "group": "projects",
+    "tags": [
+      "aerial",
+      "drone",
+      "houses",
+      "road"
+    ],
+    "quality": "high",
+    "alt": "Plotted streets of Defence Garden Phase 2 with new homes and young trees, beside the main road",
+    "role": "gallery",
+    "galleryIndex": 3,
+    "originalName": "DJI_0008.MP4",
+    "amenities": [
+      "road",
+      "landscaping",
+      "street-lights"
+    ],
+    "focus": "50% 50%",
+    "fullBleed": true,
+    "hasAlpha": false,
+    "dominantColor": "#6d787a",
+    "topColor": "#8fa6b7",
+    "source": "Frame of the owner's drone clip DJI_0008.MP4 (13 Oct 2026, Drive preview frame), Google Drive folder 1djl_x1FlDjI5aCqc_i-tAm84QPlLQpyT",
+    "usedOn": [
+      "project/5 gallery #3",
+      "project/5 enquiry backdrop",
+      "home From the air #6",
+      "gallery page"
+    ]
+  },
+  {
+    "key": "projects.defence-garden-phase-2.aerial-04",
+    "oldUrl": null,
+    "localPath": "src/assets/media/projects/defence-garden-phase-2/aerial-04.webp",
+    "kind": "image",
+    "format": "webp",
+    "width": 2400,
+    "height": 1600,
+    "bytes": 852380,
+    "orientation": "landscape",
+    "projectId": 5,
+    "group": "projects",
+    "tags": [
+      "gate",
+      "entrance",
+      "palm",
+      "sky"
+    ],
+    "quality": "high",
+    "alt": "The red-roofed gatehouse of Defence Garden Phase 2 and its paved forecourt",
+    "role": "gallery",
+    "galleryIndex": 4,
+    "originalName": "DJI_0012.JPG",
+    "amenities": [
+      "landscaping",
+      "street-lights"
+    ],
+    "focus": "50% 55%",
+    "fullBleed": true,
+    "hasAlpha": false,
+    "dominantColor": "#928a7f",
+    "topColor": "#e2ecf5",
+    "source": "Owner's drone photograph DJI_0012.JPG (DJI Air 2S, 13 Oct 2026), Google Drive folder 1djl_x1FlDjI5aCqc_i-tAm84QPlLQpyT",
+    "usedOn": [
+      "project/5 gallery #4",
+      "gallery page"
+    ]
+  },
+  {
+    "key": "projects.defence-garden-phase-2.aerial-05",
+    "oldUrl": null,
+    "localPath": "src/assets/media/projects/defence-garden-phase-2/aerial-05.webp",
+    "kind": "image",
+    "format": "webp",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 348534,
+    "orientation": "landscape",
+    "projectId": 5,
+    "group": "projects",
+    "tags": [
+      "aerial",
+      "drone",
+      "houses",
+      "road"
+    ],
+    "quality": "high",
+    "alt": "Wide aerial of Defence Garden Phase 2: its streets, plots and first homes between the main road and the fields",
+    "role": "gallery",
+    "galleryIndex": 5,
+    "originalName": "DJI_0009.MP4",
+    "amenities": [
+      "road"
+    ],
+    "focus": "50% 50%",
+    "fullBleed": true,
+    "hasAlpha": false,
+    "dominantColor": "#71797b",
+    "topColor": "#b1c6e0",
+    "source": "Frame of the owner's drone clip DJI_0009.MP4 (13 Oct 2026, Drive preview frame), Google Drive folder 1djl_x1FlDjI5aCqc_i-tAm84QPlLQpyT",
+    "usedOn": [
+      "project/5 gallery #5",
+      "home Collections (Legacy Townships)",
+      "gallery page"
+    ]
   },
   {
     "key": "projects.defence-kunj.cover",

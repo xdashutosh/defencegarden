@@ -3,19 +3,25 @@
 // slides in on hover. Used by the /ourproject grid (filterable) and the "Other colonies" row on project pages.
 import Img from '../ui/Img.astro';
 import Icon from '../ui/Icon.astro';
+import { preferred } from '../../lib/media.js';
 import { displayTitle, projectUrl, sharedProjectData } from '../../lib/site.js';
 import { photoCount, tagsFor } from './util.js';
 
 interface Props {
   p: any;                 // project from src/data/projects.json
   n?: string;             // display number ('01')
-  sizes?: string;
+  card?: [number, number][]; // card width per breakpoint, widest first: [min-width px, vw] … [0, vw], split at 700px
   filter?: boolean;       // add data-filter-item / data-tags
   delay?: number;         // reveal delay (s)
   class?: string;
   headingLevel?: 'h2' | 'h3';
 }
-const { p, n, sizes = '(min-width: 1100px) 30vw, (min-width: 700px) 46vw, 92vw', filter = false, delay = 0, class: cls = '', headingLevel = 'h3' } = Astro.props;
+// default card widths: the /ourproject grid, 3 columns (≤ 30.4vw) from 1100px, 2 (≤ 46.7vw) from 700px, then 1 (≤ 95.4vw)
+const { p, n, card = [[1100, 31], [700, 47], [0, 96]], filter = false, delay = 0, class: cls = '', headingLevel = 'h3' } = Astro.props;
+// The cover is cover-cropped into the photo box (4:5, 5:4 below 700px): a photo wider than the box is drawn
+// aspect / box × the card's width (3:2 → 1.875 × in 4:5, 1.2 × in 5:4), so sizes asks for that at each breakpoint.
+const aspect = (p.cover && preferred(p.cover).aspect) || 1;
+const sizes = card.map(([min, vw]) => `${min ? `(min-width: ${min}px) ` : ''}${Math.round(vw * Math.max(1, aspect / (min >= 700 ? 0.8 : 1.25)))}vw`).join(', ');
 const H = headingLevel;
 const count = photoCount(p);
 const mapBadge = sharedProjectData?.listingCard?.mapBadge || 'Booking Map Live';
@@ -25,7 +31,7 @@ const title = displayTitle(p);
 <li class={`cc ${cls}`} data-filter-item={filter ? '' : undefined} data-tags={filter ? tagsFor(p) : undefined}>
   <a class="cc__link" href={projectUrl(p)} data-reveal="fade" data-reveal-delay={delay ? delay.toFixed(2) : undefined}>
     <figure class="cc__media media">
-      <Img src={p.cover} class="cc__img" sizes={sizes} widths={[480, 800, 1200]} alt={p.cover?.alt} />
+      <Img src={p.cover} class="cc__img" sizes={sizes} widths={[480, 800, 1200, 1600, 2000]} alt={p.cover?.alt} />
       {live && <span class="cc__badge eyebrow"><span class="cc__pulse" aria-hidden="true"></span>{mapBadge}</span>}
       {count > 0 && <span class="cc__photos"><Icon name="grid" /><span>+{count} photos</span></span>}
     </figure>
@@ -58,7 +64,7 @@ const title = displayTitle(p);
   .cc__photos :global(svg) { width: 12px; height: 12px; }
   .cc__body { display: grid; gap: 12px; padding-top: 16px; margin-top: 16px; border-top: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); }
   .cc__meta { display: flex; justify-content: space-between; align-items: center; gap: 12px; color: color-mix(in srgb, var(--fg) 62%, transparent); }
-  .cc__n { font-family: var(--f-deco); font-weight: 300; font-size: 15px; letter-spacing: .04em; color: var(--fg); }
+  .cc__n { font-weight: 400; font-size: 15px; letter-spacing: .04em; color: var(--fg); }
   .cc__facts { display: inline-flex; align-items: center; gap: 8px; }
   .cc__dot { width: 6px; height: 6px; border-radius: 50%; background: var(--copper-deep); }
   .cc__dot--ongoing { background: #2f9e6a; }

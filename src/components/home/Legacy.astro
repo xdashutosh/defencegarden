@@ -8,6 +8,9 @@ const stats = [
   { n: 3, label: 'Cities · Shamli · Meerut · Budhana', pad: 2 },
   { n: 20, label: 'Years of trust', suf: '+' },
 ];
+// The 3:2 aerial cover-fills the 4:5 arch and data-parallax scales it 1.16, so it is drawn 1.25 × 1.5 × 1.16 = 2.175 ×
+// the column's width: desktop column ≤ 44.8vw → 98vw; one column (≤860px) ≤ 95.6vw → 208vw.
+const photoSizes = '(min-width: 861px) 98vw, 208vw';
 ---
 <section class="lgc t-ivory section" data-header-tone="light">
   <div class="wrap lgc__grid">
@@ -20,7 +23,7 @@ const stats = [
     <div class="frame frame--arch lgc__frame">
       <span class="frame__line" data-drift="44" aria-hidden="true"></span>
       <figure class="lgc__img media" data-reveal="clip">
-        <Img src="about.r2" sizes="(min-width: 861px) 40vw, 92vw" data-parallax="0.08" />
+        <Img src="projects.river-green-society.aerial-03" sizes={photoSizes} data-parallax="0.08" />
       </figure>
     </div>
   </div>
@@ -47,6 +50,7 @@ const stats = [
   .lgc__stat { padding: 28px 18px 0 0; display: grid; gap: 10px; }
   .lgc__stat + .lgc__stat { padding-left: 18px; border-left: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); }
   .lgc__num { font-size: clamp(48px, 6vw, 108px); }
-  .lgc__pre { font-family: var(--f-deco); font-weight: 300; font-size: .32em; letter-spacing: .04em; text-transform: uppercase; margin-right: .3em; vertical-align: .9em; color: var(--accent); }
-  @media (max-width: 860px) { .lgc__frame { --fr-x: 12px; --fr-y: 12px; } .lgc__grid { grid-template-columns: 1fr; } .lgc__stats { grid-template-columns: 1fr 1fr; } .lgc__stat:nth-child(3) { padding-left: 0; border-left: 0; } }
+  .lgc__pre { font-weight: 400; font-size: .32em; letter-spacing: .06em; text-transform: uppercase; margin-right: .3em; vertical-align: .9em; color: var(--accent); }
+  /* 2 × 2 stats: the third starts row two, so no left rule or padding (the "+" makes it outrank the rule above) */
+  @media (max-width: 860px) { .lgc__frame { --fr-x: 12px; --fr-y: 12px; } .lgc__grid { grid-template-columns: 1fr; } .lgc__stats { grid-template-columns: 1fr 1fr; } .lgc__stat + .lgc__stat:nth-child(3) { padding-left: 0; border-left: 0; } }
 </style>

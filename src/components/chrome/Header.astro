@@ -48,10 +48,6 @@ const { tone = 'dark' } = Astro.props;
   /* over photos and film the reversed logo gets a soft shadow; it disappears on solid navy */
   .hdr__logo :global(.logo) { transition: filter .5s ease; filter: drop-shadow(0 1px 10px rgba(6, 26, 58, .4)); }
   .hdr[data-tone='light'] .hdr__logo :global(.logo) { filter: none; }
-  .hdr__logo { position: relative; }
-  .hdr__logo::before { content: ''; position: absolute; inset: -16px -34px; z-index: -1; pointer-events: none; opacity: 0; transition: opacity .5s ease; background: radial-gradient(closest-side, rgba(251, 248, 243, .82), rgba(251, 248, 243, .5) 55%, rgba(251, 248, 243, 0)); }
-  .hdr[data-tone='light'] .hdr__logo::before { opacity: 1; }
-  @media (forced-colors: active) { .hdr__logo::before { display: none; } }
   .hdr__cta { height: 38px; padding: 0 18px; font-size: 13px; }
   .hdr__cta::before { background: currentColor; }
   .hdr__cta:hover { color: var(--hdr-bg, var(--navy-deep)); }

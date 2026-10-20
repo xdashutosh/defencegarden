@@ -3,6 +3,8 @@
 Astro 7 static site. Design: a blend of realevate.agency (editorial white pages, giant marquee headlines around framed
 photos, colour-coded collections) and era.estate (deep navy, copper, Art Deco line work, cinematic full-bleed imagery).
 Story: from plotted colonies (since 2006) to urban high-rise living.
+Type: the whole site uses one family, Google Sans (`@fontsource-variable/google-sans`, bundled with the CSS); the
+type roles live in `src/styles/global.css`.
 
 ## Run locally
 ```bash

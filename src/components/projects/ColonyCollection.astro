@@ -1,5 +1,5 @@
 ---
-// /ourproject — realevate category intro (hairline, centred serif headline, short text, live figures) followed by
+// /ourproject — realevate category intro (hairline, centred headline, short text, live figures) followed by
 // the filterable grid of all ten colonies and a "Booking Map Live" tile.
 import ColonyCard from './ColonyCard.astro';
 import Icon from '../ui/Icon.astro';
@@ -26,11 +26,16 @@ const stats = [
 ];
 const mapBadge = sharedProjectData?.listingCard?.mapBadge || 'Booking Map Live';
 const liveCities = [...new Set(liveMaps.map((p) => p.city))];
-// heading "Curated Township Collection" with its accent word in italics
+// heading "Curated Township Collection" with its accent word in <em> (upright, in the green accent: .ccl__title em)
 const accent = c.heading.accent;
 const headingHtml = accent && c.heading.text.endsWith(accent)
   ? `${c.heading.text.slice(0, -accent.length).trim()} <em>${accent}</em>`
   : c.heading.text;
+// The tile photo (4:3, data-parallax 0.06 → scaled 1.12) is cover-cropped into the tile's tall half, as high as its
+// row, so it is drawn 1.33 × 1.12 = 1.49 × that height: from 1100px a card's (50–55vw up to 1680px → 74–83vw),
+// 700–1099px the text column's (≈ 400px → ≈ 600px, 57–85vw), so 80vw for both; below 700px a full-width 16:10 box,
+// 1.12 × (100vw less the gutters) ≤ 107vw.
+const tileSizes = '(min-width: 700px) 80vw, 107vw';
 ---
 <section class="ccl t-light section" data-header-tone="light" aria-labelledby="ccl-title">
   <div class="wrap ccl__intro">
@@ -81,7 +86,7 @@ const headingHtml = accent && c.heading.text.endsWith(accent)
             <button class="btn ccl__tile-btn" type="button" data-enquire data-interest="Site visit"><span>Plan a site visit</span><Icon name="arrow-right" /></button>
           </div>
           <figure class="media ccl__tile-img" data-reveal="clip">
-            <Img src="projects.river-green-society.gallery-02" sizes="(min-width: 1100px) 30vw, (min-width: 700px) 46vw, 92vw" widths={[480, 800, 1200]} data-parallax="0.06" />
+            <Img src="projects.river-green-society.gallery-02" sizes={tileSizes} widths={[480, 800, 1200, 1600]} data-parallax="0.06" />
           </figure>
         </div>
       </li>
@@ -95,18 +100,18 @@ const headingHtml = accent && c.heading.text.endsWith(accent)
   .ccl__vline { display: block; width: 1px; height: clamp(54px, 6vw, 96px); background: color-mix(in srgb, var(--fg) 30%, transparent); margin-bottom: 8px; }
   .ccl__eyebrow { color: var(--green); }
   .ccl__title { max-width: 14ch; }
-  .ccl__title :global(em) { font-style: italic; color: var(--green); }
+  .ccl__title :global(em) { font-style: normal; color: var(--green); }
   .ccl__text { max-width: 44ch; }
   .ccl__stats { display: flex; justify-content: center; margin-top: 18px; border-top: 1px solid color-mix(in srgb, var(--fg) 14%, transparent); }
   .ccl__stat { display: grid; justify-items: center; gap: 6px; padding: 22px clamp(22px, 3.4vw, 56px) 0; }
   .ccl__stat + .ccl__stat { border-left: 1px solid color-mix(in srgb, var(--fg) 14%, transparent); }
-  .ccl__num { font-family: var(--f-deco); font-weight: 300; font-size: clamp(38px, 3.6vw, 60px); line-height: 1; color: var(--green); }
+  .ccl__num { font-family: var(--f-sans); font-weight: 400; font-size: clamp(38px, 3.6vw, 60px); line-height: 1; letter-spacing: -.03em; color: var(--green); }
 
   .ccl__bar { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-bottom: 22px; margin-bottom: clamp(28px, 3.4vw, 54px); border-bottom: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); }
   .ccl__chips { align-items: center; }
   .ccl__chip { display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 16px 0 18px; }
   .ccl__chip[aria-pressed='true'] { background: var(--green); border-color: var(--green); color: #fff; }
-  .ccl__chipn { font-family: var(--f-wide); font-stretch: 125%; font-size: 9px; letter-spacing: .08em; opacity: .6; vertical-align: super; line-height: 0; }
+  .ccl__chipn { font-size: 9px; letter-spacing: .08em; opacity: .6; vertical-align: super; line-height: 0; }
   .ccl__sep { width: 1px; height: 22px; margin-inline: 8px; background: color-mix(in srgb, var(--fg) 22%, transparent); }
   .ccl__count { white-space: nowrap; color: color-mix(in srgb, var(--fg) 62%, transparent); }
   .ccl__countn { color: var(--green); font-size: 13px; }

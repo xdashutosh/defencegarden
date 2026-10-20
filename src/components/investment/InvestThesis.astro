@@ -26,11 +26,11 @@ const stats = claims
   .ivt__img { aspect-ratio: 4 / 5; }
   .ivt__img img { width: 100%; height: 100%; object-fit: cover; }
   .ivt__label { position: absolute; left: 18px; top: 16px; z-index: 2; color: #fff; text-shadow: 0 1px 8px rgba(0, 0, 0, .4); }
-  .ivt__quote { position: absolute; left: 18px; right: 18px; bottom: 20px; z-index: 2; color: #fff; font-family: var(--f-serif); font-weight: 300; font-style: italic; font-size: clamp(22px, 2.1vw, 36px); line-height: 1.1; text-shadow: 0 2px 18px rgba(6, 26, 58, .5); }
+  .ivt__quote { position: absolute; left: 18px; right: 18px; bottom: 20px; z-index: 2; color: #fff; font-family: var(--f-sans); font-weight: 400; font-style: italic; font-size: clamp(22px, 2.1vw, 36px); line-height: 1.1; letter-spacing: -.02em; text-shadow: 0 2px 18px rgba(6, 26, 58, .5); }
   .ivt__img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6, 26, 58, .3), transparent 30%, transparent 55%, rgba(6, 26, 58, .7)); pointer-events: none; }
   .ivt__badge { position: absolute; right: clamp(-46px, -2.6vw, -20px); top: 14%; z-index: 3; width: clamp(104px, 9vw, 146px); aspect-ratio: 1; border-radius: 50%; display: grid; place-content: center; text-align: center; gap: 4px; background: var(--navy-deep); color: #f4ede6; box-shadow: 0 20px 50px -20px rgba(6, 26, 58, .6); }
   .ivt__badge::before { content: ''; position: absolute; inset: 6px; border-radius: 50%; border: 1px solid rgba(207, 143, 125, .55); }
-  .ivt__badge b { font-family: var(--f-deco); font-weight: 300; font-size: clamp(30px, 2.8vw, 46px); line-height: 1; color: var(--copper); }
+  .ivt__badge b { font-family: var(--f-sans); font-weight: 400; font-size: clamp(30px, 2.8vw, 46px); line-height: 1; letter-spacing: -.03em; color: var(--copper); }
   .ivt__copy { display: grid; gap: clamp(26px, 3vw, 44px); }
   .ivt__title { font-size: clamp(34px, 3.9vw, 72px); max-width: 17ch; }
   .ivt__stats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); }
@@ -56,7 +56,7 @@ const stats = claims
     </figure>
     <div class="ivt__copy">
       <p class="eyebrow eyebrow--accent" data-reveal="fade">{thesis.eyebrow}</p>
-      <h2 class="serif ivt__title" data-reveal="lines">{thesis.heading.text}</h2>
+      <h2 class="serif ivt__title balance" data-reveal="lines">{thesis.heading.text}</h2>
       <ul class="ivt__stats">
         {stats.map((s, i) => (
           <li class="ivt__stat" data-reveal="fade" data-reveal-delay={(i * 0.08).toFixed(2)}>

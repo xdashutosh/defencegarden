@@ -1,6 +1,8 @@
 ---
 // Muted background video: licensed concept film (`vision` key) or a Defence Garden film (manifest key / data object).
-// The runtime starts it only while visible (data-video) and loops between data-start / data-end when given.
+// The runtime (src/scripts/modules/video.js) loads it only while visible (eager: at once), picks the lightest file
+// that fits the box — data-src-portrait (9:16 crop) for portrait boxes, data-src-small for small landscape boxes,
+// else data-src — and loops between data-start / data-end when given. Reduced motion / Save-Data: poster only.
 import { getImage } from 'astro:assets';
 import { video } from '../../lib/media.js';
 import { visionVideo } from '../../lib/vision.js';
@@ -16,6 +18,8 @@ if (rec?.poster) {
   const w = Math.min(1920, Number(rec.width) || 1920);
   poster = (await getImage({ src: rec.poster, width: w, format: 'webp', quality: 72 })).src;
 }
+const portrait = d?.urlPortrait || v?.urlMobile || null;
+const small = d?.urlSmall || null;
 const start = d?.startAt || 0;
 const end = d?.endAt || 0;
 ---
@@ -24,12 +28,14 @@ const end = d?.endAt || 0;
     class={cls}
     data-video
     data-src={rec.url}
-    src={eager ? rec.url : undefined}
+    data-src-portrait={portrait ?? undefined}
+    data-src-small={small ?? undefined}
+    data-eager={eager ? '' : undefined}
     poster={poster ?? undefined}
     muted
     playsinline
     loop={start > 0 || end > 0 ? undefined : true}
-    preload={eager ? 'auto' : 'none'}
+    preload="none"
     data-start={start || undefined}
     data-end={end || undefined}
     aria-label={label}

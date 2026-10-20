@@ -16,8 +16,8 @@
       "icon": "sparkles"
     },
     "heading": {
-      "text": "Curated Township Collection",
-      "accent": "Collection"
+      "text": "Curated township collection",
+      "accent": "collection"
     },
     "text": "Explore premium plotted communities designed for modern living, open green spaces, and long-term value.",
     "pill": [
@@ -40,13 +40,10 @@
         "projectId": 1,
         "href": "/project/1",
         "image": {
-          "oldUrl": "https://defencegarden.com/assets/rivergreen-Cq_P65KN.webp",
-          "key": "projects.river-green-society.cover",
-          "src": "src/assets/media/projects/river-green-society/cover.webp",
-          "preferKey": "projects.river-green-society.gallery-11",
-          "preferSrc": "src/assets/media/projects/river-green-society/gallery-11.webp",
-          "alt": "River Green Society: stone fountain with water jets in the paved central plaza",
-          "oldAlt": "River Green Society"
+          "oldUrl": null,
+          "key": "projects.river-green-society.aerial-07",
+          "src": "src/assets/media/projects/river-green-society/aerial-07.webp",
+          "alt": "Evening aerial over River Green Society: the shopping arcade, tree-lined streets and plots stretching to the fields"
         },
         "badges": [
           "Featured",
@@ -89,13 +86,10 @@
         "projectId": 5,
         "href": "/project/5",
         "image": {
-          "oldUrl": "https://defencegarden.com/assets/dgphase2-CbdbB_LR.webp",
-          "key": "projects.defence-garden-phase-2.cover",
-          "src": "src/assets/media/projects/defence-garden-phase-2/cover.webp",
-          "preferKey": "projects.defence-garden-phase-2.gallery-16",
-          "preferSrc": "src/assets/media/projects/defence-garden-phase-2/gallery-16.webp",
-          "alt": "Defence Garden Phase 2 entrance gate beside the green \"Welcomes You\" wall",
-          "oldAlt": "Defence Garden Phase 2"
+          "oldUrl": null,
+          "key": "projects.defence-garden-phase-2.aerial-01",
+          "src": "src/assets/media/projects/defence-garden-phase-2/aerial-01.webp",
+          "alt": "Defence Garden Phase 2: the gatehouse and green \"Welcomes You\" wall, with the plotted streets and new homes beyond"
         },
         "badges": [
           "Ongoing",
@@ -554,7 +548,7 @@
     }
   },
   "closing": {
-    "heading": "Start Your Journey",
+    "heading": "Start your journey",
     "cta": {
       "label": "Contact Us",
       "href": "/contact"

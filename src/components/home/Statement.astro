@@ -1,18 +1,16 @@
 ---
-// era.estate-style navy statement (copper capitals paragraph), followed by the "skyline rise" scroll scene: the
-// owner's colony homes in front, concept towers rising behind them into the live sky (SkylineRise.astro).
+// era.estate-style navy statement (copper paragraph): the next chapter, between the hero and the story.
+// "upward —" is a .nowrap span so no line starts with the dash (SplitText would turn a U+00A0 into a plain space).
 import Ornament from '../ui/Ornament.astro';
-import SkylineRise from './SkylineRise.astro';
 ---
 <section class="stm t-night section" data-header-tone="dark">
   <Ornament variant="fan" class="stm__orn" />
   <div class="wrap stm__in">
     <p class="eyebrow eyebrow--accent" data-reveal="fade">The next chapter</p>
     <h2 class="deco stm__title" data-reveal="lines">The new era of<br />Defence Garden</h2>
-    <p class="deco--text stm__text balance" data-reveal="lines">For twenty years we have shaped land in Western Uttar Pradesh into gated, green, clearly-titled colonies. Now we are carrying the same principles upward — into residential towers for India's growing cities.</p>
+    <p class="deco--text stm__text balance" data-reveal="lines">For twenty years we have shaped land in Western Uttar Pradesh into gated, green, clearly-titled colonies. Now we are carrying the same principles <span class="nowrap">upward —</span> into residential towers for India's growing cities.</p>
   </div>
 </section>
-<SkylineRise />
 <style>
   .stm { overflow: hidden; text-align: center; }
   .stm__orn { position: absolute; left: 50%; top: 0; width: 140%; height: 100%; transform: translateX(-50%); color: var(--copper); opacity: .07; pointer-events: none; }

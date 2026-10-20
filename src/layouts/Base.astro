@@ -10,7 +10,7 @@ import Footer from '../components/chrome/Footer.astro';
 import EnquiryModal from '../components/chrome/EnquiryModal.astro';
 import Preloader from '../components/chrome/Preloader.astro';
 import Curtain from '../components/chrome/Curtain.astro';
-import { seoFor, site } from '../lib/site.js';
+import { seoFor, site, THEME_COLOR } from '../lib/site.js';
 import { headFor, safeJson } from '../lib/seo.js';
 
 interface Props {
@@ -36,13 +36,12 @@ const favicons = site.brand.favicons || [];
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{head.title}</title>
-    <meta name="theme-color" content="#061a3a" />
+    <meta name="theme-color" content={THEME_COLOR} />
     <meta name="author" content={seo.author || 'Defence Garden'} />
     {seo.keywords && <meta name="keywords" content={Array.isArray(seo.keywords) ? seo.keywords.join(', ') : seo.keywords} />}
     {head.tags.map((t) => t.tag === 'meta' ? <meta {...t.attrs} data-page-head /> : <link {...t.attrs} data-page-head />)}
     {head.jsonLd && <script type="application/ld+json" data-page-head set:html={safeJson(head.jsonLd)} />}
     {favicons.map((f) => <link rel={f.rel} type={f.type} sizes={f.sizes} href={f.url} />)}
-    <link rel="preload" href="/fonts/mona-sans-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
     <script is:inline>document.documentElement.classList.replace('no-js', 'js');</script>
   </head>
   <body>

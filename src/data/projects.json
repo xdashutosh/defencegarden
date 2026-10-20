@@ -174,11 +174,11 @@
       ],
       "scrollCue": "Scroll to explore the layout",
       "map": {
-        "heading": "Booking Layout Map",
+        "heading": "Booking layout map",
         "liveLabel": "Live Availability",
         "loadingLabel": "Loading plots",
         "comingSoon": {
-          "eyebrow": "Booking Layout Map",
+          "eyebrow": "Booking layout map",
           "heading": "Map Coming Soon",
           "textTemplate": "The interactive plot booking map for {title} is being prepared. In the meantime, please reach out to our team for live availability and pricing.",
           "badge": "Launching soon",
@@ -206,7 +206,7 @@
           "Every aspect of the colony is crafted to ensure a premium lifestyle — from wide, well-laid roads to beautiful green landscapes. With 24/7 security, underground electricity, and dedicated water supply, this is where your dream home begins."
         ]
       },
-      "amenitiesHeading": "Amenities & Features",
+      "amenitiesHeading": "Amenities & features",
       "gallery": {
         "heading": "Photo Gallery",
         "hint": "Hover to pause · Click to expand",
@@ -349,13 +349,10 @@
       },
       "mapComingSoonText": null,
       "cover": {
-        "oldUrl": "https://defencegarden.com/assets/rivergreen-Cq_P65KN.webp",
-        "key": "projects.river-green-society.cover",
-        "src": "src/assets/media/projects/river-green-society/cover.webp",
-        "preferKey": "projects.river-green-society.gallery-11",
-        "preferSrc": "src/assets/media/projects/river-green-society/gallery-11.webp",
-        "alt": "River Green Society: stone fountain with water jets in the paved central plaza",
-        "oldAlt": "River Green Society"
+        "oldUrl": null,
+        "key": "projects.river-green-society.aerial-07",
+        "src": "src/assets/media/projects/river-green-society/aerial-07.webp",
+        "alt": "Evening aerial over River Green Society: the shopping arcade, tree-lined streets and plots stretching to the fields"
       },
       "video": {
         "oldUrl": "https://defencegarden.com/assets/rivergreen-web-DMAYIMnm.mp4",
@@ -376,10 +373,75 @@
         "Every aspect of the colony is crafted to ensure a premium lifestyle — from wide, well-laid roads to beautiful green landscapes. With 24/7 security, underground electricity, and dedicated water supply, this is where your dream home begins."
       ],
       "galleryFolder": "src/assets/compressed/gallery/rivergreen/",
-      "galleryCount": 11,
+      "galleryCount": 19,
       "gallery": [
         {
           "n": 1,
+          "oldUrl": null,
+          "key": "projects.river-green-society.aerial-01",
+          "src": "src/assets/media/projects/river-green-society/aerial-01.webp",
+          "alt": "Aerial view of River Green Society: the walled grid of plotted streets, the fountain roundabout and the entrance, set among green fields with the town beyond",
+          "file": "DJI_0031.MP4"
+        },
+        {
+          "n": 2,
+          "oldUrl": null,
+          "key": "projects.river-green-society.aerial-02",
+          "src": "src/assets/media/projects/river-green-society/aerial-02.webp",
+          "alt": "River Green Society from above the entrance arch and sales office, looking down the central boulevard to the fountain roundabout",
+          "file": "DJI_0043.JPG"
+        },
+        {
+          "n": 3,
+          "oldUrl": null,
+          "key": "projects.river-green-society.aerial-03",
+          "src": "src/assets/media/projects/river-green-society/aerial-03.webp",
+          "alt": "River Green Society: the red-striped central boulevard leading to the fountain roundabout, with plots and young trees on either side",
+          "file": "DJI_0041.JPG"
+        },
+        {
+          "n": 4,
+          "oldUrl": null,
+          "key": "projects.river-green-society.aerial-04",
+          "src": "src/assets/media/projects/river-green-society/aerial-04.webp",
+          "alt": "River Green Society: the landscaped fountain roundabout where the internal roads meet, framed by clipped hedges",
+          "file": "DJI_0038.JPG"
+        },
+        {
+          "n": 5,
+          "oldUrl": null,
+          "key": "projects.river-green-society.aerial-05",
+          "src": "src/assets/media/projects/river-green-society/aerial-05.webp",
+          "alt": "River Green Society seen straight from above: the fountain roundabout and the grid of paved streets between the plots",
+          "file": "DJI_0036.MP4"
+        },
+        {
+          "n": 6,
+          "oldUrl": null,
+          "key": "projects.river-green-society.aerial-06",
+          "src": "src/assets/media/projects/river-green-society/aerial-06.webp",
+          "alt": "River Green lettering on the entrance arch at sunset, with the boulevard running into the colony",
+          "file": "DJI_0050.JPG"
+        },
+        {
+          "n": 7,
+          "oldUrl": null,
+          "key": "projects.river-green-society.aerial-07",
+          "src": "src/assets/media/projects/river-green-society/aerial-07.webp",
+          "alt": "Evening aerial over River Green Society: the shopping arcade, tree-lined streets and plots stretching to the fields",
+          "coverTwin": true,
+          "file": "DJI_0029.MP4"
+        },
+        {
+          "n": 8,
+          "oldUrl": null,
+          "key": "projects.river-green-society.aerial-08",
+          "src": "src/assets/media/projects/river-green-society/aerial-08.webp",
+          "alt": "Visitors at the River Green Society sales office beneath the entrance arch",
+          "file": "DJI_0045.JPG"
+        },
+        {
+          "n": 9,
           "oldUrl": "https://defencegarden.com/assets/IMG20260407115715-DxYpsb3M.webp",
           "key": "projects.river-green-society.gallery-01",
           "src": "src/assets/media/projects/river-green-society/gallery-01.webp",
@@ -387,7 +449,7 @@
           "file": "IMG20260407115715.webp"
         },
         {
-          "n": 2,
+          "n": 10,
           "oldUrl": "https://defencegarden.com/assets/IMG20260407120132-BYfZXwll.webp",
           "key": "projects.river-green-society.gallery-02",
           "src": "src/assets/media/projects/river-green-society/gallery-02.webp",
@@ -395,7 +457,7 @@
           "file": "IMG20260407120132.webp"
         },
         {
-          "n": 3,
+          "n": 11,
           "oldUrl": "https://defencegarden.com/assets/IMG20260407120211-DDrxAX0-.webp",
           "key": "projects.river-green-society.gallery-03",
           "src": "src/assets/media/projects/river-green-society/gallery-03.webp",
@@ -403,7 +465,7 @@
           "file": "IMG20260407120211.webp"
         },
         {
-          "n": 4,
+          "n": 12,
           "oldUrl": "https://defencegarden.com/assets/IMG20260407120220-BDCvcQiy.webp",
           "key": "projects.river-green-society.gallery-04",
           "src": "src/assets/media/projects/river-green-society/gallery-04.webp",
@@ -411,7 +473,7 @@
           "file": "IMG20260407120220.webp"
         },
         {
-          "n": 5,
+          "n": 13,
           "oldUrl": "https://defencegarden.com/assets/IMG20260407120232-DzsJ3yHl.webp",
           "key": "projects.river-green-society.gallery-05",
           "src": "src/assets/media/projects/river-green-society/gallery-05.webp",
@@ -419,7 +481,7 @@
           "file": "IMG20260407120232.webp"
         },
         {
-          "n": 6,
+          "n": 14,
           "oldUrl": "https://defencegarden.com/assets/IMG20260407120253-BKCXmJob.webp",
           "key": "projects.river-green-society.gallery-06",
           "src": "src/assets/media/projects/river-green-society/gallery-06.webp",
@@ -427,7 +489,7 @@
           "file": "IMG20260407120253.webp"
         },
         {
-          "n": 7,
+          "n": 15,
           "oldUrl": "https://defencegarden.com/assets/IMG20260407120345-sWmZI6ia.webp",
           "key": "projects.river-green-society.gallery-07",
           "src": "src/assets/media/projects/river-green-society/gallery-07.webp",
@@ -435,7 +497,7 @@
           "file": "IMG20260407120345.webp"
         },
         {
-          "n": 8,
+          "n": 16,
           "oldUrl": "https://defencegarden.com/assets/IMG20260407120349-B7obDawC.webp",
           "key": "projects.river-green-society.gallery-08",
           "src": "src/assets/media/projects/river-green-society/gallery-08.webp",
@@ -443,7 +505,7 @@
           "file": "IMG20260407120349.webp"
         },
         {
-          "n": 9,
+          "n": 17,
           "oldUrl": "https://defencegarden.com/assets/IMG20260407120640-C3DsB1Tn.webp",
           "key": "projects.river-green-society.gallery-09",
           "src": "src/assets/media/projects/river-green-society/gallery-09.webp",
@@ -451,7 +513,7 @@
           "file": "IMG20260407120640.webp"
         },
         {
-          "n": 10,
+          "n": 18,
           "oldUrl": "https://defencegarden.com/assets/IMG20260407120700-Du0v9gjf.webp",
           "key": "projects.river-green-society.gallery-10",
           "src": "src/assets/media/projects/river-green-society/gallery-10.webp",
@@ -459,12 +521,11 @@
           "file": "IMG20260407120700.webp"
         },
         {
-          "n": 11,
+          "n": 19,
           "oldUrl": "https://defencegarden.com/assets/wow-DuKc8KKy.webp",
           "key": "projects.river-green-society.gallery-11",
           "src": "src/assets/media/projects/river-green-society/gallery-11.webp",
           "alt": "River Green Society: stone fountain with water jets in the paved central plaza",
-          "coverTwin": true,
           "file": "wow.webp"
         }
       ],
@@ -532,13 +593,10 @@
       },
       "mapComingSoonText": null,
       "cover": {
-        "oldUrl": "https://defencegarden.com/assets/dgphase2-CbdbB_LR.webp",
-        "key": "projects.defence-garden-phase-2.cover",
-        "src": "src/assets/media/projects/defence-garden-phase-2/cover.webp",
-        "preferKey": "projects.defence-garden-phase-2.gallery-16",
-        "preferSrc": "src/assets/media/projects/defence-garden-phase-2/gallery-16.webp",
-        "alt": "Defence Garden Phase 2 entrance gate beside the green \"Welcomes You\" wall",
-        "oldAlt": "Defence Garden Phase 2"
+        "oldUrl": null,
+        "key": "projects.defence-garden-phase-2.aerial-01",
+        "src": "src/assets/media/projects/defence-garden-phase-2/aerial-01.webp",
+        "alt": "Defence Garden Phase 2: the gatehouse and green \"Welcomes You\" wall, with the plotted streets and new homes beyond"
       },
       "video": {
         "oldUrl": "https://defencegarden.com/assets/dgphase2-web-D4n1iTYU.mp4",
@@ -559,10 +617,51 @@
         "Every aspect of the colony is crafted to ensure a premium lifestyle — from wide, well-laid roads to beautiful green landscapes. With 24/7 security, underground electricity, and dedicated water supply, this is where your dream home begins."
       ],
       "galleryFolder": "src/assets/compressed/gallery/dgphase2/",
-      "galleryCount": 16,
+      "galleryCount": 21,
       "gallery": [
         {
           "n": 1,
+          "oldUrl": null,
+          "key": "projects.defence-garden-phase-2.aerial-01",
+          "src": "src/assets/media/projects/defence-garden-phase-2/aerial-01.webp",
+          "alt": "Defence Garden Phase 2: the gatehouse and green \"Welcomes You\" wall, with the plotted streets and new homes beyond",
+          "coverTwin": true,
+          "file": "DJI_0014.JPG"
+        },
+        {
+          "n": 2,
+          "oldUrl": null,
+          "key": "projects.defence-garden-phase-2.aerial-02",
+          "src": "src/assets/media/projects/defence-garden-phase-2/aerial-02.webp",
+          "alt": "Aerial view of the Defence Garden Phase 2 entrance on the main road, with the shopping block and plotted streets behind it",
+          "file": "DJI_0001.MP4"
+        },
+        {
+          "n": 3,
+          "oldUrl": null,
+          "key": "projects.defence-garden-phase-2.aerial-03",
+          "src": "src/assets/media/projects/defence-garden-phase-2/aerial-03.webp",
+          "alt": "Plotted streets of Defence Garden Phase 2 with new homes and young trees, beside the main road",
+          "file": "DJI_0008.MP4"
+        },
+        {
+          "n": 4,
+          "oldUrl": null,
+          "key": "projects.defence-garden-phase-2.aerial-04",
+          "src": "src/assets/media/projects/defence-garden-phase-2/aerial-04.webp",
+          "alt": "The red-roofed gatehouse of Defence Garden Phase 2 and its paved forecourt",
+          "file": "DJI_0012.JPG"
+        },
+        {
+          "n": 5,
+          "oldUrl": null,
+          "key": "projects.defence-garden-phase-2.aerial-05",
+          "src": "src/assets/media/projects/defence-garden-phase-2/aerial-05.webp",
+          "alt": "Wide aerial of Defence Garden Phase 2: its streets, plots and first homes between the main road and the fields",
+          "file": "DJI_0009.MP4"
+        },
+        {
+          "n": 6,
           "oldUrl": "https://defencegarden.com/assets/1-BtQM12mD.webp",
           "key": "projects.defence-garden-phase-2.gallery-01",
           "src": "src/assets/media/projects/defence-garden-phase-2/gallery-01.webp",
@@ -570,7 +669,7 @@
           "file": "1.webp"
         },
         {
-          "n": 2,
+          "n": 7,
           "oldUrl": "https://defencegarden.com/assets/2-BfXAi4uZ.webp",
           "key": "projects.defence-garden-phase-2.gallery-02",
           "src": "src/assets/media/projects/defence-garden-phase-2/gallery-02.webp",
@@ -578,7 +677,7 @@
           "file": "2.webp"
         },
         {
-          "n": 3,
+          "n": 8,
           "oldUrl": "https://defencegarden.com/assets/3-DapSVAk-.webp",
           "key": "projects.defence-garden-phase-2.gallery-03",
           "src": "src/assets/media/projects/defence-garden-phase-2/gallery-03.webp",
@@ -586,7 +685,7 @@
           "file": "3.webp"
         },
         {
-          "n": 4,
+          "n": 9,
           "oldUrl": "https://defencegarden.com/assets/4-BzyLso7i.webp",
           "key": "projects.defence-garden-phase-2.gallery-04",
           "src": "src/assets/media/projects/defence-garden-phase-2/gallery-04.webp",
@@ -594,7 +693,7 @@
           "file": "4.webp"
         },
         {
-          "n": 5,
+          "n": 10,
           "oldUrl": "https://defencegarden.com/assets/6-BTz-0ysr.webp",
           "key": "projects.defence-garden-phase-2.gallery-05",
           "src": "src/assets/media/projects/defence-garden-phase-2/gallery-05.webp",
@@ -602,7 +701,7 @@
           "file": "6.webp"
         },
         {
-          "n": 6,
+          "n": 11,
           "oldUrl": "https://defencegarden.com/assets/7-B2a5NRIG.webp",
           "key": "projects.defence-garden-phase-2.gallery-06",
           "src": "src/assets/media/projects/defence-garden-phase-2/gallery-06.webp",
@@ -610,7 +709,7 @@
           "file": "7.webp"
         },
         {
-          "n": 7,
+          "n": 12,
           "oldUrl": "https://defencegarden.com/assets/10-BeJ6kG18.webp",
           "key": "projects.defence-garden-phase-2.gallery-07",
           "src": "src/assets/media/projects/defence-garden-phase-2/gallery-07.webp",
@@ -618,7 +717,7 @@
           "file": "10.webp"
         },
         {
-          "n": 8,
+          "n": 13,
           "oldUrl": "https://defencegarden.com/assets/13-DUGtmfc0.webp",
           "key": "projects.defence-garden-phase-2.gallery-08",
           "src": "src/assets/media/projects/defence-garden-phase-2/gallery-08.webp",
@@ -627,7 +726,7 @@
           "file": "13.webp"
         },
         {
-          "n": 9,
+          "n": 14,
           "oldUrl": "https://defencegarden.com/assets/14-BmL2FPkO.webp",
           "key": "projects.defence-garden-phase-2.gallery-09",
           "src": "src/assets/media/projects/defence-garden-phase-2/gallery-09.webp",
@@ -635,7 +734,7 @@
           "file": "14.webp"
         },
         {
-          "n": 10,
+          "n": 15,
           "oldUrl": "https://defencegarden.com/assets/IMG_1775550287266%20(1)-aS_mgDNE.webp",
           "key": "projects.defence-garden-phase-2.gallery-10",
           "src": "src/assets/media/projects/defence-garden-phase-2/gallery-10.webp",
@@ -643,7 +742,7 @@
           "file": "IMG_1775550287266 (1).webp"
         },
         {
-          "n": 11,
+          "n": 16,
           "oldUrl": "https://defencegarden.com/assets/IMG_1775550287266%20(3)-DIuhoduG.webp",
           "key": "projects.defence-garden-phase-2.gallery-11",
           "src": "src/assets/media/projects/defence-garden-phase-2/gallery-11.webp",
@@ -651,7 +750,7 @@
           "file": "IMG_1775550287266 (3).webp"
         },
         {
-          "n": 12,
+          "n": 17,
           "oldUrl": "https://defencegarden.com/assets/IMG_1775550287266%20(5)-CnJd433p.webp",
           "key": "projects.defence-garden-phase-2.gallery-12",
           "src": "src/assets/media/projects/defence-garden-phase-2/gallery-12.webp",
@@ -659,7 +758,7 @@
           "file": "IMG_1775550287266 (5).webp"
         },
         {
-          "n": 13,
+          "n": 18,
           "oldUrl": "https://defencegarden.com/assets/IMG_1775550287266%20(7)-C8oKtS3c.webp",
           "key": "projects.defence-garden-phase-2.gallery-13",
           "src": "src/assets/media/projects/defence-garden-phase-2/gallery-13.webp",
@@ -667,7 +766,7 @@
           "file": "IMG_1775550287266 (7).webp"
         },
         {
-          "n": 14,
+          "n": 19,
           "oldUrl": "https://defencegarden.com/assets/IMG_1775550287266%20(8)-usugUVTh.webp",
           "key": "projects.defence-garden-phase-2.gallery-14",
           "src": "src/assets/media/projects/defence-garden-phase-2/gallery-14.webp",
@@ -675,7 +774,7 @@
           "file": "IMG_1775550287266 (8).webp"
         },
         {
-          "n": 15,
+          "n": 20,
           "oldUrl": "https://defencegarden.com/assets/IMG_1775550287266%20(9)-ikqQyd5S.webp",
           "key": "projects.defence-garden-phase-2.gallery-15",
           "src": "src/assets/media/projects/defence-garden-phase-2/gallery-15.webp",
@@ -683,12 +782,11 @@
           "file": "IMG_1775550287266 (9).webp"
         },
         {
-          "n": 16,
+          "n": 21,
           "oldUrl": "https://defencegarden.com/assets/wow-sY8AIA8h.webp",
           "key": "projects.defence-garden-phase-2.gallery-16",
           "src": "src/assets/media/projects/defence-garden-phase-2/gallery-16.webp",
           "alt": "Defence Garden Phase 2 entrance gate beside the green \"Welcomes You\" wall",
-          "coverTwin": true,
           "file": "wow.webp"
         }
       ],

@@ -1,5 +1,5 @@
 ---
-// /investment hero — era.estate night: full-bleed real photo under navy, thin capitals, Art Deco fan + diamond rule.
+// /investment hero — era.estate night: full-bleed real photo under navy, big title, Art Deco fan + diamond rule.
 // "Pre-Booking Open" and the 2026–2027 opening line are old claims → shown only when flags.investmentClaims.
 import Img from '../ui/Img.astro';
 import Icon from '../ui/Icon.astro';
@@ -15,8 +15,7 @@ const summary = seoFor('/investment').summary;
 ---
 <style is:inline>
   .ivc { display: grid; gap: 18px; }
-  .ivc__accent { font-family: var(--f-serif); font-style: italic; font-weight: 300; color: var(--accent); text-transform: none; letter-spacing: -.01em; }
-  .deco .ivc__accent { font-size: .92em; }
+  .ivc__accent { font-style: normal; font-weight: 400; color: var(--accent); }   /* accent word: same family, lighter, in copper */
 
   .ivh { position: relative; min-height: 100vh; min-height: 100svh; display: grid; place-items: center; overflow: hidden; text-align: center; padding: calc(var(--header-h) + 40px) 0 110px; }
   .ivh__bg { position: absolute; inset: 0; background: var(--navy-deep); }
@@ -33,10 +32,10 @@ const summary = seoFor('/investment').summary;
   .ivh__dot { position: relative; width: 7px; height: 7px; border-radius: 50%; background: var(--copper); }
   .ivh__dot::after { content: ''; position: absolute; inset: -5px; border-radius: 50%; border: 1px solid var(--copper); animation: ivh-pulse 2.2s var(--ease-out) infinite; }
   @keyframes ivh-pulse { from { transform: scale(.4); opacity: 1; } to { transform: scale(1.6); opacity: 0; } }
-  .ivh__title { color: #f4ede6; font-size: clamp(48px, 9.4vw, 176px); letter-spacing: .01em; line-height: .9; }
+  .ivh__title { color: #f4ede6; font-size: clamp(48px, 9.4vw, 176px); line-height: .9; }
   .ivh__rule { width: min(420px, 70vw); }
   .ivh__text { max-width: 40ch; color: rgba(244, 237, 230, .88); }
-  .ivh__text em { font-family: var(--f-serif); font-style: italic; color: var(--copper); }
+  .ivh__text em { font-style: italic; color: var(--copper); }
   .ivh__ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 8px; }
   .ivh__scroll { position: absolute; left: 50%; bottom: 30px; transform: translateX(-50%); display: grid; justify-items: center; gap: 10px; color: rgba(244, 237, 230, .7); }
   .ivh__scroll span { width: 1px; height: 46px; background: linear-gradient(var(--copper), transparent); animation: ivh-drop 2.4s var(--ease-in-out) infinite; transform-origin: top; }

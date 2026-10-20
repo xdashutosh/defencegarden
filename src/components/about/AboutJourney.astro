@@ -10,6 +10,8 @@ import { getProject, displayTitle, projectUrl } from '../../lib/site.js';
 const j = about.journey;
 const entries = j.timeline.map((t) => ({ ...t, projects: t.projectIds.map((id) => getProject(id)).filter(Boolean) }));
 const [hA, hB] = j.heading.text.split(', ');
+// entry titles: "Defence Garden" stays on one line and no line starts with "·" (U+00A0 is fine: no SplitText here)
+const keep = (s) => s.replaceAll('Defence Garden', 'Defence Garden').replaceAll(' · ', ' · ');
 ---
 <section class="ajr t-night section" data-header-tone="dark" aria-labelledby="ajr-title">
   <Ornament variant="fan" class="ajr__orn" />
@@ -27,7 +29,7 @@ const [hA, hB] = j.heading.text.split(', ');
           <span class="ajr__node" aria-hidden="true"><Ornament variant="diamond" /></span>
           <div class="ajr__copy" data-reveal="fade">
             <p class="deco ajr__year">{e.year}</p>
-            <h3 class="ajr__name">{e.title}</h3>
+            <h3 class="ajr__name">{keep(e.title)}</h3>
             <p class="body muted ajr__desc">{e.desc}</p>
             {e.projects.length > 0 && (
               <p class="ajr__links">

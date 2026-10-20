@@ -9,6 +9,8 @@ interface Props { p: any }
 const { p } = Astro.props;
 const list = otherColonies(p, 3);
 const sameCity = list.filter((x) => x.city === p.city).length;
+// card widths for ColonyCard's sizes: 3 columns (≤ 30.4vw) from 861px, then 80vw cards (split at 700px for the 5:4 box)
+const card: [number, number][] = [[861, 31], [700, 80], [0, 80]];
 ---
 <section class="ocl t-mist section" data-header-tone="light" aria-labelledby="ocl-title">
   <div class="wrap">
@@ -20,7 +22,7 @@ const sameCity = list.filter((x) => x.city === p.city).length;
       <a class="btn" href="/ourproject" data-reveal="fade"><span>All {projects.length} colonies</span><Icon name="grid" /></a>
     </div>
     <ul class="ocl__grid">
-      {list.map((o, i) => <ColonyCard p={o} n={pad2(projects.findIndex((x) => x.id === o.id) + 1)} delay={i * 0.08} class="ocl__card" sizes="(min-width: 861px) 30vw, 80vw" />)}
+      {list.map((o, i) => <ColonyCard p={o} n={pad2(projects.findIndex((x) => x.id === o.id) + 1)} delay={i * 0.08} class="ocl__card" card={card} />)}
     </ul>
   </div>
 </section>

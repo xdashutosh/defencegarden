@@ -1,5 +1,5 @@
 ---
-// era.estate "developer" hero: a real aerial photograph full-bleed under giant thin capitals.
+// era.estate "developer" hero: a real aerial photograph full-bleed under a giant title.
 import Img from '../ui/Img.astro';
 import Icon from '../ui/Icon.astro';
 import Ornament from '../ui/Ornament.astro';
@@ -10,10 +10,13 @@ const h = about.hero;
 // which has no project record, and would contradict the "10 townships" figure used on this page.
 const intro = h.text.split(' — ')[0].replace(/,?\s*$/, '') + '.';
 const [line1, line2] = h.heading.lines;
+// photo (about.json leadership.image, a 3:2 drone photograph): it covers the full-screen box, so on screens narrower
+// than 3:2 (portrait phones, tablets) it is drawn 150vh wide. The ×1.16 parallax is left out: it is the page's LCP image.
+const sizes = '(max-aspect-ratio: 3/2) 150vh, 100vw';
 ---
 <section class="ahr t-night" data-header-tone="dark" data-header-surface="media" aria-labelledby="ahr-title">
   <div class="ahr__media media">
-    <Img src={about.leadership.image.key} eager sizes="100vw" widths={[800, 1200, 1600]} alt={about.leadership.image.alt} data-parallax="0.08" />
+    <Img src={about.leadership.image.key} eager sizes={sizes} widths={[800, 1200, 1600, 2000, 2400]} alt={about.leadership.image.alt} data-parallax="0.08" />
   </div>
   <div class="ahr__shade" aria-hidden="true"></div>
 
@@ -54,7 +57,7 @@ const [line1, line2] = h.heading.lines;
   .ahr__top { display: grid; justify-items: center; text-align: center; gap: clamp(16px, 2.4vw, 30px); align-content: start; }
   .ahr__badge { display: inline-flex; align-items: center; gap: 12px; }
   .ahr__dia { width: 16px; height: 16px; }
-  .ahr__title { font-size: clamp(50px, 10.4vw, 196px); line-height: .9; letter-spacing: -.015em; color: #f7f1ea; text-shadow: 0 2px 40px rgba(6,26,58,.35); }
+  .ahr__title { font-size: clamp(50px, 10.4vw, 196px); color: #f7f1ea; text-shadow: 0 2px 40px rgba(6,26,58,.35); }
   .ahr__title span { display: block; }
   .ahr__l2 { color: var(--copper-soft); }
   .ahr__foot { display: grid; grid-template-columns: 1fr minmax(0, 520px) 1fr; align-items: end; gap: var(--gutter); }

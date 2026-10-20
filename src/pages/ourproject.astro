@@ -5,26 +5,28 @@ import FrameHero from '../components/sections/FrameHero.astro';
 import ColonyCollection from '../components/projects/ColonyCollection.astro';
 import FilmBand from '../components/projects/FilmBand.astro';
 import ColonyClosing from '../components/projects/ColonyClosing.astro';
-import { getProject, projects } from '../lib/site.js';
+import { projects } from '../lib/site.js';
+import { media } from '../lib/media.js';
 import page from '../data/pages/ourproject.json';
 
-const riverGreen = getProject(1);
+// hero: River Green's whole-township drone aerial (its cover is already on the colony cards below)
+const hero = media('projects.river-green-society.aerial-01');
 const cities = [...new Set(projects.map((p) => p.city))];
 ---
 <Base path="/ourproject" namespace="colonies" tone="dark">
   <FrameHero
-    words="Legacy Townships —"
+    words="Legacy townships —"
     theme="t-green"
     tone="dark"
     eyebrow={page.collection.eyebrow.text}
     sub={page.noJsFallback.text}
     note={cities.join(' · ')}
     ctas={[{ label: 'Plan a site visit', enquire: true, interest: 'Site visit' }]}
-    image={riverGreen.cover}
+    image={hero.key}
     overlayEyebrow="Defence Garden · Since 2006"
     overlayTitle="Ten colonies.<br/>One standard."
     overlayText={page.banner.text}
-    alt={riverGreen.cover.alt}
+    alt={hero.alt}
   />
   <ColonyCollection />
   <FilmBand />
