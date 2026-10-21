@@ -10,6 +10,8 @@ import data from '../../data/pages/owner-profile.json';
 
 const { hero, role, company } = data;
 const [l1, l2] = hero.heading.lines;
+// keep the brand on one line ("Owner of / Defence Garden."): a .nowrap span, since SplitText turns U+00A0 into a space
+const brand = 'Defence Garden', l2n = l2.replace(/\u00a0/g, ' '), bi = l2n.indexOf(brand);
 const [p1, disclaimer] = role.paragraphs;
 const linkImg = { '/': 'about.r4', '/about': 'projects.river-green-society.aerial-03', '/ourproject': 'projects.river-green-society.cover' };
 const links = company.links.map((l) => ({ label: l.label, href: l.href, img: linkImg[l.href] }));
@@ -23,7 +25,7 @@ const links = company.links.map((l) => ({ label: l.label, href: l.href, img: lin
       <div class="oph__grid">
         <div class="oph__copy">
           <p class="eyebrow eyebrow--accent" data-reveal="fade" data-reveal-intro>{hero.eyebrow}</p>
-          <h1 class="deco oph__title" id="oph-title" data-reveal="lines" data-reveal-intro>{l1}<br /><span class="oph__accent">{l2}</span></h1>
+          <h1 class="deco oph__title" id="oph-title" data-reveal="lines" data-reveal-intro>{l1}<br /><span class="oph__accent">{bi < 0 ? l2n : <>{l2n.slice(0, bi)}<span class="nowrap">{brand}</span>{l2n.slice(bi + brand.length)}</>}</span></h1>
           <p class="lead oph__text" data-reveal="fade" data-reveal-intro data-reveal-delay="0.25">{hero.text}</p>
         </div>
         <aside class="oph__card" aria-label={hero.profileCard.ariaLabel} data-reveal="fade" data-reveal-intro data-reveal-delay="0.15">
@@ -85,7 +87,7 @@ const links = company.links.map((l) => ({ label: l.label, href: l.href, img: lin
   .oph__title { font-size: clamp(42px, 6.4vw, 124px); color: #f7f1ea; }
   .oph__accent { color: var(--copper); }
   .oph__text { max-width: 44ch; color: rgba(244,237,230,.86); }
-  .oph__card { display: grid; gap: 28px; padding: clamp(28px, 3vw, 44px); border: 1px solid rgba(207,143,125,.4); outline: 1px solid rgba(207,143,125,.18); outline-offset: -10px; background: rgba(6,26,58,.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .oph__card { display: grid; gap: 28px; padding: clamp(28px, 3vw, 44px); border: 1px solid rgba(207,143,125,.4); outline: 1px solid rgba(207,143,125,.18); outline-offset: -10px; background: rgba(0,0,0,.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
   .oph__card :global(.oph__kt) { width: min(100%, 260px); justify-self: center; --kt-ink: #f4ede6; }
   .oph__facts { display: grid; border-top: 1px solid rgba(244,237,230,.16); margin: 0; }
   .oph__fact { display: grid; grid-template-columns: 120px 1fr; gap: 12px; align-items: baseline; padding-block: 14px; border-bottom: 1px solid rgba(244,237,230,.16); }

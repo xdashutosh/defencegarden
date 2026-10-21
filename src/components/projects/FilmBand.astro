@@ -38,11 +38,11 @@ const toTitle = (s, i) => (i ? s.toLowerCase() : s.toLowerCase().replace(/^./, (
   .flb__media { position: absolute; inset: 0; overflow: hidden; }
   .flb__scale { position: absolute; inset: 0; }
   .flb__media :global(.flb__fill) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .flb__media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,26,58,.55) 0%, rgba(6,26,58,.08) 30%, rgba(6,26,58,.45) 62%, rgba(6,26,58,.92) 100%), linear-gradient(90deg, rgba(6,26,58,.45), transparent 60%); pointer-events: none; }
+  .flb__media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.08) 30%, rgba(0,0,0,.45) 62%, rgba(0,0,0,.92) 100%), linear-gradient(90deg, rgba(0,0,0,.45), transparent 60%); pointer-events: none; }
   .flb__in { position: relative; display: grid; grid-template-columns: 1.7fr 1fr; gap: var(--gutter); align-items: end; }
   .flb__copy { display: grid; gap: 22px; }
-  .flb__copy .eyebrow { color: var(--copper-soft); text-shadow: 0 1px 14px rgba(6,26,58,.7); }
-  .flb__title { color: #f4ede6; max-width: none; font-size: clamp(38px, 5.6vw, 104px); text-shadow: 0 2px 40px rgba(6,26,58,.35); }
+  .flb__copy .eyebrow { color: var(--copper-soft); text-shadow: 0 1px 14px rgba(0,0,0,.7); }
+  .flb__title { color: #f4ede6; max-width: none; font-size: clamp(38px, 5.6vw, 104px); text-shadow: 0 2px 40px rgba(0,0,0,.35); }
   .flb__side { display: grid; gap: 22px; justify-items: start; max-width: 48ch; justify-self: end; }
   .flb__orn { width: 24px; color: var(--copper); }
   .flb__actions { display: flex; flex-wrap: wrap; gap: 10px; }

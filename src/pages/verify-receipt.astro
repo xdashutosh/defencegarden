@@ -17,7 +17,7 @@ const ring = '★ DIGITALLY VERIFIED · DEFENCE GARDEN · AUTHENTIC RECEIPT · '
     <Ornament variant="fan" class="vr__fan" />
     <div class="wrap vr__wrap">
       <header class="vr__head">
-        <p class="eyebrow eyebrow--accent">Official verification portal</p>
+        <p class="eyebrow vr__eyebrow">Official verification portal</p>
         <h1 class="serif vr__title balance">Defence Garden payment verification system</h1>
         <p class="body muted vr__intro balance">Every receipt carries a cryptographic signature. This page confirms it was issued by Defence Garden and has not been tampered with.</p>
       </header>
@@ -110,6 +110,7 @@ const ring = '★ DIGITALLY VERIFIED · DEFENCE GARDEN · AUTHENTIC RECEIPT · '
   .vr { position: relative; overflow: clip; isolation: isolate; padding-top: calc(var(--header-h) + clamp(40px, 6vw, 96px)); padding-bottom: clamp(72px, 9vw, 150px); min-height: 92svh; }
   .vr__fan { position: absolute; z-index: -1; left: 50%; top: -10%; width: min(1400px, 140vw); transform: translateX(-50%); color: var(--copper); opacity: .1; pointer-events: none; }
   .vr__wrap { max-width: 980px; }
+  .vr__eyebrow { color: var(--navy-deep); }   /* over the sky: navy reads, copper does not */
   .vr__head { display: grid; gap: 16px; justify-items: center; text-align: center; margin-bottom: clamp(32px, 4vw, 56px); }
   .vr__title { font-size: clamp(36px, 4.6vw, 76px); max-width: 16ch; }
   .vr__intro { max-width: 56ch; }

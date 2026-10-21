@@ -156,18 +156,18 @@ const style = [frameW && `--fh-w:${frameW}`, frameH && `--fh-h:${frameH}`, `--fh
   .fh__scrub { opacity: 0; transition: opacity .35s ease; }
   .fh__scrub:global(.is-painted) { opacity: 1; }
   /* beats sit on moving footage: a wider, deeper scrim than the static overlay, and lit text */
-  .fh__beat { pointer-events: none; background: radial-gradient(ellipse 64% 60% at 50% 52%, rgba(6,26,58,.62), rgba(6,26,58,.3) 62%, rgba(6,26,58,.12)); }
-  .fh__beat .eyebrow { color: var(--copper-soft); text-shadow: 0 1px 12px rgba(6,26,58,.7); }
-  .fh__beat .fh__otext { opacity: 1; text-shadow: 0 1px 16px rgba(6,26,58,.75); }
+  .fh__beat { pointer-events: none; background: radial-gradient(ellipse 64% 60% at 50% 52%, rgba(0,0,0,.62), rgba(0,0,0,.3) 62%, rgba(0,0,0,.12)); }
+  .fh__beat .eyebrow { color: var(--copper-soft); text-shadow: 0 1px 12px rgba(0,0,0,.7); }
+  .fh__beat .fh__otext { opacity: 1; text-shadow: 0 1px 16px rgba(0,0,0,.75); }
   .fh__bcta { pointer-events: auto; margin-top: 6px; }
   .fh__media :global(.fh__fill) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
-  .fh__shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,26,58,.35), rgba(6,26,58,.05) 40%, rgba(6,26,58,.55)); pointer-events: none; opacity: 0; }
+  .fh__shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.05) 40%, rgba(0,0,0,.55)); pointer-events: none; opacity: 0; }
   /* beats/overlay: their own pinned layer over the sticky stage, so with reduced motion they flow below the hero */
   .fh__over { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
   .fh__overpin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
-  .fh__overlay { position: absolute; inset: 0; background: radial-gradient(ellipse 58% 52% at 50% 50%, rgba(6,26,58,.55), rgba(6,26,58,.18) 70%, transparent); display: grid; place-content: center; justify-items: center; text-align: center; gap: 22px; padding: var(--gutter); opacity: 0; visibility: hidden; color: #f4ede6; }
+  .fh__overlay { position: absolute; inset: 0; background: radial-gradient(ellipse 58% 52% at 50% 50%, rgba(0,0,0,.55), rgba(0,0,0,.18) 70%, transparent); display: grid; place-content: center; justify-items: center; text-align: center; gap: 22px; padding: var(--gutter); opacity: 0; visibility: hidden; color: #f4ede6; }
   .fh__orn { width: 26px; color: var(--copper); }
-  .fh__otitle { max-width: 14ch; text-shadow: 0 2px 30px rgba(6,26,58,.35); }
+  .fh__otitle { max-width: 14ch; text-shadow: 0 2px 30px rgba(0,0,0,.35); }
   .fh__otext { max-width: 44ch; opacity: .92; }
   @media (max-width: 860px) {
     /* capped by the height left below the header, so on landscape phones the frame stays clear of it */

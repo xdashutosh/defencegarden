@@ -21,14 +21,14 @@ const summary = seoFor('/investment').summary;
   .ivh__bg { position: absolute; inset: 0; background: var(--navy-deep); }
   .ivh__bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .5; }
   .ivh__bg::after { content: ''; position: absolute; inset: 0; background:
-      radial-gradient(ellipse at 50% 45%, rgba(6, 26, 58, .25), rgba(6, 26, 58, .82) 70%),
-      linear-gradient(180deg, rgba(6, 26, 58, .55), rgba(6, 26, 58, .2) 45%, rgba(6, 26, 58, .95)); }
+      radial-gradient(ellipse at 50% 45%, rgba(0, 0, 0, .25), rgba(0, 0, 0, .82) 70%),
+      linear-gradient(180deg, rgba(0, 0, 0, .55), rgba(0, 0, 0, .2) 45%, rgba(0, 0, 0, .95)); }
   .ivh__grid { position: absolute; inset: 0; pointer-events: none; opacity: .5;
     background-image: linear-gradient(rgba(207, 143, 125, .08) 1px, transparent 1px), linear-gradient(90deg, rgba(207, 143, 125, .08) 1px, transparent 1px);
     background-size: 60px 60px; mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%); }
   .ivh__orn { position: absolute; left: 50%; top: 0; width: 120%; height: 100%; transform: translateX(-50%); color: var(--copper); opacity: .12; pointer-events: none; }
   .ivh__in { position: relative; display: grid; justify-items: center; gap: clamp(18px, 2.2vw, 30px); }
-  .ivh__badge { display: inline-flex; align-items: center; gap: 10px; height: 34px; padding: 0 16px; border-radius: 999px; border: 1px solid rgba(207, 143, 125, .55); color: var(--copper); background: rgba(6, 26, 58, .4); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .ivh__badge { display: inline-flex; align-items: center; gap: 10px; height: 34px; padding: 0 16px; border-radius: 999px; border: 1px solid rgba(207, 143, 125, .55); color: var(--copper); background: rgba(0, 0, 0, .4); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
   .ivh__dot { position: relative; width: 7px; height: 7px; border-radius: 50%; background: var(--copper); }
   .ivh__dot::after { content: ''; position: absolute; inset: -5px; border-radius: 50%; border: 1px solid var(--copper); animation: ivh-pulse 2.2s var(--ease-out) infinite; }
   @keyframes ivh-pulse { from { transform: scale(.4); opacity: 1; } to { transform: scale(1.6); opacity: 0; } }

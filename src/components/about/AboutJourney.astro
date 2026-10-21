@@ -11,7 +11,7 @@ const j = about.journey;
 const entries = j.timeline.map((t) => ({ ...t, projects: t.projectIds.map((id) => getProject(id)).filter(Boolean) }));
 const [hA, hB] = j.heading.text.split(', ');
 // entry titles: "Defence Garden" stays on one line and no line starts with "·" (U+00A0 is fine: no SplitText here)
-const keep = (s) => s.replaceAll('Defence Garden', 'Defence Garden').replaceAll(' · ', ' · ');
+const keep = (s) => s.replaceAll('Defence Garden', 'Defence\u00a0Garden').replaceAll(' · ', '\u00a0· ');
 ---
 <section class="ajr t-night section" data-header-tone="dark" aria-labelledby="ajr-title">
   <Ornament variant="fan" class="ajr__orn" />

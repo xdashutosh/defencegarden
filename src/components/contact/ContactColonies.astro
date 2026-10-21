@@ -44,11 +44,11 @@ const chips = s.chips.map((c) => ({ ...c, project: getProject(c.projectId) })).f
   .ccl__key :global(.ico) { width: 11px; height: 11px; }
   .ccl__chips { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .ccl__chip { display: flex; align-items: stretch; min-height: 64px; border: 1px solid color-mix(in srgb, var(--fg) 22%, transparent); border-radius: 999px; overflow: hidden; transition: border-color .35s, box-shadow .5s var(--ease-out); }
-  .ccl__chip:hover { border-color: var(--fg); box-shadow: 0 18px 40px -26px rgba(6,26,58,.45); }
+  .ccl__chip:hover { border-color: var(--fg); box-shadow: 0 18px 40px -26px rgba(0,0,0,.45); }
   .ccl__main { flex: 1; min-width: 0; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; padding: 0 16px 0 22px; transition: background .35s, color .35s; }
   /* name over city at every width: side by side, the two-column grid cut names to "Defence Garden Phas…" */
   .ccl__txt { min-width: 0; display: flex; flex-direction: column; align-items: start; gap: 3px; padding-block: 10px; }
-  .ccl__main:hover { background: var(--fg); color: var(--bg); }
+  .ccl__main:hover { background: var(--solid); color: var(--bg); }
   .ccl__n { font-weight: 400; font-size: 15px; color: var(--accent); }
   .ccl__main:hover .ccl__n { color: var(--copper); }
   .ccl__name { font-size: 17px; font-weight: 500; letter-spacing: -.01em; line-height: 1.2; }

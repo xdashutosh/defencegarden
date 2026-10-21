@@ -11,9 +11,9 @@
 
 :root {
   /* palette */
-  --navy-deep: #061a3a;      /* era.estate night navy */
+  --navy-deep: #000000;      /* night surfaces: black (client, Oct 2026: no navy/purple backgrounds; historical name) */
   --navy: #1f2b5e;           /* realevate brand navy (text on light) */
-  --navy-2: #222a4c;
+  --navy-2: #000000;         /* was indigo; black like every dark surface */
   --copper: #cf8f7d;         /* era.estate copper / rose gold */
   --copper-soft: #eacbbb;
   --copper-deep: #a8705f;
@@ -23,8 +23,8 @@
   --ink: #15151b;
   --green: #36614d;          /* legacy townships (Defence Garden's own green) */
   --green-muted: #80988e;
-  --aubergine: #2d1c2d;
-  --rare: #1c181d;
+  --aubergine: #000000;      /* was plum; black */
+  --rare: #111111;           /* ink surfaces: neutral near-black (was plum-tinted) */
   --muted: #6b7088;
 
   /* type: the one family of the site */
@@ -41,6 +41,7 @@
 
   --bg: var(--paper);
   --fg: var(--navy);
+  --solid: #000;             /* filled buttons / chips / hover fills on light sections (text stays navy) */
   --accent: var(--copper);
   --line: color-mix(in srgb, currentColor 18%, transparent);
 }
@@ -90,7 +91,7 @@ html.lenis, html.lenis body { height: auto; }
 .t-aubergine { --bg: var(--aubergine); --fg: #f4ede6; --accent: var(--copper); background: var(--bg); color: var(--fg); }
 .t-ink { --bg: var(--rare); --fg: #f4ede6; --accent: var(--copper); background: var(--bg); color: var(--fg); }
 /* Logo on dark surfaces (Logo.astro): the dark-green "Garden" and black "Since 2006" turn ivory; the greens stay. */
-.t-night, .t-green, .t-aubergine, .t-ink { --lg-garden: #f4ede6; --lg-since: #f4ede6; }
+.t-night, .t-green, .t-aubergine, .t-ink { --lg-garden: #f4ede6; --lg-since: #f4ede6; --solid: var(--fg); }
 .t-light, .t-ivory, .t-mist { --lg-garden: #005E3B; --lg-since: #000; }
 /* The first section of a page opens onto the full sky: clear at the top, the wash from ~3/4 of a screen down;
    a dark first section shows the sky faintly (moonlit) at the top and is solid below. */
@@ -139,12 +140,12 @@ main > section:first-of-type:is(.t-night, .t-green, .t-aubergine, .t-ink) { back
   white-space: nowrap;
 }
 .btn::before {
-  content: ''; position: absolute; inset: 0; z-index: -1; background: var(--fg);
+  content: ''; position: absolute; inset: 0; z-index: -1; background: var(--solid);
   transform: translateY(101%); border-radius: inherit; transition: transform .6s var(--ease-out);
 }
 .btn:hover::before, .btn:focus-visible::before { transform: translateY(0); }
 .btn:hover, .btn:focus-visible { color: var(--bg); }
-.btn--solid { --btn-bg: var(--fg); --btn-fg: var(--bg); --btn-bd: var(--fg); }
+.btn--solid { --btn-bg: var(--solid); --btn-fg: var(--bg); --btn-bd: var(--solid); }
 .btn--solid::before { background: var(--accent); }
 .btn--solid:hover { color: var(--navy-deep); border-color: var(--accent); }
 .btn--copper { --btn-bg: var(--copper); --btn-fg: var(--navy-deep); --btn-bd: var(--copper); }
@@ -153,7 +154,7 @@ main > section:first-of-type:is(.t-night, .t-green, .t-aubergine, .t-ink) { back
 .btn .ico { width: 14px; height: 14px; flex: none; }
 .btn-square {
   display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 4px;
-  background: var(--fg); color: var(--bg); transition: background .4s, color .4s;
+  background: var(--solid); color: var(--bg); transition: background .4s, color .4s;
 }
 .btn-square:hover { background: var(--accent); color: var(--navy-deep); }
 .link-line { position: relative; display: inline-block; }
@@ -170,7 +171,7 @@ main > section:first-of-type:is(.t-night, .t-green, .t-aubergine, .t-ink) { back
 .media--ratio { aspect-ratio: var(--ratio, 4 / 3); }
 .shade-bottom::after {
   content: ''; position: absolute; inset: auto 0 0 0; height: 55%; pointer-events: none;
-  background: linear-gradient(to top, rgba(6, 26, 58, .78), transparent);
+  background: linear-gradient(to top, rgba(0, 0, 0, .78), transparent);
 }
 .concept-tag {
   position: absolute; z-index: 3; right: 14px; bottom: 12px;
@@ -217,7 +218,7 @@ html.js [data-reveal='lines']:not(.is-split) { visibility: hidden; }
 .strip__nav { display: flex; align-items: center; gap: 10px; }
 .round-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid color-mix(in srgb, currentColor 35%, transparent); display: grid; place-items: center; transition: background .4s, color .4s, opacity .3s; }
 .round-btn svg { width: 18px; height: 18px; }
-.round-btn:hover:not(:disabled) { background: var(--fg); color: var(--bg); }
+.round-btn:hover:not(:disabled) { background: var(--solid); color: var(--bg); }
 .round-btn:disabled { opacity: .3; cursor: default; }
 
 /* ---------------------------------------------------------------- hscroll */
@@ -228,7 +229,7 @@ html.js [data-reveal='lines']:not(.is-split) { visibility: hidden; }
 [data-hscroll]:not(.is-pinned) [data-hscroll-sticky] { overflow-x: auto; scrollbar-width: thin; }
 
 /* ---------------------------------------------------------------- lightbox */
-.lbx { position: fixed; inset: 0; z-index: 120; background: rgba(6,26,58,.96); color: #f4ede6; display: grid; place-items: center; }
+.lbx { position: fixed; inset: 0; z-index: 120; background: rgba(0,0,0,.96); color: #f4ede6; display: grid; place-items: center; }
 .lbx__stage { position: absolute; inset: 0; display: grid; grid-template: minmax(0, 1fr) / minmax(0, 1fr); place-items: center; padding: 72px 72px 96px; }
 .lbx__img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
 .lbx__cap { position: absolute; left: 24px; bottom: 26px; max-width: 70ch; font-size: 14px; opacity: .85; }
@@ -247,7 +248,7 @@ html.js [data-reveal='lines']:not(.is-split) { visibility: hidden; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .chip { height: 36px; padding: 0 16px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--fg) 25%, transparent); font-size: 13px; font-weight: 500; transition: background .35s, color .35s, border-color .35s; }
 .chip:hover { border-color: var(--fg); }
-.chip[aria-pressed='true'] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.chip[aria-pressed='true'] { background: var(--solid); color: var(--bg); border-color: var(--solid); }
 
 /* icons default to 1em; concept tags only show over licensed concept media (never over Defence Garden photos) */
 .ico { width: 1em; height: 1em; flex: none; }

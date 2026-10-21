@@ -17,7 +17,7 @@ const tagline = (it) => (!claims && /appreciation/i.test(it.tagline) ? null : it
   .ivr__head .ivc__title { font-size: clamp(44px, 6vw, 112px); }
   .ivr__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 1.2vw, 20px); align-items: stretch; }
   .ivr__card { position: relative; display: grid; grid-template-rows: auto auto 1fr auto; gap: 22px; padding: clamp(24px, 2.6vw, 42px); border: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); border-radius: 4px; background: var(--bg); transition: transform .8s var(--ease-out), box-shadow .8s var(--ease-out); }
-  .ivr__card:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -36px rgba(6, 26, 58, .45); }
+  .ivr__card:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -36px rgba(0, 0, 0, .45); }
   .ivr__card.t-night { border-color: transparent; }
   .ivr__badge { position: absolute; top: clamp(24px, 2.6vw, 42px); right: clamp(24px, 2.6vw, 42px); padding: 6px 10px; border: 1px solid var(--copper); color: var(--copper); border-radius: 999px; }
   .ivr__arch { width: 46px; height: 62px; border: 1px solid color-mix(in srgb, var(--accent) 70%, transparent); border-bottom: 0; border-radius: 23px 23px 0 0; display: grid; place-items: center; color: var(--accent); }

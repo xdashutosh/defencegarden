@@ -28,7 +28,7 @@ const related = [...doc.related, { label: 'Image credits & licences', href: '/cr
   .lgl-hero__orn { position: absolute; right: var(--gutter); bottom: 0; width: clamp(120px, 16vw, 260px); color: var(--accent); opacity: .5; pointer-events: none; }
   .lgl-hero__in { position: relative; display: grid; gap: clamp(20px, 2.4vw, 34px); max-width: 1100px; }
   .lgl-hero__crumb { display: flex; align-items: center; gap: 12px; }
-  .lgl-hero__crumb a { color: var(--accent); }
+  .lgl-hero__crumb, .lgl-hero__crumb a { color: var(--navy-deep); }   /* small labels over the sky: navy reads, copper does not */
   .lgl-hero__title { font-size: clamp(48px, 7.2vw, 132px); line-height: .98; letter-spacing: -.03em; }
   .lgl-hero__desc { max-width: 52ch; }
   .lgl-hero__meta { display: flex; flex-wrap: wrap; gap: 10px 28px; padding-top: 22px; border-top: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); }
@@ -73,7 +73,7 @@ const related = [...doc.related, { label: 'Image credits & licences', href: '/cr
   .lgl__rel { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .lgl__rel a { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 18px 20px; border: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); border-radius: 4px; font-weight: 500; letter-spacing: -.01em; transition: background .4s, color .4s, border-color .4s; }
   .lgl__rel a .ico { width: 18px; height: 18px; flex: none; transition: transform .5s var(--ease-out); }
-  .lgl__rel a:hover { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+  .lgl__rel a:hover { background: var(--solid); color: var(--bg); border-color: var(--solid); }
   .lgl__rel a:hover .ico { transform: translate(3px, -3px); }
 
   @media (max-width: 960px) {

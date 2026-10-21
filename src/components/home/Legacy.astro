@@ -8,9 +8,10 @@ const stats = [
   { n: 3, label: 'Cities · Shamli · Meerut · Budhana', pad: 2 },
   { n: 20, label: 'Years of trust', suf: '+' },
 ];
-// The 3:2 aerial cover-fills the 4:5 arch and data-parallax scales it 1.16, so it is drawn 1.25 × 1.5 × 1.16 = 2.175 ×
-// the column's width: desktop column ≤ 44.8vw → 98vw; one column (≤860px) ≤ 95.6vw → 208vw.
-const photoSizes = '(min-width: 861px) 98vw, 208vw';
+// The aerial is cropped to the arch's 4:5 at build time (width/height + fit cover), so every srcset file is the visible
+// part; sizes = the column × 1.16 (data-parallax 0.08): desktop column 44.8vw → 52vw (875px once the wrap caps it),
+// one column (≤860px) ~95vw → 110vw.
+const photoSizes = '(min-width: 1681px) 875px, (min-width: 861px) 52vw, 110vw';
 ---
 <section class="lgc t-ivory section" data-header-tone="light">
   <div class="wrap lgc__grid">
@@ -23,7 +24,7 @@ const photoSizes = '(min-width: 861px) 98vw, 208vw';
     <div class="frame frame--arch lgc__frame">
       <span class="frame__line" data-drift="44" aria-hidden="true"></span>
       <figure class="lgc__img media" data-reveal="clip">
-        <Img src="projects.river-green-society.aerial-03" sizes={photoSizes} data-parallax="0.08" />
+        <Img src="projects.river-green-society.aerial-03" width={1280} height={1600} fit="cover" widths={[480, 640, 800, 1024, 1280]} sizes={photoSizes} data-parallax="0.08" />
       </figure>
     </div>
   </div>

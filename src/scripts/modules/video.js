@@ -22,7 +22,7 @@ register({
     if (reduced() || saveData) return;
     const start = parseFloat(v.dataset.start || '0'), end = parseFloat(v.dataset.end || '0');
     const sized = () => v.clientWidth > 0 && v.clientHeight > 0;
-    const play = () => { if (v.getAttribute('src')) v.play().catch(() => {}); };
+    const play = () => { if (v.getAttribute('src') && !('userPaused' in v.dataset)) v.play().catch(() => {}); }; // a viewer's pause (data-user-paused, set by players such as aerialTour.js) is kept
     let wanted = false, near = false;
     // a load asked for before the element has a box is retried by the ResizeObserver once it has one
     const ro = new ResizeObserver(() => { if (wanted) { load(); if (near) play(); } });

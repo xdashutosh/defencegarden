@@ -1,165 +1,151 @@
 ---
-// "From the air": the best drone photographs of River Green Society and Defence Garden Phase 2 (the owner's own
-// footage, 13 Oct 2026), each with an explanation and its highlights. Numbered pins on the photo match the numbered
-// highlights beside it (x / y = the feature's position in % of the whole photo; dir = side of the pin label).
-// Desktop: photo and text side by side, the photo stays in view while its text scrolls. Phones: photo, then text;
-// the pins keep their numbers and the labels live in the list. Script: src/scripts/modules/aerialTour.js.
-// Copy states only what the photos show or the project data says (plot sizes / road widths: projects.json shared).
+// "From the air": River Green Society and Defence Garden Phase 2 from the owner's own drone (13 Oct 2026), as a night
+// (era.estate) section. Left: a chapter index — big outlined numerals; the open chapter fills in copper, a hairline
+// under it fills as it plays, and its explanation + highlights sit below the index (all panels share one grid cell, so
+// changing chapter never moves the page). Right: a framed window (copper offset line + corner brackets that draw in)
+// where each chapter's footage wipes in and drifts slowly; a rotating text ring on its corner holds play / pause and an
+// oversized outlined chapter number floats behind it. The film (video.colonies-aerial, manifest "chapters" = start/end
+// seconds) replaces the photographs once it exists; reduced motion / Save-Data keep the photographs, still.
+// Plays by itself until the visitor picks a chapter or pauses; stops off screen. Script: src/scripts/modules/aerialTour.js.
+// Copy states only what the footage shows or the project data says (plot sizes / road widths: projects.json shared).
 import Img from '../ui/Img.astro';
+import Vid from '../ui/Vid.astro';
 import Icon from '../ui/Icon.astro';
-import { media } from '../../lib/media.js';
+import { video } from '../../lib/media.js';
 import { getProject, displayTitle, projectUrl, sharedProjectData } from '../../lib/site.js';
 
 const fact = (label) => sharedProjectData?.keyDetails?.find((d) => d.label === label)?.value;
 const plotSizes = fact('Plot Sizes'), roadWidth = fact('Road Width');
 const rg = getProject(1), dg2 = getProject(5);
+const film = (() => { try { return video('video.colonies-aerial'); } catch { return null; } })();
+const times = film?.entry?.chapters || [];
 
-const steps = [
+const all = [
   {
-    p: rg, key: 'projects.river-green-society.aerial-01', where: 'The whole township',
-    title: 'One plan, from the gate to the last plot',
-    text: 'From high above, River Green Society reads like a drawing: a walled site carved out of farmland, a single gated entrance, a straight central boulevard and a grid of paved streets that meet at a fountain roundabout.',
-    pins: [
-      { x: 52.5, y: 51, dir: 'l', label: 'Gated entrance', detail: 'The only way in, on Shamli Road, with the sales office and shops beside it.' },
-      { x: 51.5, y: 66, dir: 'r', label: 'Fountain roundabout', detail: 'The landscaped heart of the colony, where the main roads cross.' },
-      { x: 50.8, y: 80, dir: 'r', label: 'Central boulevard', detail: 'One straight axis from the gate to the back of the colony.' },
-      { x: 16, y: 80, dir: 'r', label: 'Boundary wall', detail: 'A wall runs around the whole site.' },
-      { x: 88, y: 40, dir: 'l', label: 'Fields all around', detail: 'Open farmland on every side, the town on the horizon.' },
-    ],
+    p: rg, still: 'projects.river-green-society.aerial-01', title: 'The whole township',
+    text: 'From high above, River Green Society reads like a drawing: a walled site carved out of farmland, one gated entrance, a straight central boulevard and a grid of paved streets meeting at a fountain roundabout.',
+    highlights: ['Single gated entrance on Shamli Road', 'Central boulevard, gate to back wall', 'Boundary wall around the site', 'Open farmland on every side'],
   },
   {
-    p: rg, key: 'projects.river-green-society.aerial-02', where: 'Entrance and boulevard',
-    title: 'Through the arch, straight down the boulevard',
-    text: 'The River Green arch opens onto a wide paved boulevard with a red centre stripe that runs straight to the fountain. Cross streets branch off at right angles, lined with lamp posts and young trees.',
-    pins: [
-      { x: 43, y: 72, dir: 'l', label: 'River Green arch', detail: 'The colony’s name in green letters, lit up after dark.' },
-      { x: 26, y: 89, dir: 'r', label: 'Sales office', detail: 'Layout plans and site visits, right at the gate.' },
-      { x: 52, y: 40, dir: 'l', label: 'Central boulevard', detail: 'Paved, with a red centre stripe and lamp posts.' },
-      { x: 88, y: 29, dir: 'l', label: 'Cross streets', detail: 'Paved and edged in red, at right angles to the boulevard.' },
-      { x: 51, y: 17, dir: 'r', label: 'Fountain ahead', detail: 'The boulevard ends at the fountain roundabout.' },
-    ],
-    facts: roadWidth ? [{ label: `${roadWidth} roads`, detail: 'Planned road widths in our colonies.' }] : [],
+    p: rg, still: 'projects.river-green-society.aerial-02', title: 'Arrival',
+    text: 'The River Green arch and the sales office stand on the main road. Through the arch, a paved boulevard with a red centre stripe runs straight to the fountain, with cross streets at right angles.',
+    highlights: ['River Green arch, lit after dark', 'Sales office at the gate', 'Shops along the main road', ...(roadWidth ? [`${roadWidth} planned roads`] : [])],
   },
   {
-    p: rg, key: 'projects.river-green-society.aerial-04', where: 'The fountain roundabout',
-    title: 'A landscaped heart for the colony',
-    text: 'Where the main roads meet, a stone fountain stands in a wide paved circle, framed by clipped hedges, palms and corner gardens: a place to stroll and meet the neighbours.',
-    pins: [
-      { x: 50, y: 44, dir: 'r', label: 'Stone fountain', detail: 'At the centre of the circle, lit in colour after dark.' },
-      { x: 64, y: 52, dir: 'r', label: 'Palms and lamp posts', detail: 'Planted along the roads around the circle.' },
-      { x: 61, y: 67, dir: 'r', label: 'Corner gardens', detail: 'Lawns inside clipped hedges on the corners of the circle.' },
-      { x: 26, y: 72, dir: 'r', label: 'Paved roads', detail: 'Paver blocks with red edging.' },
-      { x: 35, y: 16, dir: 'r', label: 'First homes', detail: 'Owners are already building on their plots.' },
-    ],
+    p: rg, still: 'projects.river-green-society.aerial-04', title: 'The fountain roundabout',
+    text: 'Where the main roads meet, a stone fountain stands in a wide paved circle framed by clipped hedges, palms and corner gardens: a place to stroll and meet the neighbours.',
+    highlights: ['Stone fountain, lit in colour at night', 'Hedged corner gardens', 'Palms and lamp posts', 'First homes going up'],
   },
   {
-    p: rg, key: 'projects.river-green-society.aerial-05', where: 'Straight down',
-    title: 'Every plot faces a paved street',
-    text: 'Seen from directly above, the planning is easy to read: plots are marked out in neat rows, each one opens onto a paved street, and the roundabout ties the grid together.',
-    pins: [
-      { x: 52.5, y: 52, dir: 'r', label: 'Roundabout', detail: 'Four streets meet at the fountain.' },
-      { x: 30, y: 67, dir: 'r', label: 'Marked plots', detail: 'Plot boundaries set out on the ground, ready to build.' },
-      { x: 19.5, y: 84, dir: 'r', label: 'Paved streets', detail: 'A red-edged street between every row of plots.' },
-      { x: 13, y: 12, dir: 'r', label: 'Boundary wall', detail: 'Farmland starts just outside the wall.' },
-      { x: 29, y: 27, dir: 'r', label: 'A new home', detail: 'One of the first houses on the grid.' },
-    ],
-    facts: [
-      ...(plotSizes ? [{ label: `Plots of ${plotSizes}`, detail: 'Sizes across our colonies.' }] : []),
-      ...(rg?.hasMap ? [{ label: 'Live plot-booking map', detail: 'See which plots are free on the colony page.' }] : []),
-    ],
-    cta: true,
+    p: rg, still: 'projects.river-green-society.aerial-05', title: 'The plan from above',
+    text: 'Seen straight down, the planning is easy to read: plots marked out in neat rows, every one opening onto a paved street, the roundabout tying the grid together.',
+    highlights: ['Every plot on a paved street', 'Plot boundaries marked on site', ...(plotSizes ? [`Plots of ${plotSizes}`] : []), ...(rg?.hasMap ? ['Live plot-booking map online'] : [])],
   },
   {
-    p: dg2, key: 'projects.defence-garden-phase-2.aerial-02', where: 'On the main road',
-    title: 'Phase 2 opens straight off the main road',
-    text: 'A red-roofed gatehouse and the green “Welcomes You” wall mark the entrance to Defence Garden Phase 2, with a row of shops beside it and homes already standing on the streets behind.',
-    pins: [
-      { x: 50, y: 45, dir: 'r', label: 'Gatehouse', detail: 'The red-roofed entrance and its paved forecourt.' },
-      { x: 41, y: 56, dir: 'l', label: '“Welcomes You” wall', detail: 'The green signage wall beside the gate.' },
-      { x: 31, y: 47, dir: 'l', label: 'Shops', detail: 'A row of shops at the entrance.' },
-      { x: 63, y: 86, dir: 'r', label: 'Main road', detail: 'A divided main road with a planted median.' },
-      { x: 23, y: 33, dir: 'r', label: 'Homes built', detail: 'Owners are already living and building here.' },
-      { x: 90, y: 50, dir: 'l', label: 'Next streets', detail: 'New roads being paved in October 2026.' },
-    ],
+    p: rg, still: 'projects.river-green-society.aerial-06', title: 'After dark', filmOnly: true,
+    text: 'At night the River Green lettering on the arch is lit, lamp posts light the boulevard and the fountain glows in colour.',
+    highlights: ['Lit entrance arch', 'Street lighting along the boulevard', 'Coloured fountain lights'],
   },
   {
-    p: dg2, key: 'projects.defence-garden-phase-2.aerial-03', where: 'Streets and homes',
-    title: 'Streets laid, homes rising',
-    text: 'Behind the gate the internal roads are laid and lit, and new homes are going up plot by plot. When this photograph was taken, the next boulevard was being paved.',
-    pins: [
-      { x: 23.5, y: 51, dir: 'r', label: 'Gate and “Welcomes You” wall', detail: 'The entrance on the main road.' },
-      { x: 66, y: 40, dir: 'r', label: 'Lit internal roads', detail: 'Street lights along the roads.' },
-      { x: 53, y: 34, dir: 'l', label: 'New homes', detail: 'Built and under construction.' },
-      { x: 55, y: 69, dir: 'r', label: 'Boulevard being paved', detail: 'Work in progress in October 2026.' },
-      { x: 13, y: 72, dir: 'r', label: 'Main road', detail: 'Direct access from the main road.' },
-    ],
-    facts: dg2?.hasMap ? [{ label: 'Live plot-booking map', detail: 'See which plots are free on the colony page.' }] : [],
-    cta: true,
+    p: dg2, still: 'projects.defence-garden-phase-2.aerial-02', title: 'On the main road',
+    text: 'Defence Garden Phase 2 opens straight off a divided main road: a red-roofed gatehouse, the green “Welcomes You” wall and a row of shops at the entrance, with homes already standing behind.',
+    highlights: ['Main-road frontage', 'Red-roofed gatehouse', 'Shops at the entrance', 'New streets being paved'],
   },
-].filter((s) => s.p);
+  {
+    p: dg2, still: 'projects.defence-garden-phase-2.aerial-01', title: 'Through the gate',
+    text: 'Past the “Welcomes You” wall and through the gatehouse, a straight internal road runs into the colony between plots and new homes.',
+    highlights: ['“Welcomes You” signage wall', 'Gatehouse with rooms on both sides', 'Paved, lit internal road'],
+  },
+  {
+    p: dg2, still: 'projects.defence-garden-phase-2.aerial-03', title: 'Streets and homes',
+    text: 'Behind the gate the internal roads are laid and lit and new homes go up plot by plot; in October 2026 the next boulevard was being paved.',
+    highlights: ['Lit internal roads', 'Homes built and under construction', ...(dg2?.hasMap ? ['Live plot-booking map online'] : [])],
+  },
+].filter((c) => c.p);
 
+const hasFilm = Boolean(film && times.length === all.length);
+const chapters = all.filter((c) => hasFilm || !c.filmOnly);
 const pad2 = (n) => String(n).padStart(2, '0');
-const total = pad2(steps.length);
-const items = steps.map((s) => {
-  const rec = media(s.key);
-  return { ...s, rec, name: displayTitle(s.p), href: projectUrl(s.p), ratio: `${rec.width} / ${rec.height}` };
+const items = chapters.map((c, i) => {
+  const t = hasFilm ? times[all.indexOf(c)] : null;
+  return { ...c, n: pad2(i + 1), name: displayTitle(c.p), short: c.p.id === 1 ? 'River Green Society' : 'Defence Garden Phase 2', href: projectUrl(c.p), start: t?.start, end: t?.end };
 });
+const total = pad2(items.length);
 ---
-<section class="atr t-light section" data-header-tone="light" data-atr aria-labelledby="atr-title">
+<section class="atr t-night section" data-header-tone="dark" data-atr data-atr-mode={hasFilm ? 'film' : 'stills'} aria-labelledby="atr-title">
+  <div class="atr__glow" aria-hidden="true"></div>
   <div class="wrap">
     <header class="atr__head">
       <div class="sec-head">
         <p class="eyebrow eyebrow--accent" data-reveal="fade">From the air · Shamli</p>
         <h2 class="display atr__title" id="atr-title" data-reveal="lines">Our colonies,<br />seen from above</h2>
       </div>
-      <div class="atr__intro">
-        <p class="lead muted" data-reveal="fade">Real drone photographs of River Green Society and Defence Garden Phase 2, taken in October 2026. Not renders: every road, park and gate you see is already built.</p>
-        <ul class="atr__meta" data-reveal="fade">
-          <li><b>{total}</b><span class="eyebrow muted">Aerial views</span></li>
-          <li><b>02</b><span class="eyebrow muted">Colonies</span></li>
-          <li><b>Oct 2026</b><span class="eyebrow muted">Photographed</span></li>
+      <div class="atr__intro" data-reveal="fade">
+        <p class="lead atr__lead">Drone footage of River Green Society and Defence Garden Phase 2, shot in October 2026. Not renders: every road, park and gate you see is already built.</p>
+        <ul class="atr__meta">
+          <li><b>{total}</b><span class="eyebrow">Chapters</span></li>
+          <li><b>02</b><span class="eyebrow">Colonies</span></li>
+          <li><b>Oct 26</b><span class="eyebrow">{hasFilm ? 'Filmed' : 'Photographed'}</span></li>
         </ul>
       </div>
     </header>
 
-    <ol class="atr__steps">
-      {items.map((s, i) => (
-        <li class={`atr__step ${i % 2 ? 'is-flip' : ''}`} data-atr-step>
-          <figure class="atr__photo">
-            <div class="atr__img media" style={`aspect-ratio:${s.ratio}`} data-reveal="clip">
-              <Img src={s.key} sizes="(min-width: 1100px) 58vw, 100vw" widths={[640, 960, 1280, 1600, 1920, 2400]} />
-              <div class="atr__pins" aria-hidden="true">
-                {s.pins.map((pin, k) => (
-                  <span class={`atr__pin is-${pin.dir}`} style={`left:${pin.x}%;top:${pin.y}%;--d:${(0.15 + k * 0.09).toFixed(2)}s`} data-atr-pin={k}>
-                    <b>{k + 1}</b><span class="atr__label">{pin.label}</span>
-                  </span>
-                ))}
-              </div>
+    <div class="atr__grid">
+      <div class="atr__side">
+        <div class="atr__index" role="tablist" aria-label="Chapters" aria-orientation="vertical">
+          {items.map((c, i) => (
+            <button class="atr__tab" type="button" role="tab" data-reveal="fade" data-reveal-delay={(i * 0.06).toFixed(2)} id={`atr-tab-${i}`} aria-controls={`atr-panel-${i}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1} data-atr-tab={i} data-start={c.start} data-end={c.end}>
+              <span class="atr__n" aria-hidden="true">{c.n}</span>
+              <span class="atr__tt"><span class="atr__tc">{c.short}</span><span class="atr__tname">{c.title}</span></span>
+              <span class="atr__arrow" aria-hidden="true"><Icon name="arrow-right" /></span>
+              <span class="atr__line" aria-hidden="true"><i></i></span>
+            </button>
+          ))}
+        </div>
+        <div class="atr__panels">
+          {items.map((c, i) => (
+            <div class={`atr__panel ${i === 0 ? 'is-active' : ''}`} role="tabpanel" id={`atr-panel-${i}`} aria-labelledby={`atr-tab-${i}`} data-atr-panel={i}>
+              <p class="atr__ptext">{c.text}</p>
+              <ul class="atr__hl" aria-label="Highlights">
+                {c.highlights.map((h) => <li>{h}</li>)}
+              </ul>
+              <a class="atr__go link-line" href={c.href}>Explore {c.name}<Icon name="arrow-up-right" /></a>
             </div>
-            <figcaption class="atr__cap eyebrow muted"><span>{pad2(i + 1)} / {total}</span> Drone photograph · {s.name} · 13 Oct 2026</figcaption>
-          </figure>
-          <div class="atr__copy">
-            <p class="eyebrow eyebrow--accent" data-reveal="fade">{s.name} · {s.where}</p>
-            <h3 class="atr__t" data-reveal="fade">{s.title}</h3>
-            <p class="body muted" data-reveal="fade">{s.text}</p>
-            <ul class="atr__hl" data-reveal="fade">
-              {s.pins.map((pin, k) => (
-                <li data-atr-hl={k}><span class="atr__num">{k + 1}</span><div><p class="atr__hlt">{pin.label}</p><p class="small muted">{pin.detail}</p></div></li>
-              ))}
-              {(s.facts || []).map((f) => (
-                <li class="is-fact"><span class="atr__num" aria-hidden="true"></span><div><p class="atr__hlt">{f.label}</p><p class="small muted">{f.detail}</p></div></li>
-              ))}
-            </ul>
-            {s.cta && <a class="btn atr__go" href={s.href} data-reveal="fade"><span>Explore {s.name}</span><Icon name="arrow-right" /></a>}
+          ))}
+        </div>
+      </div>
+
+      <div class="atr__stage">
+        <div class="frame atr__frame" data-tilt="3">
+          <span class="frame__line" data-drift="26" aria-hidden="true"></span>
+          <span class="frame__corners" aria-hidden="true"></span>
+          <div class="atr__window media">
+            {items.map((c, i) => (
+              <div class={`atr__shot ${i === 0 ? 'is-active' : ''}`} data-atr-shot={i} aria-hidden="true">
+                <Img src={c.still} alt="" sizes="(min-width: 1100px) 50vw, 100vw" widths={[640, 960, 1280, 1600, 1920]} eager={i === 0} />
+              </div>
+            ))}
+            {hasFilm && <Vid src="video.colonies-aerial" class="atr__film" label="Drone film of River Green Society and Defence Garden Phase 2" />}
+            <span class="atr__vignette" aria-hidden="true"></span>
+            <span class="frame__sheen" aria-hidden="true"></span>
+            <p class="atr__cap eyebrow" aria-hidden="true"><Icon name="pin" /><span data-atr-cap>{items[0].short} · Shamli</span></p>
           </div>
-        </li>
-      ))}
-    </ol>
+          <div class="atr__badge">
+            <svg class="atr__ring" viewBox="0 0 200 200" aria-hidden="true">
+              <defs><path id="atr-ring" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0" /></defs>
+              <text><textPath href="#atr-ring" textLength="500" lengthAdjust="spacing">{hasFilm ? 'Drone film' : 'Drone views'} · Shamli · October 2026 ·</textPath></text>
+            </svg>
+            <button class="atr__play" type="button" data-atr-toggle aria-label="Pause"><span class="atr__ico atr__ico--pause" aria-hidden="true"></span></button>
+          </div>
+          <p class="atr__big" aria-hidden="true"><span data-atr-big>{items[0].n}</span><small>/{total}</small></p>
+        </div>
+      </div>
+    </div>
 
     <div class="atr__end" data-reveal="fade">
       <p class="atr__endt">See it for yourself: we arrange site visits to both colonies.</p>
       <div class="atr__actions">
-        <button class="btn btn--solid" type="button" data-enquire data-interest="Site visit"><span>Plan a site visit</span><Icon name="arrow-right" /></button>
+        <button class="btn btn--copper" type="button" data-enquire data-interest="Site visit"><span>Plan a site visit</span><Icon name="arrow-right" /></button>
         <a class="btn" href="/ourproject"><span>All colonies</span><Icon name="grid" /></a>
       </div>
     </div>
@@ -167,66 +153,113 @@ const items = steps.map((s) => {
 </section>
 
 <style>
-  .atr__head { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: var(--gutter); align-items: end; margin-bottom: clamp(56px, 7vw, 120px); }
-  .atr__intro { display: grid; gap: 26px; max-width: 52ch; justify-self: end; }
-  .atr__meta { display: flex; flex-wrap: wrap; gap: clamp(22px, 3vw, 44px); padding-top: 22px; border-top: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); }
-  .atr__meta li { display: grid; gap: 6px; }
-  .atr__meta b { font-size: clamp(24px, 2.2vw, 36px); font-weight: 500; letter-spacing: -.03em; line-height: 1; }
+  .atr { overflow: hidden; isolation: isolate; }
+  .atr__glow { position: absolute; z-index: -1; right: -10%; top: 18%; width: 70vw; height: 70vw; max-width: 1100px; max-height: 1100px; border-radius: 50%; pointer-events: none; background: radial-gradient(closest-side, rgba(207, 143, 125, .16), rgba(207, 143, 125, 0)); }
+  .atr__head { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: var(--gutter); align-items: end; margin-bottom: clamp(56px, 7vw, 120px); }
+  .atr__title { color: #f4ede6; }
+  .atr__intro { display: grid; gap: 26px; max-width: 50ch; justify-self: end; }
+  .atr__lead { color: rgba(244, 237, 230, .78); }
+  .atr__meta { display: flex; flex-wrap: wrap; gap: clamp(24px, 3vw, 48px); padding-top: 22px; border-top: 1px solid rgba(244, 237, 230, .16); }
+  .atr__meta li { display: grid; gap: 8px; }
+  .atr__meta b { font-size: clamp(26px, 2.3vw, 38px); font-weight: 500; letter-spacing: -.035em; line-height: 1; color: var(--copper); }
+  .atr__meta .eyebrow { color: rgba(244, 237, 230, .6); }
 
-  .atr__steps { display: grid; gap: clamp(96px, 11vw, 190px); }
-  .atr__step { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(28px, 4.5vw, 84px); align-items: start; }
-  .atr__step.is-flip { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); }
-  .atr__step.is-flip .atr__photo { order: 2; }
-  .atr__photo { position: sticky; top: calc(var(--header-h) + 2vh); display: grid; gap: 12px; }
-  .atr__img { border-radius: 4px; }
-  .atr__img :global(img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .atr__cap { display: flex; gap: 14px; flex-wrap: wrap; }
-  .atr__cap span { color: var(--accent); }
+  .atr__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(36px, 6vw, 120px); align-items: start; }
 
-  /* pins: a zero-size anchor at the feature, the numbered dot centred on it, the label beside it */
-  .atr__pins { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
-  .atr__pin { position: absolute; width: 0; height: 0; pointer-events: auto; }
-  .atr__pin b { position: absolute; left: -14px; top: -14px; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: #fff; color: var(--navy); font-size: 12px; font-weight: 600; box-shadow: 0 0 0 3px rgba(207, 143, 125, .55), 0 6px 16px rgba(6, 26, 58, .35); transition: background .3s, color .3s, transform .4s var(--ease-out); }
-  .atr__pin b::after { content: ''; position: absolute; inset: -3px; border-radius: 50%; border: 1.5px solid rgba(255, 255, 255, .85); opacity: 0; }
-  .atr__label { position: absolute; top: -13px; left: 22px; padding: 5px 11px; border-radius: 999px; white-space: nowrap; background: rgba(6, 26, 58, .82); color: #fff; font-size: 12.5px; font-weight: 500; line-height: 16px; box-shadow: 0 6px 16px rgba(6, 26, 58, .25); transition: background .3s; }
-  .atr__pin.is-l .atr__label { left: auto; right: 22px; }
-  .atr__pin.is-hot b { background: var(--copper); color: #fff; transform: scale(1.15); }
-  .atr__pin.is-hot .atr__label { background: var(--copper-deep); }
-  html.js .atr__pin { opacity: 0; transform: scale(.6); transition: opacity .5s var(--ease-out) var(--d, 0s), transform .7s var(--ease-out) var(--d, 0s); }
-  html.js .atr__step.is-seen .atr__pin { opacity: 1; transform: none; }
-  .atr__step.is-on .atr__pin b::after { animation: atr-pulse 2.8s var(--ease-out) var(--d, 0s) infinite; }
-  @keyframes atr-pulse { 0% { opacity: .9; transform: scale(1); } 80%, 100% { opacity: 0; transform: scale(1.9); } }
+  /* chapter index */
+  .atr__index { display: grid; border-top: 1px solid rgba(244, 237, 230, .14); }
+  .atr__tab { position: relative; display: grid; grid-template-columns: clamp(58px, 5vw, 78px) minmax(0, 1fr) auto; align-items: center; gap: 14px; padding: clamp(12px, 1.2vw, 18px) 0; text-align: left; color: rgba(244, 237, 230, .5); border-bottom: 1px solid rgba(244, 237, 230, .14); transition: color .5s var(--ease-out); }
+  .atr__n { font-size: clamp(32px, 2.9vw, 48px); font-weight: 500; letter-spacing: -.05em; line-height: .9; color: transparent; -webkit-text-stroke: 1px rgba(207, 143, 125, .7); transition: color .5s var(--ease-out), -webkit-text-stroke-color .5s; }
+  .atr__tt { display: grid; gap: 5px; }
+  .atr__tc { font-size: 10.5px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: rgba(244, 237, 230, .45); }
+  .atr__tname { font-size: clamp(19px, 1.6vw, 26px); font-weight: 500; letter-spacing: -.025em; line-height: 1.1; }
+  .atr__arrow { width: 18px; height: 18px; opacity: 0; transform: translateX(-8px); transition: opacity .4s, transform .5s var(--ease-out); color: var(--copper); }
+  .atr__arrow :global(svg) { width: 18px; height: 18px; }
+  .atr__line { position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; overflow: hidden; }
+  .atr__line i { position: absolute; inset: 0; background: var(--copper); transform-origin: left; transform: scaleX(var(--p, 0)); }
+  .atr__tab:hover { color: rgba(244, 237, 230, .85); }
+  .atr__tab:hover .atr__arrow { opacity: .7; transform: none; }
+  .atr__tab[aria-selected='true'] { color: #f4ede6; }
+  .atr__tab[aria-selected='true'] .atr__n { color: var(--copper); -webkit-text-stroke-color: var(--copper); }
+  .atr__tab[aria-selected='true'] .atr__arrow { opacity: 1; transform: none; }
 
-  .atr__copy { display: grid; gap: 18px; align-content: start; justify-items: start; padding-top: clamp(0px, 1.5vw, 24px); }
-  .atr__t { font-size: clamp(28px, 2.6vw, 44px); font-weight: 500; letter-spacing: -.03em; line-height: 1.06; max-width: 18ch; }
-  .atr__hl { width: 100%; margin-top: 4px; border-top: 1px solid color-mix(in srgb, var(--fg) 14%, transparent); }
-  .atr__hl li { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 14px; align-items: start; padding: 13px 0; border-bottom: 1px solid color-mix(in srgb, var(--fg) 14%, transparent); }
-  .atr__num { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--navy); color: #fff; font-size: 12px; font-weight: 600; transition: background .3s, transform .4s var(--ease-out); }
-  .atr__hl li.is-fact .atr__num { background: transparent; border: 1px solid var(--accent); }
-  .atr__hl li.is-fact .atr__num::after { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
-  .atr__hl li.is-hot .atr__num { background: var(--copper-deep); transform: scale(1.1); }
-  .atr__hlt { font-size: 16px; font-weight: 500; letter-spacing: -.01em; line-height: 1.3; margin-bottom: 2px; }
-  .atr__go { margin-top: 8px; }
+  /* the open chapter: every panel in one grid cell, so the column keeps the tallest panel's height */
+  .atr__panels { display: grid; margin-top: clamp(26px, 2.6vw, 40px); }
+  .atr__panel { grid-area: 1 / 1; display: grid; gap: 22px; align-content: start; justify-items: start; }
+  html.js .atr__panel { opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity .6s var(--ease-out), transform .7s var(--ease-out), visibility 0s .6s; }
+  html.js .atr__panel.is-active { opacity: 1; visibility: visible; transform: none; transition: opacity .7s var(--ease-out) .12s, transform .8s var(--ease-out) .12s, visibility 0s; }
+  html:not(.js) .atr__panel { grid-area: auto; }
+  .atr__ptext { font-size: clamp(15px, 1.08vw, 17.5px); line-height: 1.65; color: rgba(244, 237, 230, .78); max-width: 50ch; }
+  .atr__hl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 26px; width: 100%; }
+  .atr__hl li { position: relative; padding-left: 22px; font-size: 14px; line-height: 1.45; color: #f4ede6; }
+  .atr__hl li::before { content: ''; position: absolute; left: 0; top: .45em; width: 9px; height: 9px; transform: rotate(45deg); border: 1px solid var(--copper); }
+  .atr__go { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: var(--copper-soft); }
+  .atr__go :global(svg) { width: 15px; height: 15px; }
 
-  .atr__end { display: flex; justify-content: space-between; align-items: center; gap: 22px 40px; flex-wrap: wrap; margin-top: clamp(80px, 9vw, 150px); padding-top: clamp(28px, 3vw, 44px); border-top: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); }
-  .atr__endt { font-size: clamp(22px, 2vw, 32px); font-weight: 500; letter-spacing: -.025em; line-height: 1.15; max-width: 30ch; }
+  /* the framed window */
+  .atr__stage { position: sticky; top: calc(var(--header-h) + 4vh); padding: clamp(70px, 7vw, 128px) 34px 0 0; }
+  .atr__frame { --fr-c: var(--copper); --fr-x: 22px; --fr-y: 22px; --fr-gap: 12px; --fr-len: 34px; }
+  .atr__window { aspect-ratio: 4 / 3; border-radius: 2px; background: #0a0a0a; }
+  .atr__shot, .atr__window :global(.atr__film) { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .atr__shot { clip-path: inset(0 0 0 100%); transition: clip-path 1.25s var(--ease-in-out); z-index: 0; }
+  .atr__shot.is-active { clip-path: inset(0 0 0 0); z-index: 1; }
+  .atr__shot.is-leaving { clip-path: inset(0 0 0 0); z-index: 0; }
+  .atr__shot :global(img) { width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); transition: transform 9s cubic-bezier(.25, .1, .25, 1); }
+  .atr__shot.is-active :global(img) { transform: scale(1.02); }
+  .atr__window :global(.atr__film) { object-fit: cover; z-index: 2; }
+  .atr__vignette { position: absolute; inset: 0; z-index: 3; pointer-events: none; background: radial-gradient(120% 90% at 50% 40%, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, .55) 100%), linear-gradient(0deg, rgba(0, 0, 0, .55), rgba(0, 0, 0, 0) 32%); }
+  .atr__cap { position: absolute; z-index: 4; left: 18px; bottom: 16px; display: inline-flex; align-items: center; gap: 8px; color: rgba(255, 255, 255, .9); transition: opacity .4s; }
+  .atr__cap :global(svg) { width: 14px; height: 14px; color: var(--copper-soft); }
+  .atr__cap.is-out { opacity: 0; }
+
+  /* rotating ring badge holding play / pause, on the window's top-right corner */
+  .atr__badge { position: absolute; z-index: 5; right: -58px; top: -58px; width: 132px; height: 132px; display: grid; place-items: center; }
+  .atr__ring { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; color: var(--copper); animation: fr-spin 26s linear infinite; }
+  .atr__ring text { font: 600 11px/1 var(--f-sans); letter-spacing: .24em; text-transform: uppercase; fill: currentColor; }
+  [data-atr-held] .atr__ring { animation-play-state: paused; }
+  .atr__play { position: relative; width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; background: var(--copper); color: var(--navy-deep); box-shadow: 0 12px 30px -10px rgba(0, 0, 0, .6); transition: transform .5s var(--ease-out), background .3s; }
+  .atr__play:hover { transform: scale(1.06); background: #f4ede6; }
+  .atr__ico--pause { width: 12px; height: 14px; border-inline: 4px solid currentColor; }
+  .atr__ico--play { width: 0; height: 0; border-style: solid; border-width: 8px 0 8px 13px; border-color: transparent transparent transparent currentColor; margin-left: 4px; }
+  html:not(.js) .atr__badge, .atr__badge[hidden] { display: none; }
+
+  /* oversized outlined chapter number rising behind the window's top-left corner */
+  .atr__big { position: absolute; z-index: -1; left: -0.06em; top: -0.66em; font-size: clamp(120px, 13vw, 230px); font-weight: 500; letter-spacing: -.06em; line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(207, 143, 125, .38); pointer-events: none; display: flex; align-items: flex-start; }
+  .atr__big small { font-size: .13em; font-weight: 500; letter-spacing: .08em; -webkit-text-stroke: 0; color: rgba(207, 143, 125, .75); margin: .32em 0 0 .3em; }
+  .atr__big span { display: inline-block; transition: opacity .35s, transform .5s var(--ease-out); }
+  .atr__big span.is-out { opacity: 0; transform: translateY(18%); }
+
+  .atr__end { display: flex; justify-content: space-between; align-items: center; gap: 22px 40px; flex-wrap: wrap; margin-top: clamp(80px, 9vw, 150px); padding-top: clamp(28px, 3vw, 44px); border-top: 1px solid rgba(244, 237, 230, .16); }
+  .atr__endt { font-size: clamp(22px, 2vw, 32px); font-weight: 500; letter-spacing: -.025em; line-height: 1.15; max-width: 30ch; color: #f4ede6; }
   .atr__actions { display: flex; flex-wrap: wrap; gap: 10px; }
 
   @media (max-width: 1099px) {
     .atr__head { grid-template-columns: 1fr; align-items: start; }
     .atr__intro { justify-self: start; }
-    .atr__step, .atr__step.is-flip { grid-template-columns: 1fr; gap: 26px; }
-    .atr__step.is-flip .atr__photo { order: 0; }
-    .atr__photo { position: relative; top: auto; }
-    .atr__label { display: none; }
-    .atr__pin b { left: -11px; top: -11px; width: 22px; height: 22px; font-size: 10.5px; box-shadow: 0 0 0 2px rgba(207, 143, 125, .55), 0 4px 10px rgba(6, 26, 58, .35); }
+    .atr__grid { grid-template-columns: minmax(0, 1fr); gap: 34px; }   /* minmax: the chip row's width must not widen the column */
+    .atr__stage { position: relative; top: auto; order: -1; padding: 0 30px 0 0; }
+    /* chapters become a swipeable row of numbered chips */
+    .atr__index { display: flex; overflow-x: auto; scrollbar-width: none; gap: 10px; border-top: 0; margin-inline: calc(var(--gutter) * -1); padding: 4px var(--gutter); scroll-padding-inline: var(--gutter); scroll-snap-type: x mandatory; }
+    .atr__index::-webkit-scrollbar { display: none; }
+    .atr__tab { flex: 0 0 auto; grid-template-columns: auto auto; gap: 10px; padding: 10px 16px 12px 12px; border: 1px solid rgba(244, 237, 230, .18); border-radius: 999px; scroll-snap-align: start; }
+    .atr__tab[aria-selected='true'] { border-color: var(--copper); background: rgba(207, 143, 125, .1); }
+    .atr__n { font-size: 22px; }
+    .atr__tc, .atr__arrow { display: none; }
+    .atr__tname { font-size: 15px; white-space: nowrap; }
+    .atr__line { left: 14px; right: 14px; bottom: 5px; border-radius: 1px; }
+    .atr__badge { right: -30px; top: auto; bottom: -38px; width: 108px; height: 108px; }
+    .atr__play { width: 50px; height: 50px; }
+    .atr__cap { bottom: auto; top: 14px; left: 14px; }
+    .atr__big { font-size: 96px; left: -0.04em; top: -0.66em; }
+    .atr__stage { padding-top: 58px; }
   }
-  /* phones: the photo runs edge to edge (bigger, so the pins have room) */
   @media (max-width: 640px) {
-    .atr__img { margin-inline: calc(var(--gutter) * -1); border-radius: 0; }
+    .atr__hl { grid-template-columns: 1fr; }
+    .atr__ring text { font-size: 12px; }
   }
   @media (prefers-reduced-motion: reduce) {
-    html.js .atr__pin { opacity: 1; transform: none; transition: none; }
-    .atr__step.is-on .atr__pin b::after { animation: none; }
+    .atr__shot, .atr__shot :global(img), html.js .atr__panel, .atr__big span, .atr__cap { transition: none; }
+    .atr__shot :global(img), .atr__shot.is-active :global(img) { transform: none; }
+    .atr__ring { animation: none; }
   }
 </style>

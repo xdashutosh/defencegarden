@@ -159,10 +159,10 @@ const receiptNote = site?.legal?.bookingReceiptIdentity?.verificationNote || 'Si
   .trk-top > div:first-child { display: grid; gap: 10px; }
   .trk-plot { font-family: var(--f-sans); font-weight: 500; font-size: clamp(40px, 4.6vw, 76px); line-height: .95; letter-spacing: -.04em; }
   .trk-status { --tone: var(--copper-deep); display: flex; align-items: center; gap: 14px; padding: 14px 20px 14px 14px; border: 1px solid color-mix(in srgb, var(--tone) 45%, transparent); background: color-mix(in srgb, var(--tone) 7%, transparent); max-width: 420px; }
-  .trk-status[data-tone='active'] { --tone: var(--navy); }
+  .trk-status[data-tone='active'] { --tone: #000; }
   .trk-status[data-tone='done'] { --tone: var(--green); }
   .trk-status[data-tone='cancelled'] { --tone: #b3261e; }
-  .trk-status[data-tone='transferred'] { --tone: var(--aubergine); }
+  .trk-status[data-tone='transferred'] { --tone: var(--copper-deep); }
   .trk-status__ico { width: 44px; height: 44px; flex: none; display: grid; place-items: center; border-radius: 50%; background: var(--tone); color: #fff; }
   .trk-status__ico svg { width: 22px; height: 22px; display: none; }
   .trk-status[data-tone='pending'] [data-tone-icon='pending'],

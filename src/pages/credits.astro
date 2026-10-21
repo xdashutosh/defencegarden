@@ -40,6 +40,7 @@ const typefaces = fonts.length === 1 ? 'Typeface' : 'Typefaces';
   <style is:inline>
     .crd-hero { position: relative; overflow: hidden; padding: calc(var(--header-h) + clamp(50px, 8vw, 130px)) 0 clamp(50px, 6vw, 100px); }
     .crd-hero__in { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: clamp(30px, 5vw, 100px); align-items: end; }
+    .crd-hero__eyebrow { color: var(--navy-deep); }   /* over the sky: navy reads, copper does not */
     .crd-hero__title { font-size: clamp(48px, 7.6vw, 140px); }
     .crd-hero__aside { display: grid; gap: 20px; }
     .crd-hero__stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid color-mix(in srgb, var(--fg) 16%, transparent); }
@@ -108,7 +109,7 @@ const typefaces = fonts.length === 1 ? 'Typeface' : 'Typefaces';
   <section class="crd-hero t-light" data-header-tone="light">
     <div class="wrap crd-hero__in">
       <div class="sec-head">
-        <p class="eyebrow eyebrow--accent" data-reveal="fade" data-reveal-intro>Credits</p>
+        <p class="eyebrow crd-hero__eyebrow" data-reveal="fade" data-reveal-intro>Credits</p>
         <h1 class="display crd-hero__title" data-reveal="lines" data-reveal-intro data-reveal-delay="0.1">Image credits &amp; licences</h1>
       </div>
       <div class="crd-hero__aside" data-reveal="fade" data-reveal-intro data-reveal-delay="0.3">
